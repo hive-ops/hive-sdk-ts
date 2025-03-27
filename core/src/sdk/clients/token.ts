@@ -1,6 +1,6 @@
 import { createClient } from "@connectrpc/connect";
 import { DroneTokenService, FQDN, Service } from "../../gen";
-import { DOMAIN } from "../constants";
+import { DOMAIN } from "../utilities";
 import { buildURL, makeSingletonFactory } from "../utilities/utils";
 import { ClientOptions, TokenClient } from "./types";
 import { invalidateHiveToken } from "./utils";
