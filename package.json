@@ -1,0 +1,39 @@
+{
+  "name": "ts-sdk",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "lerna run build",
+    "fix": "lerna run fix",
+    "check": "lerna run check",
+    "update": "lerna run update"
+  },
+  "keywords": [],
+  "author": "HiveOps",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/lodash": "^4.17.15",
+    "@types/node": "^22.10.0",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "^5.48.2",
+    "dotenv": "^16.3.1",
+    "eslint": "^8",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsdoc": "^39.6.7",
+    "eslint-plugin-neverthrow": "^1.1.4",
+    "eslint-plugin-typescript": "^0.14.0",
+    "jest": "^29.7.0",
+    "jest-junit": "^16.0.0",
+    "lerna": "^8.1.9",
+    "node-check-updates": "^0.1.9",
+    "nodemon": "^3.1.7",
+    "prettier": "^2.8.3",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.1"
+  },
+  "workspaces": [
+    "core"
+  ]
+}
