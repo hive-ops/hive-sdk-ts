@@ -5,6 +5,7 @@ export const DOMAIN = "hiveops.io";
 export const SERVICE_MAP: { [key in keyof typeof Service]: string } = {
   UNSPECIFIED: "",
   DRONE: "drone",
+  BEEKEEPER: "beekeeper",
 };
 
 export const FRAMEWORK_MAP: { [key in keyof typeof Framework]: string } = {
