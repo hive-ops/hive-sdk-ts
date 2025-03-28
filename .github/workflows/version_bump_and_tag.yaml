@@ -34,7 +34,7 @@ jobs:
           if [ -z "$TAG" ]; then TAG=""; fi
           echo "tag=$TAG"
           echo "root=$(git rev-list $TAG..HEAD -- . | wc -l)" >> $GITHUB_OUTPUT
-          echo "core=$(git rev-list $TAG..HEAD -- core | wc -l)" >> $GITHUB_OUTPUT
+          echo "core=$(git rev-list $TAG..HEAD -- packages/core | wc -l)" >> $GITHUB_OUTPUT
 
   bump-and-build:
     name: Bump and Build TS SDKs
@@ -68,7 +68,7 @@ jobs:
       - name: Bump version and build Core SDK
         if: needs.commit-check.outputs.core_commits != '0'
         run: |
-          cd core
+          cd packages/core
           npm version patch --no-git-tag-version
           npm run build
           echo CORE_CURRENT_VERSION=$(node -p "require('./package.json').version") >> "$GITHUB_ENV"
@@ -81,7 +81,7 @@ jobs:
       - name: Publish Core publish
         if: needs.commit-check.outputs.core_commits != '0'
         run: |
-          cd core
+          cd packages/core
           npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

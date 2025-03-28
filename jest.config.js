@@ -8,7 +8,7 @@ module.exports = {
   },
   testRegex: '(\\.(test|ispec|uspec))\\.(ts)$',
   roots: [
-    '<rootDir>/core',
+    '<rootDir>/packages/core',
   ],
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
   collectCoverageFrom: ['<rootDir>/**/*.ts'],
