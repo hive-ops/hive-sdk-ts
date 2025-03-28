@@ -48,12 +48,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          registry-url: 'https://registry.npmjs.org'
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: "Configure npm"
-        run: |
-          npm config set //npm.pkg.github.com/:_authToken ${{secrets.ACCESS_TOKEN}}
-          npm config set //npm.pkg.npmjs.com/:_authToken ${{secrets.NPM_TOKEN}}
-          npm config set @hive-ops:registry https://npm.pkg.github.com/
+      # - name: "Configure npm"
+      #   run: |
+      #     npm config set //npm.pkg.github.com/:_authToken ${{secrets.ACCESS_TOKEN}}
 
       - name: Install npm dependencies and build all packages
         run: |
@@ -74,7 +75,9 @@ jobs:
 
       - name: Publish Core publish
         if: needs.commit-check.outputs.core_commits != '0'
-        run: cd core && npm publish
+        run: cd core && npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: "Get current version"
         run: echo CURRENT_VERSION=$(cat version.txt) >> "$GITHUB_ENV"
