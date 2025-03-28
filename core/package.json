@@ -20,8 +20,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/hive-ops/hive-sdk.git",
-    "directory": "clients/ts-sdk/core"
+    "url": "https://github.com/hive-ops/hive-sdk-ts.git",
+    "directory": "core"
   },
   "jest": {
     "automock": false,
