@@ -95,7 +95,7 @@ jobs:
         if: needs.commit-check.outputs.core_commits != '0'
         run: |
           git tag -a core-v${{ env.CORE_CURRENT_VERSION }} -m "Version core-v${{ env.CORE_CURRENT_VERSION }}"
-          git push origin v${{ env.CORE_CURRENT_VERSION }} --no-verify
+          git push origin core-v${{ env.CORE_CURRENT_VERSION }} --no-verify
 
       - name: "Push Repo"
         if: needs.commit-check.outputs.core_commits != '0'
