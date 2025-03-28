@@ -1,0 +1,91 @@
+name: Version bump and tag workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  commit-check:
+    name: Get commit counts
+    runs-on: ubuntu-latest
+    outputs:
+      root_commits: ${{ steps.commit-count.outputs.root }}
+      core_commits: ${{ steps.commit-count.outputs.core }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # fetch all tags
+
+      - name: Get latest repo tag
+        id: get-tag
+        run: |
+          echo "tag=$(git describe --tags --abbrev=0 || echo '')" >> $GITHUB_OUTPUT
+
+      - name: Get commit counts
+        id: commit-count
+        run: |
+          TAG=${{ steps.get-tag.outputs.tag }}
+          if [ -z "$TAG" ]; then TAG=""; fi
+          echo "tag=$TAG"
+          echo "root=$(git rev-list $TAG..HEAD -- . | wc -l)" >> $GITHUB_OUTPUT
+          echo "core=$(git rev-list $TAG..HEAD -- core | wc -l)" >> $GITHUB_OUTPUT
+
+  bump-and-build:
+    name: Bump and Build TS SDKs
+    needs: [commit-check]
+    runs-on: ubuntu-latest
+    if: needs.commit-check.outputs.root_commits != '0'
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Setup Node.js if needed
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: "Configure npm"
+        run: |
+          npm config set //npm.pkg.github.com/:_authToken ${{secrets.ACCESS_TOKEN}}
+          npm config set //npm.pkg.npmjs.com/:_authToken ${{secrets.NPM_TOKEN}}
+          npm config set @hive-ops:registry https://npm.pkg.github.com/
+
+      - name: Install npm dependencies and build all packages
+        run: |
+          npm ci
+          npx lerna run build
+
+      - name: Bump version and build Core SDK
+        if: needs.commit-check.outputs.core_commits != '0'
+        run: |
+          cd core
+          npm version patch --no-git-tag-version
+          npm run build
+
+      - name: "Configure Git"
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions"
+
+      - name: Publish Core publish
+        if: needs.commit-check.outputs.core_commits != '0'
+        run: cd core && npm publish
+
+      - name: "Get current version"
+        run: echo CURRENT_VERSION=$(cat version.txt) >> "$GITHUB_ENV"
+
+      - name: "Get new version"
+        run: echo NEW_VERSION=$(npx semver -i patch ${{env.CURRENT_VERSION}}) >> "$GITHUB_ENV"
+
+      - name: "Bump Repo Tag"
+        run: |
+          echo $NEW_VERSION > "version.txt"
+          git commit -am "[patch version] Version bump to v${{ env.NEW_VERSION }}"
+          git tag -a v${{ env.NEW_VERSION }} -m "Version v${{ env.NEW_VERSION }}"
+          git push origin v${{ env.NEW_VERSION }} --no-verify
+          git push --no-verify
