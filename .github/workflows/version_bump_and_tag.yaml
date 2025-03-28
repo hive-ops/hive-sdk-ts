@@ -52,7 +52,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -79,20 +79,23 @@ jobs:
 
       - name: Publish Core publish
         if: needs.commit-check.outputs.core_commits != '0'
-        run: cd core && npm publish --provenance --access public
+        run: |
+          cd core
+          npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: "Get current version"
-        run: echo CURRENT_VERSION=$(cat version.txt) >> "$GITHUB_ENV"
-
-      - name: "Get new version"
-        run: echo NEW_VERSION=$(npx semver -i patch ${{env.CURRENT_VERSION}}) >> "$GITHUB_ENV"
-
-      - name: "Bump Repo Tag"
+      - name: "Commit Repo Changes"
+        if: needs.commit-check.outputs.core_commits != '0'
         run: |
-          echo $NEW_VERSION > "version.txt"
-          git commit -am "[patch version] Version bump to v${{ env.NEW_VERSION }}"
-          git tag -a v${{ env.NEW_VERSION }} -m "Version v${{ env.NEW_VERSION }}"
-          git push origin v${{ env.NEW_VERSION }} --no-verify
+          git commit -am "chore: release main" --no-verify
+
+      # - name: "Tag Repo"
+      #   run: |
+      #     git tag -a v${{ env.NEW_VERSION }} -m "Version v${{ env.NEW_VERSION }}"
+      #     git push origin v${{ env.NEW_VERSION }} --no-verify
+
+      - name: "Push Repo"
+        if: needs.commit-check.outputs.core_commits != '0'
+        run: |
           git push --no-verify
