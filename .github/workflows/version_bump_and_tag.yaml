@@ -71,6 +71,7 @@ jobs:
           cd core
           npm version patch --no-git-tag-version
           npm run build
+          echo CORE_CURRENT_VERSION=$(node -p "require('./package.json').version") >> "$GITHUB_ENV"
 
       - name: "Configure Git"
         run: |
@@ -90,10 +91,11 @@ jobs:
         run: |
           git commit -am "chore: release main" --no-verify
 
-      # - name: "Tag Repo"
-      #   run: |
-      #     git tag -a v${{ env.NEW_VERSION }} -m "Version v${{ env.NEW_VERSION }}"
-      #     git push origin v${{ env.NEW_VERSION }} --no-verify
+      - name: "Tag Repo - Core"
+        if: needs.commit-check.outputs.core_commits != '0'
+        run: |
+          git tag -a core:v${{ env.CORE_CURRENT_VERSION }} -m "Version core:v${{ env.CORE_CURRENT_VERSION }}"
+          git push origin v${{ env.CORE_CURRENT_VERSION }} --no-verify
 
       - name: "Push Repo"
         if: needs.commit-check.outputs.core_commits != '0'
