@@ -37,28 +37,28 @@ const createTokenClientTransportFn: core.CreateTransportFn<GRPCOptions> = (confi
     ...config.rpcOptions,
   });
 
-export const createSingletonTokenClient = (token: string): core.TokenClient =>
+export const createSingletonTokenClient = (token?: string): core.TokenClient =>
   core.createSingletonTokenClient({
-    token,
+    token: token || core.getAccessToken(),
     clientType,
     rpcOptions,
     createTransportFn: createTokenClientTransportFn,
   });
 
-export const createSingletonBeekeeperClient = (token: string): core.BeekeeperClient =>
+export const createSingletonBeekeeperClient = (token?: string): core.BeekeeperClient =>
   core.createSingletonBeekeeperClient({
-    token,
+    token: token || core.getAccessToken(),
     clientType,
     rpcOptions,
     createTransportFn,
   });
 
-export const createSingletonVespaClient = (token: string, database: core.VespaDatabase): core.VespaClient => {
+export const createSingletonVespaClient = (database: core.VespaDatabase,token?: string, ): core.VespaClient => {
   return core.createSingletonVespaClient({
     workload: database.node?.workload!,
     hub: database.node?.hub!,
     node: database.node?.name!,
-    token,
+    token: token || core.getAccessToken(),
     clientType,
     rpcOptions,
     createTransportFn,
