@@ -3,8 +3,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetVespaDatabaseRequest, GetVespaDatabaseResponse, GetVespaDatabaseStackRequest, GetVespaDatabaseStackResponse } from "./database_pb.js";
+import { GetVespaDatabaseRequest, GetVespaDatabaseResponse, GetVespaDatabaseStackRequest, GetVespaDatabaseStackResponse } from "./database_pb";
 import { MethodKind } from "@bufbuild/protobuf";
+import { ApplyMigrationRequest, ApplyMigrationResponse, PlanMigrationRequest, PlanMigrationResponse } from "./migration_pb";
+import { GenerateCodeRequest, GenerateCodeResponse } from "./codegen_pb";
 
 /**
  * @generated from service beekeeper.v1.BeekeeperService
@@ -28,6 +30,33 @@ export const BeekeeperService = {
       name: "GetVespaDatabase",
       I: GetVespaDatabaseRequest,
       O: GetVespaDatabaseResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc beekeeper.v1.BeekeeperService.PlanMigration
+     */
+    planMigration: {
+      name: "PlanMigration",
+      I: PlanMigrationRequest,
+      O: PlanMigrationResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc beekeeper.v1.BeekeeperService.ApplyMigration
+     */
+    applyMigration: {
+      name: "ApplyMigration",
+      I: ApplyMigrationRequest,
+      O: ApplyMigrationResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc beekeeper.v1.BeekeeperService.GenerateCode
+     */
+    generateCode: {
+      name: "GenerateCode",
+      I: GenerateCodeRequest,
+      O: GenerateCodeResponse,
       kind: MethodKind.Unary,
     },
   }

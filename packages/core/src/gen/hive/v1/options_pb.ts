@@ -4,24 +4,24 @@
 // @ts-nocheck
 
 import { MethodOptions, proto3 } from "@bufbuild/protobuf";
-import { AuthIDType } from "./enums_pb.js";
-import { HivePermission } from "./models_pb.js";
+import { TenantAuthIDType } from "./enums_pb";
+import { HivePermission } from "./models_pb";
 
 /**
- * @generated from extension: repeated hive.v1.AuthIDType accepted_auth_id_types = 100100;
+ * @generated from extension: repeated hive.v1.TenantAuthIDType accepted_tenant_auth_id_types = 2000000;
  */
-export const accepted_auth_id_types = proto3.makeExtension<MethodOptions, AuthIDType[]>(
-  "hive.v1.accepted_auth_id_types", 
+export const accepted_tenant_auth_id_types = proto3.makeExtension<MethodOptions, TenantAuthIDType[]>(
+  "hive.v1.accepted_tenant_auth_id_types", 
   MethodOptions, 
-  () => ({ no: 100100, kind: "enum", T: proto3.getEnumType(AuthIDType), repeated: true }),
+  () => ({ no: 2000000, kind: "enum", T: proto3.getEnumType(TenantAuthIDType), repeated: true }),
 );
 
 /**
- * @generated from extension: repeated hive.v1.HivePermission permissions = 100101;
+ * @generated from extension: repeated hive.v1.HivePermission permissions = 2000001;
  */
 export const permissions = proto3.makeExtension<MethodOptions, HivePermission[]>(
   "hive.v1.permissions", 
   MethodOptions, 
-  () => ({ no: 100101, kind: "message", T: HivePermission, repeated: true }),
+  () => ({ no: 2000001, kind: "message", T: HivePermission, repeated: true }),
 );
 

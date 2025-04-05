@@ -50,58 +50,71 @@ proto3.util.setEnumType(ErrorCode, "hive.v1.ErrorCode", [
 ]);
 
 /**
- * @generated from enum hive.v1.Framework
+ * @generated from enum hive.v1.TenantAuthIDType
  */
-export enum Framework {
+export enum TenantAuthIDType {
   /**
-   * @generated from enum value: FRAMEWORK_UNSPECIFIED = 0;
+   * @generated from enum value: TENANT_AUTH_ID_TYPE_UNSPECIFIED = 0;
    */
-  UNSPECIFIED = 0,
+  TENANT_AUTH_ID_TYPE_UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: FRAMEWORK_GRPC = 1;
+   * @generated from enum value: TENANT_AUTH_ID_TYPE_NONE = 1;
    */
-  GRPC = 1,
+  TENANT_AUTH_ID_TYPE_NONE = 1,
 
   /**
-   * @generated from enum value: FRAMEWORK_GRPC_WEB = 2;
+   * @generated from enum value: TENANT_AUTH_ID_TYPE_ADMIN_ACCESS_TOKEN = 201;
    */
-  GRPC_WEB = 2,
+  TENANT_AUTH_ID_TYPE_ADMIN_ACCESS_TOKEN = 201,
+
+  /**
+   * @generated from enum value: TENANT_AUTH_ID_TYPE_ADMIN_HIVE_TOKEN = 202;
+   */
+  TENANT_AUTH_ID_TYPE_ADMIN_HIVE_TOKEN = 202,
+
+  /**
+   * @generated from enum value: TENANT_AUTH_ID_TYPE_SECURE_APP_ACCESS_TOKEN = 203;
+   */
+  TENANT_AUTH_ID_TYPE_SECURE_APP_ACCESS_TOKEN = 203,
+
+  /**
+   * @generated from enum value: TENANT_AUTH_ID_TYPE_SECURE_APP_HIVE_TOKEN = 204;
+   */
+  TENANT_AUTH_ID_TYPE_SECURE_APP_HIVE_TOKEN = 204,
+
+  /**
+   * @generated from enum value: TENANT_AUTH_ID_TYPE_END_USER_HIVE_TOKEN = 205;
+   */
+  TENANT_AUTH_ID_TYPE_END_USER_HIVE_TOKEN = 205,
 }
-// Retrieve enum metadata with: proto3.getEnumType(Framework)
-proto3.util.setEnumType(Framework, "hive.v1.Framework", [
-  { no: 0, name: "FRAMEWORK_UNSPECIFIED" },
-  { no: 1, name: "FRAMEWORK_GRPC" },
-  { no: 2, name: "FRAMEWORK_GRPC_WEB" },
+// Retrieve enum metadata with: proto3.getEnumType(TenantAuthIDType)
+proto3.util.setEnumType(TenantAuthIDType, "hive.v1.TenantAuthIDType", [
+  { no: 0, name: "TENANT_AUTH_ID_TYPE_UNSPECIFIED" },
+  { no: 1, name: "TENANT_AUTH_ID_TYPE_NONE" },
+  { no: 201, name: "TENANT_AUTH_ID_TYPE_ADMIN_ACCESS_TOKEN" },
+  { no: 202, name: "TENANT_AUTH_ID_TYPE_ADMIN_HIVE_TOKEN" },
+  { no: 203, name: "TENANT_AUTH_ID_TYPE_SECURE_APP_ACCESS_TOKEN" },
+  { no: 204, name: "TENANT_AUTH_ID_TYPE_SECURE_APP_HIVE_TOKEN" },
+  { no: 205, name: "TENANT_AUTH_ID_TYPE_END_USER_HIVE_TOKEN" },
 ]);
 
 /**
- * @generated from enum hive.v1.Service
- */
-export enum Service {
-  /**
-   * @generated from enum value: SERVICE_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: SERVICE_DRONE = 100;
-   */
-  DRONE = 100,
-
-  /**
-   * @generated from enum value: SERVICE_BEEKEEPER = 101;
-   */
-  BEEKEEPER = 101,
-}
-// Retrieve enum metadata with: proto3.getEnumType(Service)
-proto3.util.setEnumType(Service, "hive.v1.Service", [
-  { no: 0, name: "SERVICE_UNSPECIFIED" },
-  { no: 100, name: "SERVICE_DRONE" },
-  { no: 101, name: "SERVICE_BEEKEEPER" },
-]);
-
-/**
+ * * The format of the resources names is as follows:
+ * <resource_group>.<resource_level>.[...<resource-parents>].<resource_name>
+ * e.g.
+ * vespa.project.stack.database:
+ * - group: vespa
+ * - level: project
+ * - parent: stack
+ * - resource: database
+ *
+ * iam.organization.secure_app.access_token.secret:
+ * - group: iam
+ * - level: organization
+ * - parents: secure_app, access_token (in that order)
+ * - resource: secret
+ *
  * @generated from enum hive.v1.Resource
  */
 export enum Resource {
@@ -114,6 +127,91 @@ export enum Resource {
    * @generated from enum value: RESOURCE_ALL = 1;
    */
   ALL = 1,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_ALL = 1000;
+   */
+  IAM_ALL = 1000,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_ORGANIZATION = 1001;
+   */
+  IAM_ORGANIZATION = 1001,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_MANAGED_ROLE = 1002;
+   */
+  IAM_MANAGED_ROLE = 1002,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_USER = 1003;
+   */
+  IAM_USER = 1003,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_SELF = 1004;
+   */
+  IAM_SELF = 1004,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_USER_ACCOUNT = 10041;
+   */
+  IAM_USER_ACCOUNT = 10041,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_SELF_HIVE_TOKEN = 1005;
+   */
+  IAM_SELF_HIVE_TOKEN = 1005,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_PROJECT = 1101;
+   */
+  IAM_PROJECT = 1101,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_ORGANIZATION_MEMBER = 1102;
+   */
+  IAM_ORGANIZATION_MEMBER = 1102,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_ORGANIZATION_MEMBER_INVITATION = 1103;
+   */
+  IAM_ORGANIZATION_MEMBER_INVITATION = 1103,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_ROLE = 1104;
+   */
+  IAM_ROLE = 1104,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_ROLE_BINDING = 1105;
+   */
+  IAM_ROLE_BINDING = 1105,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_SECURE_APP = 1106;
+   */
+  IAM_SECURE_APP = 1106,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_SECURE_APP_ACCESS_TOKEN = 1107;
+   */
+  IAM_SECURE_APP_ACCESS_TOKEN = 1107,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_SECURE_APP_ACCESS_TOKEN_SECRET = 1108;
+   */
+  IAM_SECURE_APP_ACCESS_TOKEN_SECRET = 1108,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_SECURE_APP_HIVE_TOKEN = 1109;
+   */
+  IAM_SECURE_APP_HIVE_TOKEN = 1109,
+
+  /**
+   * @generated from enum value: RESOURCE_IAM_PLATFORM_APP = 1110;
+   */
+  IAM_PLATFORM_APP = 1110,
 
   /**
    * @generated from enum value: RESOURCE_VESPA_ALL = 2000;
@@ -139,6 +237,23 @@ export enum Resource {
 proto3.util.setEnumType(Resource, "hive.v1.Resource", [
   { no: 0, name: "RESOURCE_UNSPECIFIED" },
   { no: 1, name: "RESOURCE_ALL" },
+  { no: 1000, name: "RESOURCE_IAM_ALL" },
+  { no: 1001, name: "RESOURCE_IAM_ORGANIZATION" },
+  { no: 1002, name: "RESOURCE_IAM_MANAGED_ROLE" },
+  { no: 1003, name: "RESOURCE_IAM_USER" },
+  { no: 1004, name: "RESOURCE_IAM_SELF" },
+  { no: 10041, name: "RESOURCE_IAM_USER_ACCOUNT" },
+  { no: 1005, name: "RESOURCE_IAM_SELF_HIVE_TOKEN" },
+  { no: 1101, name: "RESOURCE_IAM_PROJECT" },
+  { no: 1102, name: "RESOURCE_IAM_ORGANIZATION_MEMBER" },
+  { no: 1103, name: "RESOURCE_IAM_ORGANIZATION_MEMBER_INVITATION" },
+  { no: 1104, name: "RESOURCE_IAM_ROLE" },
+  { no: 1105, name: "RESOURCE_IAM_ROLE_BINDING" },
+  { no: 1106, name: "RESOURCE_IAM_SECURE_APP" },
+  { no: 1107, name: "RESOURCE_IAM_SECURE_APP_ACCESS_TOKEN" },
+  { no: 1108, name: "RESOURCE_IAM_SECURE_APP_ACCESS_TOKEN_SECRET" },
+  { no: 1109, name: "RESOURCE_IAM_SECURE_APP_HIVE_TOKEN" },
+  { no: 1110, name: "RESOURCE_IAM_PLATFORM_APP" },
   { no: 2000, name: "RESOURCE_VESPA_ALL" },
   { no: 2001, name: "RESOURCE_VESPA_STACK" },
   { no: 2002, name: "RESOURCE_VESPA_DATABASE" },
@@ -196,126 +311,146 @@ proto3.util.setEnumType(Verb, "hive.v1.Verb", [
 ]);
 
 /**
- * @generated from enum hive.v1.AuthIDType
+ * @generated from enum hive.v1.Framework
  */
-export enum AuthIDType {
+export enum Framework {
   /**
-   * @generated from enum value: AUTH_ID_TYPE_UNSPECIFIED = 0;
-   */
-  AUTH_ID_TYPE_UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: AUTH_ID_TYPE_NONE = 1;
-   */
-  AUTH_ID_TYPE_NONE = 1,
-
-  /**
-   * @generated from enum value: AUTH_ID_TYPE_TENANT_ADMIN_ACCESS_TOKEN = 100;
-   */
-  AUTH_ID_TYPE_TENANT_ADMIN_ACCESS_TOKEN = 100,
-
-  /**
-   * @generated from enum value: AUTH_ID_TYPE_TENANT_ADMIN_HIVE_TOKEN = 101;
-   */
-  AUTH_ID_TYPE_TENANT_ADMIN_HIVE_TOKEN = 101,
-
-  /**
-   * @generated from enum value: AUTH_ID_TYPE_TENANT_SECURE_APP_ACCESS_TOKEN = 200;
-   */
-  AUTH_ID_TYPE_TENANT_SECURE_APP_ACCESS_TOKEN = 200,
-
-  /**
-   * @generated from enum value: AUTH_ID_TYPE_TENANT_SECURE_APP_HIVE_TOKEN = 201;
-   */
-  AUTH_ID_TYPE_TENANT_SECURE_APP_HIVE_TOKEN = 201,
-}
-// Retrieve enum metadata with: proto3.getEnumType(AuthIDType)
-proto3.util.setEnumType(AuthIDType, "hive.v1.AuthIDType", [
-  { no: 0, name: "AUTH_ID_TYPE_UNSPECIFIED" },
-  { no: 1, name: "AUTH_ID_TYPE_NONE" },
-  { no: 100, name: "AUTH_ID_TYPE_TENANT_ADMIN_ACCESS_TOKEN" },
-  { no: 101, name: "AUTH_ID_TYPE_TENANT_ADMIN_HIVE_TOKEN" },
-  { no: 200, name: "AUTH_ID_TYPE_TENANT_SECURE_APP_ACCESS_TOKEN" },
-  { no: 201, name: "AUTH_ID_TYPE_TENANT_SECURE_APP_HIVE_TOKEN" },
-]);
-
-/**
- * @generated from enum hive.v1.Country
- */
-export enum Country {
-  /**
-   * @generated from enum value: COUNTRY_UNSPECIFIED = 0;
+   * @generated from enum value: FRAMEWORK_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: COUNTRY_CA = 1;
+   * @generated from enum value: FRAMEWORK_GRPC = 1;
    */
-  CA = 1,
+  GRPC = 1,
 
   /**
-   * @generated from enum value: COUNTRY_US = 2;
+   * @generated from enum value: FRAMEWORK_GRPC_WEB = 2;
    */
-  US = 2,
+  GRPC_WEB = 2,
 }
-// Retrieve enum metadata with: proto3.getEnumType(Country)
-proto3.util.setEnumType(Country, "hive.v1.Country", [
-  { no: 0, name: "COUNTRY_UNSPECIFIED" },
-  { no: 1, name: "COUNTRY_CA" },
-  { no: 2, name: "COUNTRY_US" },
+// Retrieve enum metadata with: proto3.getEnumType(Framework)
+proto3.util.setEnumType(Framework, "hive.v1.Framework", [
+  { no: 0, name: "FRAMEWORK_UNSPECIFIED" },
+  { no: 1, name: "FRAMEWORK_GRPC" },
+  { no: 2, name: "FRAMEWORK_GRPC_WEB" },
 ]);
 
 /**
- * @generated from extension: string rpc_framework = 1000000;
+ * @generated from enum hive.v1.App
  */
-export const rpc_framework = proto3.makeExtension<EnumValueOptions, string>(
-  "hive.v1.rpc_framework", 
+export enum App {
+  /**
+   * @generated from enum value: APP_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: APP_DRONE = 120;
+   */
+  DRONE = 120,
+
+  /**
+   * @generated from enum value: APP_BEEKEEPER = 130;
+   */
+  BEEKEEPER = 130,
+
+  /**
+   * @generated from enum value: APP_VESPA = 140;
+   */
+  VESPA = 140,
+}
+// Retrieve enum metadata with: proto3.getEnumType(App)
+proto3.util.setEnumType(App, "hive.v1.App", [
+  { no: 0, name: "APP_UNSPECIFIED" },
+  { no: 120, name: "APP_DRONE" },
+  { no: 130, name: "APP_BEEKEEPER" },
+  { no: 140, name: "APP_VESPA" },
+]);
+
+/**
+ * @generated from enum hive.v1.ProgrammingLanguage
+ */
+export enum ProgrammingLanguage {
+  /**
+   * @generated from enum value: PROGRAMMING_LANGUAGE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: PROGRAMMING_LANGUAGE_TYPESCRIPT = 1;
+   */
+  TYPESCRIPT = 1,
+
+  /**
+   * @generated from enum value: PROGRAMMING_LANGUAGE_GOLANG = 2;
+   */
+  GOLANG = 2,
+
+  /**
+   * @generated from enum value: PROGRAMMING_LANGUAGE_PYTHON = 3;
+   */
+  PYTHON = 3,
+}
+// Retrieve enum metadata with: proto3.getEnumType(ProgrammingLanguage)
+proto3.util.setEnumType(ProgrammingLanguage, "hive.v1.ProgrammingLanguage", [
+  { no: 0, name: "PROGRAMMING_LANGUAGE_UNSPECIFIED" },
+  { no: 1, name: "PROGRAMMING_LANGUAGE_TYPESCRIPT" },
+  { no: 2, name: "PROGRAMMING_LANGUAGE_GOLANG" },
+  { no: 3, name: "PROGRAMMING_LANGUAGE_PYTHON" },
+]);
+
+/**
+ * @generated from extension: string error_code = 1000000;
+ */
+export const error_code = proto3.makeExtension<EnumValueOptions, string>(
+  "hive.v1.error_code", 
   EnumValueOptions, 
   { no: 1000000, kind: "scalar", T: 9 /* ScalarType.STRING */ },
 );
 
 /**
- * @generated from extension: string service = 1000001;
- */
-export const service = proto3.makeExtension<EnumValueOptions, string>(
-  "hive.v1.service", 
-  EnumValueOptions, 
-  { no: 1000001, kind: "scalar", T: 9 /* ScalarType.STRING */ },
-);
-
-/**
- * @generated from extension: string resource = 1000002;
+ * @generated from extension: string resource = 200005;
  */
 export const resource = proto3.makeExtension<EnumValueOptions, string>(
   "hive.v1.resource", 
   EnumValueOptions, 
-  { no: 1000002, kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  { no: 200005, kind: "scalar", T: 9 /* ScalarType.STRING */ },
 );
 
 /**
- * @generated from extension: string verb = 1000003;
+ * @generated from extension: string verb = 200006;
  */
 export const verb = proto3.makeExtension<EnumValueOptions, string>(
   "hive.v1.verb", 
   EnumValueOptions, 
-  { no: 1000003, kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  { no: 200006, kind: "scalar", T: 9 /* ScalarType.STRING */ },
 );
 
 /**
- * @generated from extension: string country = 1000004;
+ * @generated from extension: string rpc_framework = 202000;
  */
-export const country = proto3.makeExtension<EnumValueOptions, string>(
-  "hive.v1.country", 
+export const rpc_framework = proto3.makeExtension<EnumValueOptions, string>(
+  "hive.v1.rpc_framework", 
   EnumValueOptions, 
-  { no: 1000004, kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  { no: 202000, kind: "scalar", T: 9 /* ScalarType.STRING */ },
 );
 
 /**
- * @generated from extension: string error_code = 1000005;
+ * @generated from extension: string app = 202002;
  */
-export const error_code = proto3.makeExtension<EnumValueOptions, string>(
-  "hive.v1.error_code", 
+export const app = proto3.makeExtension<EnumValueOptions, string>(
+  "hive.v1.app", 
   EnumValueOptions, 
-  { no: 1000005, kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  { no: 202002, kind: "scalar", T: 9 /* ScalarType.STRING */ },
+);
+
+/**
+ * @generated from extension: string programming_language = 204001;
+ */
+export const programming_language = proto3.makeExtension<EnumValueOptions, string>(
+  "hive.v1.programming_language", 
+  EnumValueOptions, 
+  { no: 204001, kind: "scalar", T: 9 /* ScalarType.STRING */ },
 );
 

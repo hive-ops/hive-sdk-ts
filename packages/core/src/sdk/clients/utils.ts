@@ -1,6 +1,7 @@
 import { Interceptor } from "@connectrpc/connect";
-import { HiveToken } from "../../gen";
-import { FetchFreshHiveTokenFn } from "./types";
+import { App, HiveToken } from "../../gen";
+import { buildURL, DOMAIN } from "../utilities";
+import { ClientOptions, FetchFreshHiveTokenFn } from "./types";
 
 let hiveToken: HiveToken | undefined;
 
@@ -42,3 +43,15 @@ export const getTokenClientInterceptors = (token: string): Interceptor[] => [
     return next(req);
   },
 ];
+
+export const createTransport = (options: ClientOptions<any>, app: App) => {
+  return options.createTransportFn({
+    url: buildURL({
+      domain: DOMAIN,
+      app,
+      clientType: options.clientType,
+    }),
+    token: options.token,
+    rpcOptions: options.rpcOptions,
+  });
+};

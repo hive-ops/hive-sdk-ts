@@ -5,11 +5,10 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { VespaDatabaseStackStatus, VespaDatabaseStatusAtOrchestrator } from "./enums_pb.js";
-import { DatabaseSchema } from "../../vespa/schema/v1/models_pb.js";
-import { VespaNode } from "../../vespa/schema/v1/metrics_pb.js";
-import { VespaDatabaseStatusAtNode } from "../../vespa/schema/v1/enums_pb.js";
-import { ResponseMetadata } from "../../hive/v1/models_pb.js";
+import { DatabaseSchema, VespaNode } from "../../vespa/v1/schema_models_pb";
+import { VespaDatabaseStackStatus, VespaDatabaseStatusAtOrchestrator } from "./enums_pb";
+import { VespaDatabaseStatusAtNode } from "../../vespa/v1/enums_pb";
+import { ResponseMetadata } from "../../hive/v1/models_pb";
 
 /**
  * @generated from message beekeeper.v1.VespaDatabaseStack
@@ -46,24 +45,29 @@ export class VespaDatabaseStack extends Message<VespaDatabaseStack> {
   replicationFactor = 0;
 
   /**
-   * @generated from field: beekeeper.v1.VespaDatabaseStackStatus status = 7;
+   * @generated from field: vespa.v1.DatabaseSchema schema = 7;
+   */
+  schema?: DatabaseSchema;
+
+  /**
+   * @generated from field: beekeeper.v1.VespaDatabaseStackStatus status = 8;
    */
   status = VespaDatabaseStackStatus.UNSPECIFIED;
 
   /**
-   * @generated from field: string status_text = 8;
+   * @generated from field: string status_text = 9;
    */
   statusText = "";
 
   /**
-   * @generated from field: repeated beekeeper.v1.VespaDatabase databases = 9;
+   * @generated from field: repeated beekeeper.v1.VespaDatabase databases = 10;
    */
   databases: VespaDatabase[] = [];
 
   /**
-   * @generated from field: vespa.schema.v1.DatabaseSchema schema = 10;
+   * @generated from field: repeated string country_codes = 11;
    */
-  schema?: DatabaseSchema;
+  countryCodes: string[] = [];
 
   constructor(data?: PartialMessage<VespaDatabaseStack>) {
     super();
@@ -79,10 +83,11 @@ export class VespaDatabaseStack extends Message<VespaDatabaseStack> {
     { no: 4, name: "uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "replication_factor", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 7, name: "status", kind: "enum", T: proto3.getEnumType(VespaDatabaseStackStatus) },
-    { no: 8, name: "status_text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 9, name: "databases", kind: "message", T: VespaDatabase, repeated: true },
-    { no: 10, name: "schema", kind: "message", T: DatabaseSchema },
+    { no: 7, name: "schema", kind: "message", T: DatabaseSchema },
+    { no: 8, name: "status", kind: "enum", T: proto3.getEnumType(VespaDatabaseStackStatus) },
+    { no: 9, name: "status_text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: "databases", kind: "message", T: VespaDatabase, repeated: true },
+    { no: 11, name: "country_codes", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VespaDatabaseStack {
@@ -137,7 +142,7 @@ export class VespaDatabase extends Message<VespaDatabase> {
   name = "";
 
   /**
-   * @generated from field: vespa.schema.v1.VespaNode node = 7;
+   * @generated from field: vespa.v1.VespaNode node = 7;
    */
   node?: VespaNode;
 
@@ -152,7 +157,7 @@ export class VespaDatabase extends Message<VespaDatabase> {
   statusAtOrchestratorText = "";
 
   /**
-   * @generated from field: vespa.schema.v1.VespaDatabaseStatusAtNode status_at_node = 10;
+   * @generated from field: vespa.v1.VespaDatabaseStatusAtNode status_at_node = 10;
    */
   statusAtNode = VespaDatabaseStatusAtNode.UNSPECIFIED;
 
@@ -216,51 +221,6 @@ export class VespaDatabase extends Message<VespaDatabase> {
 
   static equals(a: VespaDatabase | PlainMessage<VespaDatabase> | undefined, b: VespaDatabase | PlainMessage<VespaDatabase> | undefined): boolean {
     return proto3.util.equals(VespaDatabase, a, b);
-  }
-}
-
-/**
- * @generated from message beekeeper.v1.VespaDatabasePartition
- */
-export class VespaDatabasePartition extends Message<VespaDatabasePartition> {
-  /**
-   * @generated from field: string id = 1;
-   */
-  id = "";
-
-  /**
-   * Each change to the database data (inserts, updates & deletes) will increment this index
-   *
-   * @generated from field: uint64 data_log_index = 2;
-   */
-  dataLogIndex = protoInt64.zero;
-
-  constructor(data?: PartialMessage<VespaDatabasePartition>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "beekeeper.v1.VespaDatabasePartition";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "data_log_index", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VespaDatabasePartition {
-    return new VespaDatabasePartition().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): VespaDatabasePartition {
-    return new VespaDatabasePartition().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VespaDatabasePartition {
-    return new VespaDatabasePartition().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: VespaDatabasePartition | PlainMessage<VespaDatabasePartition> | undefined, b: VespaDatabasePartition | PlainMessage<VespaDatabasePartition> | undefined): boolean {
-    return proto3.util.equals(VespaDatabasePartition, a, b);
   }
 }
 

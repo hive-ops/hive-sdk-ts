@@ -127,20 +127,65 @@ proto3.util.setEnumType(VespaDatabaseStatusAtOrchestrator, "beekeeper.v1.VespaDa
 ]);
 
 /**
- * @generated from extension: string vespa_database_stack_status = 1020000;
+ * *
+ * These models define how nodes in the Vespa cluster are stored in the database
+ * as follows:
+ * - A database can be assigned to multiple nodes but only one primary and many
+ * secondary nodes
+ * - A node will send a heartbeat RPC every 10 seconds to indicate that it is
+ * still alive
+ * - If a node does not send a heartbeat for 30 seconds, it is considered dead
+ * and the database is reassigned to another node
+ *
+ * @generated from enum beekeeper.v1.VespaNodeStatus
+ */
+export enum VespaNodeStatus {
+  /**
+   * @generated from enum value: VESPA_NODE_STATUS_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: VESPA_NODE_STATUS_ACTIVE = 1;
+   */
+  ACTIVE = 1,
+
+  /**
+   * @generated from enum value: VESPA_NODE_STATUS_UNREACHEABLE = 2;
+   */
+  UNREACHEABLE = 2,
+}
+// Retrieve enum metadata with: proto3.getEnumType(VespaNodeStatus)
+proto3.util.setEnumType(VespaNodeStatus, "beekeeper.v1.VespaNodeStatus", [
+  { no: 0, name: "VESPA_NODE_STATUS_UNSPECIFIED" },
+  { no: 1, name: "VESPA_NODE_STATUS_ACTIVE" },
+  { no: 2, name: "VESPA_NODE_STATUS_UNREACHEABLE" },
+]);
+
+/**
+ * @generated from extension: string vespa_database_stack_status = 2000000;
  */
 export const vespa_database_stack_status = proto3.makeExtension<EnumValueOptions, string>(
   "beekeeper.v1.vespa_database_stack_status", 
   EnumValueOptions, 
-  { no: 1020000, kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  { no: 2000000, kind: "scalar", T: 9 /* ScalarType.STRING */ },
 );
 
 /**
- * @generated from extension: string vespa_database_status_at_orchestrator = 1020001;
+ * @generated from extension: string vespa_database_status_at_orchestrator = 2000001;
  */
 export const vespa_database_status_at_orchestrator = proto3.makeExtension<EnumValueOptions, string>(
   "beekeeper.v1.vespa_database_status_at_orchestrator", 
   EnumValueOptions, 
-  { no: 1020001, kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  { no: 2000001, kind: "scalar", T: 9 /* ScalarType.STRING */ },
+);
+
+/**
+ * @generated from extension: string vespa_node_status = 2000002;
+ */
+export const vespa_node_status = proto3.makeExtension<EnumValueOptions, string>(
+  "beekeeper.v1.vespa_node_status", 
+  EnumValueOptions, 
+  { no: 2000002, kind: "scalar", T: 9 /* ScalarType.STRING */ },
 );
 

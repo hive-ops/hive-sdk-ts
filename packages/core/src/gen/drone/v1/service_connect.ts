@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetSecureAppHiveTokenRequest, GetSecureAppHiveTokenResponse } from "./token_pb.js";
+import { GetSecureAppHiveTokenRequest, GetSecureAppHiveTokenResponse } from "./models_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
