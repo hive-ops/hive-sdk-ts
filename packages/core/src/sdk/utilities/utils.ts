@@ -1,7 +1,14 @@
 import _ from "lodash";
+import { err, Result as NeverThrowResult, ok, ResultAsync } from "neverthrow";
 import { App, Framework } from "../../gen";
 import { ClientType } from "../clients";
 import { APP_MAP, FRAMEWORK_MAP } from "./constants";
+
+export const toError = (error: any): Error => {
+  return err instanceof Error ? err : new Error(String(error));
+};
+export type Result<T> = NeverThrowResult<T, Error>;
+export type PromiseResult<T> = Promise<Result<T>>;
 
 export const boundedInt = (value: number, min: number, max: number): number => {
   if (value < min) {
@@ -11,6 +18,30 @@ export const boundedInt = (value: number, min: number, max: number): number => {
   } else {
     return value;
   }
+};
+
+export const resolveResult = <T>(func: () => T): Result<T> => {
+  try {
+    return ok(func());
+  } catch (error) {
+    return err(toError(error));
+  }
+};
+
+export const resolveResultAsync = async <T>(func: () => Promise<T>): PromiseResult<T> => {
+  return ResultAsync.fromPromise(func(), (error) => toError(error));
+};
+
+export const unwrapResult = <T>(result: Result<T>): T => {
+  if (result.isErr()) {
+    throw result.error;
+  }
+  return result.value;
+};
+
+export const unwrapResultAsync = async <T>(result: PromiseResult<T>): Promise<T> => {
+  const unwrapped = await result;
+  return unwrapResult(unwrapped);
 };
 
 type SingletonFactory<S, T> = (arg: S) => T;
@@ -55,6 +86,8 @@ const getFramework = (clientType: ClientType): string => {
       throw new Error(`Unsupported client type: ${clientType}`);
   }
 };
+
+export const isVespaColumn = (key: string): boolean => key.startsWith("_vespa_");
 
 export const buildURL = (options: { domain: string; app: App; clientType: ClientType; nodeName?: string; hub?: string; workload?: string }): string => {
   const framework = getFramework(options.clientType);
