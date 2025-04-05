@@ -105,7 +105,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: "Commit Repo Changes"
-        if: needs.commit-check.outputs.root_commits != '0'
+        if: needs.commit-check.outputs.core_commits != '0' || needs.commit-check.outputs.node_commits != '0'
         run: |
           git commit -am "chore: release main" --no-verify
 
