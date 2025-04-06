@@ -149,7 +149,8 @@ jobs:
       - name: Apply changes to CLI
         if: needs.commit-check.outputs.cli_commits != '0'
         run: |
-          cp -r ./artifacts/cli-artifacts/* packages/cli/lib
+          ls -la ./packages/cli
+          cp -r ./artifacts/cli-artifacts/* ./packages/cli/lib
           cd packages/cli
           ls -la
       
