@@ -145,6 +145,7 @@ jobs:
           git config --local user.name "github-actions"
       
       - run: ls -la ./artifacts
+      - run: ls -la ./artifacts/cli-artifacts
 
       - name: Apply changes to CLI
         if: needs.commit-check.outputs.cli_commits != '0'
@@ -153,9 +154,8 @@ jobs:
           cp -r ./artifacts/cli-artifacts/* ./packages/cli/lib
           cd packages/cli
           ls -la
+          # npm publish --provenance --access public
       
-      
-
       # - name: Bump version and build Node SDK
       #   if: needs.commit-check.outputs.node_commits != '0'
       #   run: |
