@@ -100,14 +100,13 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Restore cached node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             **/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Bump version and build cli SDK
-        if: needs.commit-check.outputs.core_commits != '0'
         run: |
           cd packages/cli
           npm version patch --no-git-tag-version
