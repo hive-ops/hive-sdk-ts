@@ -246,7 +246,7 @@ jobs:
           cd packages/core
           npm publish --provenance --access public
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Apply changes to CLI and publish
         if: needs.commit-check.outputs.cli_commits != '0'
@@ -257,7 +257,7 @@ jobs:
           cd packages/cli
           npm publish --provenance --access public
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Apply changes to Node and publish
         if: needs.commit-check.outputs.node_commits != '0'
@@ -268,7 +268,7 @@ jobs:
           cd packages/node
           npm publish --provenance --access public
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: "Get new repo version"
         run: |
