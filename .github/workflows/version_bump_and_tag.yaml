@@ -70,6 +70,49 @@ jobs:
       - name: Build all packages
         run: npx lerna run build
 
+        build-and-test-cli:
+          name: Build and Test Core SDK
+          needs: [setup-dependencies, commit-check]
+          runs-on: ubuntu-latest
+          if: needs.commit-check.outputs.cli_commits != '0'
+          steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+      
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                node-version: "20"
+                registry-url: "https://registry.npmjs.org"
+      
+            - name: Restore cached node modules
+              uses: actions/cache@v4
+              with:
+                path: |
+                  **/node_modules
+                key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+      
+            - name: Install npm dependencies
+              run: npm ci
+      
+            - name: Build all packages
+              run: npx lerna run build
+      
+            - name: Bump version and build cli SDK
+              run: |
+                cd packages/cli
+                npm version patch --no-git-tag-version
+                npm run build
+      
+            - name: Upload CLI artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                name: cli-artifacts
+                path: |
+                  packages/cli/lib
+                  packages/cli/package*.json
+                retention-days: 1
+
   build-and-test-cli:
     name: Build and Test Core SDK
     needs: [setup-dependencies, commit-check]
@@ -98,7 +141,7 @@ jobs:
       - name: Build all packages
         run: npx lerna run build
 
-      - name: Bump version and build cli SDK
+      - name: Bump version and build CLI SDK
         run: |
           cd packages/cli
           npm version patch --no-git-tag-version
@@ -113,14 +156,60 @@ jobs:
             packages/cli/package*.json
           retention-days: 1
 
+
+  build-and-test-node:
+    name: Build and Test Node SDK
+    needs: [setup-dependencies, commit-check]
+    runs-on: ubuntu-latest
+    if: needs.commit-check.outputs.node_commits != '0'
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Restore cached node modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build all packages
+        run: npx lerna run build
+
+      - name: Bump version and build Node SDK
+        run: |
+          cd packages/node
+          npm version patch --no-git-tag-version
+          npm run build
+
+      - name: Upload Node artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: node-artifacts
+          path: |
+            packages/node/lib
+            packages/node/package*.json
+          retention-days: 1
+        
+          
   publish-and-tag:
     name: Publish and Tag
-    needs: [setup-dependencies, commit-check, build-and-test-cli]
+    needs: [setup-dependencies, commit-check, build-and-test-cli, build-and-test-node]
     runs-on: ubuntu-latest
     if: |
       always() && 
       (needs.commit-check.result == 'success' && needs.setup-dependencies.result == 'success' && needs.commit-check.outputs.root_commits != '0') &&
-      (needs.build-and-test-cli.result == 'success' || needs.build-and-test-cli.result == 'skipped')
+      (needs.build-and-test-cli.result == 'success' || needs.build-and-test-cli.result == 'skipped') &&
+      (needs.build-and-test-node.result == 'success' || needs.build-and-test-node.result == 'skipped')
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -149,13 +238,22 @@ jobs:
       - run: ls -la ./artifacts
       - run: ls -la ./artifacts/cli-artifacts
 
-      - name: Apply changes to CLI
+      - name: Apply changes to CLI and publish
         if: needs.commit-check.outputs.cli_commits != '0'
         run: |
           mkdir -p ./packages/cli/lib
           cp -r ./artifacts/cli-artifacts/* ./packages/cli/lib
           cp -r ./artifacts/cli-artifacts/package*.json ./packages/cli/
           cd packages/cli
+          npm publish --provenance --access public
+
+      - name: Apply changes to Node and publish
+        if: needs.commit-check.outputs.node_commits != '0'
+        run: |
+          mkdir -p ./packages/node/lib
+          cp -r ./artifacts/node-artifacts/* ./packages/node/lib
+          cp -r ./artifacts/node-artifacts/package*.json ./packages/node/
+          cd packages/node
           npm publish --provenance --access public
 
       - name: "Get new repo version"
