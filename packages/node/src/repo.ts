@@ -7,6 +7,6 @@ export abstract class BaseRepository<S, T extends S> extends CommonRepository<S,
   }
 
   async getVespaClient(database: VespaDatabase): Promise<VespaClient> {
-    return createSingletonVespaClient(getAccessToken(), database);
+    return createSingletonVespaClient(database, getAccessToken());
   }
 }
