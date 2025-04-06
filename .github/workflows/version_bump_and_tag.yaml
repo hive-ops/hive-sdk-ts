@@ -245,6 +245,8 @@ jobs:
           cp -r ./artifacts/core-artifacts/package*.json ./packages/core/
           cd packages/core
           npm publish --provenance --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Apply changes to CLI and publish
         if: needs.commit-check.outputs.cli_commits != '0'
@@ -254,6 +256,8 @@ jobs:
           cp -r ./artifacts/cli-artifacts/package*.json ./packages/cli/
           cd packages/cli
           npm publish --provenance --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Apply changes to Node and publish
         if: needs.commit-check.outputs.node_commits != '0'
@@ -263,6 +267,8 @@ jobs:
           cp -r ./artifacts/node-artifacts/package*.json ./packages/node/
           cd packages/node
           npm publish --provenance --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: "Get new repo version"
         run: |
