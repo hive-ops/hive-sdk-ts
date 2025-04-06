@@ -239,6 +239,15 @@ jobs:
       - run: ls -la ./artifacts
       - run: ls -la ./artifacts/cli-artifacts
 
+      - name: Apply changes to Core and publish
+        if: needs.commit-check.outputs.core_commits != '0'
+        run: |
+          mkdir -p ./packages/core/lib
+          cp -r ./artifacts/core-artifacts/* ./packages/core/lib
+          cp -r ./artifacts/core-artifacts/package*.json ./packages/core/
+          cd packages/core
+          npm publish --provenance --access public
+
       - name: Apply changes to CLI and publish
         if: needs.commit-check.outputs.cli_commits != '0'
         run: |
