@@ -145,7 +145,7 @@ jobs:
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions"
-
+      
       - run: ls -la ./artifacts
       - run: ls -la ./artifacts/cli-artifacts
 
@@ -156,7 +156,7 @@ jobs:
           cp -r ./artifacts/cli-artifacts/* ./packages/cli/lib
           cp -r ./artifacts/cli-artifacts/package*.json ./packages/cli/
           cd packages/cli
-          npm publish --access public
+          npm publish --provenance --access public
 
       - name: "Get new repo version"
         run: |
@@ -169,7 +169,7 @@ jobs:
           git tag -a v${{ env.NEW_VERSION }} -m "Version v${{ env.NEW_VERSION }}"
           git push origin v${{ env.NEW_VERSION }} --no-verify
           git push --no-verify
-
+      
       # - name: Bump version and build Node SDK
       #   if: needs.commit-check.outputs.node_commits != '0'
       #   run: |
