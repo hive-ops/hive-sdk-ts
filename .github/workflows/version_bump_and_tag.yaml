@@ -114,7 +114,7 @@ jobs:
           retention-days: 1
 
   build-and-test-cli:
-    name: Build and Test Core SDK
+    name: Build and Test CLI SDK
     needs: [setup-dependencies, commit-check]
     runs-on: ubuntu-latest
     if: needs.commit-check.outputs.cli_commits != '0'
