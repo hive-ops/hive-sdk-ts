@@ -150,11 +150,22 @@ jobs:
       - name: Apply changes to CLI
         if: needs.commit-check.outputs.cli_commits != '0'
         run: |
-          ls -la ./packages/cli
+          mkdir -p ./packages/cli/lib
           cp -r ./artifacts/cli-artifacts/* ./packages/cli/lib
           cd packages/cli
-          ls -la
-          # npm publish --provenance --access public
+          npm publish --provenance --access public
+
+      - name: "Get new repo version"
+        run: |
+          npm version patch --no-git-tag-version
+          echo NEW_VERSION=$(node -p "require('./package.json').version") >> "$GITHUB_ENV"
+
+      - name: "Bump Repo Tag"
+        run: |
+          git commit -am "[patch version] Version bump to v${{ env.NEW_VERSION }}"
+          git tag -a v${{ env.NEW_VERSION }} -m "Version v${{ env.NEW_VERSION }}"
+          git push origin v${{ env.NEW_VERSION }} --no-verify
+          git push --no-verify
       
       # - name: Bump version and build Node SDK
       #   if: needs.commit-check.outputs.node_commits != '0'
