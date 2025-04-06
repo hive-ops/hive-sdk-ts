@@ -17,6 +17,7 @@ jobs:
       root_commits: ${{ steps.commit-count.outputs.root }}
       core_commits: ${{ steps.commit-count.outputs.core }}
       node_commits: ${{ steps.commit-count.outputs.node }}
+      cli_commits: ${{ steps.commit-count.outputs.cli }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -37,8 +38,9 @@ jobs:
           echo "root=$(git rev-list $TAG..HEAD -- . | wc -l)" >> $GITHUB_OUTPUT
           echo "core=$(git rev-list $TAG..HEAD -- packages/core | wc -l)" >> $GITHUB_OUTPUT
           echo "node=$(git rev-list $TAG..HEAD -- packages/node | wc -l)" >> $GITHUB_OUTPUT
+          echo "cli=$(git rev-list $TAG..HEAD -- packages/cli | wc -l)" >> $GITHUB_OUTPUT
 
-  bump-and-build:
+  setup-dependencies:
     name: Bump and Build TS SDKs
     needs: [commit-check]
     runs-on: ubuntu-latest
@@ -55,17 +57,54 @@ jobs:
         with:
           node-version: "20"
           registry-url: "https://registry.npmjs.org"
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # - name: "Configure npm"
-      #   run: |
-      #     npm config set //npm.pkg.github.com/:_authToken ${{secrets.ACCESS_TOKEN}}
 
       - name: Install npm dependencies and build all packages
         run: |
           npm ci
           npx lerna run build
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/node_modules
+            ~/.npm
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+  # ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-
+  # ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+
+  build-and-test-core:
+    name: Build and Test Core SDK
+    needs: [setup-dependencies, commit-check]
+    runs-on: ubuntu-latest
+    if: needs.commit-check.outputs.core_commits != '0'
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Restore cached node modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Bump version and build Core SDK
         if: needs.commit-check.outputs.core_commits != '0'
@@ -75,53 +114,70 @@ jobs:
           npm run build
           echo CORE_CURRENT_VERSION=$(node -p "require('./package.json').version") >> "$GITHUB_ENV"
 
-      - name: Bump version and build Node SDK
-        if: needs.commit-check.outputs.node_commits != '0'
-        run: |
-          cd packages/node
-          npm version patch --no-git-tag-version
-          npm run build
-          echo NODE_CURRENT_VERSION=$(node -p "require('./package.json').version") >> "$GITHUB_ENV"
+      # - name: Bump version and build Node SDK
+      #   if: needs.commit-check.outputs.node_commits != '0'
+      #   run: |
+      #     cd packages/node
+      #     npm version patch --no-git-tag-version
+      #     npm run build
+      #     echo NODE_CURRENT_VERSION=$(node -p "require('./package.json').version") >> "$GITHUB_ENV"
 
-      - name: "Configure Git"
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions"
+      # - name: Bump version and build CLI
+      #   if: needs.commit-check.outputs.cli_commits != '0'
+      #   run: |
+      #     cd packages/cli
+      #     npm version patch --no-git-tag-version
+      #     npm run build
+      #     echo CLI_CURRENT_VERSION=$(node -p "require('./package.json').version") >> "$GITHUB_ENV"
 
-      - name: Publish Core SDK
-        if: needs.commit-check.outputs.core_commits != '0'
-        run: |
-          cd packages/core
-          npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: "Configure Git"
+      #   run: |
+      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git config --local user.name "github-actions"
 
-      - name: Publish Node SDK
-        if: needs.commit-check.outputs.node_commits != '0'
-        run: |
-          cd packages/node
-          npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Publish Core SDK
+      #   if: needs.commit-check.outputs.core_commits != '0'
+      #   run: |
+      #     cd packages/core
+      #     npm publish --provenance --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: "Commit Repo Changes"
-        if: needs.commit-check.outputs.core_commits != '0' || needs.commit-check.outputs.node_commits != '0'
-        run: |
-          git commit -am "chore: release main" --no-verify
+      # - name: Publish Node SDK
+      #   if: needs.commit-check.outputs.node_commits != '0'
+      #   run: |
+      #     cd packages/node
+      #     npm publish --provenance --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: "Tag Repo - Core"
-        if: needs.commit-check.outputs.core_commits != '0'
-        run: |
-          git tag -a core-v${{ env.CORE_CURRENT_VERSION }} -m "Version core-v${{ env.CORE_CURRENT_VERSION }}"
-          git push origin core-v${{ env.CORE_CURRENT_VERSION }} --no-verify
+      # - name: Publish CLI
+      #   if: needs.commit-check.outputs.node_commits != '0'
+      #   run: |
+      #     cd packages/cli
+      #     npm publish --provenance --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: "Tag Repo - Node"
-        if: needs.commit-check.outputs.node_commits != '0'
-        run: |
-          git tag -a node-v${{ env.NODE_CURRENT_VERSION }} -m "Version core-v${{ env.NODE_CURRENT_VERSION }}"
-          git push origin node-v${{ env.NODE_CURRENT_VERSION }} --no-verify
+      # - name: "Commit Repo Changes"
+      #   if: |
+      #     needs.commit-check.outputs.core_commits != '0' || needs.commit-check.outputs.node_commits != '0' || needs.commit-check.outputs.cli_commits != '0'
+      #   run: |
+      #     git commit -am "chore: release main" --no-verify
 
-      - name: "Push Repo"
-        if: needs.commit-check.outputs.root_commits != '0'
-        run: |
-          git push --no-verify
+      # - name: "Tag Repo - Core"
+      #   if: needs.commit-check.outputs.core_commits != '0'
+      #   run: |
+      #     git tag -a core-v${{ env.CORE_CURRENT_VERSION }} -m "Version core-v${{ env.CORE_CURRENT_VERSION }}"
+      #     git push origin core-v${{ env.CORE_CURRENT_VERSION }} --no-verify
+
+      # - name: "Tag Repo - Node"
+      #   if: needs.commit-check.outputs.node_commits != '0'
+      #   run: |
+      #     git tag -a node-v${{ env.NODE_CURRENT_VERSION }} -m "Version core-v${{ env.NODE_CURRENT_VERSION }}"
+      #     git push origin node-v${{ env.NODE_CURRENT_VERSION }} --no-verify
+
+      # - name: "Push Repo"
+      #   if: needs.commit-check.outputs.root_commits != '0'
+      #   run: |
+      #     git push --no-verify

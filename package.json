@@ -35,6 +35,7 @@
   },
   "workspaces": [
     "packages/core",
-    "packages/node"
+    "packages/node",
+    "packages/cli"
   ]
 }
