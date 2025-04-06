@@ -117,7 +117,7 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       always() && 
-      (needs.commit-check.result == 'success' && needs.setup-dependencies == 'success' && needs.commit-check.outputs.root_commits != '0') &&
+      (needs.commit-check.result == 'success' && needs.setup-dependencies.result == 'success' && needs.commit-check.outputs.root_commits != '0') &&
       (needs.build-and-test-cli.result == 'success' || needs.build-and-test-cli.result == 'skipped')
     steps:
       - name: Checkout repo
@@ -130,6 +130,30 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: ./artifacts
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: "Configure Git"
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions"
+      
+      - run: ls -la ./artifacts
+
+      - name: Apply changes to CLI
+        if: needs.commit-check.outputs.cli_commits != '0'
+        run: |
+          cp -r ./artifacts/cli-artifacts/* packages/cli/lib
+          cd packages/cli
+          ls -la
+      
+      
 
       # - name: Bump version and build Node SDK
       #   if: needs.commit-check.outputs.node_commits != '0'
