@@ -108,7 +108,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cli-artifacts
-          path: packages/cli/lib
+          path: |
+            packages/cli/lib
+            packages/cli/package*.json
           retention-days: 1
 
   publish-and-tag:
@@ -152,6 +154,7 @@ jobs:
         run: |
           mkdir -p ./packages/cli/lib
           cp -r ./artifacts/cli-artifacts/* ./packages/cli/lib
+          cp -r ./artifacts/cli-artifacts/package*.json ./packages/cli/
           cd packages/cli
           npm publish --provenance --access public
 
