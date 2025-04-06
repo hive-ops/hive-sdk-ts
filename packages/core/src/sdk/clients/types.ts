@@ -1,5 +1,5 @@
 import { Client, Transport } from "@connectrpc/connect";
-import { BeekeeperService, DroneTokenService, Framework, HiveToken, VespaService } from "../../gen";
+import { App, BeekeeperService, DroneTokenService, Framework, HiveToken, VespaService } from "../../gen";
 
 export type CreateTransportFn<T> = (transportOptions: { url: string; token: string; rpcOptions: T }) => Transport;
 
@@ -30,12 +30,12 @@ export const CLIENT_TYPE_FRAMEWORK_MAP: { [key in ClientType]: Framework } = {
   web: Framework.GRPC_WEB,
 };
 
-export type AppName = "drone" | "beekeeper" | "vespa";
+// export type AppName = "drone" | "beekeeper" | "vespa";
 
 export type FQDN = {
   domain: string;
   workload?: string;
   hub?: string;
-  app: AppName;
+  app: App;
   nodeName?: string;
 };

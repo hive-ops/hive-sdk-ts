@@ -156,7 +156,6 @@ jobs:
             packages/cli/package*.json
           retention-days: 1
 
-
   build-and-test-node:
     name: Build and Test Node SDK
     needs: [setup-dependencies, commit-check]
@@ -199,8 +198,7 @@ jobs:
             packages/node/lib
             packages/node/package*.json
           retention-days: 1
-        
-          
+         
   publish-and-tag:
     name: Publish and Tag
     needs: [setup-dependencies, commit-check, build-and-test-core, build-and-test-cli, build-and-test-node]
