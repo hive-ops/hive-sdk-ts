@@ -103,7 +103,33 @@ jobs:
           cd packages/cli
           npm version patch --no-git-tag-version
           npm run build
-          echo CORE_CURRENT_VERSION=$(node -p "require('./package.json').version") >> "$GITHUB_ENV"
+
+      - name: Upload CLI artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cli-artifacts
+          path: packages/cli/lib
+          retention-days: 1
+
+  publish-and-tag:
+    name: Publish and Tag
+    needs: [setup-dependencies, commit-check, build-and-test-cli]
+    runs-on: ubuntu-latest
+    if: |
+      always() && 
+      (needs.commit-check.result == 'success' && needs.setup-dependencies == 'success' && needs.commit-check.outputs.root_commits != '0') &&
+      (needs.build-and-test-cli.result == 'success' || needs.build-and-test-cli.result == 'skipped')
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
 
       # - name: Bump version and build Node SDK
       #   if: needs.commit-check.outputs.node_commits != '0'
