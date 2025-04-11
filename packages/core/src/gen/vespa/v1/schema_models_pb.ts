@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { ColumnType } from "./enums_pb";
 
 /**
@@ -306,7 +306,12 @@ export class VespaNode extends Message<VespaNode> {
  */
 export class DatabaseSchema extends Message<DatabaseSchema> {
   /**
-   * @generated from field: repeated vespa.v1.TableMetadata tables = 1;
+   * @generated from field: uint64 index = 1;
+   */
+  index = protoInt64.zero;
+
+  /**
+   * @generated from field: repeated vespa.v1.TableMetadata tables = 2;
    */
   tables: TableMetadata[] = [];
 
@@ -318,7 +323,8 @@ export class DatabaseSchema extends Message<DatabaseSchema> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "vespa.v1.DatabaseSchema";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "tables", kind: "message", T: TableMetadata, repeated: true },
+    { no: 1, name: "index", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: "tables", kind: "message", T: TableMetadata, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DatabaseSchema {
