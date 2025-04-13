@@ -30,6 +30,6 @@
     "project": "./tsconfig.json",
     "tsconfigRootDir": "."
   },
-  "include": ["**/*.ts", "**/*.json"],
+  "include": ["**/*.ts", "**/*.json", "packages/node/src/tests/testEnv.js"],
   "exclude": ["node_modules", "**/*.test.ts", "**/*.*spec.ts"]
 }

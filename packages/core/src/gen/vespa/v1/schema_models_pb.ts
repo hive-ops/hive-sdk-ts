@@ -270,6 +270,11 @@ export class VespaNode extends Message<VespaNode> {
    */
   countryCode = "";
 
+  /**
+   * @generated from field: string hub_id = 5;
+   */
+  hubId = "";
+
   constructor(data?: PartialMessage<VespaNode>) {
     super();
     proto3.util.initPartial(data, this);
@@ -282,6 +287,7 @@ export class VespaNode extends Message<VespaNode> {
     { no: 2, name: "hub", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "country_code", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "hub_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VespaNode {

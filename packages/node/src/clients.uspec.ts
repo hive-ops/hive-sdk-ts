@@ -1,18 +1,19 @@
 import { faker } from "@faker-js/faker";
 import dotenv from "dotenv";
-import { createSingletonBeekeeperClient, createSingletonDroneClient, createSingletonTokenClient, getVespaClient, RecordItem, Records, setAccessToken } from "./clients";
+import { createSingletonBeekeeperClient, createSingletonTokenClient, createSingletonVespaClient, RecordItem, Records, setAccessToken, setStackHRN } from "./clients";
 
 dotenv.config();
 
 jest.setTimeout(30000);
 
 describe("Hive SDK Clients", () => {
-  process.env.HIVE_ENV = "dev";
-  setAccessToken(process.env.SECURE_APP_ACCESS_TOKEN || "");
-  const fqdn = "test-fqdn";
+  const accessToken = process.env.SECURE_APP_ACCESS_TOKEN || "";
+  const stackHrn = process.env.STACK_HRN || "";
+
+  setAccessToken(accessToken);
+  setStackHRN(stackHrn);
 
   const tokenClient = createSingletonTokenClient();
-  const droneClient = createSingletonDroneClient();
   const beekeeperClient = createSingletonBeekeeperClient();
 
   it("should create a singleton TokenClient", async () => {
@@ -22,7 +23,6 @@ describe("Hive SDK Clients", () => {
   });
 
   it("should create a singleton DroneClient", async () => {
-    const stackHrn = process.env.STACK_HRN || "";
     const res = await beekeeperClient.getVespaDatabaseStack({
       hrn: stackHrn,
     });
@@ -30,7 +30,6 @@ describe("Hive SDK Clients", () => {
   });
 
   it("should perform crud operations in the vespa database", async () => {
-    const stackHrn = process.env.STACK_HRN || "";
     const res = await beekeeperClient.getVespaDatabaseStack({
       hrn: stackHrn,
     });
@@ -39,7 +38,7 @@ describe("Hive SDK Clients", () => {
     expect(stack.databases).toHaveLength(1);
     const database = stack.databases[0];
 
-    const vespaClient = getVespaClient(database);
+    const vespaClient = createSingletonVespaClient(database);
     const res2 = await vespaClient.insertRecords({
       databaseHrn: database.hrn,
       tableName: "Customer",

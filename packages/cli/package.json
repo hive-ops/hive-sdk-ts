@@ -52,7 +52,7 @@
     ]
   },
   "dependencies": {
-    "@hiveops/node": "^0.0.1",
+    "@hiveops/node": "^0.0.2",
     "commander": "^13.1.0",
     "figlet": "^1.8.0"
   },

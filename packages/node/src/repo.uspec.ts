@@ -1,4 +1,5 @@
-import { initialize } from "@hive-ops/hive-sdk-ts-common";
+
+import { initialize } from "@hiveops/core";
 import { CustomerData, CustomerRepository, generateRandomCustomer } from "./synthetics";
 import dotenv from "dotenv";
 dotenv.config();
