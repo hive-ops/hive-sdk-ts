@@ -1,7 +1,7 @@
 import { getStackHRN } from "@hiveops/node";
 import { Command, Option, OptionValues } from "commander";
 import path from "path";
-import { deleteDirectory, getHSLFiles, getProgrammingLanguage, initializeClients, loadDotEnv, ProgrammingLanguagesMap, writeFile } from "./utils";
+import { deleteDirectory, getHSLFiles, getProgrammingLanguage, initializeClients, loadDotEnv, programmingLanguageOption, ProgrammingLanguagesMap, writeFile } from "./utils";
 
 const generateCode = async (opts: OptionValues) => {
   // Load environment variables
@@ -35,5 +35,5 @@ const generateCode = async (opts: OptionValues) => {
 export const generateCodeCommand = new Command("generate")
   .description("Generate vespa code")
   .option("-o, --output-directory <outputDirectory>", "Output directory")
-  .addOption(new Option("-p, --programming-language <programmingLanguage>", "Programming language").choices(Object.keys(ProgrammingLanguagesMap)).makeOptionMandatory())
+  .addOption(programmingLanguageOption)
   .action(generateCode);

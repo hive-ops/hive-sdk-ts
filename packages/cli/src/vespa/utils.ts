@@ -1,5 +1,5 @@
 import { createSingletonBeekeeperClient, File, initialize, ProgrammingLanguage } from "@hiveops/node";
-import { Command, OptionValues } from "commander";
+import { Command, Option, OptionValues } from "commander";
 import { configDotenv } from "dotenv";
 import * as fs from "fs";
 import * as path from "path";
@@ -95,8 +95,10 @@ export const loadDotEnv = (opts: OptionValues) => {
   }
 };
 
-export const ProgrammingLanguagesMap = {
-  ts: ProgrammingLanguage.TYPESCRIPT,
+export const ProgrammingLanguagesMap: Omit<{ [key in keyof typeof ProgrammingLanguage]: { shortName: string; fullName } }, "UNSPECIFIED"> = {
+  TYPESCRIPT: { shortName: "ts", fullName: "Typescript" },
+  GOLANG: { shortName: "go", fullName: "Golang" },
+  PYTHON: { shortName: "py", fullName: "Python" },
 };
 
 export const getProgrammingLanguage = (opts: OptionValues): ProgrammingLanguage => {
@@ -110,3 +112,8 @@ export const getProgrammingLanguage = (opts: OptionValues): ProgrammingLanguage 
 export const preActionHookListener = (thisCommand: Command) => {
   loadDotEnv(thisCommand.opts());
 };
+
+export const programmingLanguageShortNames = Object.values(ProgrammingLanguagesMap).map((lang) => lang.shortName);
+export const programmingLanguageFullNames = Object.values(ProgrammingLanguagesMap).map((lang) => lang.fullName);
+
+export const programmingLanguageOption = new Option("-p, --programming-language <programmingLanguage>", "Programming language").choices(programmingLanguageShortNames).makeOptionMandatory();

@@ -1,6 +1,7 @@
 import { Command, Option } from "commander";
 import { applyMigrationCommand } from "./applyMigration";
 import { generateCodeCommand } from "./generateCode";
+import { initializeProjectCommand } from "./initProject";
 import { planMigrationCommand } from "./planMigration";
 
 const vespaOptions: Option[] = [
@@ -14,6 +15,7 @@ export const vespaCommand = new Command("vespa")
   .action(() => {
     console.log("Vespa commands");
   })
+  .addCommand(initializeProjectCommand)
   .addCommand(planMigrationCommand)
   .addCommand(applyMigrationCommand)
   .addCommand(generateCodeCommand);
