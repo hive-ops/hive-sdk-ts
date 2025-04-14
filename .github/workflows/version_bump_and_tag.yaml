@@ -241,7 +241,7 @@ jobs:
         if: needs.commit-check.outputs.core_commits != '0'
         run: |
           mkdir -p ./packages/core
-          cp -r ./artifacts/core-artifacts/* ./packages/core/lib
+          cp -r ./artifacts/core-artifacts/* ./packages/core
           cp -r ./artifacts/core-artifacts/package*.json ./packages/core/
           cd packages/core
           npm publish --provenance --access public
@@ -252,7 +252,7 @@ jobs:
         if: needs.commit-check.outputs.cli_commits != '0'
         run: |
           mkdir -p ./packages/cli
-          cp -r ./artifacts/cli-artifacts/* ./packages/cli/lib
+          cp -r ./artifacts/cli-artifacts/* ./packages/cli
           cp -r ./artifacts/cli-artifacts/package*.json ./packages/cli/
           cd packages/cli
           npm publish --provenance --access public
@@ -263,7 +263,7 @@ jobs:
         if: needs.commit-check.outputs.node_commits != '0'
         run: |
           mkdir -p ./packages/node
-          cp -r ./artifacts/node-artifacts/* ./packages/node/lib
+          cp -r ./artifacts/node-artifacts/* ./packages/node
           cp -r ./artifacts/node-artifacts/package*.json ./packages/node/
           cd packages/node
           npm publish --provenance --access public
