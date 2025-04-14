@@ -68,6 +68,17 @@ const initializeProject = async (opts: OptionValues) => {
     fs.writeFileSync(hslFilePath, hslContent, { encoding: "utf8" });
     console.log("models.hsl file created successfully.");
   }
+
+  // Add scripts to package.json
+  const packageJsonPath = path.join(projectDirectory, "package.json");
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, { encoding: "utf8" }));
+  packageJson.scripts = {
+    ...packageJson.scripts,
+    vespa: "vespa",
+    "vespa:plan": "vespa plan",
+    "vespa:apply": "vespa apply",
+    "vespa:generate": "vespa generate",
+  };
 };
 
 export const initializeProjectCommand = new Command("init").description("Initialize a project using VespaDB").action(initializeProject);

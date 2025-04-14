@@ -240,7 +240,7 @@ jobs:
       - name: Apply changes to Core and publish
         if: needs.commit-check.outputs.core_commits != '0'
         run: |
-          mkdir -p ./packages/core/lib
+          mkdir -p ./packages/core
           cp -r ./artifacts/core-artifacts/* ./packages/core/lib
           cp -r ./artifacts/core-artifacts/package*.json ./packages/core/
           cd packages/core
@@ -251,7 +251,7 @@ jobs:
       - name: Apply changes to CLI and publish
         if: needs.commit-check.outputs.cli_commits != '0'
         run: |
-          mkdir -p ./packages/cli/lib
+          mkdir -p ./packages/cli
           cp -r ./artifacts/cli-artifacts/* ./packages/cli/lib
           cp -r ./artifacts/cli-artifacts/package*.json ./packages/cli/
           cd packages/cli
@@ -262,7 +262,7 @@ jobs:
       - name: Apply changes to Node and publish
         if: needs.commit-check.outputs.node_commits != '0'
         run: |
-          mkdir -p ./packages/node/lib
+          mkdir -p ./packages/node
           cp -r ./artifacts/node-artifacts/* ./packages/node/lib
           cp -r ./artifacts/node-artifacts/package*.json ./packages/node/
           cd packages/node
