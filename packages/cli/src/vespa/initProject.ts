@@ -74,10 +74,9 @@ const initializeProject = async (opts: OptionValues) => {
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, { encoding: "utf8" }));
   packageJson.scripts = {
     ...packageJson.scripts,
-    vespa: "vespa",
-    "vespa:plan": "vespa plan",
-    "vespa:apply": "vespa apply",
-    "vespa:generate": "vespa generate",
+    "vespa:generate": "hive vespa generate -p ts",
+    "vespa:apply": "hive vespa apply",
+    "vespa:generate-and-apply": "hive vespa generate-and-apply -p ts"
   };
 };
 
