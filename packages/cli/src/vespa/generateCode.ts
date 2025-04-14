@@ -1,11 +1,13 @@
 import { getStackHRN } from "@hiveops/node";
-import { Command, Option, OptionValues } from "commander";
+import { Command, OptionValues } from "commander";
 import path from "path";
-import { deleteDirectory, getHSLFiles, getProgrammingLanguage, initializeClients, loadDotEnv, programmingLanguageOption, ProgrammingLanguagesMap, writeFile } from "./utils";
+import { deleteDirectory, getHSLFiles, getProgrammingLanguage, getProjectDirectory, initializeClients, loadDotEnv, programmingLanguageOption, writeFile } from "./utils";
 
 const generateCode = async (opts: OptionValues) => {
   // Load environment variables
   loadDotEnv(opts);
+
+  const projectDirectory = getProjectDirectory(opts);
 
   // Read schema files
   const files = getHSLFiles(opts);
@@ -23,12 +25,12 @@ const generateCode = async (opts: OptionValues) => {
   const directories = res.codeFiles.map((file) => path.join(...file.directoryPathElements));
   const uniqueDirectories = [...new Set(directories)];
   for (const directory of uniqueDirectories) {
-    deleteDirectory(directory);
+    deleteDirectory(path.join(projectDirectory, directory));
   }
 
   // Write code to files
   for (const file of res.codeFiles) {
-    writeFile(file);
+    writeFile(projectDirectory, file)
   }
 };
 

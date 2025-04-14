@@ -5,8 +5,8 @@ import * as fs from "fs";
 import * as path from "path";
 
 export const getProjectDirectory = (opts: OptionValues): string => (opts.projectDirectory as string | undefined) || process.cwd();
-export const getStackHRN = (opts: OptionValues): string => opts.stackHrn as string;
-export const getAccessToken = (opts: OptionValues): string => opts.accessToken as string;
+export const getStackHRN = (opts: OptionValues): string => (opts.stackHrn as string) || process.env.STACK_HRN || "";
+export const getAccessToken = (opts: OptionValues): string => (opts.accessToken as string) || process.env.ACCESS_TOKEN || "";
 
 /**
  * Find all files with a specific extension in a directory and its subdirectories
@@ -50,9 +50,9 @@ export const readFile = (directory: string, fileName: string): File => {
   });
 };
 
-export const writeFile = (file: File) => {
+export const writeFile = (projectDirectory: string, file: File) => {
   // Ensure the directory exists
-  const directory = path.join(...file.directoryPathElements);
+  const directory = path.join(projectDirectory, ...file.directoryPathElements);
   if (!fs.existsSync(directory)) {
     fs.mkdirSync(directory, { recursive: true });
   }
