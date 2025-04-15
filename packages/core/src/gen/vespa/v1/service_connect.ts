@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CountRecordsRequest, CountRecordsResponse, DeleteRecordsRequest, DeleteRecordsResponse, ExistsRequest, ExistsResponse, GetRecordsRequest, GetRecordsResponse, InsertRecordsRequest, InsertRecordsResponse, UpdateRecordsRequest, UpdateRecordsResponse } from "./crud_pb";
+import { CountRecordsRequest, CountRecordsResponse, DeleteRecordsRequest, DeleteRecordsResponse, ExistsRequest, ExistsResponse, GetRecordsRequest, GetRecordsResponse, InsertRecordRequest, InsertRecordResponse, InsertRecordsRequest, InsertRecordsResponse, UpdateRecordsRequest, UpdateRecordsResponse } from "./crud_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -12,6 +12,15 @@ import { MethodKind } from "@bufbuild/protobuf";
 export const VespaService = {
   typeName: "vespa.v1.VespaService",
   methods: {
+    /**
+     * @generated from rpc vespa.v1.VespaService.InsertRecord
+     */
+    insertRecord: {
+      name: "InsertRecord",
+      I: InsertRecordRequest,
+      O: InsertRecordResponse,
+      kind: MethodKind.Unary,
+    },
     /**
      * @generated from rpc vespa.v1.VespaService.InsertRecords
      */

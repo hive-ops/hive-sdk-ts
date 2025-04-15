@@ -1,11 +1,11 @@
-import { ColumnType, OutRecords, Records, TableMetadata } from "../../gen";
+import { ColumnType, OutRecord, OutRecords, Records, TableMetadata } from "../../gen";
 import { isVespaColumn } from "../utilities/utils";
 import { toT } from "./toT";
 import { ValueType } from "./types";
 
 export type RecordColumn = {
   name: string;
-  Type: ColumnType;
+  type: ColumnType;
   value: ValueType;
 };
 
@@ -28,7 +28,7 @@ export const fromProtoInRecords = (records: Records, typeDef: { [key: string]: C
       const columnType = typeDef[columnName] || ColumnType.TEXT;
       recordRow[columnName] = {
         name: columnName,
-        Type: columnType,
+        type: columnType,
         value: recordItem.values[i],
       };
     }
@@ -85,7 +85,7 @@ export const fromProtoOutRecords = (records: OutRecords, typeDef: { [key: string
     for (const [key, values] of Object.entries(recordsData)) {
       recordRow[key] = {
         name: key,
-        Type: values.type,
+        type: values.type,
         value: values.values[i],
       };
     }
@@ -93,4 +93,20 @@ export const fromProtoOutRecords = (records: OutRecords, typeDef: { [key: string
   }
 
   return recordRows;
+};
+
+export const fromProtoOutRecord = (record: OutRecord, typeDef: { [key: string]: ColumnType }): RecordRow => {
+  const recordRow: RecordRow = {};
+
+  for (const [key, value] of Object.entries(record.record)) {
+    const columnType = typeDef[key] || ColumnType.TEXT;
+
+    recordRow[key] = {
+      name: key,
+      type: columnType,
+      value: isVespaColumn(key) ? value : toT(value, columnType),
+    };
+  }
+
+  return recordRow;
 };

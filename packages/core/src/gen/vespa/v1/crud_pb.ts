@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { OutRecords, Record, Records, WhereCondition } from "./data_models_pb";
+import { OutRecord, OutRecords, Record, Records, WhereCondition } from "./data_models_pb";
 import { ResponseMetadata } from "../../hive/v1/models_pb";
 
 /**
@@ -379,6 +379,98 @@ export class ExistsResponse extends Message<ExistsResponse> {
 
   static equals(a: ExistsResponse | PlainMessage<ExistsResponse> | undefined, b: ExistsResponse | PlainMessage<ExistsResponse> | undefined): boolean {
     return proto3.util.equals(ExistsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message vespa.v1.InsertRecordRequest
+ */
+export class InsertRecordRequest extends Message<InsertRecordRequest> {
+  /**
+   * @generated from field: string database_hrn = 1;
+   */
+  databaseHrn = "";
+
+  /**
+   * @generated from field: string table_name = 2;
+   */
+  tableName = "";
+
+  /**
+   * @generated from field: vespa.v1.Record record = 3;
+   */
+  record?: Record;
+
+  constructor(data?: PartialMessage<InsertRecordRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "vespa.v1.InsertRecordRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "database_hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "table_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "record", kind: "message", T: Record },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InsertRecordRequest {
+    return new InsertRecordRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InsertRecordRequest {
+    return new InsertRecordRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InsertRecordRequest {
+    return new InsertRecordRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InsertRecordRequest | PlainMessage<InsertRecordRequest> | undefined, b: InsertRecordRequest | PlainMessage<InsertRecordRequest> | undefined): boolean {
+    return proto3.util.equals(InsertRecordRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message vespa.v1.InsertRecordResponse
+ */
+export class InsertRecordResponse extends Message<InsertRecordResponse> {
+  /**
+   * @generated from field: hive.v1.ResponseMetadata metadata = 1;
+   */
+  metadata?: ResponseMetadata;
+
+  /**
+   * @generated from field: vespa.v1.OutRecord record = 2;
+   */
+  record?: OutRecord;
+
+  constructor(data?: PartialMessage<InsertRecordResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "vespa.v1.InsertRecordResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "metadata", kind: "message", T: ResponseMetadata },
+    { no: 2, name: "record", kind: "message", T: OutRecord },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InsertRecordResponse {
+    return new InsertRecordResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InsertRecordResponse {
+    return new InsertRecordResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InsertRecordResponse {
+    return new InsertRecordResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InsertRecordResponse | PlainMessage<InsertRecordResponse> | undefined, b: InsertRecordResponse | PlainMessage<InsertRecordResponse> | undefined): boolean {
+    return proto3.util.equals(InsertRecordResponse, a, b);
   }
 }
 

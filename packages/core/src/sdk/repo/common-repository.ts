@@ -1,6 +1,6 @@
-import { OutRecords, Record, RecordItem, Records, VespaDatabase, VespaDatabaseStack } from "../../gen";
+import { OutRecord, OutRecords, Record, RecordItem, Records, VespaDatabase, VespaDatabaseStack } from "../../gen";
 import { BeekeeperClient, VespaClient } from "../clients";
-import { fromProtoOutRecords } from "./data-record";
+import { fromProtoOutRecord, fromProtoOutRecords } from "./data-record";
 import { convertFindOptionsToWhereConditions, FindManyOptions, FindOneOptions, getLimit, getOffset } from "./find-options";
 import { fromT } from "./fromT";
 import { getStackHRN } from "./globals";
@@ -46,9 +46,18 @@ export abstract class CommonRepository<S, T extends S> {
     return res.insertedIds;
   }
 
-  public async saveOne(obj: S): Promise<string | undefined> {
-    const ids = await this.saveMany([obj]);
-    return ids.length > 0 ? ids[0] : undefined;
+  public async saveOne(obj: S): Promise<T | undefined> {
+    const record = this.marshalOneFunc(obj);
+
+    const database = await this.getVespaDatabase();
+    const vespaClient = await this.getVespaClient(database);
+    const res = await vespaClient.insertRecord({
+      databaseHrn: database.hrn,
+      tableName: this.tableName,
+      record,
+    });
+
+    return res.record ? this.unmarshalOneFunc(res.record) : undefined;
   }
 
   public async deleteWhere(opts: FindManyOptions<T>): Promise<void> {
@@ -137,6 +146,16 @@ export abstract class CommonRepository<S, T extends S> {
       columnNames,
       items: recordItems,
     });
+  }
+
+  unmarshalOneFunc(record: OutRecord): T {
+    const recordRow = fromProtoOutRecord(record, this.columnTypeMap);
+
+    const obj: { [key: string]: ValueType } = {};
+    for (const [key, value] of Object.entries(recordRow)) {
+      obj[key] = value.value;
+    }
+    return obj as T;
   }
 
   private marshalOneFunc(data: S): Record {
