@@ -1,6 +1,5 @@
-import { getStackHRN } from "@hiveops/node";
 import { Command, OptionValues } from "commander";
-import { getHSLFiles, initializeClients, loadDotEnv, preActionHookListener } from "./utils";
+import { getHSLFiles, getStackHRN, initializeClients, loadDotEnv, preActionHookListener } from "./utils";
 
 const applyMigration = (opts: OptionValues) => {
   // Load environment variables
@@ -14,7 +13,7 @@ const applyMigration = (opts: OptionValues) => {
 
   // Apply migration
   const res = beekeeperClient.applyMigration({
-    stackHrn: getStackHRN(),
+    stackHrn: getStackHRN(opts),
     hslFiles: files,
   });
 };

@@ -1,7 +1,6 @@
-import { getStackHRN } from "@hiveops/node";
 import { Command, OptionValues } from "commander";
 import path from "path";
-import { deleteDirectory, getHSLFiles, getProgrammingLanguage, getProjectDirectory, initializeClients, loadDotEnv, programmingLanguageOption, writeFile } from "./utils";
+import { deleteDirectory, getHSLFiles, getProgrammingLanguage, getProjectDirectory, getStackHRN, initializeClients, loadDotEnv, programmingLanguageOption, writeFile } from "./utils";
 
 const generateCode = async (opts: OptionValues) => {
   // Load environment variables
@@ -17,7 +16,7 @@ const generateCode = async (opts: OptionValues) => {
 
   // Generate code
   const res = await beekeeperClient.generateCode({
-    stackHrn: getStackHRN(),
+    stackHrn: getStackHRN(opts),
     language: getProgrammingLanguage(opts),
     schemaFiles: files,
   });
@@ -30,7 +29,7 @@ const generateCode = async (opts: OptionValues) => {
 
   // Write code to files
   for (const file of res.codeFiles) {
-    writeFile(projectDirectory, file)
+    writeFile(projectDirectory, file);
   }
 };
 
