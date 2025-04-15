@@ -1,4 +1,3 @@
-import { err, ok, Result } from "neverthrow";
 import { ColumnType, OutRecords, Records, TableMetadata } from "../../gen";
 import { isVespaColumn } from "../utilities/utils";
 import { toT } from "./toT";
@@ -38,7 +37,7 @@ export const fromProtoInRecords = (records: Records, typeDef: { [key: string]: C
   return recordRows;
 };
 
-export const fromProtoOutRecords = (records: OutRecords, typeDef: { [key: string]: ColumnType }): Result<RecordRow[], Error> => {
+export const fromProtoOutRecords = (records: OutRecords, typeDef: { [key: string]: ColumnType }): RecordRow[] => {
   const recordRows: RecordRow[] = [];
 
   const recordsData: {
@@ -62,11 +61,7 @@ export const fromProtoOutRecords = (records: OutRecords, typeDef: { [key: string
       if (isVespaColumn(key)) {
         dataValues.values.push(value);
       } else {
-        const result = toT(value, columnType);
-        if (result.isErr()) {
-          return err(result.error);
-        }
-        dataValues.values.push(result.value);
+        dataValues.values.push(toT(value, columnType));
       }
       recordsData[key] = dataValues;
     }
@@ -74,18 +69,17 @@ export const fromProtoOutRecords = (records: OutRecords, typeDef: { [key: string
 
   const recordsDataValues = Object.values(recordsData);
   if (recordsDataValues.length === 0) {
-    return ok([]);
+    return [];
   }
   const lengths = recordsDataValues.map((values) => values.values.length);
   if (lengths.some((length) => length !== lengths[0])) {
-    return err(new Error("lengths of slices are not equal: " + lengths));
+    throw new Error("lengths of slices are not equal: " + lengths);
   }
 
   if (lengths.length === 0) {
-    return ok([]);
+    return [];
   }
 
-  // const objs: { [key: string]: Type }[] = [];
   for (let i = 0; i < lengths[0]; i++) {
     const recordRow: RecordRow = {};
     for (const [key, values] of Object.entries(recordsData)) {
@@ -98,29 +92,5 @@ export const fromProtoOutRecords = (records: OutRecords, typeDef: { [key: string
     recordRows.push(recordRow);
   }
 
-  // for (const [key, outValues] of Object.entries(records.records)) {
-  //   const recordRow: RecordRow = {};
-  //   for (const values of outValues.values) {
-  //     const dataValues = recordsData[key] || [];
-  //     let columnType = ColumnType.TEXT;
-  //     if (isVespaColumn(columnName)) {
-  //       columnType = ColumnType.TEXT;
-  //     } else {
-  //       const column = columnsMap[columnName];
-  //       if (!column) {
-  //         throw new Error(`Column ${columnName} not found in table metadata`);
-  //       }
-  //       columnType = column.type;
-  //     }
-
-  //     recordRow[columnName] = {
-  //       name: columnName,
-  //       Type: columnType,
-  //       value: recordItem.values[i],
-  //     };
-  //   }
-  //   recordRows.push(recordRow);
-  // }
-
-  return ok(recordRows);
+  return recordRows;
 };
