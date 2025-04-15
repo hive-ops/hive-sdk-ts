@@ -106,3 +106,11 @@ export const buildURL = (options: { domain: string; app: App; clientType: Client
 
 // export const isNodeClient = (framework: Framework): boolean => framework === Framework.GRPC;
 // export const isWebClient = (framework: Framework): boolean => framework === Framework.GRPC_WEB;
+
+export const getEnvString = (key: string): string => {
+  const value = process.env[key];
+  if (!value) {
+    throw new Error(`Environment variable ${key} is not set`);
+  }
+  return value;
+}
