@@ -64,5 +64,3 @@ export const createSingletonVespaClient = (database: core.VespaDatabase,token?: 
     createTransportFn,
   });
 };
-
-export * from "@hiveops/core";

@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
+import { initialize, RecordItem, Records } from "@hiveops/core";
 import dotenv from "dotenv";
-import { createSingletonBeekeeperClient, createSingletonTokenClient, createSingletonVespaClient, RecordItem, Records, setAccessToken, setStackHRN } from "./clients";
+import { createSingletonBeekeeperClient, createSingletonTokenClient, createSingletonVespaClient } from "./clients";
 
 dotenv.config();
 
@@ -10,8 +11,7 @@ describe("Hive SDK Clients", () => {
   const accessToken = process.env.SECURE_APP_ACCESS_TOKEN || "";
   const stackHrn = process.env.STACK_HRN || "";
 
-  setAccessToken(accessToken);
-  setStackHRN(stackHrn);
+  initialize();
 
   const tokenClient = createSingletonTokenClient();
   const beekeeperClient = createSingletonBeekeeperClient();
