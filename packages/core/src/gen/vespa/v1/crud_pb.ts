@@ -113,6 +113,11 @@ export class GetRecordRequest extends Message<GetRecordRequest> {
    */
   whereConditions: WhereCondition[] = [];
 
+  /**
+   * @generated from field: int32 offset = 4;
+   */
+  offset = 0;
+
   constructor(data?: PartialMessage<GetRecordRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -124,6 +129,7 @@ export class GetRecordRequest extends Message<GetRecordRequest> {
     { no: 1, name: "database_hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "table_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "where_conditions", kind: "message", T: WhereCondition, repeated: true },
+    { no: 4, name: "offset", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRecordRequest {

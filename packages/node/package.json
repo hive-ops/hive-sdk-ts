@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@connectrpc/connect-node": "^1.6.1",
-    "@hiveops/core": "^0.0.17"
+    "@hiveops/core": "^0.0.18"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.6.0",

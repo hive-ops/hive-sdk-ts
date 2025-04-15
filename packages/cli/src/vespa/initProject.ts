@@ -30,14 +30,14 @@ const initializeProject = async (opts: OptionValues) => {
 
   const projectDirectory = getProjectDirectory(opts);
 
-//   // Create .env file
-//   const envContent = `
-// HIVE_STACK_HRN=${stackHRN}
-// HIVE_ACCESS_TOKEN=${accessToken}
-// `;
-//   const envFilePath = path.join(projectDirectory, ".env");
-//   fs.writeFileSync(envFilePath, envContent, { encoding: "utf8" });
-//   console.log(".env file created successfully.");
+  // Create .env file
+  const envContent = `
+HIVE_STACK_HRN=${stackHRN}
+HIVE_ACCESS_TOKEN=${accessToken}
+`;
+  const envFilePath = path.join(projectDirectory, ".env");
+  fs.writeFileSync(envFilePath, envContent, { encoding: "utf8" });
+  console.log(".env file created successfully.");
 
   // Check if .gitignore exists
   const gitignorePath = path.join(projectDirectory, ".gitignore");
@@ -98,6 +98,8 @@ model Post = {
     "vespa:apply": "hive vespa apply",
     "vespa:generate-and-apply": "hive vespa generate-and-apply -p ts",
   };
+  fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), { encoding: "utf8" });
+  console.log("Scripts added to package.json successfully.");
 
   await runCommandWithOutput("npm install --save @hiveops/node@latest", projectDirectory);
   await runCommandWithOutput("npm install --save-dev @hiveops/cli@latest", projectDirectory);

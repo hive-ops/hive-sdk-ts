@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { initialize, RecordItem, Records } from "@hiveops/core";
+import { getStackHRN, initialize, RecordItem, Records } from "@hiveops/core";
 import dotenv from "dotenv";
 import { createSingletonBeekeeperClient, createSingletonTokenClient, createSingletonVespaClient } from "./clients";
 
@@ -8,9 +8,6 @@ dotenv.config();
 jest.setTimeout(30000);
 
 describe("Hive SDK Clients", () => {
-  const accessToken = process.env.SECURE_APP_ACCESS_TOKEN || "";
-  const stackHrn = process.env.STACK_HRN || "";
-
   initialize();
 
   const tokenClient = createSingletonTokenClient();
@@ -24,14 +21,14 @@ describe("Hive SDK Clients", () => {
 
   it("should create a singleton DroneClient", async () => {
     const res = await beekeeperClient.getVespaDatabaseStack({
-      hrn: stackHrn,
+      hrn: getStackHRN(),
     });
     expect(res).toBeDefined();
   });
 
   it("should perform crud operations in the vespa database", async () => {
     const res = await beekeeperClient.getVespaDatabaseStack({
-      hrn: stackHrn,
+      hrn: getStackHRN(),
     });
     const stack = res.stack!;
     expect(stack).toBeDefined();
