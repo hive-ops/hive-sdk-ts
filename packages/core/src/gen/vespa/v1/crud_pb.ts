@@ -95,6 +95,104 @@ export class DeleteRecordsResponse extends Message<DeleteRecordsResponse> {
 }
 
 /**
+ * @generated from message vespa.v1.GetRecordRequest
+ */
+export class GetRecordRequest extends Message<GetRecordRequest> {
+  /**
+   * @generated from field: string database_hrn = 1;
+   */
+  databaseHrn = "";
+
+  /**
+   * @generated from field: string table_name = 2;
+   */
+  tableName = "";
+
+  /**
+   * @generated from field: repeated vespa.v1.WhereCondition where_conditions = 3;
+   */
+  whereConditions: WhereCondition[] = [];
+
+  constructor(data?: PartialMessage<GetRecordRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "vespa.v1.GetRecordRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "database_hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "table_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "where_conditions", kind: "message", T: WhereCondition, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRecordRequest {
+    return new GetRecordRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetRecordRequest {
+    return new GetRecordRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRecordRequest {
+    return new GetRecordRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetRecordRequest | PlainMessage<GetRecordRequest> | undefined, b: GetRecordRequest | PlainMessage<GetRecordRequest> | undefined): boolean {
+    return proto3.util.equals(GetRecordRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message vespa.v1.GetRecordResponse
+ */
+export class GetRecordResponse extends Message<GetRecordResponse> {
+  /**
+   * @generated from field: hive.v1.ResponseMetadata metadata = 1;
+   */
+  metadata?: ResponseMetadata;
+
+  /**
+   * @generated from field: vespa.v1.OutRecord record = 2;
+   */
+  record?: OutRecord;
+
+  /**
+   * @generated from field: bool found = 3;
+   */
+  found = false;
+
+  constructor(data?: PartialMessage<GetRecordResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "vespa.v1.GetRecordResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "metadata", kind: "message", T: ResponseMetadata },
+    { no: 2, name: "record", kind: "message", T: OutRecord },
+    { no: 3, name: "found", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRecordResponse {
+    return new GetRecordResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetRecordResponse {
+    return new GetRecordResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRecordResponse {
+    return new GetRecordResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetRecordResponse | PlainMessage<GetRecordResponse> | undefined, b: GetRecordResponse | PlainMessage<GetRecordResponse> | undefined): boolean {
+    return proto3.util.equals(GetRecordResponse, a, b);
+  }
+}
+
+/**
  * @generated from message vespa.v1.GetRecordsRequest
  */
 export class GetRecordsRequest extends Message<GetRecordsRequest> {
