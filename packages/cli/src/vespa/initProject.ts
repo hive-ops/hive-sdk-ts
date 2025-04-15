@@ -58,10 +58,10 @@ HIVE_ACCESS_TOKEN=${accessToken}
   if (createBootstrapModels) {
     const hslContent = `
 model User = {
-  firstName: string = 2
-  lastName: string = 3
-  email: string = 4
-  age: int = 5
+  firstName: string = 1
+  lastName: string = 2
+  email: string = 3
+  age: int = 4
 }
 
 model Post = {
@@ -85,6 +85,12 @@ model Post = {
 
   // Add scripts to package.json
   const packageJsonPath = path.join(projectDirectory, "package.json");
+  // Check if package.json exists
+  if (!fs.existsSync(packageJsonPath)) {
+    console.log("package.json not found. Creating a new one...");
+    await runCommandWithOutput("npm init -y", projectDirectory);
+  }
+
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, { encoding: "utf8" }));
   packageJson.scripts = {
     ...packageJson.scripts,
