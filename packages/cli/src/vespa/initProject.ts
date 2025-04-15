@@ -2,7 +2,7 @@ import { Command, OptionValues } from "commander";
 import fs from "fs";
 import inquirer from "inquirer";
 import path from "path";
-import { getProjectDirectory } from "./utils";
+import { getProjectDirectory, runCommandWithOutput } from "./utils";
 
 const initializeProject = async (opts: OptionValues) => {
   const answers = await inquirer.prompt([
@@ -31,10 +31,11 @@ const initializeProject = async (opts: OptionValues) => {
   const projectDirectory = getProjectDirectory(opts);
 
   // Create .env file
-  const envContent = `STACK_HRN=${stackHRN}` + `\n` + `ACCESS_TOKEN=${accessToken}`;
-
+  const envContent = `
+HIVE_STACK_HRN=${stackHRN}
+HIVE_ACCESS_TOKEN=${accessToken}
+`;
   const envFilePath = path.join(projectDirectory, ".env");
-
   fs.writeFileSync(envFilePath, envContent, { encoding: "utf8" });
   console.log(".env file created successfully.");
 
@@ -55,7 +56,20 @@ const initializeProject = async (opts: OptionValues) => {
 
   // Create Bootstrap models if the user wants to
   if (createBootstrapModels) {
-    const hslContent = `model User {` + `\n` + `  id string;` + `\n` + `  firstName string;` + `\n` + `  lastName string;` + `\n` + `  email string;` + `\n` + `  age int;` + `\n` + `}`;
+    const hslContent = `
+model User = {
+  firstName: string = 2
+  lastName: string = 3
+  email: string = 4
+  age: int = 5
+}
+
+model Post = {
+  userId: string 	= 1
+  title: 	string 	= 2
+  body: 	string 	= 3
+}
+    `;
 
     const hslFilePath = path.join(projectDirectory, "src", "models.hsl");
 
@@ -76,8 +90,11 @@ const initializeProject = async (opts: OptionValues) => {
     ...packageJson.scripts,
     "vespa:generate": "hive vespa generate -p ts",
     "vespa:apply": "hive vespa apply",
-    "vespa:generate-and-apply": "hive vespa generate-and-apply -p ts"
+    "vespa:generate-and-apply": "hive vespa generate-and-apply -p ts",
   };
+
+  await runCommandWithOutput("npm install --save @hiveops/node@latest", projectDirectory);
+  await runCommandWithOutput("npm install --save-dev @hiveops/cli@latest", projectDirectory);
 };
 
 export const initializeProjectCommand = new Command("init").description("Initialize a project using VespaDB").action(initializeProject);

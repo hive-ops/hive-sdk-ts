@@ -1,9 +1,11 @@
 import { File, initialize, ProgrammingLanguage } from "@hiveops/core";
-import { createSingletonBeekeeperClient,  } from "@hiveops/node";
+import { createSingletonBeekeeperClient } from "@hiveops/node";
+import { exec } from "child_process";
 import { Command, Option, OptionValues } from "commander";
 import { configDotenv } from "dotenv";
 import * as fs from "fs";
 import * as path from "path";
+import { promisify } from "util";
 
 export const getProjectDirectory = (opts: OptionValues): string => (opts.projectDirectory as string | undefined) || process.cwd();
 export const getStackHRN = (opts: OptionValues): string => (opts.stackHrn as string) || process.env.STACK_HRN || "";
@@ -118,3 +120,48 @@ export const programmingLanguageShortNames = Object.values(ProgrammingLanguagesM
 export const programmingLanguageFullNames = Object.values(ProgrammingLanguagesMap).map((lang) => lang.fullName);
 
 export const programmingLanguageOption = new Option("-p, --programming-language <programmingLanguage>", "Programming language").choices(programmingLanguageShortNames).makeOptionMandatory();
+
+const execPromise = promisify(exec);
+
+/**
+ * Runs a CLI command and returns the result
+ * @param command The command to run
+ * @param cwd The working directory to run the command in (optional)
+ * @returns Promise with stdout and stderr
+ */
+export async function runCommand(command: string, cwd?: string): Promise<{ stdout: string; stderr: string }> {
+  try {
+    const options = cwd ? { cwd } : {};
+    const { stdout, stderr } = await execPromise(command, options);
+    return { stdout, stderr };
+  } catch (error) {
+    // If the command fails, the error will contain stdout and stderr
+    if (error instanceof Error && "stdout" in error && "stderr" in error) {
+      return {
+        stdout: (error as any).stdout || "",
+        stderr: (error as any).stderr || "",
+      };
+    }
+    throw error;
+  }
+}
+
+/**
+ * Runs a CLI command and logs the output
+ * @param command The command to run
+ * @param cwd The working directory to run the command in (optional)
+ * @returns Promise that resolves when the command completes
+ */
+export async function runCommandWithOutput(command: string, cwd?: string): Promise<void> {
+  try {
+    console.log(`Running: ${command}`);
+    const { stdout, stderr } = await runCommand(command, cwd);
+
+    if (stdout) console.log(stdout);
+    if (stderr) console.error(stderr);
+  } catch (error) {
+    console.error(`Command failed: ${command}`);
+    console.error(error);
+    throw error;
+  }
+}
