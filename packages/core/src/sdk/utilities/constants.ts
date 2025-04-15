@@ -1,4 +1,5 @@
 import { App, Framework } from "../../gen";
+import { ClientType } from "./types";
 
 export const DOMAIN = "hiveops.io";
 
@@ -13,4 +14,10 @@ export const APP_MAP: { [key in keyof typeof App]: string } = {
   DRONE: "drone",
   BEEKEEPER: "beekeeper",
   VESPA: "vespa",
+};
+
+export const CLIENT_TYPE_FRAMEWORK_MAP: { [key in ClientType]: Framework } = {
+  node: Framework.GRPC,
+  deno: Framework.GRPC,
+  web: Framework.GRPC_WEB,
 };

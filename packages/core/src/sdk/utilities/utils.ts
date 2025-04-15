@@ -1,8 +1,9 @@
 import _ from "lodash";
 import { err, Result as NeverThrowResult, ok, ResultAsync } from "neverthrow";
 import { App, Framework } from "../../gen";
-import { ClientType } from "../clients";
-import { APP_MAP, FRAMEWORK_MAP } from "./constants";
+import {} from "../clients";
+import { APP_MAP, CLIENT_TYPE_FRAMEWORK_MAP, FRAMEWORK_MAP } from "./constants";
+import { FQDN } from "./types";
 
 export const toError = (error: any): Error => {
   return err instanceof Error ? err : new Error(String(error));
@@ -74,32 +75,21 @@ export const getEnumKey = <T extends object>(enumType: T, value: T[keyof T]): ke
   return Object.keys(enumType)[Object.values(enumType).indexOf(value)] as keyof T;
 };
 
-const getFramework = (clientType: ClientType): string => {
-  switch (clientType) {
-    case "node":
-      return FRAMEWORK_MAP[getEnumKey(Framework, Framework.GRPC)];
-    case "deno":
-      return FRAMEWORK_MAP[getEnumKey(Framework, Framework.GRPC)];
-    case "web":
-      return FRAMEWORK_MAP[getEnumKey(Framework, Framework.GRPC_WEB)];
-    default:
-      throw new Error(`Unsupported client type: ${clientType}`);
-  }
-};
-
 export const isVespaColumn = (key: string): boolean => key.startsWith("_vespa_");
 
-export const buildURL = (options: { domain: string; app: App; clientType: ClientType; nodeName?: string; hub?: string; workload?: string }): string => {
-  const framework = getFramework(options.clientType);
-
+export const buildURL = (fqdn: FQDN): string => {
   // App
-  const appName = APP_MAP[getEnumKey(App, options.app)];
+  const appName = APP_MAP[getEnumKey(App, fqdn.app)];
 
-  const subdomainElements = [options.nodeName, framework, appName, options.hub, options.workload];
+  // Framework
+  const framework = CLIENT_TYPE_FRAMEWORK_MAP[fqdn.clientType];
+  const frameworkText = FRAMEWORK_MAP[getEnumKey(Framework, framework)];
+
+  const subdomainElements: (string | undefined)[] = [fqdn.nodeName, frameworkText, appName, fqdn.hubId];
 
   const subdomain = _.compact(subdomainElements).join(".");
 
-  const domainElements = _.compact([subdomain, options.domain]);
+  const domainElements = _.compact([subdomain, fqdn.domain]);
 
   return `https://${domainElements.join(".")}`;
 };
@@ -113,4 +103,4 @@ export const getEnvString = (key: string): string => {
     throw new Error(`Environment variable ${key} is not set`);
   }
   return value;
-}
+};
