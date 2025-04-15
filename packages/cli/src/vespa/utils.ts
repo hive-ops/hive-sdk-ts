@@ -64,7 +64,7 @@ export const writeFile = (projectDirectory: string, file: File) => {
 
 export const deleteDirectory = (directoryPath: string) => {
   if (fs.existsSync(directoryPath)) {
-    fs.rmdirSync(directoryPath, { recursive: true });
+    fs.rmSync(directoryPath, { recursive: true });
   }
 };
 
