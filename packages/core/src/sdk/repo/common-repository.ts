@@ -46,8 +46,9 @@ export abstract class CommonRepository<S, T extends S> {
     return res.insertedIds;
   }
 
-  public async saveOne(obj: S): Promise<string[]> {
-    return this.saveMany([obj]);
+  public async saveOne(obj: S): Promise<string | undefined> {
+    const ids = await this.saveMany([obj]);
+    return ids.length > 0 ? ids[0] : undefined;
   }
 
   public async deleteWhere(opts: FindManyOptions<T>): Promise<void> {

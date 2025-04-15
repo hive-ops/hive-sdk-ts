@@ -30,14 +30,14 @@ const initializeProject = async (opts: OptionValues) => {
 
   const projectDirectory = getProjectDirectory(opts);
 
-  // Create .env file
-  const envContent = `
-HIVE_STACK_HRN=${stackHRN}
-HIVE_ACCESS_TOKEN=${accessToken}
-`;
-  const envFilePath = path.join(projectDirectory, ".env");
-  fs.writeFileSync(envFilePath, envContent, { encoding: "utf8" });
-  console.log(".env file created successfully.");
+//   // Create .env file
+//   const envContent = `
+// HIVE_STACK_HRN=${stackHRN}
+// HIVE_ACCESS_TOKEN=${accessToken}
+// `;
+//   const envFilePath = path.join(projectDirectory, ".env");
+//   fs.writeFileSync(envFilePath, envContent, { encoding: "utf8" });
+//   console.log(".env file created successfully.");
 
   // Check if .gitignore exists
   const gitignorePath = path.join(projectDirectory, ".gitignore");
