@@ -55,9 +55,8 @@ export const createSingletonBeekeeperClient = (token?: string): core.BeekeeperCl
 
 export const createSingletonVespaClient = (database: core.VespaDatabase,token?: string, ): core.VespaClient => {
   return core.createSingletonVespaClient({
-    workload: database.node?.workload!,
-    hub: database.node?.hub!,
-    node: database.node?.name!,
+    hubId: database.node?.hubId!,
+    nodeName: database.node?.name!,
     token: token || core.getAccessToken(),
     clientType,
     rpcOptions,
