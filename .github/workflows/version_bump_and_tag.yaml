@@ -233,9 +233,6 @@ jobs:
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions"
-      
-      - run: ls -la ./artifacts
-      - run: ls -la ./artifacts/cli-artifacts
 
       - name: Apply changes to Core and publish
         if: needs.commit-check.outputs.core_commits != '0'
