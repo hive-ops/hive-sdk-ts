@@ -38,10 +38,10 @@ describe("Hive SDK Clients", () => {
     const vespaClient = createSingletonVespaClient(database);
     const res2 = await vespaClient.insertRecords({
       databaseHrn: database.hrn,
-      tableName: "Customer",
+      tableName: "User",
       records: new Records({
-        columnNames: ["id", "firstName", "lastName", "email", "age"],
-        items: [new RecordItem({ values: ["1", faker.person.firstName(), faker.person.lastName(), faker.internet.email(), "30"] })],
+        columnNames: ["firstName", "lastName", "email", "age"],
+        items: [new RecordItem({ values: [faker.person.firstName(), faker.person.lastName(), faker.internet.email(), "30"] })],
       }),
     });
     expect(res2).toBeDefined();

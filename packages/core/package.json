@@ -10,7 +10,7 @@
     "fix": "eslint --fix -c .eslintrc.js 'src/**/*' && prettier 'src/**/*.ts' --write",
     "check": "eslint -c .eslintrc.js 'src/**/*' && prettier 'src/**/*.ts'  --list-different",
     "unit-test": "jest uspec --maxWorkers=2 --passWithNoTests",
-    "update": "npm update"
+    "update": ""
   },
   "keywords": [],
   "author": "HiveOps",
