@@ -8,8 +8,8 @@ import * as path from "path";
 import { promisify } from "util";
 
 export const getProjectDirectory = (opts: OptionValues): string => (opts.projectDirectory as string | undefined) || process.cwd();
-export const getStackHRN = (opts: OptionValues): string => (opts.stackHrn as string) || process.env.STACK_HRN || "";
-export const getAccessToken = (opts: OptionValues): string => (opts.accessToken as string) || process.env.ACCESS_TOKEN || "";
+export const getStackHRN = (opts: OptionValues): string => (opts.stackHrn as string) || process.env.HIVE_STACK_HRN || "";
+export const getAccessToken = (opts: OptionValues): string => (opts.accessToken as string) || process.env.HIVE_ACCESS_TOKEN || "";
 
 /**
  * Find all files with a specific extension in a directory and its subdirectories
@@ -80,7 +80,7 @@ export const getHSLFiles = (opts: OptionValues): File[] => {
   return files;
 };
 
-export const initializeClients = (opts: OptionValues): {beekeeperClient: BeekeeperClient} => {
+export const initializeClients = (opts: OptionValues): { beekeeperClient: BeekeeperClient } => {
   initialize({
     stackHRN: getStackHRN(opts),
     accessToken: getAccessToken(opts),
