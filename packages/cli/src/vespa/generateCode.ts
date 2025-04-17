@@ -2,7 +2,7 @@ import { Command, OptionValues } from "commander";
 import path from "path";
 import { deleteDirectory, getHSLFiles, getProgrammingLanguage, getProjectDirectory, getStackHRN, initializeClients, loadDotEnv, programmingLanguageOption, writeFile } from "./utils";
 
-const generateCode = async (opts: OptionValues) => {
+export const generateCode = async (opts: OptionValues) => {
   // Load environment variables
   loadDotEnv(opts);
 
