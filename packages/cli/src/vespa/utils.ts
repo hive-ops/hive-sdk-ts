@@ -94,6 +94,7 @@ export const loadDotEnv = (opts: OptionValues) => {
   const dotenvPath = path.join(projectDirectory, ".env");
 
   if (fs.existsSync(dotenvPath)) {
+    console.log(`Loading environment variables from ${dotenvPath}`);
     configDotenv({ path: dotenvPath });
   }
 };

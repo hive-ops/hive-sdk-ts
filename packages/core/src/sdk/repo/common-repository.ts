@@ -46,18 +46,23 @@ export abstract class CommonRepository<S, T extends S> {
     return res.insertedIds;
   }
 
-  public async saveOne(obj: S): Promise<T | undefined> {
-    const record = this.marshalOneFunc(obj);
+  public async saveOne(obj: S): Promise<T> {
+    const recordData = this.marshalOneFunc(obj);
 
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
     const res = await vespaClient.insertRecord({
       databaseHrn: database.hrn,
       tableName: this.tableName,
-      record,
+      record: recordData,
     });
 
-    return res.record ? this.unmarshalOneFunc(res.record) : undefined;
+    const record = res.record;
+    if (!record) {
+      throw new Error("error inserting record");
+    }
+
+    return this.unmarshalOneFunc(record);
   }
 
   public async deleteWhere(opts: FindManyOptions<T>): Promise<void> {
