@@ -4,9 +4,9 @@ import { fromProtoOutRecord, fromProtoOutRecords } from "./data-record";
 import { convertFindOptionsToWhereConditions, FindManyOptions, FindOneOptions, getLimit, getOffset } from "./find-options";
 import { fromT } from "./fromT";
 import { getStackHRN } from "./globals";
-import { ColumnTypeMap, ValueType } from "./types";
+import { ColumnTypeMap, Metadata, ValueType } from "./types";
 
-export abstract class CommonRepository<S, T extends S> {
+export abstract class CommonRepository<S, T extends Metadata & S> {
   // TODO: make the attributes private
   constructor(private readonly tableName: string, public columnTypeMap: ColumnTypeMap) {}
 
@@ -31,6 +31,14 @@ export abstract class CommonRepository<S, T extends S> {
     });
 
     return !!data && data.length > 0 ? data[0] : undefined;
+  }
+
+  public async findOneById(id: string): Promise<T | undefined> {
+    return this.findOne({
+      Eq: {
+        _vespa_id: id,
+      },
+    });
   }
 
   public async saveMany(objs: S[]): Promise<string[]> {
