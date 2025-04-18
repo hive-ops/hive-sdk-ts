@@ -1,7 +1,7 @@
-import { BeekeeperClient, CommonRepository, getAccessToken, VespaClient, VespaDatabase } from "@hiveops/core";
+import { BeekeeperClient, CommonRepository, getAccessToken, VespaClient, VespaDatabase, Metadata } from "@hiveops/core";
 import { createSingletonBeekeeperClient, createSingletonVespaClient } from "./clients";
 
-export abstract class BaseRepository<S, T extends S> extends CommonRepository<S, T> {
+export abstract class BaseRepository<S, T extends Metadata & S> extends CommonRepository<S, T> {
   getBeekeeperClient(): BeekeeperClient {
     return createSingletonBeekeeperClient(getAccessToken());
   }
