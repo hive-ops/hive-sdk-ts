@@ -70,16 +70,4 @@ describe("Hive SDK Clients", () => {
     });
     expect(res2).toBeDefined();
   });
-
-  // it("should create a singleton BeekeeperClient", async () => {
-  //   const client = createSingletonBeekeeperClient(token);
-  //   const res = await client.getVespaDatabaseStack({});
-  //   expect(res).toBeDefined();
-  //   // expect(res.stacks).toBeDefined();
-  // });
-
-  // it("should create a singleton VespaClient", () => {
-  //   const client = createSingletonVespaClient({ token, fqdn });
-  //   expect(client).toBeInstanceOf(VespaClient);
-  // });
 });

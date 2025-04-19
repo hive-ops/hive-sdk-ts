@@ -101,10 +101,13 @@ export const fromProtoOutRecord = (record: OutRecord, typeDef: { [key: string]: 
   for (const [key, value] of Object.entries(record.record)) {
     const columnType = typeDef[key] || ColumnType.TEXT;
 
-    recordRow[key] = {
-      name: isVespaColumn(key) ? getVespaColumnName(key) : key,
+    const columnName = isVespaColumn(key) ? getVespaColumnName(key) : key;
+    const columnValue = isVespaColumn(key) ? value : toT(value, columnType);
+
+    recordRow[columnName] = {
+      name: columnName,
       type: columnType,
-      value: isVespaColumn(key) ? value : toT(value, columnType),
+      value: columnValue,
     };
   }
 
