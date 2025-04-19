@@ -36,7 +36,7 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
   public async findOneById(id: string): Promise<T | undefined> {
     return this.findOne({
       Eq: {
-        _vespa_id: id,
+        id,
       },
     });
   }

@@ -1,6 +1,5 @@
-import { Ok } from "neverthrow";
 import { ColumnType, OutRecords } from "../../gen";
-import { fromProtoOutRecords, RecordRow } from "./data-record";
+import { fromProtoOutRecords } from "./data-record";
 
 describe("dataRecord", () => {
   it(" successfully convert OutRecord to RowRecords", () => {
@@ -19,8 +18,7 @@ describe("dataRecord", () => {
       name: ColumnType.TEXT,
     };
 
-    const recordRowsResult = fromProtoOutRecords(records, typeDef);
-    expect(recordRowsResult.isOk()).toBeTruthy();
-    expect((recordRowsResult as Ok<RecordRow[], Error>).value.length).toBe(5);
+    const recordRows = fromProtoOutRecords(records, typeDef);
+    expect(recordRows.length).toBe(5);
   });
 });

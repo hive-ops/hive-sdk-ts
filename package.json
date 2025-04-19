@@ -7,7 +7,7 @@
     "build": "lerna run build",
     "fix": "lerna run fix",
     "check": "lerna run check",
-    "update": "lerna run update"
+    "update": "lerna run update && npm i"
   },
   "keywords": [],
   "author": "HiveOps",
