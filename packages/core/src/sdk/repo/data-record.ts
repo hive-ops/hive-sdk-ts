@@ -1,5 +1,5 @@
 import { ColumnType, OutRecord, OutRecords, Records, TableMetadata } from "../../gen";
-import { isVespaColumn } from "../utilities/utils";
+import { getVespaColumnName, isVespaColumn } from "../utilities/utils";
 import { toT } from "./toT";
 import { ValueType } from "./types";
 
@@ -102,7 +102,7 @@ export const fromProtoOutRecord = (record: OutRecord, typeDef: { [key: string]: 
     const columnType = typeDef[key] || ColumnType.TEXT;
 
     recordRow[key] = {
-      name: key,
+      name: isVespaColumn(key) ? getVespaColumnName(key) : key,
       type: columnType,
       value: isVespaColumn(key) ? value : toT(value, columnType),
     };

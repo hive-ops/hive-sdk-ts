@@ -76,6 +76,7 @@ export const getEnumKey = <T extends object>(enumType: T, value: T[keyof T]): ke
 };
 
 export const isVespaColumn = (key: string): boolean => key.startsWith("_vespa_");
+export const getVespaColumnName = (key: string): string => key.replace("_vespa_", "");
 
 export const buildURL = (fqdn: FQDN): string => {
   // App
