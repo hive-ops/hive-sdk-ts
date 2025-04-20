@@ -83,8 +83,9 @@ export const fromProtoOutRecords = (records: OutRecords, typeDef: { [key: string
   for (let i = 0; i < lengths[0]; i++) {
     const recordRow: RecordRow = {};
     for (const [key, values] of Object.entries(recordsData)) {
-      recordRow[key] = {
-        name: key,
+      const columnName = isVespaColumn(key) ? getVespaColumnName(key) : key;
+      recordRow[columnName] = {
+        name: columnName,
         type: values.type,
         value: values.values[i],
       };
