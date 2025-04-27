@@ -2,7 +2,7 @@ import { Command, OptionValues } from "commander";
 import fs from "fs";
 import inquirer from "inquirer";
 import path from "path";
-import { getProjectDirectory, runCommandWithOutput } from "./utils";
+import { getProjectDirectoryFromOptions, runCommandWithOutput } from "./utils";
 
 const initializeProject = async (opts: OptionValues) => {
   const answers = await inquirer.prompt([
@@ -28,7 +28,7 @@ const initializeProject = async (opts: OptionValues) => {
 
   const { stackHRN, accessToken, createBootstrapModels } = answers;
 
-  const projectDirectory = getProjectDirectory(opts);
+  const projectDirectory = getProjectDirectoryFromOptions(opts);
 
   // Create .env file
   const envContent = `

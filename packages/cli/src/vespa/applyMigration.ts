@@ -1,7 +1,7 @@
 import { Command, OptionValues } from "commander";
-import { getHSLFiles, getStackHRN, initializeClients, loadDotEnv, preActionHookListener } from "./utils";
+import { getHSLFiles, getStackHRNFromOptions, initializeClients, loadDotEnv, preActionHookListener } from "./utils";
 
-export  const applyMigration = (opts: OptionValues) => {
+export const applyMigration = (opts: OptionValues) => {
   // Load environment variables
   loadDotEnv(opts);
 
@@ -13,7 +13,7 @@ export  const applyMigration = (opts: OptionValues) => {
 
   // Apply migration
   const res = beekeeperClient.applyMigration({
-    stackHrn: getStackHRN(opts),
+    stackHrn: getStackHRNFromOptions(opts),
     hslFiles: files,
   });
 };

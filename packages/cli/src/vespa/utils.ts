@@ -7,9 +7,9 @@ import * as fs from "fs";
 import * as path from "path";
 import { promisify } from "util";
 
-export const getProjectDirectory = (opts: OptionValues): string => (opts.projectDirectory as string | undefined) || process.cwd();
-export const getStackHRN = (opts: OptionValues): string => (opts.stackHrn as string) || process.env.HIVE_STACK_HRN || "";
-export const getAccessToken = (opts: OptionValues): string => (opts.accessToken as string) || process.env.HIVE_ACCESS_TOKEN || "";
+export const getProjectDirectoryFromOptions = (opts: OptionValues): string => (opts.projectDirectory as string | undefined) || process.cwd();
+export const getStackHRNFromOptions = (opts: OptionValues): string => (opts.stackHrn as string) || process.env.HIVE_STACK_HRN || "";
+export const getAccessTokenFromOptions = (opts: OptionValues): string => (opts.accessToken as string) || process.env.HIVE_ACCESS_TOKEN || "";
 
 /**
  * Find all files with a specific extension in a directory and its subdirectories
@@ -71,7 +71,7 @@ export const deleteDirectory = (directoryPath: string) => {
 };
 
 export const getHSLFiles = (opts: OptionValues): File[] => {
-  const filePaths = findFilesWithExtension(getProjectDirectory(opts), ".hsl");
+  const filePaths = findFilesWithExtension(getProjectDirectoryFromOptions(opts), ".hsl");
   const files = filePaths.map(({ dir, fileName }) => readFile(dir, fileName));
 
   console.log(`Found ${files.length} HSL files`);
@@ -82,15 +82,20 @@ export const getHSLFiles = (opts: OptionValues): File[] => {
 
 export const initializeClients = (opts: OptionValues): { beekeeperClient: BeekeeperClient } => {
   initialize({
-    stackHRN: getStackHRN(opts),
-    accessToken: getAccessToken(opts),
+    stackHRN: getStackHRNFromOptions(opts),
+    accessToken: getAccessTokenFromOptions(opts),
+  });
+
+  console.log({
+    stackHRN: getStackHRNFromOptions(opts),
+    accessToken: getAccessTokenFromOptions(opts),
   });
 
   return { beekeeperClient: createSingletonBeekeeperClient() };
 };
 
 export const loadDotEnv = (opts: OptionValues) => {
-  const projectDirectory = getProjectDirectory(opts);
+  const projectDirectory = getProjectDirectoryFromOptions(opts);
   const dotenvPath = path.join(projectDirectory, ".env");
 
   if (fs.existsSync(dotenvPath)) {

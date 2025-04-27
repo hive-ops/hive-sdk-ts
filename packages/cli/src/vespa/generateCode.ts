@@ -1,12 +1,23 @@
 import { Command, OptionValues } from "commander";
 import path from "path";
-import { deleteDirectory, getHSLFiles, getProgrammingLanguage, getProjectDirectory, getStackHRN, initializeClients, loadDotEnv, programmingLanguageOption, writeFile } from "./utils";
+import {
+  deleteDirectory,
+  getAccessTokenFromOptions,
+  getHSLFiles,
+  getProgrammingLanguage,
+  getProjectDirectoryFromOptions,
+  getStackHRNFromOptions,
+  initializeClients,
+  loadDotEnv,
+  programmingLanguageOption,
+  writeFile,
+} from "./utils";
 
 export const generateCode = async (opts: OptionValues) => {
   // Load environment variables
   loadDotEnv(opts);
 
-  const projectDirectory = getProjectDirectory(opts);
+  const projectDirectory = getProjectDirectoryFromOptions(opts);
 
   // Read schema files
   const files = getHSLFiles(opts);
@@ -14,9 +25,17 @@ export const generateCode = async (opts: OptionValues) => {
   // Initialize client
   const { beekeeperClient } = initializeClients(opts);
 
+  console.log(
+    {
+      stackHRN: getStackHRNFromOptions(opts),
+      accessToken: getAccessTokenFromOptions(opts),
+    },
+    "FromOptions",
+  );
+
   // Generate code
   const res = await beekeeperClient.generateCode({
-    stackHrn: getStackHRN(opts),
+    stackHrn: getStackHRNFromOptions(opts),
     language: getProgrammingLanguage(opts),
     schemaFiles: files,
   });
