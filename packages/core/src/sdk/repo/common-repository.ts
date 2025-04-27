@@ -8,7 +8,7 @@ import { ColumnTypeMap, Metadata, ValueType } from "./types";
 
 export abstract class CommonRepository<S, T extends Metadata & S> {
   // TODO: make the attributes private
-  constructor(private readonly tableName: string, public columnTypeMap: ColumnTypeMap) {}
+  constructor(private readonly tableName: string, public columnTypeMap: ColumnTypeMap<S>) {}
 
   public async findMany(opts: FindManyOptions<T>): Promise<T[]> {
     const database = await this.getVespaDatabase();
