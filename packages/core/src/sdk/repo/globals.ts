@@ -19,7 +19,7 @@ export const getStackHRN = () => {
   return stackHRN;
 };
 
-export const initialize = (options?: { stackHRN: string; accessToken: string }): void => {
+export const vespaInit = (options?: { stackHRN: string; accessToken: string }): void => {
   setAccessToken(options?.accessToken || getEnvString("HIVE_ACCESS_TOKEN"));
   setStackHRN(options?.stackHRN || getEnvString("HIVE_STACK_HRN"));
 };
