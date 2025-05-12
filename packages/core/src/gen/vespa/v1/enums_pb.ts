@@ -55,6 +55,13 @@ export enum ColumnType {
    * @generated from enum value: COLUMN_TYPE_TIMESTAMP = 6;
    */
   TIMESTAMP = 6,
+
+  /**
+   * JSON object
+   *
+   * @generated from enum value: COLUMN_TYPE_JSON = 7;
+   */
+  JSON = 7,
 }
 // Retrieve enum metadata with: proto3.getEnumType(ColumnType)
 proto3.util.setEnumType(ColumnType, "vespa.v1.ColumnType", [
@@ -65,6 +72,7 @@ proto3.util.setEnumType(ColumnType, "vespa.v1.ColumnType", [
   { no: 4, name: "COLUMN_TYPE_INTEGER" },
   { no: 5, name: "COLUMN_TYPE_TEXT" },
   { no: 6, name: "COLUMN_TYPE_TIMESTAMP" },
+  { no: 7, name: "COLUMN_TYPE_JSON" },
 ]);
 
 /**

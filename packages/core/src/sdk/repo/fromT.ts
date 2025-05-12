@@ -26,6 +26,8 @@ export const fromT = (v: ValueType, columnType: ColumnType): string => {
     return fromTime(v);
   } else if (v instanceof Uint8Array && columnType === ColumnType.BLOB) {
     return fromBytes(v);
+  } else if (v instanceof Object && columnType === ColumnType.JSON) {
+    return fromString(JSON.stringify(v));
   }
   throw new Error("Invalid data type");
 };
