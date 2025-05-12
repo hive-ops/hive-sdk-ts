@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { ColumnType, initialize, Metadata } from "@hiveops/core";
+import { ColumnType, Metadata, vespaInit } from "@hiveops/core";
 import { BaseRepository } from "@hiveops/node";
 
 import dotenv from "dotenv";
@@ -29,7 +29,7 @@ class UserRepository extends BaseRepository<UserData, User> {
 describe("repo", () => {
   beforeAll(() => {
     dotenv.config();
-    initialize();
+    vespaInit();
   });
 
   it("should be defined", () => {

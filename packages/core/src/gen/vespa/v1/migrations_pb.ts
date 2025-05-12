@@ -12,7 +12,8 @@ import { ColumnMetadata, IndexMetadata, ObjectRenameOptions, TableMetadata } fro
  */
 export class RenameColumn extends Message<RenameColumn> {
   /**
-   * @generated from field: vespa.v1.ColumnMetadata column = 1;
+   * @generated from field: vespa.v1.ColumnMetadata column = 1 [deprecated = true];
+   * @deprecated
    */
   column?: ColumnMetadata;
 
@@ -20,6 +21,16 @@ export class RenameColumn extends Message<RenameColumn> {
    * @generated from field: string new_name = 2;
    */
   newName = "";
+
+  /**
+   * @generated from field: string old_name = 3;
+   */
+  oldName = "";
+
+  /**
+   * @generated from field: string ref = 4;
+   */
+  ref = "";
 
   constructor(data?: PartialMessage<RenameColumn>) {
     super();
@@ -31,6 +42,8 @@ export class RenameColumn extends Message<RenameColumn> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "column", kind: "message", T: ColumnMetadata },
     { no: 2, name: "new_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "old_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "ref", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RenameColumn {
@@ -88,6 +101,49 @@ export class RenameTable extends Message<RenameTable> {
 }
 
 /**
+ * @generated from message vespa.v1.RefAndName
+ */
+export class RefAndName extends Message<RefAndName> {
+  /**
+   * @generated from field: string ref = 1;
+   */
+  ref = "";
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name = "";
+
+  constructor(data?: PartialMessage<RefAndName>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "vespa.v1.RefAndName";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "ref", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RefAndName {
+    return new RefAndName().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RefAndName {
+    return new RefAndName().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RefAndName {
+    return new RefAndName().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RefAndName | PlainMessage<RefAndName> | undefined, b: RefAndName | PlainMessage<RefAndName> | undefined): boolean {
+    return proto3.util.equals(RefAndName, a, b);
+  }
+}
+
+/**
  * @generated from message vespa.v1.AlterTable
  */
 export class AlterTable extends Message<AlterTable> {
@@ -107,9 +163,9 @@ export class AlterTable extends Message<AlterTable> {
   renameColumns: RenameColumn[] = [];
 
   /**
-   * @generated from field: repeated vespa.v1.ColumnMetadata drop_columns = 4;
+   * @generated from field: repeated vespa.v1.RefAndName drop_columns = 4;
    */
-  dropColumns: ColumnMetadata[] = [];
+  dropColumns: RefAndName[] = [];
 
   /**
    * @generated from field: repeated vespa.v1.IndexMetadata create_indexes = 5;
@@ -132,7 +188,7 @@ export class AlterTable extends Message<AlterTable> {
     { no: 1, name: "table_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "create_columns", kind: "message", T: ColumnMetadata, repeated: true },
     { no: 3, name: "rename_columns", kind: "message", T: RenameColumn, repeated: true },
-    { no: 4, name: "drop_columns", kind: "message", T: ColumnMetadata, repeated: true },
+    { no: 4, name: "drop_columns", kind: "message", T: RefAndName, repeated: true },
     { no: 5, name: "create_indexes", kind: "message", T: IndexMetadata, repeated: true },
     { no: 6, name: "drop_indexes", kind: "message", T: IndexMetadata, repeated: true },
   ]);
@@ -169,9 +225,9 @@ export class Migration extends Message<Migration> {
   renameTables: RenameTable[] = [];
 
   /**
-   * @generated from field: repeated vespa.v1.TableMetadata drop_tables = 3;
+   * @generated from field: repeated vespa.v1.RefAndName drop_tables = 3;
    */
-  dropTables: TableMetadata[] = [];
+  dropTables: RefAndName[] = [];
 
   /**
    * @generated from field: repeated vespa.v1.AlterTable alter_tables = 4;
@@ -188,7 +244,7 @@ export class Migration extends Message<Migration> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "create_tables", kind: "message", T: TableMetadata, repeated: true },
     { no: 2, name: "rename_tables", kind: "message", T: RenameTable, repeated: true },
-    { no: 3, name: "drop_tables", kind: "message", T: TableMetadata, repeated: true },
+    { no: 3, name: "drop_tables", kind: "message", T: RefAndName, repeated: true },
     { no: 4, name: "alter_tables", kind: "message", T: AlterTable, repeated: true },
   ]);
 

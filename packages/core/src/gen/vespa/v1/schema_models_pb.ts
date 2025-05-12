@@ -202,6 +202,11 @@ export class IndexMetadata extends Message<IndexMetadata> {
  */
 export class TableMetadata extends Message<TableMetadata> {
   /**
+   * @generated from field: string ref = 4;
+   */
+  ref = "";
+
+  /**
    * @generated from field: string name = 1;
    */
   name = "";
@@ -224,6 +229,7 @@ export class TableMetadata extends Message<TableMetadata> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "vespa.v1.TableMetadata";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 4, name: "ref", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "columns", kind: "message", T: ColumnMetadata, repeated: true },
     { no: 3, name: "indexes", kind: "message", T: IndexMetadata, repeated: true },

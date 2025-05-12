@@ -112,6 +112,11 @@ export class File extends Message<File> {
    */
   content = "";
 
+  /**
+   * @generated from field: string header_comment = 4;
+   */
+  headerComment = "";
+
   constructor(data?: PartialMessage<File>) {
     super();
     proto3.util.initPartial(data, this);
@@ -123,6 +128,7 @@ export class File extends Message<File> {
     { no: 1, name: "directory_path_elements", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 2, name: "file_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "content", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "header_comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): File {

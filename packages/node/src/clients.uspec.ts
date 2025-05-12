@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { getStackHRN, initialize, Record, RecordItem, Records } from "@hiveops/core";
+import { getStackHRN, Record, RecordItem, Records, vespaInit } from "@hiveops/core";
 import dotenv from "dotenv";
 import { createSingletonBeekeeperClient, createSingletonTokenClient, createSingletonVespaClient } from "./clients";
 
@@ -8,7 +8,7 @@ dotenv.config();
 jest.setTimeout(30000);
 
 describe("Hive SDK Clients", () => {
-  initialize();
+  vespaInit();
 
   const tokenClient = createSingletonTokenClient();
   const beekeeperClient = createSingletonBeekeeperClient();
