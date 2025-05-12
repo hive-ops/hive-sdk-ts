@@ -61,7 +61,9 @@ export const writeFile = (projectDirectory: string, file: File) => {
   }
   const filePath = path.join(directory, file.fileName);
   console.log(filePath);
-  fs.writeFileSync(filePath, file.content, "utf-8");
+
+  const content = `${file.headerComment}\n${file.content}`;
+  fs.writeFileSync(filePath, content, "utf-8");
 };
 
 export const deleteDirectory = (directoryPath: string) => {
