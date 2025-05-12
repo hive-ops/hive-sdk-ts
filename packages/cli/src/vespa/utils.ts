@@ -1,4 +1,4 @@
-import { BeekeeperClient, File, ProgrammingLanguage, vespaInit } from "@hiveops/core";
+import { BeekeeperClient, File, ProgrammingLanguage } from "@hiveops/core";
 import { createSingletonBeekeeperClient } from "@hiveops/node";
 import { exec } from "child_process";
 import { Command, Option, OptionValues } from "commander";
@@ -81,10 +81,10 @@ export const getHSLFiles = (opts: OptionValues): File[] => {
 };
 
 export const initializeClients = (opts: OptionValues): { beekeeperClient: BeekeeperClient } => {
-  vespaInit({
-    stackHRN: getStackHRNFromOptions(opts),
-    accessToken: getAccessTokenFromOptions(opts),
-  });
+  // vespaInit({
+  //   stackHRN: getStackHRNFromOptions(opts),
+  //   accessToken: getAccessTokenFromOptions(opts),
+  // });
 
   console.log({
     stackHRN: getStackHRNFromOptions(opts),
