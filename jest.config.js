@@ -10,6 +10,7 @@ module.exports = {
   roots: [
     '<rootDir>/packages/core',
     '<rootDir>/packages/node',
+    '<rootDir>/packages/cli',
   ],
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
   collectCoverageFrom: ['<rootDir>/**/*.ts'],

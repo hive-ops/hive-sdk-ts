@@ -4,25 +4,46 @@ import { BaseRepository } from "@hiveops/node";
 
 import dotenv from "dotenv";
 
-type UserData = {
+export enum UserRole {
+  ADMIN = "admin",
+  USER = "user",
+}
+
+export type Image = {
+  alt: string;
+  height: number;
+  url: string;
+  width: number;
+};
+
+export type Person = {
+  age: number;
   firstName: string;
   lastName: string;
+};
+
+export type UserData = Person & {
   email: string;
-  age: number;
+  isActive: boolean;
+  lastLogin: string;
+  profileImage: Image;
+  role: UserRole;
 };
 
-type User = UserData & Metadata;
+export type User = Metadata & UserData;
 
-const userColumnTypeMap = {
-  firstName: ColumnType.TEXT,
-  lastName: ColumnType.TEXT,
-  email: ColumnType.TEXT,
-  age: ColumnType.INTEGER,
-};
-
-class UserRepository extends BaseRepository<UserData, User> {
+export class UserRepository extends BaseRepository<UserData, User> {
   constructor() {
-    super("User", userColumnTypeMap);
+    super("User", {
+      age: ColumnType.INTEGER,
+      email: ColumnType.TEXT,
+      firstName: ColumnType.TEXT,
+      isActive: ColumnType.BOOLEAN,
+      lastLogin: ColumnType.TEXT,
+      lastName: ColumnType.TEXT,
+      profileImage: ColumnType.TEXT,
+      role: ColumnType.TEXT,
+    });
   }
 }
 
@@ -47,6 +68,15 @@ describe("repo", () => {
       lastName,
       email,
       age: faker.number.int({ min: 21, max: 45 }),
+      isActive: faker.datatype.boolean(),
+      lastLogin: faker.date.past().toISOString(),
+      profileImage: {
+        url: faker.image.avatar(),
+        width: faker.number.int({ min: 100, max: 500 }),
+        height: faker.number.int({ min: 100, max: 500 }),
+        alt: faker.lorem.words(3),
+      },
+      role: UserRole.ADMIN,
     });
     console.log(user);
     expect(user).toBeDefined();

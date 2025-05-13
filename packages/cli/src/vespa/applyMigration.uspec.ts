@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import { Command, OptionValues } from "commander";
-import { getHSLFiles, getStackHRN, initializeClients, loadDotEnv, preActionHookListener } from "./utils";
+import { getHSLFiles, getStackHRNFromOptions, initializeClients, loadDotEnv, preActionHookListener } from "./utils";
 import { File } from "@hiveops/core";
 
 dotenv.config();
@@ -22,7 +22,7 @@ describe("Vespa Migration", () => {
 
     // Apply migration
     const res = await beekeeperClient.applyMigration({
-      stackHrn: getStackHRN(opts),
+      stackHrn: getStackHRNFromOptions(opts),
       hslFiles: files,
     });
 
