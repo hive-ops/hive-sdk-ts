@@ -2,7 +2,6 @@ import { Command, OptionValues } from "commander";
 import path from "path";
 import {
   deleteDirectory,
-  getAccessTokenFromOptions,
   getHSLFiles,
   getProgrammingLanguage,
   getProjectDirectoryFromOptions,
@@ -24,14 +23,6 @@ export const generateCode = async (opts: OptionValues) => {
 
   // Initialize client
   const { beekeeperClient } = initializeClients(opts);
-
-  console.log(
-    {
-      stackHRN: getStackHRNFromOptions(opts),
-      accessToken: getAccessTokenFromOptions(opts),
-    },
-    "FromOptions",
-  );
 
   // Generate code
   const res = await beekeeperClient.generateCode({
