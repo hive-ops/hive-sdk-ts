@@ -13,7 +13,7 @@ export const fromBytes = (v: Uint8Array): string => Buffer.from(v).toString("bas
 
 export const fromString = (v: string): string => v;
 
-export const fromT = (v: ValueType, columnType: ColumnType): string => {
+export const ToString = (v: ValueType, columnType: ColumnType): string => {
   if (typeof v === "string" && columnType === ColumnType.TEXT) {
     return fromString(v);
   } else if (typeof v === "number" && columnType === ColumnType.INTEGER) {
@@ -29,5 +29,5 @@ export const fromT = (v: ValueType, columnType: ColumnType): string => {
   } else if (v instanceof Object && columnType === ColumnType.JSON) {
     return fromString(JSON.stringify(v));
   }
-  throw new Error("Invalid data type");
+  throw new Error("unsupported type: " + typeof v + " for column type: " + ColumnType[columnType]);
 };

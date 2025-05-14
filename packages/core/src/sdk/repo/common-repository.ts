@@ -2,7 +2,7 @@ import { OutRecord, OutRecords, Record, RecordItem, Records, VespaDatabase, Vesp
 import { BeekeeperClient, VespaClient } from "../clients";
 import { fromProtoOutRecord, fromProtoOutRecords } from "./data-record";
 import { convertFindOptionsToWhereConditions, FindManyOptions, FindOneOptions, getLimit, getOffset } from "./find-options";
-import { fromT } from "./fromT";
+import { ToString } from "./fromT";
 import { getStackHRN } from "./globals";
 import { ColumnTypeMap, Metadata, ValueType } from "./types";
 
@@ -151,7 +151,7 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
         new RecordItem({
           values: columnNames.map((columnName) => {
             const dataType = this.columnTypeMap[columnName as keyof typeof this.columnTypeMap];
-            return fromT(obj[columnName], dataType);
+            return ToString(obj[columnName], dataType);
           }),
         }),
     );
