@@ -2,9 +2,9 @@ import { OutRecord, OutRecords, Record, RecordItem, Records, VespaDatabase, Vesp
 import { BeekeeperClient, VespaClient } from "../clients";
 import { fromProtoOutRecord, fromProtoOutRecords } from "./data-record";
 import { convertFindOptionsToWhereConditions, FindManyOptions, FindOneOptions, getLimit, getOffset } from "./find-options";
-import { ToString } from "./fromT";
 import { getStackHRN } from "./globals";
 import { ColumnTypeMap, Metadata, ValueType } from "./types";
+import { ToString } from "./value-converter";
 
 export abstract class CommonRepository<S, T extends Metadata & S> {
   // TODO: make the attributes private

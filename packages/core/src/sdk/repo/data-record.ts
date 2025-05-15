@@ -1,7 +1,7 @@
 import { ColumnType, OutRecord, OutRecords, Records, TableMetadata } from "../../gen";
 import { getVespaColumnName, isVespaColumn } from "../utilities/utils";
-import { toT } from "./toT";
 import { ValueType } from "./types";
+import { fromString } from "./value-converter";
 
 export type RecordColumn = {
   name: string;
@@ -61,7 +61,7 @@ export const fromProtoOutRecords = (records: OutRecords, typeDef: { [key: string
       if (isVespaColumn(key)) {
         dataValues.values.push(value);
       } else {
-        dataValues.values.push(toT(value, columnType));
+        dataValues.values.push(fromString(value, columnType));
       }
       recordsData[key] = dataValues;
     }
@@ -103,7 +103,7 @@ export const fromProtoOutRecord = (record: OutRecord, typeDef: { [key: string]: 
     const columnType = typeDef[key] || ColumnType.TEXT;
 
     const columnName = isVespaColumn(key) ? getVespaColumnName(key) : key;
-    const columnValue = isVespaColumn(key) ? value : toT(value, columnType);
+    const columnValue = isVespaColumn(key) ? value : fromString(value, columnType);
 
     recordRow[columnName] = {
       name: columnName,
