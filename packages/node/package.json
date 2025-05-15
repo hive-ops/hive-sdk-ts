@@ -9,7 +9,7 @@
     "build": "npm run clean && tsc",
     "fix": "eslint --fix -c .eslintrc.js 'src/**/*' && prettier 'src/**/*.ts' --write",
     "check": "eslint -c .eslintrc.js 'src/**/*' && prettier 'src/**/*.ts'  --list-different",
-    "unit-test": "jest uspec --maxWorkers=2 --passWithNoTests",
+    "test": "jest uspec --maxWorkers=2 --passWithNoTests --detectOpenHandles --forceExit --coverage",
     "update": "ncu @hiveops/core -u",
     "synthesize": "ts-node src/synthetics.ts"
   },

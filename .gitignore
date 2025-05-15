@@ -1,5 +1,5 @@
 lib/
 node_modules
-.env
+.env*
 junit.xml
 coverage/
