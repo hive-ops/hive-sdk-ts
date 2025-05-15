@@ -88,11 +88,6 @@ export const initializeClients = (opts: OptionValues): { beekeeperClient: Beekee
     accessToken: getAccessTokenFromOptions(opts),
   });
 
-  console.log({
-    stackHRN: getStackHRNFromOptions(opts),
-    accessToken: getAccessTokenFromOptions(opts),
-  });
-
   return { beekeeperClient: createSingletonBeekeeperClient() };
 };
 
