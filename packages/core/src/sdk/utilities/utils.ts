@@ -1,4 +1,3 @@
-import _ from "lodash";
 import { err, Result as NeverThrowResult, ok, ResultAsync } from "neverthrow";
 import { App, Framework } from "../../gen";
 import {} from "../clients";
@@ -6,7 +5,10 @@ import { APP_MAP, CLIENT_TYPE_FRAMEWORK_MAP, FRAMEWORK_MAP } from "./constants";
 import { FQDN } from "./types";
 
 export const toError = (error: any): Error => {
-  return err instanceof Error ? err : new Error(String(error));
+  if (error instanceof Error) {
+    return error;
+  }
+  return new Error(String(error));
 };
 export type Result<T> = NeverThrowResult<T, Error>;
 export type PromiseResult<T> = Promise<Result<T>>;
@@ -61,6 +63,16 @@ export function makeSingletonFactory<S, T>(factory: SingletonFactory<S, T>): Sin
   };
 }
 
+export const throwIfNullish = <T>(value: T | undefined, message: string): T => {
+  if (!value) {
+    throw new Error(message);
+  }
+  return value;
+};
+export const throwIfNullishAsync = async <T>(promise: Promise<T | undefined>, message: string): Promise<T> => {
+  const value = await promise;
+  return throwIfNullish(value, message);
+};
 export function makeSingletonFunction<T>(makeObject: () => T): () => T {
   let singleton: T;
   return () => {
@@ -84,15 +96,39 @@ export const buildURL = (fqdn: FQDN): string => {
   // App
   const appName = APP_MAP[getEnumKey(App, fqdn.app)];
 
+  const domainElements: string[] = [];
+
+  const useGlobalDomain = fqdn.app !== App.VESPA;
+
+  // Node Name
+  if (!useGlobalDomain) {
+    const nodeName = throwIfNullish(fqdn.nodeName, `Node name is required for ${appName} app`);
+    domainElements.push(nodeName);
+  }
+
   // Framework
   const framework = CLIENT_TYPE_FRAMEWORK_MAP[fqdn.clientType];
   const frameworkText = FRAMEWORK_MAP[getEnumKey(Framework, framework)];
+  domainElements.push(frameworkText);
 
-  const subdomainElements: (string | undefined)[] = [fqdn.nodeName, frameworkText, appName, fqdn.hubId];
+  // App Name
+  domainElements.push(appName);
 
-  const subdomain = _.compact(subdomainElements).join(".");
+  // Hub ID
+  if (!useGlobalDomain) {
+    const hubId = throwIfNullish(fqdn.hubId, `Hub ID is required for ${appName} app`);
+    domainElements.push(hubId);
+  }
 
-  const domainElements = _.compact([subdomain, fqdn.domain]);
+  // Domain
+  const domain = throwIfNullish(fqdn.domain, `Domain is required for ${appName} app`);
+  domainElements.push(domain);
+
+  // const subdomainElements: (string | undefined)[] = [useGlobalDomain ? fqdn.nodeName : undefined, frameworkText, appName, useGlobalDomain ? fqdn.hubId : undefined];
+
+  // const subdomain = _.compact(subdomainElements).join(".");
+
+  // domainElements.push(..._.compact([subdomain, fqdn.domain]));
 
   return `https://${domainElements.join(".")}`;
 };
