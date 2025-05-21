@@ -1,21 +1,11 @@
-import { ColumnType, TableMetadata } from "../../gen";
-import { ValueType } from "./types";
+import { ColumnType, Record, TableMetadata } from "../../gen";
+import { ColumnTypeMap, ValueType } from "./types";
 
-export type RecordColumn = {
-  name: string;
-  type: ColumnType;
-  value: ValueType;
-};
-
-export type RecordRow = {
-  [key: string]: RecordColumn;
-};
-
-export const getTypeDef = (tableMetadata: TableMetadata): { [key: string]: ColumnType } => {
+export const getColumnTypeMap = <S>(tableMetadata: TableMetadata): ColumnTypeMap<S> => {
   return tableMetadata.columns.reduce((acc, column) => {
     acc[column.name] = column.type;
     return acc;
-  }, {} as { [key: string]: ColumnType });
+  }, {} as ColumnTypeMap<S>);
 };
 
 // export const fromProtoInRecords = (records: Records, typeDef: { [key: string]: ColumnType }): RecordRow[] => {

@@ -1,5 +1,5 @@
 import { ColumnType, FieldValue, Record } from "../../gen";
-import { ColumnTypeMap, Metadata } from "./types";
+import { ColumnTypeMap, Metadata, ValueType } from "./types";
 import { fromString, toString } from "./value-converter";
 
 export const marshalRecord = <S, T extends Metadata & S>(obj: S, columnTypeMap: ColumnTypeMap<T>): Record => {
@@ -34,4 +34,39 @@ export const unmarshalRecord = <T>(record: Record, columnTypeMap: ColumnTypeMap<
   }
 
   return objMap as T;
+};
+
+export type ColumnValue = FieldValue & {
+  type: ColumnType;
+  value: ValueType;
+};
+
+export type RecordRow = {
+  [key: string]: ColumnValue;
+};
+
+export const convertRecordToRecordRow = <T>(record: Record, columnTypeMap: ColumnTypeMap<T>): RecordRow => {
+  const recordRow: RecordRow = {};
+  for (const [key, fieldValue] of Object.entries(record.record)) {
+    const columnType = columnTypeMap[key as keyof T];
+
+    let tValue: any;
+
+    if (columnType === ColumnType.JSON) {
+      tValue = fieldValue.value;
+    } else {
+      tValue = fromString(fieldValue.value, columnType);
+    }
+
+    recordRow[key] = Object.assign(
+      Object.create(Object.getPrototypeOf(fieldValue)),
+      fieldValue,
+      {
+        type: columnType,
+        value: tValue,
+      }
+    );
+  }
+
+  return recordRow;
 };
