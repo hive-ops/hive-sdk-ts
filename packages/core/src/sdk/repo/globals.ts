@@ -1,4 +1,4 @@
-import { VespaDatabaseStack } from "src/gen";
+import { VespaDatabaseStack } from "../../gen";
 import { getEnvString } from "../utilities";
 
 let accessToken = "";
