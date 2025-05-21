@@ -1,8 +1,7 @@
 import { faker } from "@faker-js/faker";
-import { ColumnType, Metadata, vespaInit } from "@hiveops/core";
-import { BaseRepository } from "@hiveops/node";
-
+import { Metadata, vespaInit } from "@hiveops/core";
 import dotenv from "dotenv";
+import { BaseRepository } from "./repo";
 
 export enum UserRole {
   ADMIN = 1,
@@ -34,16 +33,7 @@ export type User = Metadata & UserData;
 
 export class UserRepository extends BaseRepository<UserData, User> {
   constructor() {
-    super("User", {
-      age: ColumnType.INTEGER,
-      email: ColumnType.TEXT,
-      firstName: ColumnType.TEXT,
-      isActive: ColumnType.BOOLEAN,
-      lastLogin: ColumnType.TEXT,
-      lastName: ColumnType.TEXT,
-      profileImage: ColumnType.JSON,
-      role: ColumnType.INTEGER,
-    });
+    super("User");
   }
 }
 

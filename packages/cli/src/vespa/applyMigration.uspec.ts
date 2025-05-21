@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import { Command, OptionValues } from "commander";
-import { getHSLFiles, getStackHRNFromOptions, initializeClients, loadDotEnv, preActionHookListener } from "./utils";
+import { getStackHRNFromOptions, initializeClients, loadDotEnv, preActionHookListener } from "./utils";
 import { File } from "@hiveops/core";
 
 dotenv.config();
