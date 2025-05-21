@@ -8,7 +8,7 @@ import { ColumnTypeMap, Metadata } from "./types";
 
 export abstract class CommonRepository<S, T extends Metadata & S> {
   // TODO: make the attributes private
-  constructor(private readonly tableName: string, public columnTypeMap: ColumnTypeMap<T>) {}
+  constructor(private readonly tableName: string) {}
 
   public async findMany(opts: FindManyOptions<T>): Promise<T[]> {
     const database = await this.getVespaDatabase();
@@ -21,7 +21,8 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
       limit: getLimit(opts.Limit),
     });
 
-    return response.records.map((record) => unmarshalRecord<T>(record, this.columnTypeMap));
+    const columnTypeMap = await this.getColumnTypeMap();
+    return response.records.map((record) => unmarshalRecord<T>(record, columnTypeMap));
   }
 
   public async findOne(opts: FindOneOptions<T>): Promise<T | undefined> {
@@ -42,7 +43,8 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
   }
 
   public async saveMany(objs: S[]): Promise<string[]> {
-    const records = objs.map((obj) => marshalRecord(obj, this.columnTypeMap));
+    const columnTypeMap = await this.getColumnTypeMap();
+    const records = objs.map((obj) => marshalRecord(obj, columnTypeMap));
 
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
@@ -55,7 +57,8 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
   }
 
   public async saveOne(obj: S): Promise<T> {
-    const recordData = marshalRecord(obj, this.columnTypeMap);
+    const columnTypeMap = await this.getColumnTypeMap();
+    const recordData = marshalRecord(obj, columnTypeMap);
 
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
@@ -70,7 +73,7 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
       throw new Error("error inserting record");
     }
 
-    return unmarshalRecord(record, this.columnTypeMap);
+    return unmarshalRecord(record, columnTypeMap);
   }
 
   public async deleteWhere(opts: FindManyOptions<T>): Promise<void> {
@@ -106,7 +109,8 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
   }
 
   public async updateWhere(obj: S, opts: FindManyOptions<T>): Promise<void> {
-    const record = marshalRecord(obj, this.columnTypeMap);
+    const columnTypeMap = await this.getColumnTypeMap();
+    const record = marshalRecord(obj, columnTypeMap);
 
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
@@ -138,7 +142,7 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
     const stack = await this.getVespaDatabaseStack();
     return stack.schema!;
   }
-  async getColumnTypeMap(): Promise<ColumnTypeMap<S>> {
+  async getColumnTypeMap(): Promise<ColumnTypeMap<T>> {
     const schema = await this.getDatabaseSchema();
 
     const table = schema.tables.find((t) => t.name === this.tableName);
@@ -146,7 +150,7 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
       throw new Error(`Table ${this.tableName} not found in schema`);
     }
 
-    const columnTypeMap = {} as ColumnTypeMap<S>;
+    const columnTypeMap = {} as ColumnTypeMap<T>;
     for (const column of table.columns) {
       columnTypeMap[column.name] = column.type;
     }
