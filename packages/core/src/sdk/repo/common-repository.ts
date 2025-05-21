@@ -1,4 +1,4 @@
-import { DatabaseSchema, VespaDatabase, VespaDatabaseStack } from "../../gen";
+import { ColumnType, DatabaseSchema, VespaDatabase, VespaDatabaseStack } from "../../gen";
 import { BeekeeperClient, VespaClient } from "../clients";
 import { VESPA_COLUMN_SUFFIXES } from "../utilities";
 import { convertFindOptionsToWhereConditions, FindManyOptions, FindOneOptions, getLimit, getOffset } from "./find-options";
@@ -156,7 +156,7 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
     }
 
     for (const suffix of VESPA_COLUMN_SUFFIXES) {
-      columnTypeMap[suffix] = "string";
+      columnTypeMap[suffix] = ColumnType.TEXT;
     }
 
     return columnTypeMap;
