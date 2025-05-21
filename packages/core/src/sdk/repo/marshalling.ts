@@ -58,14 +58,10 @@ export const convertRecordToRecordRow = <T>(record: Record, columnTypeMap: Colum
       tValue = fromString(fieldValue.value, columnType);
     }
 
-    recordRow[key] = Object.assign(
-      Object.create(Object.getPrototypeOf(fieldValue)),
-      fieldValue,
-      {
-        type: columnType,
-        value: tValue,
-      }
-    );
+    recordRow[key] = Object.assign(Object.create(Object.getPrototypeOf(fieldValue)), fieldValue, {
+      type: columnType,
+      value: tValue,
+    });
   }
 
   return recordRow;
