@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { OutRecord, OutRecords, Record, Records, WhereCondition } from "./data_models_pb";
+import { Record, WhereCondition } from "./data_models_pb";
 import { ResponseMetadata } from "../../hive/v1/models_pb";
 
 /**
@@ -159,9 +159,9 @@ export class GetRecordResponse extends Message<GetRecordResponse> {
   metadata?: ResponseMetadata;
 
   /**
-   * @generated from field: vespa.v1.OutRecord record = 2;
+   * @generated from field: vespa.v1.Record record = 2;
    */
-  record?: OutRecord;
+  record?: Record;
 
   /**
    * @generated from field: bool found = 3;
@@ -177,7 +177,7 @@ export class GetRecordResponse extends Message<GetRecordResponse> {
   static readonly typeName = "vespa.v1.GetRecordResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "metadata", kind: "message", T: ResponseMetadata },
-    { no: 2, name: "record", kind: "message", T: OutRecord },
+    { no: 2, name: "record", kind: "message", T: Record },
     { no: 3, name: "found", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
@@ -269,9 +269,9 @@ export class GetRecordsResponse extends Message<GetRecordsResponse> {
   metadata?: ResponseMetadata;
 
   /**
-   * @generated from field: vespa.v1.OutRecords records = 2;
+   * @generated from field: repeated vespa.v1.Record records = 2;
    */
-  records?: OutRecords;
+  records: Record[] = [];
 
   constructor(data?: PartialMessage<GetRecordsResponse>) {
     super();
@@ -282,7 +282,7 @@ export class GetRecordsResponse extends Message<GetRecordsResponse> {
   static readonly typeName = "vespa.v1.GetRecordsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "metadata", kind: "message", T: ResponseMetadata },
-    { no: 2, name: "records", kind: "message", T: OutRecords },
+    { no: 2, name: "records", kind: "message", T: Record, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRecordsResponse {
@@ -545,9 +545,9 @@ export class InsertRecordResponse extends Message<InsertRecordResponse> {
   metadata?: ResponseMetadata;
 
   /**
-   * @generated from field: vespa.v1.OutRecord record = 2;
+   * @generated from field: vespa.v1.Record record = 2;
    */
-  record?: OutRecord;
+  record?: Record;
 
   constructor(data?: PartialMessage<InsertRecordResponse>) {
     super();
@@ -558,7 +558,7 @@ export class InsertRecordResponse extends Message<InsertRecordResponse> {
   static readonly typeName = "vespa.v1.InsertRecordResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "metadata", kind: "message", T: ResponseMetadata },
-    { no: 2, name: "record", kind: "message", T: OutRecord },
+    { no: 2, name: "record", kind: "message", T: Record },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InsertRecordResponse {
@@ -593,9 +593,9 @@ export class InsertRecordsRequest extends Message<InsertRecordsRequest> {
   tableName = "";
 
   /**
-   * @generated from field: vespa.v1.Records records = 3;
+   * @generated from field: repeated vespa.v1.Record records = 3;
    */
-  records?: Records;
+  records: Record[] = [];
 
   constructor(data?: PartialMessage<InsertRecordsRequest>) {
     super();
@@ -607,7 +607,7 @@ export class InsertRecordsRequest extends Message<InsertRecordsRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "database_hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "table_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "records", kind: "message", T: Records },
+    { no: 3, name: "records", kind: "message", T: Record, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InsertRecordsRequest {

@@ -42,7 +42,7 @@ describe("Hive SDK Clients", () => {
       records: new Records({
         columnNames: ["firstName", "lastName", "email", "age", "isActive", "lastLogin", "profileImage", "role"],
         items: [
-          new RecordItem({ values: [faker.person.firstName(), faker.person.lastName(), faker.internet.email(), "30", "true", "2023-10-01T00:00:00Z", "https://example.com/image.jpg", "admin"] }),
+          new RecordItem({ values: [faker.person.firstName(), faker.person.lastName(), faker.internet.email(), "30", "true", "2023-10-01T00:00:00Z", "https://example.com/image.jpg", "1"] }),
         ],
       }),
     });

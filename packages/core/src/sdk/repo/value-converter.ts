@@ -1,11 +1,11 @@
 import { ColumnType } from "../../gen";
 import { ValueType } from "./types";
 
-export const fromInt = (v: number): string => v.toString();
+export const convertTimeToString = (v: Date | undefined, columnType: ColumnType): string | undefined => {
+  if (!v) {
+    return undefined;
+  }
 
-export const fromFloat = (v: number): string => v.toString();
-
-export const convertTimeToString = (v: Date, columnType: ColumnType): string => {
   switch (columnType) {
     case ColumnType.TIMESTAMP:
       return v.toISOString();
@@ -18,15 +18,25 @@ export const convertTimeToString = (v: Date, columnType: ColumnType): string => 
   }
 };
 
-export const fromBytes = (v: Uint8Array): string => Buffer.from(v).toString("base64");
+export const convertNumberToString = (v: number | undefined, columnType: ColumnType): string | undefined => {
+  if (columnType === ColumnType.ENUM && v === 0) {
+    return undefined;
+  }
 
-export const ToString = (v: ValueType, columnType: ColumnType): string => {
-  if (typeof v === "string" && columnType === ColumnType.TEXT) {
-    return v as string;
-  } else if (typeof v === "number" && ([ColumnType.INTEGER, ColumnType.ENUM] as ColumnType[]).includes(columnType)) {
-    return fromInt(v);
-  } else if (typeof v === "number" && columnType === ColumnType.FLOAT) {
-    return fromFloat(v);
+  return v === undefined ? undefined : v.toString();
+};
+
+export const fromBytes = (v: Uint8Array): string | undefined => (!v ? undefined : Buffer.from(v).toString("base64"));
+
+export const toString = (v: any | undefined, columnType: ColumnType): string | undefined => {
+  if (v === undefined || v === null) {
+    return undefined;
+  }
+
+  if (typeof v === "string") {
+    return v === undefined ? undefined : (v as string);
+  } else if (typeof v === "number") {
+    return convertNumberToString(v, columnType);
   } else if (typeof v === "boolean" && columnType === ColumnType.BOOLEAN) {
     return v === true ? "1" : "0";
   } else if (v instanceof Date) {
@@ -34,12 +44,18 @@ export const ToString = (v: ValueType, columnType: ColumnType): string => {
   } else if (v instanceof Uint8Array && columnType === ColumnType.BLOB) {
     return fromBytes(v);
   } else if (v instanceof Object && columnType === ColumnType.JSON) {
-    return JSON.stringify(v);
+    return !v ? undefined : JSON.stringify(v);
   }
   throw new Error("unsupported type: " + typeof v + " for column type: " + ColumnType[columnType]);
 };
 
-export const toInt = (v: string): number => {
+// From String
+
+export const toInt = (v: string): number | undefined => {
+  if (v === "") {
+    return undefined;
+  }
+
   const value = parseInt(v, 10);
   if (isNaN(value)) {
     throw new Error("Invalid int value");
@@ -47,15 +63,23 @@ export const toInt = (v: string): number => {
   return value;
 };
 
-export const toFloat = (v: string): number => {
+export const toFloat = (v: string): number | undefined => {
+  if (v === "") {
+    return undefined;
+  }
+
   const value = parseFloat(v);
   if (isNaN(value)) {
-    throw new Error("Invalid int value");
+    throw new Error("Invalid float value");
   }
   return value;
 };
 
-export const toTime = (v: string): Date => {
+export const toTime = (v: string): Date | undefined => {
+  if (v === "") {
+    return undefined;
+  }
+
   // Try parsing the full ISO 8601 format (with date)
   const value = new Date(v);
   if (!isNaN(value.getTime())) {
@@ -75,15 +99,14 @@ export const toTime = (v: string): Date => {
   throw new Error("Invalid time value");
 };
 
-export const toBytes = (v: string): Uint8Array => {
-  const buf = Buffer.from(v, "base64");
-  return new Uint8Array(buf);
+const convertStringToByteArray = (v: string): Uint8Array | undefined => {
+  return v === "" ? undefined : new Uint8Array(Buffer.from(v, "base64"));
 };
 
 export const fromString = (v: string, columnType: ColumnType): ValueType => {
   switch (columnType) {
     case ColumnType.BLOB:
-      return new Uint8Array(Buffer.from(v, "base64"));
+      return convertStringToByteArray(v);
     case ColumnType.BOOLEAN:
       return v === "1" || v.toLowerCase() === "true";
     case ColumnType.TEXT:

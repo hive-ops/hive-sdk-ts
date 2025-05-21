@@ -1,6 +1,6 @@
 import { ColumnType } from "../../gen";
 
-export type ValueType = string | number | boolean | Date | Uint8Array;
+export type ValueType = string | number | boolean | Date | Uint8Array | undefined;
 
 export type ColumnTypeMap<S> = { [key in keyof S]: ColumnType };
 

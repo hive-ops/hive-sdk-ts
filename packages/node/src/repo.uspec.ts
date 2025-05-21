@@ -5,8 +5,8 @@ import { BaseRepository } from "@hiveops/node";
 import dotenv from "dotenv";
 
 export enum UserRole {
-  ADMIN = "admin",
-  USER = "user",
+  ADMIN = 1,
+  USER = 2,
 }
 
 export type Image = {
@@ -41,8 +41,8 @@ export class UserRepository extends BaseRepository<UserData, User> {
       isActive: ColumnType.BOOLEAN,
       lastLogin: ColumnType.TEXT,
       lastName: ColumnType.TEXT,
-      profileImage: ColumnType.TEXT,
-      role: ColumnType.TEXT,
+      profileImage: ColumnType.JSON,
+      role: ColumnType.INTEGER,
     });
   }
 }

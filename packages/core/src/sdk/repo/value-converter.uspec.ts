@@ -1,5 +1,5 @@
 import { ColumnType } from "../../gen";
-import { fromString, ToString } from "./value-converter";
+import { fromString, toString } from "./value-converter";
 
 describe("valueConverter", () => {
   const tests: {
@@ -10,18 +10,18 @@ describe("valueConverter", () => {
     want2: any;
   }[] = [
     {
-      name: "int",
-      input: 123,
-      columnType: ColumnType.INTEGER,
-      want1: "123",
-      want2: 123,
-    },
-    {
       name: "float",
       input: 123.456,
       columnType: ColumnType.FLOAT,
       want1: "123.456",
       want2: 123.456,
+    },
+    {
+      name: "int",
+      input: 123,
+      columnType: ColumnType.INTEGER,
+      want1: "123",
+      want2: 123,
     },
     {
       name: "string",
@@ -72,17 +72,24 @@ describe("valueConverter", () => {
       want1: JSON.stringify({ key: "value" }),
       want2: { key: "value" },
     },
+    {
+      name: "Enum",
+      input: 3,
+      columnType: ColumnType.ENUM,
+      want1: "3",
+      want2: 3,
+    },
   ];
 
   tests.forEach(({ name, input, columnType, want1, want2 }) => {
     it(`should convert ${name} to string`, () => {
-      const result = ToString(input, columnType);
-      expect(result).toBe(want1);
+      const result1 = toString(input, columnType);
+      expect(result1).toBe(want1);
     });
 
     it(`should convert ${name} to value`, () => {
-      const result = fromString(want1, columnType);
-      expect(result).toEqual(want2);
+      const result2 = fromString(want1, columnType);
+      expect(result2).toEqual(want2);
     });
   });
 });

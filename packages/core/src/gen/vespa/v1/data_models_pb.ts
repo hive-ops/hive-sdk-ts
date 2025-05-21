@@ -8,193 +8,47 @@ import { Message, proto3 } from "@bufbuild/protobuf";
 import { ColumnType, ComparisonOperator } from "./enums_pb";
 
 /**
- * @generated from message vespa.v1.OutRecord
+ * @generated from message vespa.v1.FieldValue
  */
-export class OutRecord extends Message<OutRecord> {
+export class FieldValue extends Message<FieldValue> {
   /**
-   * @generated from field: map<string, string> record = 1;
+   * @generated from field: string value = 1;
    */
-  record: { [key: string]: string } = {};
+  value = "";
 
-  constructor(data?: PartialMessage<OutRecord>) {
+  /**
+   * true if the corresponding value is nil, null, empty, not set, undefined, etc.
+   *
+   * @generated from field: bool is_nil = 2;
+   */
+  isNil = false;
+
+  constructor(data?: PartialMessage<FieldValue>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "vespa.v1.OutRecord";
+  static readonly typeName = "vespa.v1.FieldValue";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "record", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 1, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "is_nil", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OutRecord {
-    return new OutRecord().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FieldValue {
+    return new FieldValue().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OutRecord {
-    return new OutRecord().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FieldValue {
+    return new FieldValue().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OutRecord {
-    return new OutRecord().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FieldValue {
+    return new FieldValue().fromJsonString(jsonString, options);
   }
 
-  static equals(a: OutRecord | PlainMessage<OutRecord> | undefined, b: OutRecord | PlainMessage<OutRecord> | undefined): boolean {
-    return proto3.util.equals(OutRecord, a, b);
-  }
-}
-
-/**
- * @generated from message vespa.v1.OutValues
- */
-export class OutValues extends Message<OutValues> {
-  /**
-   * @generated from field: repeated string values = 1;
-   */
-  values: string[] = [];
-
-  constructor(data?: PartialMessage<OutValues>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "vespa.v1.OutValues";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "values", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OutValues {
-    return new OutValues().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OutValues {
-    return new OutValues().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OutValues {
-    return new OutValues().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: OutValues | PlainMessage<OutValues> | undefined, b: OutValues | PlainMessage<OutValues> | undefined): boolean {
-    return proto3.util.equals(OutValues, a, b);
-  }
-}
-
-/**
- * @generated from message vespa.v1.OutRecords
- */
-export class OutRecords extends Message<OutRecords> {
-  /**
-   * @generated from field: map<string, vespa.v1.OutValues> records = 1;
-   */
-  records: { [key: string]: OutValues } = {};
-
-  constructor(data?: PartialMessage<OutRecords>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "vespa.v1.OutRecords";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "records", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: OutValues} },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OutRecords {
-    return new OutRecords().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OutRecords {
-    return new OutRecords().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OutRecords {
-    return new OutRecords().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: OutRecords | PlainMessage<OutRecords> | undefined, b: OutRecords | PlainMessage<OutRecords> | undefined): boolean {
-    return proto3.util.equals(OutRecords, a, b);
-  }
-}
-
-/**
- * @generated from message vespa.v1.RecordItem
- */
-export class RecordItem extends Message<RecordItem> {
-  /**
-   * @generated from field: repeated string values = 1;
-   */
-  values: string[] = [];
-
-  constructor(data?: PartialMessage<RecordItem>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "vespa.v1.RecordItem";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "values", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RecordItem {
-    return new RecordItem().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RecordItem {
-    return new RecordItem().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RecordItem {
-    return new RecordItem().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: RecordItem | PlainMessage<RecordItem> | undefined, b: RecordItem | PlainMessage<RecordItem> | undefined): boolean {
-    return proto3.util.equals(RecordItem, a, b);
-  }
-}
-
-/**
- * @generated from message vespa.v1.Records
- */
-export class Records extends Message<Records> {
-  /**
-   * @generated from field: repeated string column_names = 1;
-   */
-  columnNames: string[] = [];
-
-  /**
-   * @generated from field: repeated vespa.v1.RecordItem items = 2;
-   */
-  items: RecordItem[] = [];
-
-  constructor(data?: PartialMessage<Records>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "vespa.v1.Records";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "column_names", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 2, name: "items", kind: "message", T: RecordItem, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Records {
-    return new Records().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Records {
-    return new Records().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Records {
-    return new Records().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: Records | PlainMessage<Records> | undefined, b: Records | PlainMessage<Records> | undefined): boolean {
-    return proto3.util.equals(Records, a, b);
+  static equals(a: FieldValue | PlainMessage<FieldValue> | undefined, b: FieldValue | PlainMessage<FieldValue> | undefined): boolean {
+    return proto3.util.equals(FieldValue, a, b);
   }
 }
 
@@ -203,14 +57,9 @@ export class Records extends Message<Records> {
  */
 export class Record extends Message<Record> {
   /**
-   * @generated from field: repeated string column_names = 1;
+   * @generated from field: map<string, vespa.v1.FieldValue> record = 1;
    */
-  columnNames: string[] = [];
-
-  /**
-   * @generated from field: vespa.v1.RecordItem item = 2;
-   */
-  item?: RecordItem;
+  record: { [key: string]: FieldValue } = {};
 
   constructor(data?: PartialMessage<Record>) {
     super();
@@ -220,8 +69,7 @@ export class Record extends Message<Record> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "vespa.v1.Record";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "column_names", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 2, name: "item", kind: "message", T: RecordItem },
+    { no: 1, name: "record", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: FieldValue} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Record {

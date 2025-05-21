@@ -88,9 +88,12 @@ export const getEnumKey = <T extends object>(enumType: T, value: T[keyof T]): ke
 };
 
 export const vespaColumnPrefix = "_vespa_";
+export const VESPA_COLUMN_SUFFIXES = ["id", "partition"]; // "createdAt", "updatedAt", "deletedAt"];
 
 export const isVespaColumn = (key: string): boolean => key.startsWith(vespaColumnPrefix);
-export const getVespaColumnName = (key: string): string => key.replace(vespaColumnPrefix, "");
+export const getVespaColumnName = (key: string): string => {
+  return key.replace(vespaColumnPrefix, "");
+};
 
 export const buildURL = (fqdn: FQDN): string => {
   // App

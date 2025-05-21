@@ -1,14 +1,14 @@
-import { OutRecord, OutRecords, Record, RecordItem, Records, VespaDatabase, VespaDatabaseStack } from "../../gen";
+import { DatabaseSchema, VespaDatabase, VespaDatabaseStack } from "../../gen";
 import { BeekeeperClient, VespaClient } from "../clients";
-import { fromProtoOutRecord, fromProtoOutRecords } from "./data-record";
+import { VESPA_COLUMN_SUFFIXES } from "../utilities";
 import { convertFindOptionsToWhereConditions, FindManyOptions, FindOneOptions, getLimit, getOffset } from "./find-options";
-import { getStackHRN } from "./globals";
-import { ColumnTypeMap, Metadata, ValueType } from "./types";
-import { ToString } from "./value-converter";
+import { databaseStack, getStackHRN, setDatabaseStack } from "./globals";
+import { marshalRecord, unmarshalRecord } from "./marshalling";
+import { ColumnTypeMap, Metadata } from "./types";
 
 export abstract class CommonRepository<S, T extends Metadata & S> {
   // TODO: make the attributes private
-  constructor(private readonly tableName: string, public columnTypeMap: ColumnTypeMap<S>) {}
+  constructor(private readonly tableName: string, public columnTypeMap: ColumnTypeMap<T>) {}
 
   public async findMany(opts: FindManyOptions<T>): Promise<T[]> {
     const database = await this.getVespaDatabase();
@@ -21,7 +21,7 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
       limit: getLimit(opts.Limit),
     });
 
-    return response.records ? this.unmarshalFunc(response.records) : [];
+    return response.records.map((record) => unmarshalRecord<T>(record, this.columnTypeMap));
   }
 
   public async findOne(opts: FindOneOptions<T>): Promise<T | undefined> {
@@ -42,7 +42,7 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
   }
 
   public async saveMany(objs: S[]): Promise<string[]> {
-    const records = this.marshalFunc(objs);
+    const records = objs.map((obj) => marshalRecord(obj, this.columnTypeMap));
 
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
@@ -55,7 +55,7 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
   }
 
   public async saveOne(obj: S): Promise<T> {
-    const recordData = this.marshalOneFunc(obj);
+    const recordData = marshalRecord(obj, this.columnTypeMap);
 
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
@@ -70,7 +70,7 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
       throw new Error("error inserting record");
     }
 
-    return this.unmarshalOneFunc(record);
+    return unmarshalRecord(record, this.columnTypeMap);
   }
 
   public async deleteWhere(opts: FindManyOptions<T>): Promise<void> {
@@ -106,7 +106,7 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
   }
 
   public async updateWhere(obj: S, opts: FindManyOptions<T>): Promise<void> {
-    const record = this.marshalOneFunc(obj);
+    const record = marshalRecord(obj, this.columnTypeMap);
 
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
@@ -122,64 +122,39 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
   abstract getVespaClient(database: VespaDatabase): Promise<VespaClient>;
 
   async getVespaDatabaseStack(): Promise<VespaDatabaseStack> {
-    const res = await this.getBeekeeperClient().getVespaDatabaseStack({
-      hrn: getStackHRN(),
-    });
-    return res.stack!;
+    if (!databaseStack) {
+      const res = await this.getBeekeeperClient().getVespaDatabaseStack({
+        hrn: getStackHRN(),
+      });
+      setDatabaseStack(res.stack!);
+    }
+    return databaseStack!;
   }
   async getVespaDatabase(): Promise<VespaDatabase> {
     const stack = await this.getVespaDatabaseStack();
     return stack.databases[0];
   }
-
-  unmarshalFunc(records: OutRecords): T[] {
-    const recordRows = fromProtoOutRecords(records, this.columnTypeMap);
-
-    return recordRows.map((recordRow) => {
-      const obj: { [key: string]: ValueType } = {};
-      for (const [key, value] of Object.entries(recordRow)) {
-        obj[key] = value.value;
-      }
-      return obj as T;
-    });
+  async getDatabaseSchema(): Promise<DatabaseSchema> {
+    const stack = await this.getVespaDatabaseStack();
+    return stack.schema!;
   }
+  async getColumnTypeMap(): Promise<ColumnTypeMap<S>> {
+    const schema = await this.getDatabaseSchema();
 
-  marshalFunc(objs: S[]): Records {
-    const columnNames = Object.keys(this.columnTypeMap);
-    const recordItems: RecordItem[] = objs.map(
-      (obj) =>
-        new RecordItem({
-          values: columnNames.map((columnName) => {
-            const dataType = this.columnTypeMap[columnName as keyof typeof this.columnTypeMap];
-            return ToString(obj[columnName], dataType);
-          }),
-        }),
-    );
-    return new Records({
-      columnNames,
-      items: recordItems,
-    });
-  }
-
-  unmarshalOneFunc(record: OutRecord): T {
-    const recordRow = fromProtoOutRecord(record, this.columnTypeMap);
-
-    const obj: { [key: string]: ValueType } = {};
-    for (const [key, value] of Object.entries(recordRow)) {
-      obj[key] = value.value;
+    const table = schema.tables.find((t) => t.name === this.tableName);
+    if (!table) {
+      throw new Error(`Table ${this.tableName} not found in schema`);
     }
-    return obj as T;
-  }
 
-  private marshalOneFunc(data: S): Record {
-    const records = this.marshalFunc([data]);
+    const columnTypeMap = {} as ColumnTypeMap<S>;
+    for (const column of table.columns) {
+      columnTypeMap[column.name] = column.type;
+    }
 
-    const items = records.items;
-    const item: RecordItem | undefined = items.length === 0 ? undefined : items[0];
+    for (const suffix of VESPA_COLUMN_SUFFIXES) {
+      columnTypeMap[suffix] = "string";
+    }
 
-    return new Record({
-      columnNames: records.columnNames,
-      item: item,
-    });
+    return columnTypeMap;
   }
 }
