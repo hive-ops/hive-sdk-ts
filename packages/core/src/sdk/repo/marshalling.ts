@@ -22,15 +22,7 @@ export const unmarshalRecord = <T>(record: Record, columnTypeMap: ColumnTypeMap<
   for (const [key, fieldValue] of Object.entries(record.record)) {
     const columnType = columnTypeMap[key as keyof T];
 
-    let tValue: any;
-
-    if (columnType === ColumnType.JSON) {
-      tValue = fieldValue.value;
-    } else {
-      tValue = fromString(fieldValue.value, columnType);
-    }
-
-    objMap[key] = tValue;
+    objMap[key] = fromString(fieldValue.value, columnType);
   }
 
   return objMap as T;

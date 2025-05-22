@@ -1,6 +1,6 @@
 import { Record } from "../../gen";
-import { marshalRecord } from "./marshalling";
-import { UserColumnTypeMap, UserData, UserRole } from "./test-structs";
+import { marshalRecord, unmarshalRecord } from "./marshalling";
+import { User, UserColumnTypeMap, UserData, UserRole } from "./test-structs";
 
 describe("marshalling", () => {
   const tests: {
@@ -49,9 +49,9 @@ describe("marshalling", () => {
       expect(marshalledRecord).toEqual(record);
     });
 
-    // it(`should unmarshal ${name}`, () => {
-    //   const unmarshalledObj = unmarshalRecord(record, UserColumnTypeMap);
-    //   expect(unmarshalledObj).toEqual(obj);
-    // });
+    it(`should unmarshal ${name}`, () => {
+      const unmarshalledObj = unmarshalRecord<User>(record, UserColumnTypeMap);
+      expect(unmarshalledObj).toEqual(obj);
+    });
   });
 });
