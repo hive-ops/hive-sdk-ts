@@ -53,7 +53,7 @@
     ]
   },
   "dependencies": {
-    "@hiveops/core": "^0.0.39",
+    "@hiveops/core": "^0.0.40",
     "@hiveops/node": "^0.0.33",
     "commander": "^13.1.0",
     "dotenv": "^16.5.0",
