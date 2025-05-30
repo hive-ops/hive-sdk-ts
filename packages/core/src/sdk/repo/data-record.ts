@@ -1,11 +1,18 @@
 import { ColumnType, Record, TableMetadata } from "../../gen";
-import { ColumnTypeMap, ValueType } from "./types";
+import { VESPA_COLUMN_SUFFIXES, vespaColumnPrefix } from "../utilities";
+import { ColumnTypeMap } from "./types";
 
 export const getColumnTypeMap = <S>(tableMetadata: TableMetadata): ColumnTypeMap<S> => {
-  return tableMetadata.columns.reduce((acc, column) => {
+  const columnTypeMap = tableMetadata.columns.reduce((acc, column) => {
     acc[column.name] = column.type;
     return acc;
   }, {} as ColumnTypeMap<S>);
+
+  for (const suffix of VESPA_COLUMN_SUFFIXES) {
+    columnTypeMap[`${vespaColumnPrefix}${suffix}`] = ColumnType.TEXT;
+  }
+
+  return columnTypeMap;
 };
 
 // export const fromProtoInRecords = (records: Records, typeDef: { [key: string]: ColumnType }): RecordRow[] => {
