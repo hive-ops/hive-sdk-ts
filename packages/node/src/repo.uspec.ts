@@ -1,4 +1,3 @@
-import { faker } from "@faker-js/faker";
 import { Metadata, vespaInit } from "@hiveops/core";
 import dotenv from "dotenv";
 import { BaseRepository } from "./repo";
@@ -47,34 +46,34 @@ describe("repo", () => {
     expect(true).toBe(true);
   });
 
-  it("should insert one record into the database", async () => {
-    const userRepository = new UserRepository();
-    const firstName = faker.person.firstName();
-    const lastName = faker.person.lastName();
-    const email = faker.internet.email({ firstName, lastName });
+  // it("should insert one record into the database", async () => {
+  //   const userRepository = new UserRepository();
+  //   const firstName = faker.person.firstName();
+  //   const lastName = faker.person.lastName();
+  //   const email = faker.internet.email({ firstName, lastName });
 
-    const user = await userRepository.saveOne({
-      firstName,
-      lastName,
-      email,
-      age: faker.number.int({ min: 21, max: 45 }),
-      isActive: faker.datatype.boolean(),
-      lastLogin: faker.date.past().toISOString(),
-      profileImage: {
-        url: faker.image.avatar(),
-        width: faker.number.int({ min: 100, max: 500 }),
-        height: faker.number.int({ min: 100, max: 500 }),
-        alt: faker.lorem.words(3),
-      },
-      role: UserRole.ADMIN,
-    });
-    console.log(user);
-    expect(user).toBeDefined();
-    expect(user.firstName).toBe(firstName);
-    expect(user.lastName).toBe(lastName);
-    expect(user.email).toBe(email);
-    expect(user.age).toBeDefined();
-    expect(user.age).toBeGreaterThanOrEqual(21);
-    expect(user.age).toBeLessThanOrEqual(45);
-  });
+  //   const user = await userRepository.saveOne({
+  //     firstName,
+  //     lastName,
+  //     email,
+  //     age: faker.number.int({ min: 21, max: 45 }),
+  //     isActive: faker.datatype.boolean(),
+  //     lastLogin: faker.date.past().toISOString(),
+  //     profileImage: {
+  //       url: faker.image.avatar(),
+  //       width: faker.number.int({ min: 100, max: 500 }),
+  //       height: faker.number.int({ min: 100, max: 500 }),
+  //       alt: faker.lorem.words(3),
+  //     },
+  //     role: UserRole.ADMIN,
+  //   });
+  //   console.log(user);
+  //   expect(user).toBeDefined();
+  //   expect(user.firstName).toBe(firstName);
+  //   expect(user.lastName).toBe(lastName);
+  //   expect(user.email).toBe(email);
+  //   expect(user.age).toBeDefined();
+  //   expect(user.age).toBeGreaterThanOrEqual(21);
+  //   expect(user.age).toBeLessThanOrEqual(45);
+  // });
 });

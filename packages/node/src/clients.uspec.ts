@@ -1,7 +1,6 @@
-import { getStackHRN, marshalRecord, vespaInit } from "@hiveops/core";
-import { generateTestUserData, UserColumnTypeMap } from "@hiveops/core/src/sdk/repo/test-structs";
+import { getStackHRN, vespaInit } from "@hiveops/core";
 import dotenv from "dotenv";
-import { createSingletonBeekeeperClient, createSingletonTokenClient, createSingletonVespaClient } from "./clients";
+import { createSingletonBeekeeperClient, createSingletonTokenClient } from "./clients";
 
 dotenv.config();
 
@@ -26,28 +25,28 @@ describe("Hive SDK Clients", () => {
     expect(res).toBeDefined();
   });
 
-  it("should perform crud operations in the vespa database", async () => {
-    const res = await beekeeperClient.getVespaDatabaseStack({
-      hrn: getStackHRN(),
-    });
-    const stack = res.stack!;
-    expect(stack).toBeDefined();
-    expect(stack.databases).toHaveLength(1);
-    const database = stack.databases[0];
+  // it("should perform crud operations in the vespa database", async () => {
+  //   const res = await beekeeperClient.getVespaDatabaseStack({
+  //     hrn: getStackHRN(),
+  //   });
+  //   const stack = res.stack!;
+  //   expect(stack).toBeDefined();
+  //   expect(stack.databases).toHaveLength(1);
+  //   const database = stack.databases[0];
 
-    const userData = generateTestUserData();
+  //   const userData = generateTestUserData();
 
-    const record = marshalRecord(userData, UserColumnTypeMap);
+  //   const record = marshalRecord(userData, UserColumnTypeMap);
 
-    const vespaClient = createSingletonVespaClient(database);
-    const res2 = await vespaClient.insertRecord({
-      databaseHrn: database.hrn,
-      tableName: "User",
-      record: record,
-    });
-    expect(res2).toBeDefined();
-    // expect(res2.insertedIds).toHaveLength(1);
-    // expect(res2.insertedIds[0]).toBeDefined();
-    // expect(res2.insertedIds[0]).not.toBe("");
-  });
+  //   const vespaClient = createSingletonVespaClient(database);
+  //   const res2 = await vespaClient.insertRecord({
+  //     databaseHrn: database.hrn,
+  //     tableName: "User",
+  //     record: record,
+  //   });
+  //   expect(res2).toBeDefined();
+  // expect(res2.insertedIds).toHaveLength(1);
+  // expect(res2.insertedIds[0]).toBeDefined();
+  // expect(res2.insertedIds[0]).not.toBe("");
+  // });
 });

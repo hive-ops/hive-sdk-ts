@@ -8,7 +8,8 @@
     "fix": "lerna run fix",
     "check": "lerna run check",
     "update": "lerna run update && npm i",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "prepare": "is-ci || husky"
   },
   "keywords": [],
   "author": "HiveOps",
@@ -25,6 +26,8 @@
     "eslint-plugin-jsdoc": "^39.6.7",
     "eslint-plugin-neverthrow": "^1.1.4",
     "eslint-plugin-typescript": "^0.14.0",
+    "husky": "^9.1.7",
+    "is-ci": "^4.1.0",
     "jest": "^29.7.0",
     "jest-junit": "^16.0.0",
     "lerna": "^8.1.9",
