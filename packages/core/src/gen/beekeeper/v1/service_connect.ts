@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { DeleteVespaDatabaseStackRequest, DeleteVespaDatabaseStackResponse, GetVespaDatabaseRequest, GetVespaDatabaseResponse, GetVespaDatabaseStackRequest, GetVespaDatabaseStackResponse } from "./database_pb";
+import { GetVespaDatabaseRequest, GetVespaDatabaseResponse, GetVespaDatabaseStackRequest, GetVespaDatabaseStackResponse } from "./database_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 import { ApplyMigrationRequest, ApplyMigrationResponse, PlanMigrationRequest, PlanMigrationResponse } from "./migration_pb";
 import { GenerateCodeRequest, GenerateCodeResponse } from "./codegen_pb";
@@ -21,15 +21,6 @@ export const BeekeeperService = {
       name: "GetVespaDatabaseStack",
       I: GetVespaDatabaseStackRequest,
       O: GetVespaDatabaseStackResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc beekeeper.v1.BeekeeperService.DeleteVespaDatabaseStack
-     */
-    deleteVespaDatabaseStack: {
-      name: "DeleteVespaDatabaseStack",
-      I: DeleteVespaDatabaseStackRequest,
-      O: DeleteVespaDatabaseStackResponse,
       kind: MethodKind.Unary,
     },
     /**
