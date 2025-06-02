@@ -10,7 +10,8 @@
     "update": "lerna run update && npm i",
     "test": "lerna run test",
     "prepare": "is-ci || husky",
-    "changesets:add": "changeset add"
+    "changesets:add": "changeset add",
+    "changesets:version": "changeset version"
   },
   "keywords": [],
   "author": "HiveOps",
