@@ -1,6 +1,6 @@
 {
   "name": "@hiveops/cli",
-  "version": "0.0.50",
+  "version": "0.0.51",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "@hiveops/core": "^0.0.43",
-    "@hiveops/node": "^0.0.36",
+    "@hiveops/node": "^0.0.37",
     "commander": "^13.1.0",
     "dotenv": "^16.5.0",
     "figlet": "^1.8.0",
