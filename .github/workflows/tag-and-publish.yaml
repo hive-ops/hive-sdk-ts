@@ -1,9 +1,9 @@
-name: Version bump and tag workflow
+name: Tag and Publish workflow
 
 on:
   push:
     branches:
-      - main-experimental
+      - main
 
 permissions:
   contents: write
@@ -101,7 +101,6 @@ jobs:
       - name: Bump version and build Core SDK
         run: |
           cd packages/core
-          npm version patch --no-git-tag-version
           npm run build
 
       - name: Upload Core artifacts
@@ -144,7 +143,6 @@ jobs:
       - name: Bump version and build CLI SDK
         run: |
           cd packages/cli
-          npm version patch --no-git-tag-version
           npm run build
 
       - name: Upload CLI artifacts
@@ -187,7 +185,6 @@ jobs:
       - name: Bump version and build Node SDK
         run: |
           cd packages/node
-          npm version patch --no-git-tag-version
           npm run build
 
       - name: Upload Node artifacts
