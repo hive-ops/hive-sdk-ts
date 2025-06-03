@@ -1,5 +1,11 @@
 # @hiveops/node
 
+## 1.1.0
+
+### Minor Changes
+
+- feat: export fetchFreshHiveTokenFn and createTransportFn for public access
+
 ## 1.0.0
 
 ### Major Changes
