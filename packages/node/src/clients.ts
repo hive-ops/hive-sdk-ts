@@ -17,20 +17,20 @@ const rpcOptions: GRPCOptions = {
 
 const clientType: core.ClientType = "node";
 
-const fetchFreshHiveTokenFn: core.FetchFreshHiveTokenFn = async (token: string) => {
+export const fetchFreshHiveTokenFn: core.FetchFreshHiveTokenFn = async (token: string) => {
   const tokenClient = createSingletonTokenClient(token);
   const response = await tokenClient.getSecureAppHiveToken({});
   return response.hiveToken!;
 };
 
-const createTransportFn: core.CreateTransportFn<GRPCOptions> = ({ url, token, rpcOptions }) =>
+export const createTransportFn: core.CreateTransportFn<GRPCOptions> = ({ url, token, rpcOptions }) =>
   createGrpcTransport({
     baseUrl: url,
     interceptors: core.getInterceptors({ fetchFreshHiveTokenFn, token }),
     ...rpcOptions,
   });
 
-const createTokenClientTransportFn: core.CreateTransportFn<GRPCOptions> = (config) =>
+export const createTokenClientTransportFn: core.CreateTransportFn<GRPCOptions> = (config) =>
   createGrpcTransport({
     baseUrl: config.url,
     interceptors: core.getTokenClientInterceptors(config.token),
@@ -53,7 +53,7 @@ export const createSingletonBeekeeperClient = (token?: string): core.BeekeeperCl
     createTransportFn,
   });
 
-export const createSingletonVespaClient = (database: core.VespaDatabase,token?: string, ): core.VespaClient => {
+export const createSingletonVespaClient = (database: core.VespaDatabase, token?: string): core.VespaClient => {
   return core.createSingletonVespaClient({
     hubId: database.node?.hubId!,
     nodeName: database.node?.name!,
