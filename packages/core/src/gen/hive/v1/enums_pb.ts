@@ -38,6 +38,11 @@ export enum ErrorCode {
    * @generated from enum value: ERROR_CODE_EXPIRED = 5;
    */
   EXPIRED = 5,
+
+  /**
+   * @generated from enum value: ERROR_CODE_FORBIDDEN = 6;
+   */
+  FORBIDDEN = 6,
 }
 // Retrieve enum metadata with: proto3.getEnumType(ErrorCode)
 proto3.util.setEnumType(ErrorCode, "hive.v1.ErrorCode", [
@@ -47,6 +52,7 @@ proto3.util.setEnumType(ErrorCode, "hive.v1.ErrorCode", [
   { no: 3, name: "ERROR_CODE_NOT_AUTHORIZED" },
   { no: 4, name: "ERROR_CODE_NOT_FOUND" },
   { no: 5, name: "ERROR_CODE_EXPIRED" },
+  { no: 6, name: "ERROR_CODE_FORBIDDEN" },
 ]);
 
 /**
