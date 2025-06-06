@@ -5,7 +5,8 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Pagination, PaginationRequest, ResponseMetadata } from "../../hive/v1/models_pb";
+import { MemberType, RoleType } from "./enums_pb";
+import { HivePermission, Pagination, PaginationRequest, ResponseMetadata } from "../../hive/v1/models_pb";
 
 /**
  * @generated from message drone.v1.HiveToken
@@ -289,6 +290,11 @@ export class SecureApp extends Message<SecureApp> {
    */
   accessTokens: SecureAppAccessToken[] = [];
 
+  /**
+   * @generated from field: repeated drone.v1.RoleBinding role_bindings = 7;
+   */
+  roleBindings: RoleBinding[] = [];
+
   constructor(data?: PartialMessage<SecureApp>) {
     super();
     proto3.util.initPartial(data, this);
@@ -303,6 +309,7 @@ export class SecureApp extends Message<SecureApp> {
     { no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "created_at", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "access_tokens", kind: "message", T: SecureAppAccessToken, repeated: true },
+    { no: 7, name: "role_bindings", kind: "message", T: RoleBinding, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SecureApp {
@@ -319,6 +326,169 @@ export class SecureApp extends Message<SecureApp> {
 
   static equals(a: SecureApp | PlainMessage<SecureApp> | undefined, b: SecureApp | PlainMessage<SecureApp> | undefined): boolean {
     return proto3.util.equals(SecureApp, a, b);
+  }
+}
+
+/**
+ * @generated from message drone.v1.Role
+ */
+export class Role extends Message<Role> {
+  /**
+   * @generated from field: string hrn = 1;
+   */
+  hrn = "";
+
+  /**
+   * @generated from field: string uuid = 2;
+   */
+  uuid = "";
+
+  /**
+   * @generated from field: string organization_uuid = 3;
+   */
+  organizationUuid = "";
+
+  /**
+   * @generated from field: drone.v1.RoleType type = 4;
+   */
+  type = RoleType.UNSPECIFIED;
+
+  /**
+   * @generated from field: string name = 5;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string description = 6;
+   */
+  description = "";
+
+  /**
+   * @generated from field: repeated hive.v1.HivePermission permissions = 7;
+   */
+  permissions: HivePermission[] = [];
+
+  constructor(data?: PartialMessage<Role>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.Role";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "organization_uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "type", kind: "enum", T: proto3.getEnumType(RoleType) },
+    { no: 5, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "permissions", kind: "message", T: HivePermission, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Role {
+    return new Role().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Role {
+    return new Role().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Role {
+    return new Role().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Role | PlainMessage<Role> | undefined, b: Role | PlainMessage<Role> | undefined): boolean {
+    return proto3.util.equals(Role, a, b);
+  }
+}
+
+/**
+ * *
+ * RoleBinding represents a role that has been assigned to a user/secure app.
+ *
+ * @generated from message drone.v1.RoleBinding
+ */
+export class RoleBinding extends Message<RoleBinding> {
+  /**
+   * @generated from field: string hrn = 1;
+   */
+  hrn = "";
+
+  /**
+   * @generated from field: string uuid = 2;
+   */
+  uuid = "";
+
+  /**
+   * @generated from field: string organization_uuid = 3;
+   */
+  organizationUuid = "";
+
+  /**
+   * @generated from field: string member_uuid = 4;
+   */
+  memberUuid = "";
+
+  /**
+   * @generated from field: drone.v1.MemberType member_type = 5;
+   */
+  memberType = MemberType.UNSPECIFIED;
+
+  /**
+   * @generated from field: string role_uuid = 6;
+   */
+  roleUuid = "";
+
+  /**
+   * @generated from field: drone.v1.RoleType role_type = 7;
+   */
+  roleType = RoleType.UNSPECIFIED;
+
+  /**
+   * If project_uuids is empty, the role is assigned to all projects
+   *
+   * @generated from field: repeated string project_uuids = 8;
+   */
+  projectUuids: string[] = [];
+
+  /**
+   * @generated from field: repeated hive.v1.HivePermission permissions = 9;
+   */
+  permissions: HivePermission[] = [];
+
+  constructor(data?: PartialMessage<RoleBinding>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.RoleBinding";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "organization_uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "member_uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "member_type", kind: "enum", T: proto3.getEnumType(MemberType) },
+    { no: 6, name: "role_uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "role_type", kind: "enum", T: proto3.getEnumType(RoleType) },
+    { no: 8, name: "project_uuids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 9, name: "permissions", kind: "message", T: HivePermission, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RoleBinding {
+    return new RoleBinding().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RoleBinding {
+    return new RoleBinding().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RoleBinding {
+    return new RoleBinding().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RoleBinding | PlainMessage<RoleBinding> | undefined, b: RoleBinding | PlainMessage<RoleBinding> | undefined): boolean {
+    return proto3.util.equals(RoleBinding, a, b);
   }
 }
 
