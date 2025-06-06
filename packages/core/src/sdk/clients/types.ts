@@ -1,5 +1,5 @@
 import { Client, Transport } from "@connectrpc/connect";
-import { BeekeeperService, DroneTokenService, HiveToken, VespaService } from "../../gen";
+import { BeekeeperService, DroneService, DroneTokenService, HiveToken, VespaService } from "../../gen";
 import { ClientType } from "../utilities/types";
 
 export type CreateTransportFn<T> = (transportOptions: { url: string; token: string; rpcOptions: T }) => Transport;
@@ -18,6 +18,8 @@ type BaseClient = {
 };
 
 export type TokenClient = BaseClient & Client<typeof DroneTokenService>;
+
+export type DroneClient = BaseClient & Client<typeof DroneService>;
 
 export type BeekeeperClient = BaseClient & Client<typeof BeekeeperService>;
 
