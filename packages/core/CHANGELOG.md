@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.2.0
+
+### Minor Changes
+
+- feat: add Role and RoleBinding classes with associated enums for permissions management
+
 ## 1.1.0
 
 ### Minor Changes
