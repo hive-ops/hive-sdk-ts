@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetSecureAppHiveTokenRequest, GetSecureAppHiveTokenResponse } from "./models_pb";
+import { GetOrganizationsRequest, GetOrganizationsResponse, GetProjectsRequest, GetProjectsResponse, GetSecureAppAccessTokenSecretRequest, GetSecureAppAccessTokenSecretResponse, GetSecureAppHiveTokenRequest, GetSecureAppHiveTokenResponse, GetSecureAppSelfRequest, GetSecureAppSelfResponse, GetSecureAppsRequest, GetSecureAppsResponse } from "./models_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -19,6 +19,62 @@ export const DroneTokenService = {
       name: "GetSecureAppHiveToken",
       I: GetSecureAppHiveTokenRequest,
       O: GetSecureAppHiveTokenResponse,
+      kind: MethodKind.Unary,
+    },
+  }
+} as const;
+
+/**
+ * @generated from service drone.v1.DroneService
+ */
+export const DroneService = {
+  typeName: "drone.v1.DroneService",
+  methods: {
+    /**
+     * GetOrganizations is unique in that it does not require any permissions.
+     *
+     * @generated from rpc drone.v1.DroneService.GetOrganizations
+     */
+    getOrganizations: {
+      name: "GetOrganizations",
+      I: GetOrganizationsRequest,
+      O: GetOrganizationsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc drone.v1.DroneService.GetProjects
+     */
+    getProjects: {
+      name: "GetProjects",
+      I: GetProjectsRequest,
+      O: GetProjectsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc drone.v1.DroneService.GetSecureAppSelf
+     */
+    getSecureAppSelf: {
+      name: "GetSecureAppSelf",
+      I: GetSecureAppSelfRequest,
+      O: GetSecureAppSelfResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc drone.v1.DroneService.GetSecureApps
+     */
+    getSecureApps: {
+      name: "GetSecureApps",
+      I: GetSecureAppsRequest,
+      O: GetSecureAppsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc drone.v1.DroneService.GetSecureAppAccessTokenSecret
+     */
+    getSecureAppAccessTokenSecret: {
+      name: "GetSecureAppAccessTokenSecret",
+      I: GetSecureAppAccessTokenSecretRequest,
+      O: GetSecureAppAccessTokenSecretResponse,
       kind: MethodKind.Unary,
     },
   }
