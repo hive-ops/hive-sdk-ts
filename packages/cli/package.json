@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "ts-node src/hive.ts",
     "dev:watch": "nodemon src/main.ts",
+    "fetch-token": "ts-node src/hive.ts vespa fetch-token",
     "initialize-project": "ts-node src/hive.ts vespa initialize-project",
     "generate-code": "ts-node src/hive.ts vespa generate-code",
     "apply-migration": "ts-node src/hive.ts vespa apply-migration",
     "clean": "rm -rf lib/",
     "build": "npm run clean && tsc",
-    "fix": "eslint --fix -c .eslintrc.js 'src/**/*' && prettier 'src/**/*.ts' --write",
+    "fix": "eslint --fix -c .eslintrc.js 'src/**/*.ts' && prettier 'src/**/*.ts' --write",
     "check": "eslint -c .eslintrc.js 'src/**/*' && prettier 'src/**/*.ts'  --list-different",
     "test": "jest uspec --maxWorkers=2 --passWithNoTests --detectOpenHandles --forceExit --coverage",
     "update": "ncu @hiveops/* -u"
@@ -53,12 +54,14 @@
     ]
   },
   "dependencies": {
-    "@hiveops/core": "^1.0.0",
-    "@hiveops/node": "^1.0.0",
+    "@hiveops/core": "^1.4.0",
+    "@hiveops/node": "^1.2.0",
     "commander": "^13.1.0",
     "dotenv": "^16.5.0",
+    "express": "^5.1.0",
     "figlet": "^1.8.0",
-    "inquirer": "^12.5.2"
+    "inquirer": "^12.5.2",
+    "ora": "^8.2.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.48.2",
