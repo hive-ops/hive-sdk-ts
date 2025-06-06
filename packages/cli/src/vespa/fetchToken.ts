@@ -2,8 +2,8 @@ import { Command, OptionValues } from "commander";
 import { randomBytes } from "crypto";
 import express from "express";
 import { createServer } from "http";
-import ora from "ora";
 import open from "open";
+import ora from "ora";
 
 async function startLocalWebServer(port: number, expectedState: string): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -216,12 +216,11 @@ export const fetchToken = async (_opts: OptionValues) => {
   const spinner = ora("Starting browser flow to get API key...").start();
   try {
     const localPort = 1234;
-    const redirectUri = `http://localhost:${localPort}`;
     const state = randomBytes(16).toString("hex"); // Generate a random state for CSRF protection
 
     // Construct the URL to the Next.js page, passing the `redirect_uri` and `state` as query parameters.
-    const webPageUrl = new URL(`http://localhost:3000/cli-auth/${localPort}`);
-    webPageUrl.searchParams.append("redirect_uri", redirectUri);
+    const webPageUrl = new URL(`http://localhost:3000/cli-auth`);
+    webPageUrl.searchParams.append("port", localPort.toString());
     webPageUrl.searchParams.append("state", state);
 
     spinner.text = "Opening browser. Please log in on the web page and approve API key retrieval...";
