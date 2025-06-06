@@ -182,15 +182,15 @@ export const getHiveToken = async (): Promise<string> => {
   const localPort = 1234;
   const state = randomBytes(16).toString("hex"); // Generate a random state for CSRF protection
 
-  // Construct the URL to the Next.js page, passing the `redirect_uri` and `state` as query parameters.
-  const webPageUrl = new URL(`http://localhost:3000/cli-auth`);
-  webPageUrl.searchParams.append("port", localPort.toString());
+  // Construct the URL to the HiveOps OAuth page
+  const webPageUrl = new URL(`https://hiveops.io/oauth/authorize`);
+  webPageUrl.searchParams.append("redirect_uri", `http://localhost:${localPort}`);
   webPageUrl.searchParams.append("state", state);
 
-  spinner.text = "Opening browser. Please log in on the web page and approve Token retrieval...";
+  spinner.text = "Opening browser. Please log in to HiveOps and approve authentication...";
   await open(webPageUrl.toString()); // Open the constructed URL in the user's default browser
 
-  spinner.text = "Waiting for Token redirect from the web page...";
+  spinner.text = "Waiting for Token redirect from HiveOps...";
 
   const token = await startLocalWebServer(localPort, state);
   spinner.succeed("Token received!");

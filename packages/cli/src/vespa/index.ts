@@ -4,6 +4,7 @@ import { fetchTokenCommand } from "./fetchToken";
 import { generateAndApplyCommand } from "./generateAndApplyCode";
 import { generateCodeCommand } from "./generateCode";
 import { initializeProjectCommand } from "./initProject";
+import { initializeProjectV2Command } from "./initProjectV2";
 import { planMigrationCommand } from "./planMigration";
 
 const vespaOptions: Option[] = [
@@ -18,6 +19,7 @@ export const vespaCommand = new Command("vespa")
     console.log("Vespa commands");
   })
   .addCommand(initializeProjectCommand)
+  .addCommand(initializeProjectV2Command)
   .addCommand(planMigrationCommand)
   .addCommand(applyMigrationCommand)
   .addCommand(generateCodeCommand)
