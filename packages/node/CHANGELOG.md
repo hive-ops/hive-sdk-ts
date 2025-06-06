@@ -1,5 +1,16 @@
 # @hiveops/node
 
+## 1.2.0
+
+### Minor Changes
+
+- feat: add DroneClient and createSingletonDroneClient for improved client management
+
+### Patch Changes
+
+- Updated dependencies
+  - @hiveops/core@1.3.0
+
 ## 1.1.0
 
 ### Minor Changes

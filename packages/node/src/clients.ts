@@ -45,6 +45,14 @@ export const createSingletonTokenClient = (token?: string): core.TokenClient =>
     createTransportFn: createTokenClientTransportFn,
   });
 
+export const createSingletonDroneClient = (token?: string): core.DroneClient =>
+  core.createSingletonDroneClient({
+    token: token || core.getAccessToken(),
+    clientType,
+    rpcOptions,
+    createTransportFn,
+  });
+
 export const createSingletonBeekeeperClient = (token?: string): core.BeekeeperClient =>
   core.createSingletonBeekeeperClient({
     token: token || core.getAccessToken(),

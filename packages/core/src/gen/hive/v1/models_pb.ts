@@ -51,6 +51,104 @@ export class Error extends Message<Error> {
 }
 
 /**
+ * @generated from message hive.v1.PaginationRequest
+ */
+export class PaginationRequest extends Message<PaginationRequest> {
+  /**
+   * @generated from field: int32 page_index = 1;
+   */
+  pageIndex = 0;
+
+  /**
+   * @generated from field: int32 page_size = 2;
+   */
+  pageSize = 0;
+
+  constructor(data?: PartialMessage<PaginationRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "hive.v1.PaginationRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "page_index", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PaginationRequest {
+    return new PaginationRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PaginationRequest {
+    return new PaginationRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PaginationRequest {
+    return new PaginationRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PaginationRequest | PlainMessage<PaginationRequest> | undefined, b: PaginationRequest | PlainMessage<PaginationRequest> | undefined): boolean {
+    return proto3.util.equals(PaginationRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message hive.v1.Pagination
+ */
+export class Pagination extends Message<Pagination> {
+  /**
+   * @generated from field: int32 current_page = 1;
+   */
+  currentPage = 0;
+
+  /**
+   * @generated from field: int32 total_pages = 2;
+   */
+  totalPages = 0;
+
+  /**
+   * @generated from field: int32 page_size = 3;
+   */
+  pageSize = 0;
+
+  /**
+   * @generated from field: int32 total_items = 4;
+   */
+  totalItems = 0;
+
+  constructor(data?: PartialMessage<Pagination>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "hive.v1.Pagination";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "current_page", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "total_pages", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "page_size", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "total_items", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Pagination {
+    return new Pagination().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Pagination {
+    return new Pagination().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Pagination {
+    return new Pagination().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Pagination | PlainMessage<Pagination> | undefined, b: Pagination | PlainMessage<Pagination> | undefined): boolean {
+    return proto3.util.equals(Pagination, a, b);
+  }
+}
+
+/**
  * @generated from message hive.v1.ResponseMetadata
  */
 export class ResponseMetadata extends Message<ResponseMetadata> {
