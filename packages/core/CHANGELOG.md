@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.4.0
+
+### Minor Changes
+
+- feat: add ListVespaDatabaseStacksByProjectRequest and ListVespaDatabaseStacksByProjectResponse classes with service method
+
 ## 1.3.0
 
 ### Minor Changes
