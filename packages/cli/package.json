@@ -12,7 +12,7 @@
     "apply-migration": "ts-node src/hive.ts vespa apply-migration",
     "clean": "rm -rf lib/",
     "build": "npm run clean && tsc",
-    "fix": "eslint --fix -c .eslintrc.js 'src/**/*' && prettier 'src/**/*.ts' --write",
+    "fix": "eslint --fix -c .eslintrc.js 'src/**/*.ts' && prettier 'src/**/*.ts' --write",
     "check": "eslint -c .eslintrc.js 'src/**/*' && prettier 'src/**/*.ts'  --list-different",
     "test": "jest uspec --maxWorkers=2 --passWithNoTests --detectOpenHandles --forceExit --coverage",
     "update": "ncu @hiveops/* -u"
