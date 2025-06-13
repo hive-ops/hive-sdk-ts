@@ -1,5 +1,16 @@
 # @hiveops/node
 
+## 1.3.0
+
+### Minor Changes
+
+- Refactor SDK clients to enhance token management and interceptor usage
+
+### Patch Changes
+
+- Updated dependencies
+  - @hiveops/core@1.5.0
+
 ## 1.2.0
 
 ### Minor Changes
