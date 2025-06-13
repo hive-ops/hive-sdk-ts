@@ -56,6 +56,44 @@ proto3.util.setEnumType(ErrorCode, "hive.v1.ErrorCode", [
 ]);
 
 /**
+ * @generated from enum hive.v1.UserType
+ */
+export enum UserType {
+  /**
+   * @generated from enum value: USER_TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: USER_TYPE_NONE = 1;
+   */
+  NONE = 1,
+
+  /**
+   * @generated from enum value: USER_TYPE_TENANT_ADMIN = 101;
+   */
+  TENANT_ADMIN = 101,
+
+  /**
+   * @generated from enum value: USER_TYPE_TENANT_SECURE_APP = 102;
+   */
+  TENANT_SECURE_APP = 102,
+
+  /**
+   * @generated from enum value: USER_TYPE_TENANT_END_USER = 103;
+   */
+  TENANT_END_USER = 103,
+}
+// Retrieve enum metadata with: proto3.getEnumType(UserType)
+proto3.util.setEnumType(UserType, "hive.v1.UserType", [
+  { no: 0, name: "USER_TYPE_UNSPECIFIED" },
+  { no: 1, name: "USER_TYPE_NONE" },
+  { no: 101, name: "USER_TYPE_TENANT_ADMIN" },
+  { no: 102, name: "USER_TYPE_TENANT_SECURE_APP" },
+  { no: 103, name: "USER_TYPE_TENANT_END_USER" },
+]);
+
+/**
  * @generated from enum hive.v1.TenantAuthIDType
  */
 export enum TenantAuthIDType {
@@ -75,34 +113,46 @@ export enum TenantAuthIDType {
   TENANT_AUTH_ID_TYPE_ADMIN_ACCESS_TOKEN = 201,
 
   /**
-   * @generated from enum value: TENANT_AUTH_ID_TYPE_ADMIN_HIVE_TOKEN = 202;
+   * @generated from enum value: TENANT_AUTH_ID_TYPE_ADMIN_ACCESS_HIVE_TOKEN = 202;
    */
-  TENANT_AUTH_ID_TYPE_ADMIN_HIVE_TOKEN = 202,
+  TENANT_AUTH_ID_TYPE_ADMIN_ACCESS_HIVE_TOKEN = 202,
 
   /**
-   * @generated from enum value: TENANT_AUTH_ID_TYPE_SECURE_APP_ACCESS_TOKEN = 203;
+   * @generated from enum value: TENANT_AUTH_ID_TYPE_ADMIN_REFRESH_HIVE_TOKEN = 203;
    */
-  TENANT_AUTH_ID_TYPE_SECURE_APP_ACCESS_TOKEN = 203,
+  TENANT_AUTH_ID_TYPE_ADMIN_REFRESH_HIVE_TOKEN = 203,
 
   /**
-   * @generated from enum value: TENANT_AUTH_ID_TYPE_SECURE_APP_HIVE_TOKEN = 204;
+   * @generated from enum value: TENANT_AUTH_ID_TYPE_SECURE_APP_ACCESS_TOKEN = 204;
    */
-  TENANT_AUTH_ID_TYPE_SECURE_APP_HIVE_TOKEN = 204,
+  TENANT_AUTH_ID_TYPE_SECURE_APP_ACCESS_TOKEN = 204,
 
   /**
-   * @generated from enum value: TENANT_AUTH_ID_TYPE_END_USER_HIVE_TOKEN = 205;
+   * @generated from enum value: TENANT_AUTH_ID_TYPE_SECURE_APP_ACCESS_HIVE_TOKEN = 205;
    */
-  TENANT_AUTH_ID_TYPE_END_USER_HIVE_TOKEN = 205,
+  TENANT_AUTH_ID_TYPE_SECURE_APP_ACCESS_HIVE_TOKEN = 205,
+
+  /**
+   * @generated from enum value: TENANT_AUTH_ID_TYPE_SECURE_APP_REFRESH_HIVE_TOKEN = 206;
+   */
+  TENANT_AUTH_ID_TYPE_SECURE_APP_REFRESH_HIVE_TOKEN = 206,
+
+  /**
+   * @generated from enum value: TENANT_AUTH_ID_TYPE_END_USER_HIVE_TOKEN = 207;
+   */
+  TENANT_AUTH_ID_TYPE_END_USER_HIVE_TOKEN = 207,
 }
 // Retrieve enum metadata with: proto3.getEnumType(TenantAuthIDType)
 proto3.util.setEnumType(TenantAuthIDType, "hive.v1.TenantAuthIDType", [
   { no: 0, name: "TENANT_AUTH_ID_TYPE_UNSPECIFIED" },
   { no: 1, name: "TENANT_AUTH_ID_TYPE_NONE" },
   { no: 201, name: "TENANT_AUTH_ID_TYPE_ADMIN_ACCESS_TOKEN" },
-  { no: 202, name: "TENANT_AUTH_ID_TYPE_ADMIN_HIVE_TOKEN" },
-  { no: 203, name: "TENANT_AUTH_ID_TYPE_SECURE_APP_ACCESS_TOKEN" },
-  { no: 204, name: "TENANT_AUTH_ID_TYPE_SECURE_APP_HIVE_TOKEN" },
-  { no: 205, name: "TENANT_AUTH_ID_TYPE_END_USER_HIVE_TOKEN" },
+  { no: 202, name: "TENANT_AUTH_ID_TYPE_ADMIN_ACCESS_HIVE_TOKEN" },
+  { no: 203, name: "TENANT_AUTH_ID_TYPE_ADMIN_REFRESH_HIVE_TOKEN" },
+  { no: 204, name: "TENANT_AUTH_ID_TYPE_SECURE_APP_ACCESS_TOKEN" },
+  { no: 205, name: "TENANT_AUTH_ID_TYPE_SECURE_APP_ACCESS_HIVE_TOKEN" },
+  { no: 206, name: "TENANT_AUTH_ID_TYPE_SECURE_APP_REFRESH_HIVE_TOKEN" },
+  { no: 207, name: "TENANT_AUTH_ID_TYPE_END_USER_HIVE_TOKEN" },
 ]);
 
 /**

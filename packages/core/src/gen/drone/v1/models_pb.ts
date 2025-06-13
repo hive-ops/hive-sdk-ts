@@ -4,68 +4,9 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
 import { MemberType, RoleType } from "./enums_pb";
 import { HivePermission, Pagination, PaginationRequest, ResponseMetadata } from "../../hive/v1/models_pb";
-
-/**
- * @generated from message drone.v1.HiveToken
- */
-export class HiveToken extends Message<HiveToken> {
-  /**
-   * @generated from field: string key = 1;
-   */
-  key = "";
-
-  /**
-   * @generated from field: string signed_token = 2;
-   */
-  signedToken = "";
-
-  /**
-   * UTC Unix timestamp in seconds
-   *
-   * @generated from field: uint64 issued_at = 3;
-   */
-  issuedAt = protoInt64.zero;
-
-  /**
-   * UTC Unix timestamp in seconds
-   *
-   * @generated from field: uint64 expires_at = 4;
-   */
-  expiresAt = protoInt64.zero;
-
-  constructor(data?: PartialMessage<HiveToken>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "drone.v1.HiveToken";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "signed_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "issued_at", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 4, name: "expires_at", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HiveToken {
-    return new HiveToken().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): HiveToken {
-    return new HiveToken().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): HiveToken {
-    return new HiveToken().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: HiveToken | PlainMessage<HiveToken> | undefined, b: HiveToken | PlainMessage<HiveToken> | undefined): boolean {
-    return proto3.util.equals(HiveToken, a, b);
-  }
-}
 
 /**
  * @generated from message drone.v1.Organization
@@ -489,86 +430,6 @@ export class RoleBinding extends Message<RoleBinding> {
 
   static equals(a: RoleBinding | PlainMessage<RoleBinding> | undefined, b: RoleBinding | PlainMessage<RoleBinding> | undefined): boolean {
     return proto3.util.equals(RoleBinding, a, b);
-  }
-}
-
-/**
- * @generated from message drone.v1.GetSecureAppHiveTokenRequest
- */
-export class GetSecureAppHiveTokenRequest extends Message<GetSecureAppHiveTokenRequest> {
-  /**
-   * @generated from field: string token_uid = 1;
-   */
-  tokenUid = "";
-
-  constructor(data?: PartialMessage<GetSecureAppHiveTokenRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "drone.v1.GetSecureAppHiveTokenRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token_uid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSecureAppHiveTokenRequest {
-    return new GetSecureAppHiveTokenRequest().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSecureAppHiveTokenRequest {
-    return new GetSecureAppHiveTokenRequest().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSecureAppHiveTokenRequest {
-    return new GetSecureAppHiveTokenRequest().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: GetSecureAppHiveTokenRequest | PlainMessage<GetSecureAppHiveTokenRequest> | undefined, b: GetSecureAppHiveTokenRequest | PlainMessage<GetSecureAppHiveTokenRequest> | undefined): boolean {
-    return proto3.util.equals(GetSecureAppHiveTokenRequest, a, b);
-  }
-}
-
-/**
- * @generated from message drone.v1.GetSecureAppHiveTokenResponse
- */
-export class GetSecureAppHiveTokenResponse extends Message<GetSecureAppHiveTokenResponse> {
-  /**
-   * @generated from field: hive.v1.ResponseMetadata metadata = 1;
-   */
-  metadata?: ResponseMetadata;
-
-  /**
-   * @generated from field: drone.v1.HiveToken hive_token = 2;
-   */
-  hiveToken?: HiveToken;
-
-  constructor(data?: PartialMessage<GetSecureAppHiveTokenResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "drone.v1.GetSecureAppHiveTokenResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "metadata", kind: "message", T: ResponseMetadata },
-    { no: 2, name: "hive_token", kind: "message", T: HiveToken },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSecureAppHiveTokenResponse {
-    return new GetSecureAppHiveTokenResponse().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSecureAppHiveTokenResponse {
-    return new GetSecureAppHiveTokenResponse().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSecureAppHiveTokenResponse {
-    return new GetSecureAppHiveTokenResponse().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: GetSecureAppHiveTokenResponse | PlainMessage<GetSecureAppHiveTokenResponse> | undefined, b: GetSecureAppHiveTokenResponse | PlainMessage<GetSecureAppHiveTokenResponse> | undefined): boolean {
-    return proto3.util.equals(GetSecureAppHiveTokenResponse, a, b);
   }
 }
 

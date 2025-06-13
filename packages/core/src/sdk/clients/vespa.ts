@@ -3,14 +3,14 @@ import { App, VespaService } from "../../gen";
 import { DOMAIN, FQDN } from "../utilities";
 import { buildURL, makeSingletonFactory } from "../utilities/utils";
 import { ClientOptions } from "./types";
-import { invalidateHiveToken } from "./utils";
+import { getInterceptors } from "./utils";
 
-type VespaClientOptions<T> = ClientOptions<T> & {
+type VespaClientOptions = ClientOptions & {
   hubId: string;
   nodeName: string;
 };
 
-export const createSingletonVespaClient = makeSingletonFactory((options: VespaClientOptions<any>) => {
+export const createSingletonVespaClient = makeSingletonFactory((options: VespaClientOptions) => {
   const fqdn: FQDN = {
     domain: DOMAIN,
     hubId: options.hubId,
@@ -21,12 +21,10 @@ export const createSingletonVespaClient = makeSingletonFactory((options: VespaCl
 
   const transport = options.createTransportFn({
     url: buildURL(fqdn),
-    token: options.token,
-    rpcOptions: options.rpcOptions,
+    interceptors: getInterceptors(),
   });
 
   return {
     ...createClient(VespaService, transport),
-    invalidateHiveToken: invalidateHiveToken,
   };
 });
