@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.5.1
+
+### Patch Changes
+
+- actor: reorganize imports and enhance token management in SDK clients
+
 ## 1.5.0
 
 ### Minor Changes
