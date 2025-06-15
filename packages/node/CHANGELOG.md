@@ -1,5 +1,11 @@
 # @hiveops/node
 
+## 1.3.1
+
+### Patch Changes
+
+- feat: update clientType in clientOptions to use JavaScriptClientType enum
+
 ## 1.3.0
 
 ### Minor Changes
