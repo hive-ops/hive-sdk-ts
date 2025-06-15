@@ -1,15 +1,19 @@
 import { createClient } from "@connectrpc/connect";
 import { App, DroneTokenService, HiveTokenPair, UserType } from "../../gen";
 import { ClientOptions } from "./types";
-import { createTransport, getTokenInterceptorWithToken } from "./utils";
+import { createTransport } from "./utils";
 
 export const createTokenClient = (options: ClientOptions, token: string) => {
+  const tokenInterceptor = (next: any) => (req: any) => {
+    req.header.set("Authorization", `Bearer ${token}`);
+    return next(req);
+  };
   const transport = createTransport(
     {
       ...options,
       app: App.DRONE,
     },
-    [getTokenInterceptorWithToken(token)],
+    [tokenInterceptor],
   );
   return {
     ...createClient(DroneTokenService, transport),

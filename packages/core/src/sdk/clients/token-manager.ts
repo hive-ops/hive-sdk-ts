@@ -1,7 +1,7 @@
-import { HiveTokenPair, UserType } from "../../gen";
+import { HiveToken, HiveTokenPair, UserType } from "../../gen";
 import { fetchSecureAppHiveToken, refreshHiveToken } from "./token";
 import { ClientOptions } from "./types";
-import { hiveTokenIsAboutToExpire } from "./utils";
+import { Interceptor } from "@connectrpc/connect";
 
 let accessToken: string | undefined;
 let userType: UserType | undefined;
@@ -15,7 +15,25 @@ export const setAccessToken = ({ token, type, hiveToken, options }: { token?: st
   clientOptions = options;
 };
 
-export const GetHiveToken = async (): Promise<HiveTokenPair> => {
+export const hiveTokenIsAboutToExpire = (hiveToken: HiveToken): boolean => {
+  return hiveToken.expiresAt < Date.now() + 60000; // 1 minute
+};
+
+export const getTokenInterceptor =
+  (token?: string): Interceptor =>
+  (next) =>
+  async (req) => {
+    if (!token) {
+      const hiveTokenPair = await getHiveToken();
+      token = hiveTokenPair.accessHiveToken!.signedToken;
+    }
+    req.header.set("Authorization", `Bearer ${token}`);
+    return next(req);
+  };
+
+export const getInterceptors = (): Interceptor[] => [getTokenInterceptor()];
+
+export const getHiveToken = async (): Promise<HiveTokenPair> => {
   if (!clientOptions) {
     throw new Error("Client options are not set");
   }

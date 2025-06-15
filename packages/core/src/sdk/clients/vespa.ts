@@ -2,8 +2,8 @@ import { createClient } from "@connectrpc/connect";
 import { App, VespaService } from "../../gen";
 import { DOMAIN, FQDN } from "../utilities";
 import { buildURL, makeSingletonFactory } from "../utilities/utils";
+import { getInterceptors } from "./token-manager";
 import { ClientOptions } from "./types";
-import { getInterceptors } from "./utils";
 
 type VespaClientOptions = ClientOptions & {
   hubId: string;

@@ -63,6 +63,16 @@ export function makeSingletonFactory<S, T>(factory: SingletonFactory<S, T>): Sin
   };
 }
 
+export function makeSingletonFunction<T>(makeObject: () => T): () => T {
+  let singleton: T;
+  return () => {
+    if (!singleton) {
+      singleton = makeObject();
+    }
+    return singleton;
+  };
+}
+
 export const throwIfNullish = <T>(value: T | undefined, message: string): T => {
   if (!value) {
     throw new Error(message);
@@ -73,15 +83,6 @@ export const throwIfNullishAsync = async <T>(promise: Promise<T | undefined>, me
   const value = await promise;
   return throwIfNullish(value, message);
 };
-export function makeSingletonFunction<T>(makeObject: () => T): () => T {
-  let singleton: T;
-  return () => {
-    if (!singleton) {
-      singleton = makeObject();
-    }
-    return singleton;
-  };
-}
 
 export const getEnumKey = <T extends object>(enumType: T, value: T[keyof T]): keyof T => {
   return Object.keys(enumType)[Object.values(enumType).indexOf(value)] as keyof T;
