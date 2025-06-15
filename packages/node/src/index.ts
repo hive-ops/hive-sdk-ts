@@ -1,3 +1,2 @@
-export * from "./clients";
-export * from "./repo";
+export * from "./client-options";
 export * from "./utils";

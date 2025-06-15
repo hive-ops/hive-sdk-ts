@@ -1,5 +1,5 @@
-import { BeekeeperClient, File, ProgrammingLanguage, setAccessToken, UserType } from "@hiveops/core";
-import { createSingletonBeekeeperClient , vespaInit } from "@hiveops/node";
+import { BeekeeperClient, createBeekeeperClient, File, ProgrammingLanguage, UserType } from "@hiveops/core";
+import { vespaInit } from "@hiveops/node";
 import { exec } from "child_process";
 import { Command, Option, OptionValues } from "commander";
 import { configDotenv } from "dotenv";
@@ -89,7 +89,7 @@ export const initializeClients = (opts: OptionValues): { beekeeperClient: Beekee
     userType: UserType.TENANT_SECURE_APP,
   });
 
-  return { beekeeperClient: createSingletonBeekeeperClient() };
+  return { beekeeperClient: createBeekeeperClient() };
 };
 
 export const loadDotEnv = (opts: OptionValues) => {

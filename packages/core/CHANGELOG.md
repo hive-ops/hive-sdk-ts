@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.6.0
+
+### Minor Changes
+
+- feat: refactor client creation methods and improve token management; remove deprecated client options
+
 ## 1.5.2
 
 ### Patch Changes

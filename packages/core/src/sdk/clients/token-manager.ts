@@ -1,19 +1,7 @@
-import { HiveToken, HiveTokenPair, UserType } from "../../gen";
-import { fetchSecureAppHiveToken, refreshHiveToken } from "./token";
-import { ClientOptions } from "./types";
 import { Interceptor } from "@connectrpc/connect";
-
-let accessToken: string | undefined;
-let userType: UserType | undefined;
-let hiveTokenPair: HiveTokenPair | undefined;
-let clientOptions: ClientOptions | undefined;
-
-export const setAccessToken = ({ token, type, hiveToken, options }: { token?: string; type: UserType; hiveToken?: HiveTokenPair; options: ClientOptions }) => {
-  accessToken = token;
-  userType = type;
-  hiveTokenPair = hiveToken;
-  clientOptions = options;
-};
+import { HiveToken, HiveTokenPair, UserType } from "../../gen";
+import { getAccessToken, getHiveTokenPair, getUserType } from "./globals";
+import { fetchSecureAppHiveToken, refreshHiveToken } from "./token";
 
 export const hiveTokenIsAboutToExpire = (hiveToken: HiveToken): boolean => {
   return hiveToken.expiresAt < Date.now() + 60000; // 1 minute
@@ -34,13 +22,9 @@ export const getTokenInterceptor =
 export const getInterceptors = (): Interceptor[] => [getTokenInterceptor()];
 
 export const getHiveToken = async (): Promise<HiveTokenPair> => {
-  if (!clientOptions) {
-    throw new Error("Client options are not set");
-  }
-
-  if (!userType) {
-    throw new Error("User type is not set");
-  }
+  const accessToken = getAccessToken();
+  const userType = getUserType();
+  const hiveTokenPair = getHiveTokenPair();
 
   if (!accessToken && !hiveTokenPair) {
     throw new Error("Access token or hive token pair is not set");
@@ -50,12 +34,12 @@ export const getHiveToken = async (): Promise<HiveTokenPair> => {
     if (hiveTokenIsAboutToExpire(hiveTokenPair.accessHiveToken!)) {
       return hiveTokenPair!;
     } else {
-      return await refreshHiveToken(clientOptions, hiveTokenPair.refreshHiveToken!.signedToken, userType);
+      return await refreshHiveToken(hiveTokenPair.refreshHiveToken!.signedToken, userType);
     }
   }
 
   if (accessToken && userType == UserType.TENANT_SECURE_APP) {
-    return await fetchSecureAppHiveToken(clientOptions, accessToken);
+    return await fetchSecureAppHiveToken(accessToken);
   }
 
   throw new Error("Unable to retrieve Hive token");

@@ -1,5 +1,16 @@
 # @hiveops/node
 
+## 1.4.0
+
+### Minor Changes
+
+- feat: refactor client creation methods and improve token management; remove deprecated client options
+
+### Patch Changes
+
+- Updated dependencies
+  - @hiveops/core@1.6.0
+
 ## 1.3.1
 
 ### Patch Changes

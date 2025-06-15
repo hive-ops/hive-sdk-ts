@@ -1,5 +1,5 @@
 import * as core from "@hiveops/core";
-import { clientOptions } from "./clients";
+import { clientOptions } from "./client-options";
 
 export const vespaInit = (options: { stackHRN: string; accessToken: string; userType: core.UserType }): void =>
   core.vespaInit({

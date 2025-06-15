@@ -1,15 +1,16 @@
 import * as core from "@hiveops/core";
 import dotenv from "dotenv";
-import { createTokenClient, setAccessToken } from "./clients";
+import { clientOptions } from "./client-options";
 
 dotenv.config();
 
 jest.setTimeout(30000);
 
 describe("Hive SDK Clients", () => {
-  setAccessToken({
+  core.initialize({
     token: core.getEnvString("HIVE_ACCESS_TOKEN"),
     type: core.UserType.TENANT_SECURE_APP,
+    options: clientOptions,
   });
 
   it("should run tests", () => {
@@ -17,7 +18,7 @@ describe("Hive SDK Clients", () => {
   });
 
   // vespaInit();
-  const tokenClient = createTokenClient(core.getEnvString("HIVE_ACCESS_TOKEN"));
+  const tokenClient = core.createTokenClient(core.getEnvString("HIVE_ACCESS_TOKEN"));
   // const beekeeperClient = createSingletonBeekeeperClient();
   it("should create a singleton TokenClient", async () => {
     const res = await tokenClient.getSecureAppHiveToken({});

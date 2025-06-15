@@ -1,6 +1,5 @@
-import { Metadata } from "@hiveops/core";
+import { BaseRepository, Metadata } from "@hiveops/core";
 import dotenv from "dotenv";
-import { BaseRepository } from "./repo";
 
 export enum UserRole {
   ADMIN = 1,
