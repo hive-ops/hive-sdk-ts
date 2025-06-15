@@ -457,6 +457,32 @@ proto3.util.setEnumType(ProgrammingLanguage, "hive.v1.ProgrammingLanguage", [
 ]);
 
 /**
+ * @generated from enum hive.v1.JavaScriptClientType
+ */
+export enum JavaScriptClientType {
+  /**
+   * @generated from enum value: JAVA_SCRIPT_CLIENT_TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: JAVA_SCRIPT_CLIENT_TYPE_NODE = 1;
+   */
+  NODE = 1,
+
+  /**
+   * @generated from enum value: JAVA_SCRIPT_CLIENT_TYPE_WEB = 2;
+   */
+  WEB = 2,
+}
+// Retrieve enum metadata with: proto3.getEnumType(JavaScriptClientType)
+proto3.util.setEnumType(JavaScriptClientType, "hive.v1.JavaScriptClientType", [
+  { no: 0, name: "JAVA_SCRIPT_CLIENT_TYPE_UNSPECIFIED" },
+  { no: 1, name: "JAVA_SCRIPT_CLIENT_TYPE_NODE" },
+  { no: 2, name: "JAVA_SCRIPT_CLIENT_TYPE_WEB" },
+]);
+
+/**
  * @generated from extension: string error_code = 1000000;
  */
 export const error_code = proto3.makeExtension<EnumValueOptions, string>(
@@ -508,5 +534,14 @@ export const programming_language = proto3.makeExtension<EnumValueOptions, strin
   "hive.v1.programming_language", 
   EnumValueOptions, 
   { no: 204001, kind: "scalar", T: 9 /* ScalarType.STRING */ },
+);
+
+/**
+ * @generated from extension: string js_client_type = 204002;
+ */
+export const js_client_type = proto3.makeExtension<EnumValueOptions, string>(
+  "hive.v1.js_client_type", 
+  EnumValueOptions, 
+  { no: 204002, kind: "scalar", T: 9 /* ScalarType.STRING */ },
 );
 

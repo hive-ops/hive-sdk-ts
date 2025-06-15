@@ -1,11 +1,9 @@
-import { App } from "../../gen";
-
-export type ClientType = "node" | "deno" | "web";
+import { App, JavaScriptClientType } from "../../gen";
 
 export type FQDN = {
   domain: string;
   hubId?: string;
   app: App;
   nodeName?: string;
-  clientType: ClientType;
+  clientType: JavaScriptClientType;
 };

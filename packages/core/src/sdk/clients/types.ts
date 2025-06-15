@@ -1,11 +1,10 @@
 import { Client, Interceptor, Transport } from "@connectrpc/connect";
-import { App, BeekeeperService, DroneService, DroneTokenService, VespaService } from "../../gen";
-import { ClientType } from "../utilities/types";
+import { App, BeekeeperService, DroneService, DroneTokenService, JavaScriptClientType, VespaService } from "../../gen";
 
 export type CreateTransportFn = (opts: { url: string; interceptors: Interceptor[] }) => Transport;
 
 export type ClientOptions = {
-  clientType: ClientType;
+  clientType: JavaScriptClientType;
   createTransportFn: CreateTransportFn;
 };
 

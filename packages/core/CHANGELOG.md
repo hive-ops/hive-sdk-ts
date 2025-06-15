@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.5.2
+
+### Patch Changes
+
+- feat: integrate JavaScriptClientType enum into client options and utility functions
+
 ## 1.5.1
 
 ### Patch Changes

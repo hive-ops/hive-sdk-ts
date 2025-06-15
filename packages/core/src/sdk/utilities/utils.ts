@@ -1,5 +1,5 @@
 import { err, Result as NeverThrowResult, ok, ResultAsync } from "neverthrow";
-import { App, Framework } from "../../gen";
+import { App, Framework, JavaScriptClientType } from "../../gen";
 import {} from "../clients";
 import { APP_MAP, CLIENT_TYPE_FRAMEWORK_MAP, FRAMEWORK_MAP } from "./constants";
 import { FQDN } from "./types";
@@ -111,7 +111,7 @@ export const buildURL = (fqdn: FQDN): string => {
   }
 
   // Framework
-  const framework = CLIENT_TYPE_FRAMEWORK_MAP[fqdn.clientType];
+  const framework = CLIENT_TYPE_FRAMEWORK_MAP[getEnumKey(JavaScriptClientType, fqdn.clientType)];
   const frameworkText = FRAMEWORK_MAP[getEnumKey(Framework, framework)];
   domainElements.push(frameworkText);
 
