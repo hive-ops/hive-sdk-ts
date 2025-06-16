@@ -15,11 +15,11 @@ export const getStackHRN = () => {
 };
 
 export const vespaInit = (options: { stackHRN: string; accessToken: string; userType: UserType; clientOptions: ClientOptions }): void => {
-  stackHRN = options?.stackHRN || getEnvString("HIVE_STACK_HRN");
+  stackHRN = options.stackHRN || getEnvString("HIVE_STACK_HRN");
   initialize({
-    token: options?.accessToken || getEnvString("HIVE_ACCESS_TOKEN"),
+    token: options.accessToken || getEnvString("HIVE_ACCESS_TOKEN"),
     type: options.userType,
-    options: options?.clientOptions,
+    options: options.clientOptions,
   });
 };
 

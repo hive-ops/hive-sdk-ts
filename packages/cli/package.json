@@ -8,7 +8,7 @@
     "dev:watch": "nodemon src/main.ts",
     "initialize-project": "ts-node src/hive.ts vespa initialize-project",
     "generate-code": "ts-node src/hive.ts vespa generate-code",
-    "apply-migration": "ts-node src/hive.ts vespa apply-migration",
+    "apply-migration": "ts-node src/hive.ts vespa apply --project-directory ../../../examples/vespa-typescript",
     "clean": "rm -rf lib/",
     "build": "npm run clean && tsc",
     "fix": "eslint --fix -c .eslintrc.js 'src/**/*' && prettier 'src/**/*.ts' --write",

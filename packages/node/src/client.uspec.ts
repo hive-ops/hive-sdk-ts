@@ -17,39 +17,31 @@ describe("Hive SDK Clients", () => {
     expect(true).toBe(true); // Placeholder test to ensure the test suite runs
   });
 
-  // vespaInit();
-  const tokenClient = core.createTokenClient(core.getEnvString("HIVE_ACCESS_TOKEN"));
-  // const beekeeperClient = createSingletonBeekeeperClient();
   it("should create a singleton TokenClient", async () => {
-    const res = await tokenClient.getSecureAppHiveToken({});
+    const client = core.createTokenClient(core.getEnvString("HIVE_ACCESS_TOKEN"));
+    const res = await client.getSecureAppHiveToken({});
     expect(res).toBeDefined();
     expect(res.hiveTokenPair).toBeDefined();
   });
-  // it("should create a singleton DroneClient", async () => {
-  //   const res = await beekeeperClient.getVespaDatabaseStack({
-  //     hrn: getStackHRN(),
-  //   });
-  //   expect(res).toBeDefined();
-  // });
-  // // it("should perform crud operations in the vespa database", async () => {
-  // //   const res = await beekeeperClient.getVespaDatabaseStack({
-  // //     hrn: getStackHRN(),
-  // //   });
-  // //   const stack = res.stack!;
-  // //   expect(stack).toBeDefined();
-  // //   expect(stack.databases).toHaveLength(1);
-  // //   const database = stack.databases[0];
-  // //   const userData = generateTestUserData();
-  // //   const record = marshalRecord(userData, UserColumnTypeMap);
-  // //   const vespaClient = createSingletonVespaClient(database);
-  // //   const res2 = await vespaClient.insertRecord({
-  // //     databaseHrn: database.hrn,
-  // //     tableName: "User",
-  // //     record: record,
-  // //   });
-  // //   expect(res2).toBeDefined();
-  // // expect(res2.insertedIds).toHaveLength(1);
-  // // expect(res2.insertedIds[0]).toBeDefined();
-  // // expect(res2.insertedIds[0]).not.toBe("");
-  // // });
+
+  let vespaDatabaseStack: core.VespaDatabaseStack;
+  let vespaDatabase: core.VespaDatabase;
+
+  it("should test Beekeeper Client", async () => {
+    const client = core.createBeekeeperClient();
+    const res = await client.getVespaDatabaseStack({
+      hrn: core.getEnvString("HIVE_STACK_HRN"),
+    });
+    expect(res.stack).toBeDefined();
+    expect(res.stack?.databases).toBeDefined();
+
+    // vespaDatabaseStack
+
+    const res2 = await client.applyMigration({
+      stackHrn: core.getEnvString("HIVE_STACK_HRN"),
+      hslFiles: [],
+    });
+    expect(res2).toBeDefined();
+    expect(res2.migration).toBeDefined();
+  });
 });

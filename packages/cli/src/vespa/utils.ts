@@ -7,7 +7,12 @@ import * as fs from "fs";
 import * as path from "path";
 import { promisify } from "util";
 
-export const getProjectDirectoryFromOptions = (opts: OptionValues): string => (opts.projectDirectory as string | undefined) || process.cwd();
+export const getProjectDirectoryFromOptions = (opts: OptionValues): string => {
+
+  const dir = (opts.projectDirectory as string | undefined) || process.cwd();
+
+  return path.isAbsolute(dir) ? dir : path.resolve(process.cwd(), dir);
+};
 export const getStackHRNFromOptions = (opts: OptionValues): string => (opts.stackHrn as string) || process.env.HIVE_STACK_HRN || "";
 export const getAccessTokenFromOptions = (opts: OptionValues): string => (opts.accessToken as string) || process.env.HIVE_ACCESS_TOKEN || "";
 
