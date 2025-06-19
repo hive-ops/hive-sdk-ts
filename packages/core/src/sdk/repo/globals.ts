@@ -14,11 +14,11 @@ export const getStackHRN = () => {
   return stackHRN;
 };
 
-export const vespaInit = (options: { stackHRN: string; accessToken: string; userType: UserType; clientOptions: ClientOptions }): void => {
+export const vespaInit = (options: { stackHRN?: string; accessToken?: string; userType?: UserType; clientOptions: ClientOptions }): void => {
   stackHRN = options.stackHRN || getEnvString("HIVE_STACK_HRN");
   initialize({
     token: options.accessToken || getEnvString("HIVE_ACCESS_TOKEN"),
-    type: options.userType,
+    type: options.userType || UserType.TENANT_SECURE_APP,
     options: options.clientOptions,
   });
 };
