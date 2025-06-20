@@ -1,0 +1,28 @@
+{
+  "name": "@hiveops/example-typescript",
+  "version": "1.0.0",
+  "description": "Exampls of using HiveOps SDK with TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf dist/",
+    "build": "npm run clean && tsc",
+    "dev": "ts-node src/app.ts",
+    "update": "ncu @hiveops/* -u && npm install",
+    "vespa:clean": "mv src/models.hsl src/models.hsl.bak && hive vespa apply && mv src/models.hsl.bak src/models.hsl && rm -rf src/vespa/",
+    "vespa:generate": "hive vespa generate -p ts",
+    "vespa:apply": "hive vespa apply",
+    "vespa:generate-and-apply": "hive vespa generate-and-apply -p ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@hiveops/cli": "^1.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.7.0",
+    "@hiveops/node": "^1.4.0"
+  }
+}
