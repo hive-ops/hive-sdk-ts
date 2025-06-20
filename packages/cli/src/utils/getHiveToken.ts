@@ -183,8 +183,8 @@ export const getHiveToken = async (): Promise<string> => {
   const state = randomBytes(16).toString("hex"); // Generate a random state for CSRF protection
 
   // Construct the URL to the HiveOps OAuth page
-  const webPageUrl = new URL(`https://hiveops.io/oauth/authorize`);
-  webPageUrl.searchParams.append("redirect_uri", `http://localhost:${localPort}`);
+  const webPageUrl = new URL(`http://localhost:3000/cli-auth`);
+  webPageUrl.searchParams.append("port", localPort.toString());
   webPageUrl.searchParams.append("state", state);
 
   spinner.text = "Opening browser. Please log in to HiveOps and approve authentication...";

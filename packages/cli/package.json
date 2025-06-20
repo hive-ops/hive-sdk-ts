@@ -8,6 +8,7 @@
     "dev:watch": "nodemon src/main.ts",
     "fetch-token": "ts-node src/hive.ts vespa fetch-token",
     "initialize-project": "ts-node src/hive.ts vespa initialize-project",
+    "initialize-project-v2": "ts-node src/hive.ts vespa init-v2",
     "generate-code": "ts-node src/hive.ts vespa generate-code",
     "apply-migration": "ts-node src/hive.ts vespa apply --project-directory ../../../examples/vespa-typescript",
     "clean": "rm -rf lib/",

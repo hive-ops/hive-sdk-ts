@@ -33,6 +33,8 @@ const initializeProjectV2 = async (opts: OptionValues) => {
     console.log("Starting authentication flow...");
     const token = await getHiveToken();
 
+    console.log({token});
+
     // Initialize HiveClient
     const droneClient = createSingletonDroneClient(token);
     const beekeeperClient = createSingletonBeekeeperClient(token);
@@ -226,8 +228,4 @@ model Post = {
   }
 };
 
-export const initializeProjectV2Command = new Command("init-v2")
-  .description("Initialize a project using browser-based authentication")
-  .option("-p, --platform <platform>", "Platform (ts/go)")
-  .option("-d, --directory <directory>", "Project directory")
-  .action(initializeProjectV2);
+export const initializeProjectV2Command = new Command("init-v2").description("Initialize a project using browser-based authentication").action(initializeProjectV2);
