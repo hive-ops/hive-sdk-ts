@@ -2,31 +2,26 @@ import { createClient } from "@connectrpc/connect";
 import { App, VespaService } from "../../gen";
 import { DOMAIN, FQDN } from "../utilities";
 import { buildURL, makeSingletonFactory } from "../utilities/utils";
-import { ClientOptions } from "./types";
-import { invalidateHiveToken } from "./utils";
+import { getClientOptions } from "./globals";
+import { getInterceptors } from "./token-manager";
 
-type VespaClientOptions<T> = ClientOptions<T> & {
-  hubId: string;
-  nodeName: string;
-};
+export const createSingletonVespaClient = makeSingletonFactory(({ hubId, nodeName }: { hubId: string; nodeName: string }) => {
+  const { clientType, createTransportFn } = getClientOptions();
 
-export const createSingletonVespaClient = makeSingletonFactory((options: VespaClientOptions<any>) => {
   const fqdn: FQDN = {
     domain: DOMAIN,
-    hubId: options.hubId,
+    hubId,
     app: App.VESPA,
-    nodeName: options.nodeName,
-    clientType: options.clientType,
+    nodeName,
+    clientType,
   };
 
-  const transport = options.createTransportFn({
+  const transport = createTransportFn({
     url: buildURL(fqdn),
-    token: options.token,
-    rpcOptions: options.rpcOptions,
+    interceptors: getInterceptors(),
   });
 
   return {
     ...createClient(VespaService, transport),
-    invalidateHiveToken: invalidateHiveToken,
   };
 });

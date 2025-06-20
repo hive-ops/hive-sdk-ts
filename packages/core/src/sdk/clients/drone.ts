@@ -1,13 +1,12 @@
 import { createClient } from "@connectrpc/connect";
 import { App, DroneService } from "../../gen";
 import { makeSingletonFactory } from "../utilities/utils";
-import { ClientOptions } from "./types";
-import { createTransport, invalidateHiveToken } from "./utils";
+import { getInterceptors } from "./token-manager";
+import { createTransport } from "./utils";
 
-export const createSingletonDroneClient = makeSingletonFactory((options: ClientOptions<any>) => {
-  const transport = createTransport(options, App.DRONE);
+export const createDroneClient = () => {
+  const transport = createTransport(App.DRONE, getInterceptors());
   return {
     ...createClient(DroneService, transport),
-    invalidateHiveToken: invalidateHiveToken,
   };
-});
+};

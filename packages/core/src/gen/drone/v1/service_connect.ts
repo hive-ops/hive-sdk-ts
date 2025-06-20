@@ -3,8 +3,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetOrganizationsRequest, GetOrganizationsResponse, GetProjectsRequest, GetProjectsResponse, GetSecureAppAccessTokenSecretRequest, GetSecureAppAccessTokenSecretResponse, GetSecureAppHiveTokenRequest, GetSecureAppHiveTokenResponse, GetSecureAppSelfRequest, GetSecureAppSelfResponse, GetSecureAppsRequest, GetSecureAppsResponse } from "./models_pb";
+import { GetSecureAppHiveTokenRequest, GetSecureAppHiveTokenResponse, RefreshSecureAppHiveTokenRequest, RefreshSecureAppHiveTokenResponse, RefreshTenantAdminHiveTokenRequest, RefreshTenantAdminHiveTokenResponse } from "./hive_token_pb";
 import { MethodKind } from "@bufbuild/protobuf";
+import { GetOrganizationsRequest, GetOrganizationsResponse, GetProjectsRequest, GetProjectsResponse, GetSecureAppAccessTokenSecretRequest, GetSecureAppAccessTokenSecretResponse, GetSecureAppSelfRequest, GetSecureAppSelfResponse, GetSecureAppsRequest, GetSecureAppsResponse } from "./models_pb";
 
 /**
  * @generated from service drone.v1.DroneTokenService
@@ -19,6 +20,24 @@ export const DroneTokenService = {
       name: "GetSecureAppHiveToken",
       I: GetSecureAppHiveTokenRequest,
       O: GetSecureAppHiveTokenResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc drone.v1.DroneTokenService.RefreshSecureAppHiveToken
+     */
+    refreshSecureAppHiveToken: {
+      name: "RefreshSecureAppHiveToken",
+      I: RefreshSecureAppHiveTokenRequest,
+      O: RefreshSecureAppHiveTokenResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc drone.v1.DroneTokenService.RefreshTenantAdminHiveToken
+     */
+    refreshTenantAdminHiveToken: {
+      name: "RefreshTenantAdminHiveToken",
+      I: RefreshTenantAdminHiveTokenRequest,
+      O: RefreshTenantAdminHiveTokenResponse,
       kind: MethodKind.Unary,
     },
   }

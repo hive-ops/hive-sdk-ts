@@ -1,5 +1,5 @@
 import { err, Result as NeverThrowResult, ok, ResultAsync } from "neverthrow";
-import { App, Framework } from "../../gen";
+import { App, Framework, JavaScriptClientType } from "../../gen";
 import {} from "../clients";
 import { APP_MAP, CLIENT_TYPE_FRAMEWORK_MAP, FRAMEWORK_MAP } from "./constants";
 import { FQDN } from "./types";
@@ -63,6 +63,16 @@ export function makeSingletonFactory<S, T>(factory: SingletonFactory<S, T>): Sin
   };
 }
 
+export function makeSingletonFunction<T>(makeObject: () => T): () => T {
+  let singleton: T;
+  return () => {
+    if (!singleton) {
+      singleton = makeObject();
+    }
+    return singleton;
+  };
+}
+
 export const throwIfNullish = <T>(value: T | undefined, message: string): T => {
   if (!value) {
     throw new Error(message);
@@ -73,15 +83,6 @@ export const throwIfNullishAsync = async <T>(promise: Promise<T | undefined>, me
   const value = await promise;
   return throwIfNullish(value, message);
 };
-export function makeSingletonFunction<T>(makeObject: () => T): () => T {
-  let singleton: T;
-  return () => {
-    if (!singleton) {
-      singleton = makeObject();
-    }
-    return singleton;
-  };
-}
 
 export const getEnumKey = <T extends object>(enumType: T, value: T[keyof T]): keyof T => {
   return Object.keys(enumType)[Object.values(enumType).indexOf(value)] as keyof T;
@@ -110,7 +111,7 @@ export const buildURL = (fqdn: FQDN): string => {
   }
 
   // Framework
-  const framework = CLIENT_TYPE_FRAMEWORK_MAP[fqdn.clientType];
+  const framework = CLIENT_TYPE_FRAMEWORK_MAP[getEnumKey(JavaScriptClientType, fqdn.clientType)];
   const frameworkText = FRAMEWORK_MAP[getEnumKey(Framework, framework)];
   domainElements.push(frameworkText);
 

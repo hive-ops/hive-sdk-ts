@@ -1,13 +1,33 @@
 import { createClient } from "@connectrpc/connect";
-import { App, DroneTokenService } from "../../gen";
-import { makeSingletonFactory } from "../utilities/utils";
-import { ClientOptions } from "./types";
-import { createTransport, invalidateHiveToken } from "./utils";
+import { App, DroneTokenService, HiveTokenPair, UserType } from "../../gen";
+import { createTransport } from "./utils";
 
-export const createSingletonTokenClient = makeSingletonFactory((options: ClientOptions<any>) => {
-  const transport = createTransport(options, App.DRONE);
+export const createTokenClient = (token: string) => {
+  const tokenInterceptor = (next: any) => (req: any) => {
+    req.header.set("Authorization", `Bearer ${token}`);
+    return next(req);
+  };
+  const transport = createTransport(App.DRONE, [tokenInterceptor]);
   return {
     ...createClient(DroneTokenService, transport),
-    invalidateHiveToken: invalidateHiveToken,
   };
-});
+};
+
+export const fetchSecureAppHiveToken = async (token: string): Promise<HiveTokenPair> => {
+  const tokenClient = createTokenClient(token);
+  const uid = "";
+  const { hiveTokenPair } = await tokenClient.getSecureAppHiveToken({ tokenUid: uid });
+  return hiveTokenPair!;
+};
+
+export const refreshHiveToken = async (token: string, userType: UserType): Promise<HiveTokenPair> => {
+  const tokenClient = createTokenClient(token);
+  switch (userType) {
+    case UserType.TENANT_ADMIN:
+      return (await tokenClient.refreshTenantAdminHiveToken({ tokenUid: "" })).hiveTokenPair!;
+    case UserType.TENANT_SECURE_APP:
+      return (await tokenClient.refreshSecureAppHiveToken({ tokenUid: "" })).hiveTokenPair!;
+    default:
+      throw new Error("Unsupported user type");
+  }
+};

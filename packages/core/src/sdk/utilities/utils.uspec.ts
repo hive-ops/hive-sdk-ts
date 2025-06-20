@@ -1,5 +1,5 @@
 import { Err, err, Ok, ok } from "neverthrow";
-import { App } from "../../gen";
+import { App, JavaScriptClientType, } from "../../gen";
 import { FQDN } from "./types";
 import * as utils from "./utils";
 
@@ -135,7 +135,7 @@ describe("utils", () => {
       {
         fqdn: {
           app: App.DRONE,
-          clientType: "node",
+          clientType: JavaScriptClientType.NODE,
           domain: "example.com",
         },
         expected: "https://grpc.drone.example.com",
@@ -143,7 +143,7 @@ describe("utils", () => {
       {
         fqdn: {
           app: App.BEEKEEPER,
-          clientType: "web",
+          clientType: JavaScriptClientType.WEB,
           domain: "example.com",
         },
         expected: "https://grpc-web.beekeeper.example.com",
@@ -151,7 +151,7 @@ describe("utils", () => {
       {
         fqdn: {
           app: App.VESPA,
-          clientType: "web",
+          clientType: JavaScriptClientType.WEB,
           nodeName: "node1",
           hubId: "hub42",
           domain: "example.com",

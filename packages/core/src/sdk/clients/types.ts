@@ -1,26 +1,17 @@
-import { Client, Transport } from "@connectrpc/connect";
-import { BeekeeperService, DroneService, DroneTokenService, HiveToken, VespaService } from "../../gen";
-import { ClientType } from "../utilities/types";
+import { Client, Interceptor, Transport } from "@connectrpc/connect";
+import { BeekeeperService, DroneService, DroneTokenService, JavaScriptClientType, VespaService } from "../../gen";
 
-export type CreateTransportFn<T> = (transportOptions: { url: string; token: string; rpcOptions: T }) => Transport;
+export type CreateTransportFn = (opts: { url: string; interceptors: Interceptor[] }) => Transport;
 
-export type ClientOptions<T> = {
-  clientType: ClientType;
-  token: string;
-  rpcOptions: T;
-  createTransportFn: CreateTransportFn<T>;
+export type ClientOptions = {
+  clientType: JavaScriptClientType;
+  createTransportFn: CreateTransportFn;
 };
 
-export type FetchFreshHiveTokenFn = (accessToken: string) => Promise<HiveToken>;
+export type TokenClient = Client<typeof DroneTokenService>;
 
-type BaseClient = {
-  invalidateHiveToken: () => void;
-};
+export type DroneClient = Client<typeof DroneService>;
 
-export type TokenClient = BaseClient & Client<typeof DroneTokenService>;
+export type BeekeeperClient = Client<typeof BeekeeperService>;
 
-export type DroneClient = BaseClient & Client<typeof DroneService>;
-
-export type BeekeeperClient = BaseClient & Client<typeof BeekeeperService>;
-
-export type VespaClient = BaseClient & Client<typeof VespaService>;
+export type VespaClient = Client<typeof VespaService>;

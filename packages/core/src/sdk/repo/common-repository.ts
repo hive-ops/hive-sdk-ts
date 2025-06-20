@@ -1,12 +1,15 @@
 import { ColumnType, DatabaseSchema, VespaDatabase, VespaDatabaseStack } from "../../gen";
-import { BeekeeperClient, VespaClient } from "../clients";
+import { BeekeeperClient, createBeekeeperClient, createSingletonVespaClient, VespaClient } from "../clients";
 import { VESPA_COLUMN_SUFFIXES } from "../utilities";
 import { convertFindOptionsToWhereConditions, FindManyOptions, FindOneOptions, getLimit, getOffset } from "./find-options";
 import { databaseStack, getStackHRN, setDatabaseStack } from "./globals";
 import { marshalRecord, unmarshalRecord } from "./marshalling";
 import { ColumnTypeMap, Metadata } from "./types";
 
-export abstract class CommonRepository<S, T extends Metadata & S> {
+export abstract class BaseRepository<S, T extends Metadata & S> {
+  private beekeeperClient: BeekeeperClient | undefined;
+  private vespaClient: VespaClient | undefined;
+
   // TODO: make the attributes private
   constructor(private readonly tableName: string) {}
 
@@ -122,8 +125,19 @@ export abstract class CommonRepository<S, T extends Metadata & S> {
     });
   }
 
-  abstract getBeekeeperClient(): BeekeeperClient;
-  abstract getVespaClient(database: VespaDatabase): Promise<VespaClient>;
+  private getBeekeeperClient(): BeekeeperClient {
+    if (!this.beekeeperClient) {
+      this.beekeeperClient = createBeekeeperClient();
+    }
+    return this.beekeeperClient;
+  }
+
+  private getVespaClient(database: VespaDatabase): VespaClient {
+    if (!this.vespaClient) {
+      this.vespaClient = createSingletonVespaClient({ hubId: database.node?.hubId!, nodeName: database.node?.name! });
+    }
+    return this.vespaClient;
+  }
 
   async getVespaDatabaseStack(): Promise<VespaDatabaseStack> {
     if (!databaseStack) {

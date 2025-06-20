@@ -1,6 +1,5 @@
-import { Metadata, vespaInit } from "@hiveops/core";
+import { BaseRepository, Metadata } from "@hiveops/core";
 import dotenv from "dotenv";
-import { BaseRepository } from "./repo";
 
 export enum UserRole {
   ADMIN = 1,
@@ -39,7 +38,7 @@ export class UserRepository extends BaseRepository<UserData, User> {
 describe("repo", () => {
   beforeAll(() => {
     dotenv.config();
-    vespaInit();
+    // vespaInit();
   });
 
   it("should be defined", () => {
