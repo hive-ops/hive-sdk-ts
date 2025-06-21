@@ -1,7 +1,9 @@
-import { createSingletonBeekeeperClient, createSingletonDroneClient } from "@hiveops/node";
+import { createBeekeeperClient, createDroneClient, UserType } from "@hiveops/core";
+import { initialize } from "@hiveops/node";
 import { Command, OptionValues } from "commander";
 import fs from "fs";
 import inquirer from "inquirer";
+import _ from "lodash";
 import path from "path";
 import { getHiveToken } from "../utils/getHiveToken";
 import { getProjectDirectoryFromOptions, runCommandWithOutput } from "./utils";
@@ -33,14 +35,19 @@ const initializeProjectV2 = async (opts: OptionValues) => {
     console.log("Starting authentication flow...");
     const token = await getHiveToken();
 
-    console.log({token});
+    initialize({
+      hiveToken: token,
+      userType: UserType.TENANT_ADMIN,
+    });
 
     // Initialize HiveClient
-    const droneClient = createSingletonDroneClient(token);
-    const beekeeperClient = createSingletonBeekeeperClient(token);
+    const droneClient = createDroneClient();
+    const beekeeperClient = createBeekeeperClient();
+
     // Step 2: Fetch and select organization
-    console.log("\nFetching organizations...");
-    const { organizations } = await droneClient.getOrganizations({});
+    const orgRes = await droneClient.getOrganizations({});
+
+    const organizations = _(orgRes.organizations).keyBy("uuid").values().value();
 
     if (organizations.length === 0) {
       console.error("\n❌ No organizations found. Please visit https://hiveops.io to create one.");
@@ -60,7 +67,6 @@ const initializeProjectV2 = async (opts: OptionValues) => {
     ]);
 
     // Step 3: Fetch and select secure app
-    console.log("\nFetching secure apps...");
     const { secureApps } = await droneClient.getSecureApps({ organizationUuid: orgUUID });
 
     if (secureApps.length === 0) {
@@ -73,15 +79,16 @@ const initializeProjectV2 = async (opts: OptionValues) => {
         type: "list",
         name: "appHRN",
         message: "Select a secure app:",
-        choices: secureApps.map((app) => ({
-          name: app.name,
+        choices: secureApps.map((app, i) => ({
+          name: `${i + 1}: ${app.name}`,
           value: app.hrn,
         })),
       },
     ]);
 
+    const selectedSecureApp = secureApps.find((app) => app.hrn === appHRN);
+
     // Step 4: Fetch and select project
-    console.log("\nFetching projects...");
     const { projects } = await droneClient.getProjects({ organizationUuid: orgUUID });
 
     if (projects.length === 0) {
@@ -102,7 +109,6 @@ const initializeProjectV2 = async (opts: OptionValues) => {
     ]);
 
     // Step 5: Fetch and select database stacks
-    console.log("\nFetching database stacks...");
     const { stacks } = await beekeeperClient.listVespaDatabaseStacksByProject({
       organizationUuid: orgUUID,
       projectUuid: projectUUID,
@@ -115,7 +121,7 @@ const initializeProjectV2 = async (opts: OptionValues) => {
 
     const { stackHRN } = await inquirer.prompt([
       {
-        type: "list",
+        type: "rawlist",
         name: "stackHRN",
         message: "Select a database stack:",
         choices: stacks.map((stack) => ({
@@ -126,12 +132,10 @@ const initializeProjectV2 = async (opts: OptionValues) => {
     ]);
 
     // Step 6: Fetch access token and database HRN
-    // console.log("\nFetching credentials...");
-    // const [appAccessToken, stackDetails] = await Promise.all([droneClient.getSecureAppToken(appId), droneClient.getStackDetails(stackHRN)]);
-
-    // const appAccessToken = await droneClient.getSecureAppAccessTokenSecret({ secureAppHrn: appHRN });
-
-    const appAccessToken = "dferivnoskdlo";
+    console.log("\nFetching credentials...");
+    const appAccessTokenSecretRes = await droneClient.getSecureAppAccessTokenSecret({
+      tokenHrn: selectedSecureApp?.accessTokens?.[0]?.hrn,
+    });
 
     // Continue with the normal init flow
     const projectDirectory = getProjectDirectoryFromOptions(opts);
@@ -139,7 +143,7 @@ const initializeProjectV2 = async (opts: OptionValues) => {
     // Create .env file
     const envContent = `
 HIVE_STACK_HRN=${stackHRN}
-HIVE_ACCESS_TOKEN=${appAccessToken}
+HIVE_ACCESS_TOKEN=${appAccessTokenSecretRes.accessTokenSecret}
 `;
     const envFilePath = path.join(projectDirectory, ".env");
     fs.writeFileSync(envFilePath, envContent, { encoding: "utf8" });

@@ -1,0 +1,32 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Initialize Project V2",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/packages/cli/src/hive.ts",
+      "args": [
+        "vespa",
+        "init-v2",
+        "--project-directory",
+        "../../../examples/vespa-typescript"
+      ],
+      "cwd": "${workspaceFolder}/packages/cli",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/**/*.js"
+      ],
+      "console": "integratedTerminal"
+    }
+  ]
+}

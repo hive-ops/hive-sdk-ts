@@ -62,9 +62,11 @@
     "express": "^5.1.0",
     "figlet": "^1.8.0",
     "inquirer": "^12.5.2",
+    "lodash": "^4.17.21",
     "ora": "^8.2.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.18",
     "@typescript-eslint/eslint-plugin": "^5.48.2",
     "@typescript-eslint/parser": "^5.48.2",
     "eslint": "^8",
