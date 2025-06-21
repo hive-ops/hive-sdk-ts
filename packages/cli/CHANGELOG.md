@@ -1,5 +1,16 @@
 # @hiveops/cli
 
+## 1.4.0
+
+### Minor Changes
+
+- Add fetch-token command and project initialization flow
+
+### Patch Changes
+
+- Updated dependencies
+  - @hiveops/node@1.6.0
+
 ## 1.3.0
 
 ### Minor Changes
