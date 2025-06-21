@@ -15,7 +15,7 @@
         "vespa",
         "init-v2",
         "--project-directory",
-        "../../../examples/vespa-typescript"
+        "../../examples/blog-backend"
       ],
       "cwd": "${workspaceFolder}/packages/cli",
       "runtimeExecutable": "node",

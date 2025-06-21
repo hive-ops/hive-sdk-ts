@@ -5,7 +5,7 @@ import fs from "fs";
 import inquirer from "inquirer";
 import _ from "lodash";
 import path from "path";
-import { getHiveToken } from "../utils/getHiveToken";
+import { getHiveToken, updateDotEnv, updateDotGitIgnore } from "../utils";
 import { getProjectDirectoryFromOptions, runCommandWithOutput } from "./utils";
 
 interface Organization {
@@ -79,8 +79,8 @@ const initializeProjectV2 = async (opts: OptionValues) => {
         type: "list",
         name: "appHRN",
         message: "Select a secure app:",
-        choices: secureApps.map((app, i) => ({
-          name: `${i + 1}: ${app.name}`,
+        choices: secureApps.map((app) => ({
+          name: app.name,
           value: app.hrn,
         })),
       },
@@ -121,7 +121,7 @@ const initializeProjectV2 = async (opts: OptionValues) => {
 
     const { stackHRN } = await inquirer.prompt([
       {
-        type: "rawlist",
+        type: "list",
         name: "stackHRN",
         message: "Select a database stack:",
         choices: stacks.map((stack) => ({
@@ -141,7 +141,13 @@ const initializeProjectV2 = async (opts: OptionValues) => {
     const projectDirectory = getProjectDirectoryFromOptions(opts);
 
     // Update .env file
-    updateDotEnv(projectDirectory, stackHRN, appAccessTokenSecretRes.accessTokenSecret);
+    updateDotEnv(projectDirectory, [
+      ["HIVE_STACK_HRN", stackHRN],
+      ["HIVE_ACCESS_TOKEN", appAccessTokenSecretRes.accessTokenSecret],
+    ]);
+
+    // Ensure .gitignore exists
+    updateDotGitIgnore(projectDirectory, [".env"]);
 
     // Ask about bootstrap models
     const { createBootstrapModels } = await inquirer.prompt([
@@ -209,31 +215,6 @@ model Post = {
   } catch (error: any) {
     console.error("\n❌ Error initializing project:", error.message);
     process.exit(1);
-  }
-};
-
-const updateDotEnv = (projectDirectory: string, stackHRN: string, accessTokenSecret: string) => {
-  // Create .env file
-  const envContent = `
-HIVE_STACK_HRN=${stackHRN}
-HIVE_ACCESS_TOKEN=${accessTokenSecret}
-`;
-  const envFilePath = path.join(projectDirectory, ".env");
-  fs.writeFileSync(envFilePath, envContent, { encoding: "utf8" });
-  console.log("\n✅ .env file created successfully.");
-
-  // Setup .gitignore
-  const gitignorePath = path.join(projectDirectory, ".gitignore");
-  if (!fs.existsSync(gitignorePath)) {
-    fs.writeFileSync(gitignorePath, "", { encoding: "utf8" });
-  }
-
-  const gitignoreContent = fs.readFileSync(gitignorePath, { encoding: "utf8" }).split("\n");
-  if (!gitignoreContent.includes(".env")) {
-    fs.appendFileSync(gitignorePath, "\n.env\n", { encoding: "utf8" });
-    console.log("✅ .env added to .gitignore successfully.");
-  } else {
-    console.log("ℹ️ .env already exists in .gitignore.");
   }
 };
 
