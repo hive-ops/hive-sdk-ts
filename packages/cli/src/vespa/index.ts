@@ -1,5 +1,6 @@
 import { Command, Option } from "commander";
 import { applyMigrationCommand } from "./applyMigration";
+import { fetchTokenCommand } from "./fetchToken";
 import { generateAndApplyCommand } from "./generateAndApplyCode";
 import { generateCodeCommand } from "./generateCode";
 import { initializeProjectCommand } from "./initProject";
@@ -20,7 +21,8 @@ export const vespaCommand = new Command("vespa")
   .addCommand(planMigrationCommand)
   .addCommand(applyMigrationCommand)
   .addCommand(generateCodeCommand)
-  .addCommand(generateAndApplyCommand);
+  .addCommand(generateAndApplyCommand)
+  .addCommand(fetchTokenCommand);
 
 vespaCommand.commands.forEach((command) => {
   vespaOptions.forEach((option) => {

@@ -1,0 +1,33 @@
+
+enum UserRole<user_role> {
+  ADMIN = 1
+  USER  = 2
+}
+
+type Person<person> = {
+  firstName: string = 1
+  lastName:  string = 2
+  age:       int    = 3
+}
+
+type Image<image> = {
+  url:    string = 1
+  alt:    string = 2
+  width:  int    = 3
+  height: int    = 4
+}
+
+model User<user> = Person & {
+  email: 				string 		= 1
+  role: 				UserRole  = 2
+  isActive: 		bool			= 3
+  lastLogin: 		Timestamp = 4
+  profileImage?: Image 		= 5
+}
+
+model Post<post> = {
+  userId: string 	= 1
+  title: 	string 	= 2
+  body: 	string 	= 3
+}
+      

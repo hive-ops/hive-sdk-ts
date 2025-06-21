@@ -8,3 +8,11 @@ export const vespaInit = (options?: { stackHRN?: string; accessToken?: string; u
     userType: options?.userType,
     clientOptions,
   });
+
+export const initialize = (options?: { token?: string; userType: core.UserType; hiveToken?: core.HiveTokenPair }): void =>
+  core.initialize({
+    hiveToken: options?.hiveToken,
+    token: options?.token,
+    type: options?.userType || core.UserType.TENANT_SECURE_APP,
+    options: clientOptions,
+  });
