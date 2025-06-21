@@ -140,28 +140,8 @@ const initializeProjectV2 = async (opts: OptionValues) => {
     // Continue with the normal init flow
     const projectDirectory = getProjectDirectoryFromOptions(opts);
 
-    // Create .env file
-    const envContent = `
-HIVE_STACK_HRN=${stackHRN}
-HIVE_ACCESS_TOKEN=${appAccessTokenSecretRes.accessTokenSecret}
-`;
-    const envFilePath = path.join(projectDirectory, ".env");
-    fs.writeFileSync(envFilePath, envContent, { encoding: "utf8" });
-    console.log("\n✅ .env file created successfully.");
-
-    // Setup .gitignore
-    const gitignorePath = path.join(projectDirectory, ".gitignore");
-    if (!fs.existsSync(gitignorePath)) {
-      fs.writeFileSync(gitignorePath, "", { encoding: "utf8" });
-    }
-
-    const gitignoreContent = fs.readFileSync(gitignorePath, { encoding: "utf8" }).split("\n");
-    if (!gitignoreContent.includes(".env")) {
-      fs.appendFileSync(gitignorePath, "\n.env\n", { encoding: "utf8" });
-      console.log("✅ .env added to .gitignore successfully.");
-    } else {
-      console.log("ℹ️ .env already exists in .gitignore.");
-    }
+    // Update .env file
+    updateDotEnv(projectDirectory, stackHRN, appAccessTokenSecretRes.accessTokenSecret);
 
     // Ask about bootstrap models
     const { createBootstrapModels } = await inquirer.prompt([
@@ -229,6 +209,31 @@ model Post = {
   } catch (error: any) {
     console.error("\n❌ Error initializing project:", error.message);
     process.exit(1);
+  }
+};
+
+const updateDotEnv = (projectDirectory: string, stackHRN: string, accessTokenSecret: string) => {
+  // Create .env file
+  const envContent = `
+HIVE_STACK_HRN=${stackHRN}
+HIVE_ACCESS_TOKEN=${accessTokenSecret}
+`;
+  const envFilePath = path.join(projectDirectory, ".env");
+  fs.writeFileSync(envFilePath, envContent, { encoding: "utf8" });
+  console.log("\n✅ .env file created successfully.");
+
+  // Setup .gitignore
+  const gitignorePath = path.join(projectDirectory, ".gitignore");
+  if (!fs.existsSync(gitignorePath)) {
+    fs.writeFileSync(gitignorePath, "", { encoding: "utf8" });
+  }
+
+  const gitignoreContent = fs.readFileSync(gitignorePath, { encoding: "utf8" }).split("\n");
+  if (!gitignoreContent.includes(".env")) {
+    fs.appendFileSync(gitignorePath, "\n.env\n", { encoding: "utf8" });
+    console.log("✅ .env added to .gitignore successfully.");
+  } else {
+    console.log("ℹ️ .env already exists in .gitignore.");
   }
 };
 
