@@ -1,5 +1,11 @@
 # @hiveops/cli
 
+## 1.4.2
+
+### Patch Changes
+
+- feat: add README.md for CLI package with features, installation, usage, and development instructions
+
 ## 1.4.1
 
 ### Patch Changes
