@@ -1,7 +1,5 @@
 import { App, Framework, JavaScriptClientType } from "../../gen";
 
-export const DOMAIN = "hiveops.io";
-
 export const FRAMEWORK_MAP: { [key in keyof typeof Framework]: string } = {
   UNSPECIFIED: "",
   GRPC: "grpc",

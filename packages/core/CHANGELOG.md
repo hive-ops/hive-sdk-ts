@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.7.2
+
+### Patch Changes
+
+- feat: replace DOMAIN constant with dynamic getDomain function for improved flexibility
+
 ## 1.7.1
 
 ### Patch Changes

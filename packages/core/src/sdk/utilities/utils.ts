@@ -1,6 +1,5 @@
 import { err, Result as NeverThrowResult, ok, ResultAsync } from "neverthrow";
 import { App, Framework, JavaScriptClientType } from "../../gen";
-import {} from "../clients";
 import { APP_MAP, CLIENT_TYPE_FRAMEWORK_MAP, FRAMEWORK_MAP } from "./constants";
 import { FQDN } from "./types";
 
@@ -94,6 +93,22 @@ export const VESPA_COLUMN_SUFFIXES = ["id", "partition"]; // "createdAt", "updat
 export const isVespaColumn = (key: string): boolean => key.startsWith(vespaColumnPrefix);
 export const getVespaColumnName = (key: string): string => {
   return key.replace(vespaColumnPrefix, "");
+};
+
+const DOMAIN = "hiveops.io";
+
+export const getDomain = (): string => {
+  return (
+    DOMAIN ||
+    process.env.HIVE_DOMAIN || // Default - Node.js, Angular, Parcel
+    process.env.NEXT_PUBLIC_HIVE_DOMAIN || // Next.js
+    process.env.REACT_APP_HIVE_DOMAIN || // React
+    process.env.VUE_APP_HIVE_DOMAIN || // Vue
+    process.env.PUBLIC_HIVE_DOMAIN || // SvelteKit
+    process.env.NUXT_PUBLIC_HIVE_DOMAIN || // Nuxt.js
+    process.env.VITE_HIVE_DOMAIN || // Vite
+    ""
+  );
 };
 
 export const buildURL = (fqdn: FQDN): string => {
