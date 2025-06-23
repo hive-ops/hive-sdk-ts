@@ -1,5 +1,11 @@
 # @hiveops/cli
 
+## 1.4.1
+
+### Patch Changes
+
+- feat: add 'open' package as a dependency in CLI package
+
 ## 1.4.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@hiveops/cli",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
@@ -62,6 +62,7 @@
     "figlet": "^1.8.0",
     "inquirer": "^12.5.2",
     "lodash": "^4.17.21",
+    "open": "^10.1.2",
     "ora": "^8.2.0"
   },
   "devDependencies": {
