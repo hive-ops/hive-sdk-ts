@@ -1,4 +1,4 @@
-import { HiveTokenPair } from "@hiveops/core";
+import { getDomain, HiveTokenPair } from "@hiveops/core";
 import { randomBytes } from "crypto";
 import express from "express";
 import { createServer } from "http";
@@ -86,7 +86,7 @@ export const getHiveToken = async (): Promise<HiveTokenPair> => {
   const state = randomBytes(16).toString("hex"); // Generate a random state for CSRF protection
 
   // Construct the URL to the HiveOps OAuth page
-  const webPageUrl = new URL(`http://console.hiveops.io/cli-auth`);
+  const webPageUrl = new URL(`http://console.${getDomain()}/cli-auth`);
   webPageUrl.searchParams.append("port", localPort.toString());
   webPageUrl.searchParams.append("state", state);
 

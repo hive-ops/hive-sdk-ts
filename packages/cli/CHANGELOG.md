@@ -1,5 +1,11 @@
 # @hiveops/cli
 
+## 1.4.3
+
+### Patch Changes
+
+- feat: update getHiveToken to use dynamic domain retrieval for improved flexibility
+
 ## 1.4.2
 
 ### Patch Changes
