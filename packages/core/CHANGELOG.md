@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.7.3
+
+### Patch Changes
+
+- feat: update getDomain function to fallback to DOMAIN constant for improved reliability
+
 ## 1.7.2
 
 ### Patch Changes

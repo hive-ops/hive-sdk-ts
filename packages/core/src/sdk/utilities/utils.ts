@@ -99,7 +99,6 @@ const DOMAIN = "hiveops.io";
 
 export const getDomain = (): string => {
   return (
-    DOMAIN ||
     process.env.HIVE_DOMAIN || // Default - Node.js, Angular, Parcel
     process.env.NEXT_PUBLIC_HIVE_DOMAIN || // Next.js
     process.env.REACT_APP_HIVE_DOMAIN || // React
@@ -107,7 +106,7 @@ export const getDomain = (): string => {
     process.env.PUBLIC_HIVE_DOMAIN || // SvelteKit
     process.env.NUXT_PUBLIC_HIVE_DOMAIN || // Nuxt.js
     process.env.VITE_HIVE_DOMAIN || // Vite
-    ""
+    DOMAIN // Fallback to default domain
   );
 };
 
