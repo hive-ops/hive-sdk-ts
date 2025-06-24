@@ -1,21 +1,8 @@
-import { Err, err, Ok, ok } from "neverthrow";
-import { App, JavaScriptClientType, } from "../../gen";
+import { App, JavaScriptClientType } from "../../gen";
 import { FQDN } from "./types";
 import * as utils from "./utils";
 
 describe("utils", () => {
-  describe("toError", () => {
-    it("returns the same error if input is an Error", () => {
-      const error = new Error("test");
-      expect(utils.toError(error)).toEqual(error);
-    });
-
-    it("wraps non-Error input in an Error", () => {
-      expect(utils.toError("fail")).toBeInstanceOf(Error);
-      expect(utils.toError("fail").message).toBe("fail");
-    });
-  });
-
   describe("boundedInt", () => {
     it("returns value if within bounds", () => {
       expect(utils.boundedInt(5, 1, 10)).toBe(5);
@@ -25,54 +12,6 @@ describe("utils", () => {
     });
     it("returns max if value is greater than max", () => {
       expect(utils.boundedInt(11, 1, 10)).toBe(10);
-    });
-  });
-
-  describe("resolveResult", () => {
-    it("returns ok if function does not throw", () => {
-      const result = utils.resolveResult(() => 42);
-      expect(result.isOk()).toBe(true);
-      expect((result as Ok<number, Error>).value).toBe(42);
-    });
-    it("returns err if function throws", () => {
-      const result = utils.resolveResult(() => {
-        throw "fail";
-      });
-      expect(result.isErr()).toBe(true);
-      expect((result as Err<number, Error>).error).toBeInstanceOf(Error);
-    });
-  });
-
-  describe("resolveResultAsync", () => {
-    it("returns ok if promise resolves", async () => {
-      const result = await utils.resolveResultAsync(async () => 42);
-      expect(result.isOk()).toBe(true);
-      expect((result as Ok<number, Error>).value).toBe(42);
-    });
-    it("returns err if promise rejects", async () => {
-      const result = await utils.resolveResultAsync(async () => {
-        throw "fail";
-      });
-      expect(result.isErr()).toBe(true);
-      expect((result as Err<number, Error>).error).toBeInstanceOf(Error);
-    });
-  });
-
-  describe("unwrapResult", () => {
-    it("returns value if ok", () => {
-      expect(utils.unwrapResult(ok(123))).toBe(123);
-    });
-    it("throws error if err", () => {
-      expect(() => utils.unwrapResult(err(new Error("fail")))).toThrow("fail");
-    });
-  });
-
-  describe("unwrapResultAsync", () => {
-    it("returns value if ok", async () => {
-      await expect(utils.unwrapResultAsync(Promise.resolve(ok(123)))).resolves.toBe(123);
-    });
-    it("throws error if err", async () => {
-      await expect(utils.unwrapResultAsync(Promise.resolve(err(new Error("fail"))))).rejects.toThrow("fail");
     });
   });
 

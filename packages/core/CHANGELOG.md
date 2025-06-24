@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.8.0
+
+### Minor Changes
+
+- feat: remove unused dependencies and related utility functions for cleaner code
+
 ## 1.7.3
 
 ### Patch Changes

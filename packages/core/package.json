@@ -1,6 +1,6 @@
 {
   "name": "@hiveops/core",
-  "version": "1.7.3",
+  "version": "1.8.0",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
@@ -58,8 +58,7 @@
     "@bufbuild/protobuf": "^1.10.0",
     "@connectrpc/connect": "^1.6.1",
     "@grpc/grpc-js": "^1.12.2",
-    "lodash": "^4.17.21",
-    "neverthrow": "^8.2.0"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
