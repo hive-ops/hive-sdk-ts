@@ -483,6 +483,79 @@ proto3.util.setEnumType(JavaScriptClientType, "hive.v1.JavaScriptClientType", [
 ]);
 
 /**
+ * @generated from enum hive.v1.Environment
+ */
+export enum Environment {
+  /**
+   * @generated from enum value: ENVIRONMENT_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: ENVIRONMENT_DEV = 1;
+   */
+  DEV = 1,
+
+  /**
+   * @generated from enum value: ENVIRONMENT_STAGING = 2;
+   */
+  STAGING = 2,
+
+  /**
+   * @generated from enum value: ENVIRONMENT_QA = 3;
+   */
+  QA = 3,
+
+  /**
+   * @generated from enum value: ENVIRONMENT_PROD = 4;
+   */
+  PROD = 4,
+}
+// Retrieve enum metadata with: proto3.getEnumType(Environment)
+proto3.util.setEnumType(Environment, "hive.v1.Environment", [
+  { no: 0, name: "ENVIRONMENT_UNSPECIFIED" },
+  { no: 1, name: "ENVIRONMENT_DEV" },
+  { no: 2, name: "ENVIRONMENT_STAGING" },
+  { no: 3, name: "ENVIRONMENT_QA" },
+  { no: 4, name: "ENVIRONMENT_PROD" },
+]);
+
+/**
+ * The numeric values of these enums are important, and should not be changed.
+ * There are the assigned base ports for each app.
+ *
+ * @generated from enum hive.v1.BasePort
+ */
+export enum BasePort {
+  /**
+   * @generated from enum value: BASE_PORT_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: BASE_PORT_DRONE = 8080;
+   */
+  DRONE = 8080,
+
+  /**
+   * @generated from enum value: BASE_PORT_BEEKEEPER = 9090;
+   */
+  BEEKEEPER = 9090,
+
+  /**
+   * @generated from enum value: BASE_PORT_VESPA = 2255;
+   */
+  VESPA = 2255,
+}
+// Retrieve enum metadata with: proto3.getEnumType(BasePort)
+proto3.util.setEnumType(BasePort, "hive.v1.BasePort", [
+  { no: 0, name: "BASE_PORT_UNSPECIFIED" },
+  { no: 8080, name: "BASE_PORT_DRONE" },
+  { no: 9090, name: "BASE_PORT_BEEKEEPER" },
+  { no: 2255, name: "BASE_PORT_VESPA" },
+]);
+
+/**
  * @generated from extension: string error_code = 1000000;
  */
 export const error_code = proto3.makeExtension<EnumValueOptions, string>(
@@ -525,6 +598,15 @@ export const app = proto3.makeExtension<EnumValueOptions, string>(
   "hive.v1.app", 
   EnumValueOptions, 
   { no: 202002, kind: "scalar", T: 9 /* ScalarType.STRING */ },
+);
+
+/**
+ * @generated from extension: string environment = 203001;
+ */
+export const environment = proto3.makeExtension<EnumValueOptions, string>(
+  "hive.v1.environment", 
+  EnumValueOptions, 
+  { no: 203001, kind: "scalar", T: 9 /* ScalarType.STRING */ },
 );
 
 /**

@@ -1,6 +1,6 @@
-import { App, Framework, JavaScriptClientType } from "../../gen";
-import { APP_MAP, CLIENT_TYPE_FRAMEWORK_MAP, FRAMEWORK_MAP } from "./constants";
-import { FQDN } from "./types";
+import { App, Environment, FQDN, Framework } from "../../gen";
+import { APP_BASE_PORT_MAP, APP_MAP, CLIENT_TYPE_FRAMEWORK_MAP, ENVIRONMENT_MAP, FRAMEWORK_MAP } from "./constants";
+import { ClientType, Protocol } from "./types";
 
 export const boundedInt = (value: number, min: number, max: number): number => {
   if (value < min) {
@@ -63,6 +63,26 @@ export const getVespaColumnName = (key: string): string => {
 
 const DOMAIN = "hiveops.io";
 
+export const getEnv = (): Environment => {
+  const envStr =
+    process.env.HIVE_ENV || // Default - Node.js, Angular, Parcel
+    process.env.NEXT_PUBLIC_HIVE_ENV || // Next.js
+    process.env.REACT_APP_HIVE_ENV || // React
+    process.env.VUE_APP_HIVE_ENV || // Vue
+    process.env.PUBLIC_HIVE_ENV || // SvelteKit
+    process.env.NUXT_PUBLIC_HIVE_ENV || // Nuxt.js
+    process.env.VITE_HIVE_ENV || // Vite
+    "";
+
+  const envEntry = Object.entries(ENVIRONMENT_MAP).find(([, value]) => value === envStr);
+
+  if (!envEntry || !(Object.keys(Environment) as string[]).includes(envEntry[0])) {
+    return Environment.PROD;
+  } else {
+    return Environment[envEntry[0] as keyof Environment];
+  }
+};
+
 export const getDomain = (): string => {
   return (
     process.env.HIVE_DOMAIN || // Default - Node.js, Angular, Parcel
@@ -76,7 +96,30 @@ export const getDomain = (): string => {
   );
 };
 
-export const buildURL = (fqdn: FQDN): string => {
+export const isDevEnv = (environment: Environment): boolean => environment === Environment.DEV;
+export const isProdEnv = (environment: Environment): boolean => environment === Environment.PROD;
+
+export const getProtocol = (clientType: ClientType, environment: Environment): Protocol => {
+  return isDevEnv(environment) && clientType === "web" ? "http" : "https";
+};
+
+export const buildURL = (fqdn: FQDN, clientType: ClientType): string => {
+  // Port
+  const port = APP_BASE_PORT_MAP[getEnumKey(App, fqdn.app)];
+
+  // TCP Protocol
+  const protocol = getProtocol(clientType, fqdn.environment);
+
+  if (isDevEnv(fqdn.environment)) {
+    return `${protocol}://localhost:${port}`;
+  }
+
+  // Environment
+  let environment = "";
+  if (!([Environment.UNSPECIFIED, Environment.PROD] as Environment[]).includes(fqdn.environment)) {
+    environment = ENVIRONMENT_MAP[getEnumKey(Environment, fqdn.environment)];
+  }
+
   // App
   const appName = APP_MAP[getEnumKey(App, fqdn.app)];
 
@@ -91,7 +134,7 @@ export const buildURL = (fqdn: FQDN): string => {
   }
 
   // Framework
-  const framework = CLIENT_TYPE_FRAMEWORK_MAP[getEnumKey(JavaScriptClientType, fqdn.clientType)];
+  const framework = CLIENT_TYPE_FRAMEWORK_MAP[clientType];
   const frameworkText = FRAMEWORK_MAP[getEnumKey(Framework, framework)];
   domainElements.push(frameworkText);
 
@@ -114,7 +157,7 @@ export const buildURL = (fqdn: FQDN): string => {
 
   // domainElements.push(..._.compact([subdomain, fqdn.domain]));
 
-  return `https://${domainElements.join(".")}`;
+  return `${protocol}://${domainElements.join(".")}`;
 };
 
 // export const isNodeClient = (framework: Framework): boolean => framework === Framework.GRPC;

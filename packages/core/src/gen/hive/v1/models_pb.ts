@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { ErrorCode, Resource, Verb } from "./enums_pb";
+import { App, BasePort, Environment, ErrorCode, Resource, Verb } from "./enums_pb";
 
 /**
  * @generated from message hive.v1.Error
@@ -286,6 +286,75 @@ export class HivePermission extends Message<HivePermission> {
 
   static equals(a: HivePermission | PlainMessage<HivePermission> | undefined, b: HivePermission | PlainMessage<HivePermission> | undefined): boolean {
     return proto3.util.equals(HivePermission, a, b);
+  }
+}
+
+/**
+ * @generated from message hive.v1.FQDN
+ */
+export class FQDN extends Message<FQDN> {
+  /**
+   * @generated from field: string domain = 1;
+   */
+  domain = "";
+
+  /**
+   * @generated from field: string hub_id = 2;
+   */
+  hubId = "";
+
+  /**
+   * @generated from field: hive.v1.Environment environment = 3;
+   */
+  environment = Environment.UNSPECIFIED;
+
+  /**
+   * @generated from field: hive.v1.App app = 4;
+   */
+  app = App.UNSPECIFIED;
+
+  /**
+   * @generated from field: hive.v1.BasePort base_port = 5;
+   */
+  basePort = BasePort.UNSPECIFIED;
+
+  /**
+   * This is only applicable to vespa nodes
+   *
+   * @generated from field: string node_name = 6;
+   */
+  nodeName = "";
+
+  constructor(data?: PartialMessage<FQDN>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "hive.v1.FQDN";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "hub_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "environment", kind: "enum", T: proto3.getEnumType(Environment) },
+    { no: 4, name: "app", kind: "enum", T: proto3.getEnumType(App) },
+    { no: 5, name: "base_port", kind: "enum", T: proto3.getEnumType(BasePort) },
+    { no: 6, name: "node_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FQDN {
+    return new FQDN().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FQDN {
+    return new FQDN().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FQDN {
+    return new FQDN().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FQDN | PlainMessage<FQDN> | undefined, b: FQDN | PlainMessage<FQDN> | undefined): boolean {
+    return proto3.util.equals(FQDN, a, b);
   }
 }
 

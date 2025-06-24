@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.9.0
+
+### Minor Changes
+
+- feat: add Environment and BasePort enums, enhance FQDN class, and update utility functions for improved environment handling
+
 ## 1.8.0
 
 ### Minor Changes

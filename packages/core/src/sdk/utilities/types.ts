@@ -1,9 +1,3 @@
-import { App, JavaScriptClientType } from "../../gen";
+export type ClientType = "node" | "web";
 
-export type FQDN = {
-  domain: string;
-  hubId?: string;
-  app: App;
-  nodeName?: string;
-  clientType: JavaScriptClientType;
-};
+export type Protocol = "http" | "https";

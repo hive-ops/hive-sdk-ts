@@ -1,5 +1,5 @@
-import { App, JavaScriptClientType } from "../../gen";
-import { FQDN } from "./types";
+import { App, FQDN } from "../../gen";
+import { ClientType } from "./types";
 import * as utils from "./utils";
 
 describe("utils", () => {
@@ -69,39 +69,40 @@ describe("utils", () => {
   describe("buildURL", () => {
     const testCases: {
       fqdn: FQDN;
+      clientType: ClientType;
       expected: string;
     }[] = [
       {
-        fqdn: {
+        fqdn: new FQDN({
           app: App.DRONE,
-          clientType: JavaScriptClientType.NODE,
           domain: "example.com",
-        },
+        }),
+        clientType: "node",
         expected: "https://grpc.drone.example.com",
       },
       {
-        fqdn: {
+        fqdn: new FQDN({
           app: App.BEEKEEPER,
-          clientType: JavaScriptClientType.WEB,
           domain: "example.com",
-        },
+        }),
+        clientType: "web",
         expected: "https://grpc-web.beekeeper.example.com",
       },
       {
-        fqdn: {
+        fqdn: new FQDN({
           app: App.VESPA,
-          clientType: JavaScriptClientType.WEB,
           nodeName: "node1",
           hubId: "hub42",
           domain: "example.com",
-        },
+        }),
+        clientType: "web",
         expected: "https://node1.grpc-web.vespa.hub42.example.com",
       },
     ];
 
-    testCases.forEach(({ fqdn, expected }) => {
+    testCases.forEach(({ fqdn, clientType, expected }) => {
       it(`builds URL for ${JSON.stringify(fqdn)}`, () => {
-        const url = utils.buildURL(fqdn);
+        const url = utils.buildURL(fqdn, clientType);
         expect(url).toBe(expected);
       });
     });
