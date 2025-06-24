@@ -1,5 +1,11 @@
 # @hiveops/node
 
+## 1.7.0
+
+### Minor Changes
+
+- feat: update clientType in clientOptions to use core.JavaScriptClientType.NODE for improved type consistency
+
 ## 1.6.0
 
 ### Minor Changes
