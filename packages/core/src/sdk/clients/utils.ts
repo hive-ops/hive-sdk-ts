@@ -1,6 +1,6 @@
 import { Interceptor } from "@connectrpc/connect";
 import { App, FQDN } from "../../gen";
-import { buildURL, getDomain } from "../utilities";
+import { buildURL, getDomain, getEnv } from "../utilities";
 import { getClientOptions } from "./globals";
 
 export const createTransport = (app: App, interceptors: Interceptor[]) => {
@@ -9,6 +9,7 @@ export const createTransport = (app: App, interceptors: Interceptor[]) => {
     url: buildURL(
       new FQDN({
         domain: getDomain(),
+        environment: getEnv(),
         app,
       }),
       clientType,

@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.9.1
+
+### Patch Changes
+
+- feat: enhance FQDN instantiation in createTransport and createSingletonVespaClient to include environment for improved context handling
+
 ## 1.9.0
 
 ### Minor Changes
