@@ -556,6 +556,180 @@ proto3.util.setEnumType(BasePort, "hive.v1.BasePort", [
 ]);
 
 /**
+ * @generated from enum hive.v1.RateQuotaPeriod
+ */
+export enum RateQuotaPeriod {
+  /**
+   * @generated from enum value: RATE_QUOTA_PERIOD_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: RATE_QUOTA_PERIOD_MINUTE = 60;
+   */
+  MINUTE = 60,
+
+  /**
+   * @generated from enum value: RATE_QUOTA_PERIOD_HOUR = 3600;
+   */
+  HOUR = 3600,
+
+  /**
+   * @generated from enum value: RATE_QUOTA_PERIOD_DAY = 86400;
+   */
+  DAY = 86400,
+
+  /**
+   * @generated from enum value: RATE_QUOTA_PERIOD_WEEK = 604800;
+   */
+  WEEK = 604800,
+
+  /**
+   * @generated from enum value: RATE_QUOTA_PERIOD_MONTH = 2592000;
+   */
+  MONTH = 2592000,
+}
+// Retrieve enum metadata with: proto3.getEnumType(RateQuotaPeriod)
+proto3.util.setEnumType(RateQuotaPeriod, "hive.v1.RateQuotaPeriod", [
+  { no: 0, name: "RATE_QUOTA_PERIOD_UNSPECIFIED" },
+  { no: 60, name: "RATE_QUOTA_PERIOD_MINUTE" },
+  { no: 3600, name: "RATE_QUOTA_PERIOD_HOUR" },
+  { no: 86400, name: "RATE_QUOTA_PERIOD_DAY" },
+  { no: 604800, name: "RATE_QUOTA_PERIOD_WEEK" },
+  { no: 2592000, name: "RATE_QUOTA_PERIOD_MONTH" },
+]);
+
+/**
+ * These are the quotas for the number of actions that can be performed.
+ * These are time-based, and are reset at the beginning of the period.
+ *
+ * @generated from enum hive.v1.RateQuota
+ */
+export enum RateQuota {
+  /**
+   * @generated from enum value: RATE_QUOTA_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: RATE_QUOTA_REQUESTS = 1000;
+   */
+  REQUESTS = 1000,
+
+  /**
+   * @generated from enum value: RATE_QUOTA_DATABASE_INSERTS = 2000;
+   */
+  DATABASE_INSERTS = 2000,
+
+  /**
+   * @generated from enum value: RATE_QUOTA_DATABASE_READS = 2001;
+   */
+  DATABASE_READS = 2001,
+
+  /**
+   * @generated from enum value: RATE_QUOTA_DATABASE_UPDATES = 2003;
+   */
+  DATABASE_UPDATES = 2003,
+
+  /**
+   * @generated from enum value: RATE_QUOTA_DATABASE_DELETES = 2004;
+   */
+  DATABASE_DELETES = 2004,
+}
+// Retrieve enum metadata with: proto3.getEnumType(RateQuota)
+proto3.util.setEnumType(RateQuota, "hive.v1.RateQuota", [
+  { no: 0, name: "RATE_QUOTA_UNSPECIFIED" },
+  { no: 1000, name: "RATE_QUOTA_REQUESTS" },
+  { no: 2000, name: "RATE_QUOTA_DATABASE_INSERTS" },
+  { no: 2001, name: "RATE_QUOTA_DATABASE_READS" },
+  { no: 2003, name: "RATE_QUOTA_DATABASE_UPDATES" },
+  { no: 2004, name: "RATE_QUOTA_DATABASE_DELETES" },
+]);
+
+/**
+ * These are the quotas for the number of resources that can be allocated.
+ * Unlike RateQuotas, these are not time-based, and are not reset at the beginning of the period.
+ *
+ * @generated from enum hive.v1.AllocationQuota
+ */
+export enum AllocationQuota {
+  /**
+   * @generated from enum value: ALLOCATION_QUOTA_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * Per User
+   *
+   * @generated from enum value: ALLOCATION_QUOTA_ORGANIZATION_LIMIT = 1000;
+   */
+  ORGANIZATION_LIMIT = 1000,
+
+  /**
+   * Per Organization
+   *
+   * @generated from enum value: ALLOCATION_QUOTA_PROJECT_LIMIT = 1100;
+   */
+  PROJECT_LIMIT = 1100,
+
+  /**
+   * @generated from enum value: ALLOCATION_QUOTA_VESPA_STACK_LIMIT = 1101;
+   */
+  VESPA_STACK_LIMIT = 1101,
+
+  /**
+   * @generated from enum value: ALLOCATION_QUOTA_SECURE_APP_LIMIT = 1102;
+   */
+  SECURE_APP_LIMIT = 1102,
+
+  /**
+   * @generated from enum value: ALLOCATION_QUOTA_PLATFORM_APP_LIMIT = 1103;
+   */
+  PLATFORM_APP_LIMIT = 1103,
+
+  /**
+   * @generated from enum value: ALLOCATION_QUOTA_MEMBER_LIMIT = 1105;
+   */
+  MEMBER_LIMIT = 1105,
+
+  /**
+   * Per Organization for Vespa
+   *
+   * @generated from enum value: ALLOCATION_QUOTA_VESPA_STACK_REPLICATION_FACTOR_LIMIT = 1200;
+   */
+  VESPA_STACK_REPLICATION_FACTOR_LIMIT = 1200,
+
+  /**
+   * @generated from enum value: ALLOCATION_QUOTA_VESPA_DATABASE_TABLE_LIMIT = 1201;
+   */
+  VESPA_DATABASE_TABLE_LIMIT = 1201,
+
+  /**
+   * @generated from enum value: ALLOCATION_QUOTA_VESPA_DATABASE_COLUMN_LIMIT = 1202;
+   */
+  VESPA_DATABASE_COLUMN_LIMIT = 1202,
+
+  /**
+   * @generated from enum value: ALLOCATION_QUOTA_VESPA_STORAGE_LIMIT = 1203;
+   */
+  VESPA_STORAGE_LIMIT = 1203,
+}
+// Retrieve enum metadata with: proto3.getEnumType(AllocationQuota)
+proto3.util.setEnumType(AllocationQuota, "hive.v1.AllocationQuota", [
+  { no: 0, name: "ALLOCATION_QUOTA_UNSPECIFIED" },
+  { no: 1000, name: "ALLOCATION_QUOTA_ORGANIZATION_LIMIT" },
+  { no: 1100, name: "ALLOCATION_QUOTA_PROJECT_LIMIT" },
+  { no: 1101, name: "ALLOCATION_QUOTA_VESPA_STACK_LIMIT" },
+  { no: 1102, name: "ALLOCATION_QUOTA_SECURE_APP_LIMIT" },
+  { no: 1103, name: "ALLOCATION_QUOTA_PLATFORM_APP_LIMIT" },
+  { no: 1105, name: "ALLOCATION_QUOTA_MEMBER_LIMIT" },
+  { no: 1200, name: "ALLOCATION_QUOTA_VESPA_STACK_REPLICATION_FACTOR_LIMIT" },
+  { no: 1201, name: "ALLOCATION_QUOTA_VESPA_DATABASE_TABLE_LIMIT" },
+  { no: 1202, name: "ALLOCATION_QUOTA_VESPA_DATABASE_COLUMN_LIMIT" },
+  { no: 1203, name: "ALLOCATION_QUOTA_VESPA_STORAGE_LIMIT" },
+]);
+
+/**
  * @generated from extension: string error_code = 1000000;
  */
 export const error_code = proto3.makeExtension<EnumValueOptions, string>(
@@ -625,5 +799,32 @@ export const js_client_type = proto3.makeExtension<EnumValueOptions, string>(
   "hive.v1.js_client_type", 
   EnumValueOptions, 
   { no: 204002, kind: "scalar", T: 9 /* ScalarType.STRING */ },
+);
+
+/**
+ * @generated from extension: string rate_quota = 205000;
+ */
+export const rate_quota = proto3.makeExtension<EnumValueOptions, string>(
+  "hive.v1.rate_quota", 
+  EnumValueOptions, 
+  { no: 205000, kind: "scalar", T: 9 /* ScalarType.STRING */ },
+);
+
+/**
+ * @generated from extension: string rate_quota_period = 205001;
+ */
+export const rate_quota_period = proto3.makeExtension<EnumValueOptions, string>(
+  "hive.v1.rate_quota_period", 
+  EnumValueOptions, 
+  { no: 205001, kind: "scalar", T: 9 /* ScalarType.STRING */ },
+);
+
+/**
+ * @generated from extension: string allocation_quota = 205002;
+ */
+export const allocation_quota = proto3.makeExtension<EnumValueOptions, string>(
+  "hive.v1.allocation_quota", 
+  EnumValueOptions, 
+  { no: 205002, kind: "scalar", T: 9 /* ScalarType.STRING */ },
 );
 

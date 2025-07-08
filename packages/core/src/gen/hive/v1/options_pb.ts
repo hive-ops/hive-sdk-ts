@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodOptions, proto3 } from "@bufbuild/protobuf";
-import { TenantAuthIDType } from "./enums_pb";
+import { AllocationQuota, RateQuota, TenantAuthIDType } from "./enums_pb";
 import { HivePermission } from "./models_pb";
 
 /**
@@ -23,5 +23,23 @@ export const permissions = proto3.makeExtension<MethodOptions, HivePermission[]>
   "hive.v1.permissions", 
   MethodOptions, 
   () => ({ no: 2000001, kind: "message", T: HivePermission, repeated: true }),
+);
+
+/**
+ * @generated from extension: repeated hive.v1.RateQuota rate_quotas = 2000002;
+ */
+export const rate_quotas = proto3.makeExtension<MethodOptions, RateQuota[]>(
+  "hive.v1.rate_quotas", 
+  MethodOptions, 
+  () => ({ no: 2000002, kind: "enum", T: proto3.getEnumType(RateQuota), repeated: true }),
+);
+
+/**
+ * @generated from extension: repeated hive.v1.AllocationQuota allocation_quotas = 2000003;
+ */
+export const allocation_quotas = proto3.makeExtension<MethodOptions, AllocationQuota[]>(
+  "hive.v1.allocation_quotas", 
+  MethodOptions, 
+  () => ({ no: 2000003, kind: "enum", T: proto3.getEnumType(AllocationQuota), repeated: true }),
 );
 

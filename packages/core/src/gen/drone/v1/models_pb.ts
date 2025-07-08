@@ -7,6 +7,7 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 import { MemberType, RoleType } from "./enums_pb";
 import { HivePermission, Pagination, PaginationRequest, ResponseMetadata } from "../../hive/v1/models_pb";
+import { User } from "./user_pb";
 
 /**
  * @generated from message drone.v1.Organization
@@ -836,6 +837,526 @@ export class GetSecureAppSelfResponse extends Message<GetSecureAppSelfResponse> 
 
   static equals(a: GetSecureAppSelfResponse | PlainMessage<GetSecureAppSelfResponse> | undefined, b: GetSecureAppSelfResponse | PlainMessage<GetSecureAppSelfResponse> | undefined): boolean {
     return proto3.util.equals(GetSecureAppSelfResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message drone.v1.PublicHealthCheckRequest
+ */
+export class PublicHealthCheckRequest extends Message<PublicHealthCheckRequest> {
+  constructor(data?: PartialMessage<PublicHealthCheckRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.PublicHealthCheckRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PublicHealthCheckRequest {
+    return new PublicHealthCheckRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PublicHealthCheckRequest {
+    return new PublicHealthCheckRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PublicHealthCheckRequest {
+    return new PublicHealthCheckRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PublicHealthCheckRequest | PlainMessage<PublicHealthCheckRequest> | undefined, b: PublicHealthCheckRequest | PlainMessage<PublicHealthCheckRequest> | undefined): boolean {
+    return proto3.util.equals(PublicHealthCheckRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message drone.v1.PublicHealthCheckResponse
+ */
+export class PublicHealthCheckResponse extends Message<PublicHealthCheckResponse> {
+  /**
+   * @generated from field: hive.v1.ResponseMetadata metadata = 1;
+   */
+  metadata?: ResponseMetadata;
+
+  /**
+   * e.g., "OK", "DEGRADED", "UNAVAILABLE"
+   *
+   * @generated from field: string status = 2;
+   */
+  status = "";
+
+  /**
+   * Additional information about the health status
+   *
+   * @generated from field: string message = 3;
+   */
+  message = "";
+
+  constructor(data?: PartialMessage<PublicHealthCheckResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.PublicHealthCheckResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "metadata", kind: "message", T: ResponseMetadata },
+    { no: 2, name: "status", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PublicHealthCheckResponse {
+    return new PublicHealthCheckResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PublicHealthCheckResponse {
+    return new PublicHealthCheckResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PublicHealthCheckResponse {
+    return new PublicHealthCheckResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PublicHealthCheckResponse | PlainMessage<PublicHealthCheckResponse> | undefined, b: PublicHealthCheckResponse | PlainMessage<PublicHealthCheckResponse> | undefined): boolean {
+    return proto3.util.equals(PublicHealthCheckResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message drone.v1.OrganizationMember
+ */
+export class OrganizationMember extends Message<OrganizationMember> {
+  /**
+   * @generated from field: string hrn = 1;
+   */
+  hrn = "";
+
+  /**
+   * @generated from field: string uuid = 2;
+   */
+  uuid = "";
+
+  /**
+   * @generated from field: string organization_uuid = 3;
+   */
+  organizationUuid = "";
+
+  /**
+   * @generated from field: drone.v1.User user = 4;
+   */
+  user?: User;
+
+  /**
+   * @generated from field: repeated drone.v1.RoleBinding role_bindings = 5;
+   */
+  roleBindings: RoleBinding[] = [];
+
+  constructor(data?: PartialMessage<OrganizationMember>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.OrganizationMember";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "organization_uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "user", kind: "message", T: User },
+    { no: 5, name: "role_bindings", kind: "message", T: RoleBinding, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OrganizationMember {
+    return new OrganizationMember().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OrganizationMember {
+    return new OrganizationMember().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OrganizationMember {
+    return new OrganizationMember().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: OrganizationMember | PlainMessage<OrganizationMember> | undefined, b: OrganizationMember | PlainMessage<OrganizationMember> | undefined): boolean {
+    return proto3.util.equals(OrganizationMember, a, b);
+  }
+}
+
+/**
+ * @generated from message drone.v1.MemberInvitation
+ */
+export class MemberInvitation extends Message<MemberInvitation> {
+  /**
+   * @generated from field: string hrn = 1;
+   */
+  hrn = "";
+
+  /**
+   * @generated from field: string uuid = 2;
+   */
+  uuid = "";
+
+  /**
+   * @generated from field: string organization_uuid = 3;
+   */
+  organizationUuid = "";
+
+  /**
+   * @generated from field: string inviter_email = 4;
+   */
+  inviterEmail = "";
+
+  /**
+   * @generated from field: string invitee_email = 5;
+   */
+  inviteeEmail = "";
+
+  /**
+   * @generated from field: string created_at = 6;
+   */
+  createdAt = "";
+
+  /**
+   * @generated from field: repeated drone.v1.InvitationRoleBinding role_bindings = 7;
+   */
+  roleBindings: InvitationRoleBinding[] = [];
+
+  constructor(data?: PartialMessage<MemberInvitation>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.MemberInvitation";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "organization_uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "inviter_email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "invitee_email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "created_at", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "role_bindings", kind: "message", T: InvitationRoleBinding, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MemberInvitation {
+    return new MemberInvitation().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MemberInvitation {
+    return new MemberInvitation().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MemberInvitation {
+    return new MemberInvitation().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MemberInvitation | PlainMessage<MemberInvitation> | undefined, b: MemberInvitation | PlainMessage<MemberInvitation> | undefined): boolean {
+    return proto3.util.equals(MemberInvitation, a, b);
+  }
+}
+
+/**
+ * @generated from message drone.v1.OrganizationMembership
+ */
+export class OrganizationMembership extends Message<OrganizationMembership> {
+  /**
+   * @generated from field: string organization_uuid = 1;
+   */
+  organizationUuid = "";
+
+  /**
+   * @generated from field: repeated drone.v1.OrganizationMember members = 2;
+   */
+  members: OrganizationMember[] = [];
+
+  constructor(data?: PartialMessage<OrganizationMembership>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.OrganizationMembership";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "organization_uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "members", kind: "message", T: OrganizationMember, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OrganizationMembership {
+    return new OrganizationMembership().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OrganizationMembership {
+    return new OrganizationMembership().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OrganizationMembership {
+    return new OrganizationMembership().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: OrganizationMembership | PlainMessage<OrganizationMembership> | undefined, b: OrganizationMembership | PlainMessage<OrganizationMembership> | undefined): boolean {
+    return proto3.util.equals(OrganizationMembership, a, b);
+  }
+}
+
+/**
+ * This is a frontend service like a web or mobile app
+ *
+ * @generated from message drone.v1.PlatformApp
+ */
+export class PlatformApp extends Message<PlatformApp> {
+  /**
+   * @generated from field: string hrn = 1;
+   */
+  hrn = "";
+
+  /**
+   * @generated from field: string uuid = 2;
+   */
+  uuid = "";
+
+  /**
+   * @generated from field: string organization_uuid = 3;
+   */
+  organizationUuid = "";
+
+  /**
+   * @generated from field: string name = 4;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string created_at = 5;
+   */
+  createdAt = "";
+
+  constructor(data?: PartialMessage<PlatformApp>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.PlatformApp";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "organization_uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "created_at", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PlatformApp {
+    return new PlatformApp().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PlatformApp {
+    return new PlatformApp().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PlatformApp {
+    return new PlatformApp().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PlatformApp | PlainMessage<PlatformApp> | undefined, b: PlatformApp | PlainMessage<PlatformApp> | undefined): boolean {
+    return proto3.util.equals(PlatformApp, a, b);
+  }
+}
+
+/**
+ * @generated from message drone.v1.OrganizationPermissions
+ */
+export class OrganizationPermissions extends Message<OrganizationPermissions> {
+  /**
+   * @generated from field: string organization_uuid = 1;
+   */
+  organizationUuid = "";
+
+  /**
+   * @generated from field: string user_hrn = 2;
+   */
+  userHrn = "";
+
+  /**
+   * @generated from field: repeated hive.v1.HivePermission permissions = 3;
+   */
+  permissions: HivePermission[] = [];
+
+  constructor(data?: PartialMessage<OrganizationPermissions>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.OrganizationPermissions";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "organization_uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "user_hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "permissions", kind: "message", T: HivePermission, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OrganizationPermissions {
+    return new OrganizationPermissions().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OrganizationPermissions {
+    return new OrganizationPermissions().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OrganizationPermissions {
+    return new OrganizationPermissions().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: OrganizationPermissions | PlainMessage<OrganizationPermissions> | undefined, b: OrganizationPermissions | PlainMessage<OrganizationPermissions> | undefined): boolean {
+    return proto3.util.equals(OrganizationPermissions, a, b);
+  }
+}
+
+/**
+ * @generated from message drone.v1.Self
+ */
+export class Self extends Message<Self> {
+  /**
+   * @generated from field: drone.v1.User user = 1;
+   */
+  user?: User;
+
+  /**
+   * @generated from field: repeated drone.v1.RoleBinding role_bindings = 2;
+   */
+  roleBindings: RoleBinding[] = [];
+
+  /**
+   * @generated from field: repeated drone.v1.MemberInvitation invitations = 3;
+   */
+  invitations: MemberInvitation[] = [];
+
+  constructor(data?: PartialMessage<Self>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.Self";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "user", kind: "message", T: User },
+    { no: 2, name: "role_bindings", kind: "message", T: RoleBinding, repeated: true },
+    { no: 3, name: "invitations", kind: "message", T: MemberInvitation, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Self {
+    return new Self().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Self {
+    return new Self().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Self {
+    return new Self().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Self | PlainMessage<Self> | undefined, b: Self | PlainMessage<Self> | undefined): boolean {
+    return proto3.util.equals(Self, a, b);
+  }
+}
+
+/**
+ * @generated from message drone.v1.InvitationRoleBinding
+ */
+export class InvitationRoleBinding extends Message<InvitationRoleBinding> {
+  /**
+   * @generated from field: string role_uuid = 1;
+   */
+  roleUuid = "";
+
+  /**
+   * @generated from field: drone.v1.RoleType role_type = 2;
+   */
+  roleType = RoleType.UNSPECIFIED;
+
+  /**
+   * @generated from field: string project_uuids = 3;
+   */
+  projectUuids = "";
+
+  constructor(data?: PartialMessage<InvitationRoleBinding>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.InvitationRoleBinding";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "role_uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "role_type", kind: "enum", T: proto3.getEnumType(RoleType) },
+    { no: 3, name: "project_uuids", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InvitationRoleBinding {
+    return new InvitationRoleBinding().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InvitationRoleBinding {
+    return new InvitationRoleBinding().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InvitationRoleBinding {
+    return new InvitationRoleBinding().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InvitationRoleBinding | PlainMessage<InvitationRoleBinding> | undefined, b: InvitationRoleBinding | PlainMessage<InvitationRoleBinding> | undefined): boolean {
+    return proto3.util.equals(InvitationRoleBinding, a, b);
+  }
+}
+
+/**
+ * @generated from message drone.v1.ProjectPermissions
+ */
+export class ProjectPermissions extends Message<ProjectPermissions> {
+  /**
+   * @generated from field: string project_uuid = 1;
+   */
+  projectUuid = "";
+
+  /**
+   * @generated from field: string user_hrn = 2;
+   */
+  userHrn = "";
+
+  /**
+   * @generated from field: repeated hive.v1.HivePermission permissions = 3;
+   */
+  permissions: HivePermission[] = [];
+
+  constructor(data?: PartialMessage<ProjectPermissions>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.ProjectPermissions";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "user_hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "permissions", kind: "message", T: HivePermission, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProjectPermissions {
+    return new ProjectPermissions().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProjectPermissions {
+    return new ProjectPermissions().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProjectPermissions {
+    return new ProjectPermissions().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProjectPermissions | PlainMessage<ProjectPermissions> | undefined, b: ProjectPermissions | PlainMessage<ProjectPermissions> | undefined): boolean {
+    return proto3.util.equals(ProjectPermissions, a, b);
   }
 }
 

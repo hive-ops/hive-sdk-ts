@@ -8,7 +8,7 @@
     "dev:watch": "nodemon src/main.ts",
     "fetch-token": "ts-node src/hive.ts vespa fetch-token",
     "initialize-project": "ts-node src/hive.ts vespa init --project-directory ../../../examples/vespa-typescript",
-    "generate-code": "ts-node src/hive.ts vespa generate-code",
+    "generate-code": "ts-node src/hive.ts vespa generate  -p ts --project-directory ../../../../PopH2/sd-service",
     "apply-migration": "ts-node src/hive.ts vespa apply --project-directory ../../../examples/vespa-typescript",
     "clean": "rm -rf lib/",
     "build": "npm run clean && tsc",
