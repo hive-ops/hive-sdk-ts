@@ -1,5 +1,5 @@
 import { Client, Interceptor, Transport } from "@connectrpc/connect";
-import { BeekeeperService, DroneService, DroneTokenService, VespaService } from "../../gen";
+import { BeekeeperService, DroneAppService, DroneMemberService, DroneOrgService, DroneRBACService, DroneTokenService, DroneUserService, VespaService } from "../../gen";
 import { ClientType } from "../utilities";
 
 export type CreateTransportFn = (opts: { url: string; interceptors: Interceptor[] }) => Transport;
@@ -9,9 +9,14 @@ export type ClientOptions = {
   createTransportFn: CreateTransportFn;
 };
 
-export type TokenClient = Client<typeof DroneTokenService>;
+export type DroneTokenClient = Client<typeof DroneTokenService>;
 
-export type DroneClient = Client<typeof DroneService>;
+export type DroneClient = Client<typeof DroneOrgService> &
+  Client<typeof DroneAppService> &
+  Client<typeof DroneRBACService> &
+  Client<typeof DroneUserService> &
+  Client<typeof DroneOrgService> &
+  Client<typeof DroneMemberService>;
 
 export type BeekeeperClient = Client<typeof BeekeeperService>;
 
