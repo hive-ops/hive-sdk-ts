@@ -7,6 +7,7 @@ import { GetVespaDatabaseRequest, GetVespaDatabaseResponse, GetVespaDatabaseStac
 import { MethodKind } from "@bufbuild/protobuf";
 import { ApplyMigrationRequest, ApplyMigrationResponse, PlanMigrationRequest, PlanMigrationResponse } from "./migration_pb";
 import { GenerateCodeRequest, GenerateCodeResponse } from "./codegen_pb";
+import { CreateVespaDatabaseStackRequest, CreateVespaDatabaseStackResponse, DeleteVespaDatabaseStackRequest, DeleteVespaDatabaseStackResponse, GetSupportedCountriesRequest, GetSupportedCountriesResponse, RenameVespaDatabaseStackRequest, RenameVespaDatabaseStackResponse } from "./requests_and_responses_pb";
 
 /**
  * @generated from service beekeeper.v1.BeekeeperService
@@ -66,6 +67,42 @@ export const BeekeeperService = {
       name: "GenerateCode",
       I: GenerateCodeRequest,
       O: GenerateCodeResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc beekeeper.v1.BeekeeperService.CreateVespaDatabaseStack
+     */
+    createVespaDatabaseStack: {
+      name: "CreateVespaDatabaseStack",
+      I: CreateVespaDatabaseStackRequest,
+      O: CreateVespaDatabaseStackResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc beekeeper.v1.BeekeeperService.RenameVespaDatabaseStack
+     */
+    renameVespaDatabaseStack: {
+      name: "RenameVespaDatabaseStack",
+      I: RenameVespaDatabaseStackRequest,
+      O: RenameVespaDatabaseStackResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc beekeeper.v1.BeekeeperService.DeleteVespaDatabaseStack
+     */
+    deleteVespaDatabaseStack: {
+      name: "DeleteVespaDatabaseStack",
+      I: DeleteVespaDatabaseStackRequest,
+      O: DeleteVespaDatabaseStackResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc beekeeper.v1.BeekeeperService.GetSupportedCountries
+     */
+    getSupportedCountries: {
+      name: "GetSupportedCountries",
+      I: GetSupportedCountriesRequest,
+      O: GetSupportedCountriesResponse,
       kind: MethodKind.Unary,
     },
   }

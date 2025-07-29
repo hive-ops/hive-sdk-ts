@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { DatabaseSchema, VespaNode } from "../../vespa/v1/schema_models_pb";
+import { DatabaseSchema, VespaNode } from "../../vespa/v1/models_pb";
 import { VespaDatabaseStackStatus, VespaDatabaseStatusAtOrchestrator } from "./enums_pb";
 import { VespaDatabaseStatusAtNode } from "../../vespa/v1/enums_pb";
 import { ResponseMetadata } from "../../hive/v1/models_pb";

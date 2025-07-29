@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { App, BasePort, Environment, ErrorCode, Resource, Verb } from "./enums_pb";
+import { App, BasePort, CountryCode, Environment, ErrorCode, Resource, Verb } from "./enums_pb";
 
 /**
  * @generated from message hive.v1.Error
@@ -355,6 +355,57 @@ export class FQDN extends Message<FQDN> {
 
   static equals(a: FQDN | PlainMessage<FQDN> | undefined, b: FQDN | PlainMessage<FQDN> | undefined): boolean {
     return proto3.util.equals(FQDN, a, b);
+  }
+}
+
+/**
+ * @generated from message hive.v1.Country
+ */
+export class Country extends Message<Country> {
+  /**
+   * ISO 3166-1 alpha-3 code
+   *
+   * @generated from field: hive.v1.CountryCode code = 1;
+   */
+  code = CountryCode.UNSPECIFIED;
+
+  /**
+   * @generated from field: string common_name = 2;
+   */
+  commonName = "";
+
+  /**
+   * @generated from field: string official_name = 3;
+   */
+  officialName = "";
+
+  constructor(data?: PartialMessage<Country>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "hive.v1.Country";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "code", kind: "enum", T: proto3.getEnumType(CountryCode) },
+    { no: 2, name: "common_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "official_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Country {
+    return new Country().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Country {
+    return new Country().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Country {
+    return new Country().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Country | PlainMessage<Country> | undefined, b: Country | PlainMessage<Country> | undefined): boolean {
+    return proto3.util.equals(Country, a, b);
   }
 }
 

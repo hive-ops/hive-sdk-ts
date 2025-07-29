@@ -5,10 +5,8 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { InvitationRoleBinding, MemberInvitation, Organization, OrganizationMember, PlatformApp, Project, Role, SecureApp, SecureAppAccessToken, Self } from "./models_pb";
+import { InvitationRoleBinding, MemberInvitation, Organization, OrganizationMember, PlatformApp, Project, Role, SecureApp, SecureAppAccessToken, Self, User } from "./models_pb";
 import { HivePermission, Pagination, PaginationRequest, ResponseMetadata } from "../../hive/v1/models_pb";
-import { User } from "./user_pb";
-import { HiveTokenPair } from "./hive_token_pb";
 
 /**
  * @generated from message drone.v1.GetAppsRequest
@@ -2338,82 +2336,78 @@ export class GetSelfResponse extends Message<GetSelfResponse> {
 }
 
 /**
- * @generated from message drone.v1.GetTenantAdminHiveTokenRequest
+ * @generated from message drone.v1.GetCustomTokenWithClaimsRequest
  */
-export class GetTenantAdminHiveTokenRequest extends Message<GetTenantAdminHiveTokenRequest> {
-  /**
-   * @generated from field: string token_uid = 1;
-   */
-  tokenUid = "";
-
-  constructor(data?: PartialMessage<GetTenantAdminHiveTokenRequest>) {
+export class GetCustomTokenWithClaimsRequest extends Message<GetCustomTokenWithClaimsRequest> {
+  constructor(data?: PartialMessage<GetCustomTokenWithClaimsRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "drone.v1.GetTenantAdminHiveTokenRequest";
+  static readonly typeName = "drone.v1.GetCustomTokenWithClaimsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token_uid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetTenantAdminHiveTokenRequest {
-    return new GetTenantAdminHiveTokenRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCustomTokenWithClaimsRequest {
+    return new GetCustomTokenWithClaimsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetTenantAdminHiveTokenRequest {
-    return new GetTenantAdminHiveTokenRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetCustomTokenWithClaimsRequest {
+    return new GetCustomTokenWithClaimsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetTenantAdminHiveTokenRequest {
-    return new GetTenantAdminHiveTokenRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetCustomTokenWithClaimsRequest {
+    return new GetCustomTokenWithClaimsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GetTenantAdminHiveTokenRequest | PlainMessage<GetTenantAdminHiveTokenRequest> | undefined, b: GetTenantAdminHiveTokenRequest | PlainMessage<GetTenantAdminHiveTokenRequest> | undefined): boolean {
-    return proto3.util.equals(GetTenantAdminHiveTokenRequest, a, b);
+  static equals(a: GetCustomTokenWithClaimsRequest | PlainMessage<GetCustomTokenWithClaimsRequest> | undefined, b: GetCustomTokenWithClaimsRequest | PlainMessage<GetCustomTokenWithClaimsRequest> | undefined): boolean {
+    return proto3.util.equals(GetCustomTokenWithClaimsRequest, a, b);
   }
 }
 
 /**
- * @generated from message drone.v1.GetTenantAdminHiveTokenResponse
+ * @generated from message drone.v1.GetCustomTokenWithClaimsResponse
  */
-export class GetTenantAdminHiveTokenResponse extends Message<GetTenantAdminHiveTokenResponse> {
+export class GetCustomTokenWithClaimsResponse extends Message<GetCustomTokenWithClaimsResponse> {
   /**
    * @generated from field: hive.v1.ResponseMetadata metadata = 1;
    */
   metadata?: ResponseMetadata;
 
   /**
-   * @generated from field: drone.v1.HiveTokenPair hive_token_pair = 2;
+   * Custom token with claims
+   *
+   * @generated from field: string token = 2;
    */
-  hiveTokenPair?: HiveTokenPair;
+  token = "";
 
-  constructor(data?: PartialMessage<GetTenantAdminHiveTokenResponse>) {
+  constructor(data?: PartialMessage<GetCustomTokenWithClaimsResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "drone.v1.GetTenantAdminHiveTokenResponse";
+  static readonly typeName = "drone.v1.GetCustomTokenWithClaimsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "metadata", kind: "message", T: ResponseMetadata },
-    { no: 2, name: "hive_token_pair", kind: "message", T: HiveTokenPair },
+    { no: 2, name: "token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetTenantAdminHiveTokenResponse {
-    return new GetTenantAdminHiveTokenResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCustomTokenWithClaimsResponse {
+    return new GetCustomTokenWithClaimsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetTenantAdminHiveTokenResponse {
-    return new GetTenantAdminHiveTokenResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetCustomTokenWithClaimsResponse {
+    return new GetCustomTokenWithClaimsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetTenantAdminHiveTokenResponse {
-    return new GetTenantAdminHiveTokenResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetCustomTokenWithClaimsResponse {
+    return new GetCustomTokenWithClaimsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GetTenantAdminHiveTokenResponse | PlainMessage<GetTenantAdminHiveTokenResponse> | undefined, b: GetTenantAdminHiveTokenResponse | PlainMessage<GetTenantAdminHiveTokenResponse> | undefined): boolean {
-    return proto3.util.equals(GetTenantAdminHiveTokenResponse, a, b);
+  static equals(a: GetCustomTokenWithClaimsResponse | PlainMessage<GetCustomTokenWithClaimsResponse> | undefined, b: GetCustomTokenWithClaimsResponse | PlainMessage<GetCustomTokenWithClaimsResponse> | undefined): boolean {
+    return proto3.util.equals(GetCustomTokenWithClaimsResponse, a, b);
   }
 }
 

@@ -58,36 +58,6 @@ proto3.util.setEnumType(MemberType, "drone.v1.MemberType", [
 ]);
 
 /**
- * @generated from enum drone.v1.HiveTokenAccessType
- */
-export enum HiveTokenAccessType {
-  /**
-   * @generated from enum value: HIVE_TOKEN_ACCESS_TYPE_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * Access Token
-   *
-   * @generated from enum value: HIVE_TOKEN_ACCESS_TYPE_ACCESS = 1;
-   */
-  ACCESS = 1,
-
-  /**
-   * Refresh Token
-   *
-   * @generated from enum value: HIVE_TOKEN_ACCESS_TYPE_REFRESH = 2;
-   */
-  REFRESH = 2,
-}
-// Retrieve enum metadata with: proto3.getEnumType(HiveTokenAccessType)
-proto3.util.setEnumType(HiveTokenAccessType, "drone.v1.HiveTokenAccessType", [
-  { no: 0, name: "HIVE_TOKEN_ACCESS_TYPE_UNSPECIFIED" },
-  { no: 1, name: "HIVE_TOKEN_ACCESS_TYPE_ACCESS" },
-  { no: 2, name: "HIVE_TOKEN_ACCESS_TYPE_REFRESH" },
-]);
-
-/**
  * @generated from extension: string role_type = 1030000;
  */
 export const role_type = proto3.makeExtension<EnumValueOptions, string>(

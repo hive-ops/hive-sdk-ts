@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CountRecordsRequest, CountRecordsResponse, DeleteRecordsRequest, DeleteRecordsResponse, ExistsRequest, ExistsResponse, GetRecordRequest, GetRecordResponse, GetRecordsRequest, GetRecordsResponse, InsertRecordRequest, InsertRecordResponse, InsertRecordsRequest, InsertRecordsResponse, UpdateRecordsRequest, UpdateRecordsResponse } from "./crud_pb";
+import { CountRecordsRequest, CountRecordsResponse, DeleteRecordsRequest, DeleteRecordsResponse, ExistsRequest, ExistsResponse, GetRecordRequest, GetRecordResponse, GetRecordsRequest, GetRecordsResponse, InsertRecordRequest, InsertRecordResponse, InsertRecordsRequest, InsertRecordsResponse, UpdateRecordsRequest, UpdateRecordsResponse } from "./requests_and_responses_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**

@@ -3,10 +3,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetOrganizationsRequest, GetOrganizationsResponse, GetProjectsRequest, GetProjectsResponse, GetSecureAppAccessTokenSecretRequest, GetSecureAppAccessTokenSecretResponse, GetSecureAppSelfRequest, GetSecureAppSelfResponse, GetSecureAppsRequest, GetSecureAppsResponse, PublicHealthCheckRequest, PublicHealthCheckResponse } from "./models_pb";
+import { AssignRoleToMemberRequest, AssignRoleToMemberResponse, AssignRoleToSecureAppRequest, AssignRoleToSecureAppResponse, CreateOrganizationRequest, CreateOrganizationResponse, CreatePlatformAppRequest, CreatePlatformAppResponse, CreateProjectRequest, CreateProjectResponse, CreateRoleRequest, CreateRoleResponse, CreateSecureAppAccessTokenRequest, CreateSecureAppAccessTokenResponse, CreateSecureAppRequest, CreateSecureAppResponse, DeleteOrganizationRequest, DeleteOrganizationResponse, DeletePlatformAppRequest, DeletePlatformAppResponse, DeleteProjectRequest, DeleteProjectResponse, DeleteRoleRequest, DeleteRoleResponse, DeleteSecureAppAccessTokenRequest, DeleteSecureAppAccessTokenResponse, DeleteSecureAppRequest, DeleteSecureAppResponse, GetAppsRequest, GetAppsResponse, GetCustomTokenWithClaimsRequest, GetCustomTokenWithClaimsResponse, GetMembersRequest, GetMembersResponse, GetRolesRequest, GetRolesResponse, GetSelfRequest, GetSelfResponse, InviteMemberRequest, InviteMemberResponse, RemoveMemberRequest, RemoveMemberResponse, RenameOrganizationRequest, RenameOrganizationResponse, RenamePlatformAppRequest, RenamePlatformAppResponse, RenameProjectRequest, RenameProjectResponse, RenameSecureAppRequest, RenameSecureAppResponse, RespondToInvitationRequest, RespondToInvitationResponse, UnassignRoleFromMemberRequest, UnassignRoleFromMemberResponse, UnassignRoleFromSecureAppRequest, UnassignRoleFromSecureAppResponse } from "./requests_and_responses_pb";
 import { MethodKind } from "@bufbuild/protobuf";
-import { GetSecureAppHiveTokenRequest, GetSecureAppHiveTokenResponse, RefreshSecureAppHiveTokenRequest, RefreshSecureAppHiveTokenResponse, RefreshTenantAdminHiveTokenRequest, RefreshTenantAdminHiveTokenResponse } from "./hive_token_pb";
-import { AssignRoleToMemberRequest, AssignRoleToMemberResponse, AssignRoleToSecureAppRequest, AssignRoleToSecureAppResponse, CreateOrganizationRequest, CreateOrganizationResponse, CreatePlatformAppRequest, CreatePlatformAppResponse, CreateProjectRequest, CreateProjectResponse, CreateRoleRequest, CreateRoleResponse, CreateSecureAppAccessTokenRequest, CreateSecureAppAccessTokenResponse, CreateSecureAppRequest, CreateSecureAppResponse, DeleteOrganizationRequest, DeleteOrganizationResponse, DeletePlatformAppRequest, DeletePlatformAppResponse, DeleteProjectRequest, DeleteProjectResponse, DeleteRoleRequest, DeleteRoleResponse, DeleteSecureAppAccessTokenRequest, DeleteSecureAppAccessTokenResponse, DeleteSecureAppRequest, DeleteSecureAppResponse, GetAppsRequest, GetAppsResponse, GetMembersRequest, GetMembersResponse, GetRolesRequest, GetRolesResponse, GetSelfRequest, GetSelfResponse, GetTenantAdminHiveTokenRequest, GetTenantAdminHiveTokenResponse, InviteMemberRequest, InviteMemberResponse, RemoveMemberRequest, RemoveMemberResponse, RenameOrganizationRequest, RenameOrganizationResponse, RenamePlatformAppRequest, RenamePlatformAppResponse, RenameProjectRequest, RenameProjectResponse, RenameSecureAppRequest, RenameSecureAppResponse, RespondToInvitationRequest, RespondToInvitationResponse, UnassignRoleFromMemberRequest, UnassignRoleFromMemberResponse, UnassignRoleFromSecureAppRequest, UnassignRoleFromSecureAppResponse } from "./requests_and_responses_pb";
+import { GetOrganizationsRequest, GetOrganizationsResponse, GetProjectsRequest, GetProjectsResponse, GetSecureAppAccessTokenSecretRequest, GetSecureAppAccessTokenSecretResponse, GetSecureAppSelfRequest, GetSecureAppSelfResponse, GetSecureAppsRequest, GetSecureAppsResponse } from "./models_pb";
 
 /**
  * @generated from service drone.v1.DroneTokenService
@@ -15,48 +14,12 @@ export const DroneTokenService = {
   typeName: "drone.v1.DroneTokenService",
   methods: {
     /**
-     * @generated from rpc drone.v1.DroneTokenService.PublicHealthCheck
+     * @generated from rpc drone.v1.DroneTokenService.GetCustomTokenWithClaims
      */
-    publicHealthCheck: {
-      name: "PublicHealthCheck",
-      I: PublicHealthCheckRequest,
-      O: PublicHealthCheckResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc drone.v1.DroneTokenService.GetSecureAppHiveToken
-     */
-    getSecureAppHiveToken: {
-      name: "GetSecureAppHiveToken",
-      I: GetSecureAppHiveTokenRequest,
-      O: GetSecureAppHiveTokenResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc drone.v1.DroneTokenService.RefreshSecureAppHiveToken
-     */
-    refreshSecureAppHiveToken: {
-      name: "RefreshSecureAppHiveToken",
-      I: RefreshSecureAppHiveTokenRequest,
-      O: RefreshSecureAppHiveTokenResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc drone.v1.DroneTokenService.GetTenantAdminHiveToken
-     */
-    getTenantAdminHiveToken: {
-      name: "GetTenantAdminHiveToken",
-      I: GetTenantAdminHiveTokenRequest,
-      O: GetTenantAdminHiveTokenResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc drone.v1.DroneTokenService.RefreshTenantAdminHiveToken
-     */
-    refreshTenantAdminHiveToken: {
-      name: "RefreshTenantAdminHiveToken",
-      I: RefreshTenantAdminHiveTokenRequest,
-      O: RefreshTenantAdminHiveTokenResponse,
+    getCustomTokenWithClaims: {
+      name: "GetCustomTokenWithClaims",
+      I: GetCustomTokenWithClaimsRequest,
+      O: GetCustomTokenWithClaimsResponse,
       kind: MethodKind.Unary,
     },
   }
