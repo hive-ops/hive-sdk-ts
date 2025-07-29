@@ -1,5 +1,5 @@
-import { App, Environment, FQDN, Framework } from "../../gen";
-import { APP_BASE_PORT_MAP, APP_MAP, CLIENT_TYPE_FRAMEWORK_MAP, ENVIRONMENT_MAP, FRAMEWORK_MAP } from "./constants";
+import { App, Environment, FQDN } from "../../gen";
+import { APP_BASE_PORT_MAP, APP_MAP, CLIENT_TYPE_FRAMEWORK_MAP, ENVIRONMENT_MAP } from "./constants";
 import { ClientType, Protocol } from "./types";
 
 export const boundedInt = (value: number, min: number, max: number): number => {
@@ -134,8 +134,7 @@ export const buildURL = (fqdn: FQDN, clientType: ClientType): string => {
   }
 
   // Framework
-  const framework = CLIENT_TYPE_FRAMEWORK_MAP[clientType];
-  const frameworkText = FRAMEWORK_MAP[getEnumKey(Framework, framework)];
+  const frameworkText = CLIENT_TYPE_FRAMEWORK_MAP[clientType];
   domainElements.push(frameworkText);
 
   // App Name

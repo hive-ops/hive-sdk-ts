@@ -1,11 +1,11 @@
-import { App, BasePort, Environment, Framework } from "../../gen";
-import { ClientType } from "./types";
+import { App, BasePort, Environment } from "../../gen";
+import { ClientType, Framework } from "./types";
 
-export const FRAMEWORK_MAP: { [key in keyof typeof Framework]: string } = {
-  UNSPECIFIED: "",
-  GRPC: "grpc",
-  GRPC_WEB: "grpc-web",
-};
+// export const FRAMEWORK_MAP: { [key in keyof typeof Framework]: string } = {
+//   UNSPECIFIED: "",
+//   GRPC: "grpc",
+//   GRPC_WEB: "grpc-web",
+// };
 
 export const APP_MAP: { [key in keyof typeof App]: string } = {
   UNSPECIFIED: "",
