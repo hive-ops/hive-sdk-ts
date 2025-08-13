@@ -143,21 +143,6 @@ export enum Resource {
   IAM_USER = 1003,
 
   /**
-   * @generated from enum value: RESOURCE_IAM_SELF = 1004;
-   */
-  IAM_SELF = 1004,
-
-  /**
-   * @generated from enum value: RESOURCE_IAM_USER_ACCOUNT = 10041;
-   */
-  IAM_USER_ACCOUNT = 10041,
-
-  /**
-   * @generated from enum value: RESOURCE_IAM_SELF_HIVE_TOKEN = 1005;
-   */
-  IAM_SELF_HIVE_TOKEN = 1005,
-
-  /**
    * @generated from enum value: RESOURCE_IAM_PROJECT = 1101;
    */
   IAM_PROJECT = 1101,
@@ -188,21 +173,6 @@ export enum Resource {
   IAM_SECURE_APP = 1106,
 
   /**
-   * @generated from enum value: RESOURCE_IAM_SECURE_APP_ACCESS_TOKEN = 1107;
-   */
-  IAM_SECURE_APP_ACCESS_TOKEN = 1107,
-
-  /**
-   * @generated from enum value: RESOURCE_IAM_SECURE_APP_ACCESS_TOKEN_SECRET = 1108;
-   */
-  IAM_SECURE_APP_ACCESS_TOKEN_SECRET = 1108,
-
-  /**
-   * @generated from enum value: RESOURCE_IAM_SECURE_APP_HIVE_TOKEN = 1109;
-   */
-  IAM_SECURE_APP_HIVE_TOKEN = 1109,
-
-  /**
    * @generated from enum value: RESOURCE_IAM_PLATFORM_APP = 1110;
    */
   IAM_PLATFORM_APP = 1110,
@@ -221,11 +191,6 @@ export enum Resource {
    * @generated from enum value: RESOURCE_VESPA_DATABASE = 2002;
    */
   VESPA_DATABASE = 2002,
-
-  /**
-   * @generated from enum value: RESOURCE_VESPA_DATA = 2003;
-   */
-  VESPA_DATA = 2003,
 }
 // Retrieve enum metadata with: proto3.getEnumType(Resource)
 proto3.util.setEnumType(Resource, "hive.v1.Resource", [
@@ -235,23 +200,16 @@ proto3.util.setEnumType(Resource, "hive.v1.Resource", [
   { no: 1001, name: "RESOURCE_IAM_ORGANIZATION" },
   { no: 1002, name: "RESOURCE_IAM_MANAGED_ROLE" },
   { no: 1003, name: "RESOURCE_IAM_USER" },
-  { no: 1004, name: "RESOURCE_IAM_SELF" },
-  { no: 10041, name: "RESOURCE_IAM_USER_ACCOUNT" },
-  { no: 1005, name: "RESOURCE_IAM_SELF_HIVE_TOKEN" },
   { no: 1101, name: "RESOURCE_IAM_PROJECT" },
   { no: 1102, name: "RESOURCE_IAM_ORGANIZATION_MEMBER" },
   { no: 1103, name: "RESOURCE_IAM_ORGANIZATION_MEMBER_INVITATION" },
   { no: 1104, name: "RESOURCE_IAM_ROLE" },
   { no: 1105, name: "RESOURCE_IAM_ROLE_BINDING" },
   { no: 1106, name: "RESOURCE_IAM_SECURE_APP" },
-  { no: 1107, name: "RESOURCE_IAM_SECURE_APP_ACCESS_TOKEN" },
-  { no: 1108, name: "RESOURCE_IAM_SECURE_APP_ACCESS_TOKEN_SECRET" },
-  { no: 1109, name: "RESOURCE_IAM_SECURE_APP_HIVE_TOKEN" },
   { no: 1110, name: "RESOURCE_IAM_PLATFORM_APP" },
   { no: 2000, name: "RESOURCE_VESPA_ALL" },
   { no: 2001, name: "RESOURCE_VESPA_STACK" },
   { no: 2002, name: "RESOURCE_VESPA_DATABASE" },
-  { no: 2003, name: "RESOURCE_VESPA_DATA" },
 ]);
 
 /**
@@ -645,6 +603,66 @@ proto3.util.setEnumType(CountryCode, "hive.v1.CountryCode", [
   { no: 1, name: "COUNTRY_CODE_CAN" },
   { no: 2, name: "COUNTRY_CODE_USA" },
   { no: 3, name: "COUNTRY_CODE_DEU" },
+]);
+
+/**
+ * *
+ * Hierarchy of the resource identifiers.
+ * This is used to identify the level of the resource identifier i.e.
+ * - None: This is used when the resource identifier is not applicable, this will not have any HRI specified.
+ * - Global Resource: This is a resource that is not associated with any organization or project. So its HRI will be of the form `hri:<resource_group>:<resource_type>:::<resource_uuid>`.
+ * - Organization: The resource is the organization itself, so its HRI will be of the form `hri:iam:organization:<organization_uuid>::`.
+ * - Organization Resource: The resource is a resource within the organization, so its HRI will be of the form `hri:<resource_group>:<resource_type>:<organization_uuid>::<resource_uuid>`.
+ * - Project: The resource is a project, so its HRI will be of the form `hri:iam:project:<organization_uuid>:<project_uuid>::`.
+ * - Project Resource: The resource is a resource within the project, so its HRI will be of the form `hri:<resource_group>:<resource_type>:<organization_uuid>:<project_uuid>:<resource_uuid>`.
+ *
+ * @generated from enum hive.v1.HRILevel
+ */
+export enum HRILevel {
+  /**
+   * @generated from enum value: HRI_LEVEL_UNSPECIFIED = 0;
+   */
+  HRI_LEVEL_UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: HRI_LEVEL_NONE = 1;
+   */
+  HRI_LEVEL_NONE = 1,
+
+  /**
+   * @generated from enum value: HRI_LEVEL_GLOBAL_RESOURCE = 2;
+   */
+  HRI_LEVEL_GLOBAL_RESOURCE = 2,
+
+  /**
+   * @generated from enum value: HRI_LEVEL_ORGANIZATION = 3;
+   */
+  HRI_LEVEL_ORGANIZATION = 3,
+
+  /**
+   * @generated from enum value: HRI_LEVEL_ORGANIZATION_RESOURCE = 4;
+   */
+  HRI_LEVEL_ORGANIZATION_RESOURCE = 4,
+
+  /**
+   * @generated from enum value: HRI_LEVEL_PROJECT = 5;
+   */
+  HRI_LEVEL_PROJECT = 5,
+
+  /**
+   * @generated from enum value: HRI_LEVEL_PROJECT_RESOURCE = 6;
+   */
+  HRI_LEVEL_PROJECT_RESOURCE = 6,
+}
+// Retrieve enum metadata with: proto3.getEnumType(HRILevel)
+proto3.util.setEnumType(HRILevel, "hive.v1.HRILevel", [
+  { no: 0, name: "HRI_LEVEL_UNSPECIFIED" },
+  { no: 1, name: "HRI_LEVEL_NONE" },
+  { no: 2, name: "HRI_LEVEL_GLOBAL_RESOURCE" },
+  { no: 3, name: "HRI_LEVEL_ORGANIZATION" },
+  { no: 4, name: "HRI_LEVEL_ORGANIZATION_RESOURCE" },
+  { no: 5, name: "HRI_LEVEL_PROJECT" },
+  { no: 6, name: "HRI_LEVEL_PROJECT_RESOURCE" },
 ]);
 
 /**

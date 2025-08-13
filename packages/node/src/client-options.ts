@@ -13,12 +13,3 @@ export const clientOptions: core.ClientOptions = {
       },
     }),
 };
-
-// export const initialize = ({ token, type, hiveToken }: { token?: string; type: core.UserType; hiveToken?: core.HiveTokenPair }) => {
-//   core.initialize({
-//     token,
-//     type,
-//     hiveToken,
-//     options: clientOptions,
-//   });
-// };

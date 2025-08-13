@@ -1,6 +1,5 @@
-import { UserType, VespaDatabaseStack } from "../../gen";
-import { ClientOptions } from "../clients";
-import { initialize } from "../clients/globals";
+import { VespaDatabaseStack } from "../../gen";
+import { ClientOptions, setClientOptions } from "../clients";
 import { getEnvString } from "../utilities";
 
 let stackHRN = "";
@@ -14,13 +13,9 @@ export const getStackHRN = () => {
   return stackHRN;
 };
 
-export const vespaInit = (options: { stackHRN?: string; accessToken?: string; userType?: UserType; clientOptions: ClientOptions }): void => {
+export const vespaInit = (options: { stackHRN?: string; accessToken?: string; clientOptions: ClientOptions }): void => {
   stackHRN = options.stackHRN || getEnvString("HIVE_STACK_HRN");
-  initialize({
-    token: options.accessToken || getEnvString("HIVE_ACCESS_TOKEN"),
-    type: options.userType || UserType.TENANT_SECURE_APP,
-    options: options.clientOptions,
-  });
+  setClientOptions(options.clientOptions);
 };
 
 export const setDatabaseStack = (stack: VespaDatabaseStack) => {

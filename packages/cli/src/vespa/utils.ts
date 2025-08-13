@@ -1,4 +1,4 @@
-import { BeekeeperClient, createBeekeeperClient, File, ProgrammingLanguage, UserType } from "@hiveops/core";
+import { BeekeeperClient, createBeekeeperClient, File, ProgrammingLanguage } from "@hiveops/core";
 import { vespaInit } from "@hiveops/node";
 import { exec } from "child_process";
 import { Command, Option, OptionValues } from "commander";
@@ -8,7 +8,6 @@ import * as path from "path";
 import { promisify } from "util";
 
 export const getProjectDirectoryFromOptions = (opts: OptionValues): string => {
-
   const dir = (opts.projectDirectory as string | undefined) || process.cwd();
 
   return path.isAbsolute(dir) ? dir : path.resolve(process.cwd(), dir);
@@ -90,8 +89,6 @@ export const getHSLFiles = (opts: OptionValues): File[] => {
 export const initializeClients = (opts: OptionValues): { beekeeperClient: BeekeeperClient } => {
   vespaInit({
     stackHRN: getStackHRNFromOptions(opts),
-    accessToken: getAccessTokenFromOptions(opts),
-    userType: UserType.TENANT_SECURE_APP,
   });
 
   return { beekeeperClient: createBeekeeperClient() };

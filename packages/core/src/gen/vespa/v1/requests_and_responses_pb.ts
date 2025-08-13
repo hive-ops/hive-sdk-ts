@@ -5,17 +5,17 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Record, WhereCondition } from "./models_pb";
-import { ResponseMetadata } from "../../hive/v1/models_pb";
+import { HiveResourceIdentifier, ResponseMetadata } from "../../hive/v1/models_pb.js";
+import { Record, WhereCondition } from "./models_pb.js";
 
 /**
  * @generated from message vespa.v1.DeleteRecordsRequest
  */
 export class DeleteRecordsRequest extends Message<DeleteRecordsRequest> {
   /**
-   * @generated from field: string database_hrn = 1;
+   * @generated from field: hive.v1.HiveResourceIdentifier hri = 1;
    */
-  databaseHrn = "";
+  hri?: HiveResourceIdentifier;
 
   /**
    * @generated from field: string table_name = 2;
@@ -35,7 +35,7 @@ export class DeleteRecordsRequest extends Message<DeleteRecordsRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "vespa.v1.DeleteRecordsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "database_hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "hri", kind: "message", T: HiveResourceIdentifier },
     { no: 2, name: "table_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "where_conditions", kind: "message", T: WhereCondition, repeated: true },
   ]);
@@ -99,9 +99,9 @@ export class DeleteRecordsResponse extends Message<DeleteRecordsResponse> {
  */
 export class GetRecordRequest extends Message<GetRecordRequest> {
   /**
-   * @generated from field: string database_hrn = 1;
+   * @generated from field: hive.v1.HiveResourceIdentifier hri = 1;
    */
-  databaseHrn = "";
+  hri?: HiveResourceIdentifier;
 
   /**
    * @generated from field: string table_name = 2;
@@ -126,7 +126,7 @@ export class GetRecordRequest extends Message<GetRecordRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "vespa.v1.GetRecordRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "database_hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "hri", kind: "message", T: HiveResourceIdentifier },
     { no: 2, name: "table_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "where_conditions", kind: "message", T: WhereCondition, repeated: true },
     { no: 4, name: "offset", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -203,9 +203,9 @@ export class GetRecordResponse extends Message<GetRecordResponse> {
  */
 export class GetRecordsRequest extends Message<GetRecordsRequest> {
   /**
-   * @generated from field: string database_hrn = 1;
+   * @generated from field: hive.v1.HiveResourceIdentifier hri = 1;
    */
-  databaseHrn = "";
+  hri?: HiveResourceIdentifier;
 
   /**
    * @generated from field: string table_name = 2;
@@ -235,7 +235,7 @@ export class GetRecordsRequest extends Message<GetRecordsRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "vespa.v1.GetRecordsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "database_hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "hri", kind: "message", T: HiveResourceIdentifier },
     { no: 2, name: "table_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "where_conditions", kind: "message", T: WhereCondition, repeated: true },
     { no: 4, name: "offset", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -307,9 +307,9 @@ export class GetRecordsResponse extends Message<GetRecordsResponse> {
  */
 export class CountRecordsRequest extends Message<CountRecordsRequest> {
   /**
-   * @generated from field: string database_hrn = 1;
+   * @generated from field: hive.v1.HiveResourceIdentifier hri = 1;
    */
-  databaseHrn = "";
+  hri?: HiveResourceIdentifier;
 
   /**
    * @generated from field: string table_name = 2;
@@ -329,7 +329,7 @@ export class CountRecordsRequest extends Message<CountRecordsRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "vespa.v1.CountRecordsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "database_hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "hri", kind: "message", T: HiveResourceIdentifier },
     { no: 2, name: "table_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "where_conditions", kind: "message", T: WhereCondition, repeated: true },
   ]);
@@ -395,13 +395,13 @@ export class CountRecordsResponse extends Message<CountRecordsResponse> {
 }
 
 /**
- * @generated from message vespa.v1.ExistsRequest
+ * @generated from message vespa.v1.RecordExistsRequest
  */
-export class ExistsRequest extends Message<ExistsRequest> {
+export class RecordExistsRequest extends Message<RecordExistsRequest> {
   /**
-   * @generated from field: string database_hrn = 1;
+   * @generated from field: hive.v1.HiveResourceIdentifier hri = 1;
    */
-  databaseHrn = "";
+  hri?: HiveResourceIdentifier;
 
   /**
    * @generated from field: string table_name = 2;
@@ -413,40 +413,40 @@ export class ExistsRequest extends Message<ExistsRequest> {
    */
   whereConditions: WhereCondition[] = [];
 
-  constructor(data?: PartialMessage<ExistsRequest>) {
+  constructor(data?: PartialMessage<RecordExistsRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "vespa.v1.ExistsRequest";
+  static readonly typeName = "vespa.v1.RecordExistsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "database_hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "hri", kind: "message", T: HiveResourceIdentifier },
     { no: 2, name: "table_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "where_conditions", kind: "message", T: WhereCondition, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExistsRequest {
-    return new ExistsRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RecordExistsRequest {
+    return new RecordExistsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExistsRequest {
-    return new ExistsRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RecordExistsRequest {
+    return new RecordExistsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExistsRequest {
-    return new ExistsRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RecordExistsRequest {
+    return new RecordExistsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ExistsRequest | PlainMessage<ExistsRequest> | undefined, b: ExistsRequest | PlainMessage<ExistsRequest> | undefined): boolean {
-    return proto3.util.equals(ExistsRequest, a, b);
+  static equals(a: RecordExistsRequest | PlainMessage<RecordExistsRequest> | undefined, b: RecordExistsRequest | PlainMessage<RecordExistsRequest> | undefined): boolean {
+    return proto3.util.equals(RecordExistsRequest, a, b);
   }
 }
 
 /**
- * @generated from message vespa.v1.ExistsResponse
+ * @generated from message vespa.v1.RecordExistsResponse
  */
-export class ExistsResponse extends Message<ExistsResponse> {
+export class RecordExistsResponse extends Message<RecordExistsResponse> {
   /**
    * @generated from field: hive.v1.ResponseMetadata metadata = 1;
    */
@@ -457,32 +457,32 @@ export class ExistsResponse extends Message<ExistsResponse> {
    */
   exists = false;
 
-  constructor(data?: PartialMessage<ExistsResponse>) {
+  constructor(data?: PartialMessage<RecordExistsResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "vespa.v1.ExistsResponse";
+  static readonly typeName = "vespa.v1.RecordExistsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "metadata", kind: "message", T: ResponseMetadata },
     { no: 2, name: "exists", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExistsResponse {
-    return new ExistsResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RecordExistsResponse {
+    return new RecordExistsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExistsResponse {
-    return new ExistsResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RecordExistsResponse {
+    return new RecordExistsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExistsResponse {
-    return new ExistsResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RecordExistsResponse {
+    return new RecordExistsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ExistsResponse | PlainMessage<ExistsResponse> | undefined, b: ExistsResponse | PlainMessage<ExistsResponse> | undefined): boolean {
-    return proto3.util.equals(ExistsResponse, a, b);
+  static equals(a: RecordExistsResponse | PlainMessage<RecordExistsResponse> | undefined, b: RecordExistsResponse | PlainMessage<RecordExistsResponse> | undefined): boolean {
+    return proto3.util.equals(RecordExistsResponse, a, b);
   }
 }
 
@@ -491,9 +491,9 @@ export class ExistsResponse extends Message<ExistsResponse> {
  */
 export class InsertRecordRequest extends Message<InsertRecordRequest> {
   /**
-   * @generated from field: string database_hrn = 1;
+   * @generated from field: hive.v1.HiveResourceIdentifier hri = 1;
    */
-  databaseHrn = "";
+  hri?: HiveResourceIdentifier;
 
   /**
    * @generated from field: string table_name = 2;
@@ -513,7 +513,7 @@ export class InsertRecordRequest extends Message<InsertRecordRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "vespa.v1.InsertRecordRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "database_hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "hri", kind: "message", T: HiveResourceIdentifier },
     { no: 2, name: "table_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "record", kind: "message", T: Record },
   ]);
@@ -583,9 +583,9 @@ export class InsertRecordResponse extends Message<InsertRecordResponse> {
  */
 export class InsertRecordsRequest extends Message<InsertRecordsRequest> {
   /**
-   * @generated from field: string database_hrn = 1;
+   * @generated from field: hive.v1.HiveResourceIdentifier hri = 1;
    */
-  databaseHrn = "";
+  hri?: HiveResourceIdentifier;
 
   /**
    * @generated from field: string table_name = 2;
@@ -605,7 +605,7 @@ export class InsertRecordsRequest extends Message<InsertRecordsRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "vespa.v1.InsertRecordsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "database_hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "hri", kind: "message", T: HiveResourceIdentifier },
     { no: 2, name: "table_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "records", kind: "message", T: Record, repeated: true },
   ]);
@@ -675,9 +675,9 @@ export class InsertRecordsResponse extends Message<InsertRecordsResponse> {
  */
 export class UpdateRecordsRequest extends Message<UpdateRecordsRequest> {
   /**
-   * @generated from field: string database_hrn = 1;
+   * @generated from field: hive.v1.HiveResourceIdentifier hri = 1;
    */
-  databaseHrn = "";
+  hri?: HiveResourceIdentifier;
 
   /**
    * @generated from field: string table_name = 2;
@@ -702,7 +702,7 @@ export class UpdateRecordsRequest extends Message<UpdateRecordsRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "vespa.v1.UpdateRecordsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "database_hrn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "hri", kind: "message", T: HiveResourceIdentifier },
     { no: 2, name: "table_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "record", kind: "message", T: Record },
     { no: 4, name: "where_conditions", kind: "message", T: WhereCondition, repeated: true },

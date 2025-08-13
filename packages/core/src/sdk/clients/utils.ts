@@ -17,5 +17,3 @@ export const createTransport = (app: App, interceptors: Interceptor[]) => {
     interceptors,
   });
 };
-
-

@@ -1,4 +1,4 @@
-import { createBeekeeperClient, createDroneClient, UserType } from "@hiveops/core";
+import { createBeekeeperClient, createDroneClient } from "@hiveops/core";
 import { initialize } from "@hiveops/node";
 import { Command, OptionValues } from "commander";
 import fs from "fs";
@@ -35,10 +35,7 @@ const initializeProject = async (opts: OptionValues) => {
     console.log("Starting authentication flow...");
     const token = await getHiveToken();
 
-    initialize({
-      hiveToken: token,
-      userType: UserType.TENANT_ADMIN,
-    });
+    initialize();
 
     // Initialize HiveClient
     const droneClient = createDroneClient();

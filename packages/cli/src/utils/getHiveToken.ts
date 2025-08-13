@@ -1,4 +1,4 @@
-import { getDomain, HiveTokenPair } from "@hiveops/core";
+import { getDomain } from "@hiveops/core";
 import { randomBytes } from "crypto";
 import express from "express";
 import { createServer } from "http";

@@ -3,9 +3,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AssignRoleToMemberRequest, AssignRoleToMemberResponse, AssignRoleToSecureAppRequest, AssignRoleToSecureAppResponse, CreateOrganizationRequest, CreateOrganizationResponse, CreatePlatformAppRequest, CreatePlatformAppResponse, CreateProjectRequest, CreateProjectResponse, CreateRoleRequest, CreateRoleResponse, CreateSecureAppAccessTokenRequest, CreateSecureAppAccessTokenResponse, CreateSecureAppRequest, CreateSecureAppResponse, DeleteOrganizationRequest, DeleteOrganizationResponse, DeletePlatformAppRequest, DeletePlatformAppResponse, DeleteProjectRequest, DeleteProjectResponse, DeleteRoleRequest, DeleteRoleResponse, DeleteSecureAppAccessTokenRequest, DeleteSecureAppAccessTokenResponse, DeleteSecureAppRequest, DeleteSecureAppResponse, GetAppsRequest, GetAppsResponse, GetCustomTokenWithClaimsRequest, GetCustomTokenWithClaimsResponse, GetMembersRequest, GetMembersResponse, GetRolesRequest, GetRolesResponse, GetSelfRequest, GetSelfResponse, InviteMemberRequest, InviteMemberResponse, RemoveMemberRequest, RemoveMemberResponse, RenameOrganizationRequest, RenameOrganizationResponse, RenamePlatformAppRequest, RenamePlatformAppResponse, RenameProjectRequest, RenameProjectResponse, RenameSecureAppRequest, RenameSecureAppResponse, RespondToInvitationRequest, RespondToInvitationResponse, UnassignRoleFromMemberRequest, UnassignRoleFromMemberResponse, UnassignRoleFromSecureAppRequest, UnassignRoleFromSecureAppResponse } from "./requests_and_responses_pb";
+import { AssignRoleToMemberRequest, AssignRoleToMemberResponse, AssignRoleToSecureAppRequest, AssignRoleToSecureAppResponse, CreateOrganizationRequest, CreateOrganizationResponse, CreatePlatformAppRequest, CreatePlatformAppResponse, CreateProjectRequest, CreateProjectResponse, CreateRoleRequest, CreateRoleResponse, CreateSecureAppAccessTokenRequest, CreateSecureAppAccessTokenResponse, CreateSecureAppRequest, CreateSecureAppResponse, DeleteOrganizationRequest, DeleteOrganizationResponse, DeletePlatformAppRequest, DeletePlatformAppResponse, DeleteProjectRequest, DeleteProjectResponse, DeleteRoleRequest, DeleteRoleResponse, DeleteSecureAppAccessTokenRequest, DeleteSecureAppAccessTokenResponse, DeleteSecureAppRequest, DeleteSecureAppResponse, GetCustomTokenWithClaimsRequest, GetCustomTokenWithClaimsResponse, GetSecureAppSelfRequest, GetSecureAppSelfResponse, GetSelfRequest, GetSelfResponse, InviteMemberRequest, InviteMemberResponse, ListMembersRequest, ListMembersResponse, ListOrganizationsRequest, ListOrganizationsResponse, ListPlatformAppsRequest, ListPlatformAppsResponse, ListProjectsRequest, ListProjectsResponse, ListRolesRequest, ListRolesResponse, ListSecureAppsRequest, ListSecureAppsResponse, RemoveMemberRequest, RemoveMemberResponse, RenameOrganizationRequest, RenameOrganizationResponse, RenamePlatformAppRequest, RenamePlatformAppResponse, RenameProjectRequest, RenameProjectResponse, RenameSecureAppRequest, RenameSecureAppResponse, RespondToInvitationRequest, RespondToInvitationResponse, UnassignRoleFromMemberRequest, UnassignRoleFromMemberResponse, UnassignRoleFromSecureAppRequest, UnassignRoleFromSecureAppResponse } from "./requests_and_responses_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
-import { GetOrganizationsRequest, GetOrganizationsResponse, GetProjectsRequest, GetProjectsResponse, GetSecureAppAccessTokenSecretRequest, GetSecureAppAccessTokenSecretResponse, GetSecureAppSelfRequest, GetSecureAppSelfResponse, GetSecureAppsRequest, GetSecureAppsResponse } from "./models_pb";
 
 /**
  * @generated from service drone.v1.DroneTokenService
@@ -26,13 +25,13 @@ export const DroneTokenService = {
 } as const;
 
 /**
- * @generated from service drone.v1.DroneOrgService
+ * @generated from service drone.v1.DroneIAMOrganizationService
  */
-export const DroneOrgService = {
-  typeName: "drone.v1.DroneOrgService",
+export const DroneIAMOrganizationService = {
+  typeName: "drone.v1.DroneIAMOrganizationService",
   methods: {
     /**
-     * @generated from rpc drone.v1.DroneOrgService.CreateOrganization
+     * @generated from rpc drone.v1.DroneIAMOrganizationService.CreateOrganization
      */
     createOrganization: {
       name: "CreateOrganization",
@@ -41,7 +40,16 @@ export const DroneOrgService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneOrgService.RenameOrganization
+     * @generated from rpc drone.v1.DroneIAMOrganizationService.ListOrganizations
+     */
+    listOrganizations: {
+      name: "ListOrganizations",
+      I: ListOrganizationsRequest,
+      O: ListOrganizationsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc drone.v1.DroneIAMOrganizationService.RenameOrganization
      */
     renameOrganization: {
       name: "RenameOrganization",
@@ -50,7 +58,7 @@ export const DroneOrgService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneOrgService.DeleteOrganization
+     * @generated from rpc drone.v1.DroneIAMOrganizationService.DeleteOrganization
      */
     deleteOrganization: {
       name: "DeleteOrganization",
@@ -58,17 +66,17 @@ export const DroneOrgService = {
       O: DeleteOrganizationResponse,
       kind: MethodKind.Unary,
     },
+  }
+} as const;
+
+/**
+ * @generated from service drone.v1.DroneIAMProjectService
+ */
+export const DroneIAMProjectService = {
+  typeName: "drone.v1.DroneIAMProjectService",
+  methods: {
     /**
-     * @generated from rpc drone.v1.DroneOrgService.GetOrganizations
-     */
-    getOrganizations: {
-      name: "GetOrganizations",
-      I: GetOrganizationsRequest,
-      O: GetOrganizationsResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc drone.v1.DroneOrgService.CreateProject
+     * @generated from rpc drone.v1.DroneIAMProjectService.CreateProject
      */
     createProject: {
       name: "CreateProject",
@@ -77,7 +85,16 @@ export const DroneOrgService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneOrgService.RenameProject
+     * @generated from rpc drone.v1.DroneIAMProjectService.ListProjects
+     */
+    listProjects: {
+      name: "ListProjects",
+      I: ListProjectsRequest,
+      O: ListProjectsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc drone.v1.DroneIAMProjectService.RenameProject
      */
     renameProject: {
       name: "RenameProject",
@@ -86,7 +103,7 @@ export const DroneOrgService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneOrgService.DeleteProject
+     * @generated from rpc drone.v1.DroneIAMProjectService.DeleteProject
      */
     deleteProject: {
       name: "DeleteProject",
@@ -94,53 +111,17 @@ export const DroneOrgService = {
       O: DeleteProjectResponse,
       kind: MethodKind.Unary,
     },
-    /**
-     * @generated from rpc drone.v1.DroneOrgService.GetProjects
-     */
-    getProjects: {
-      name: "GetProjects",
-      I: GetProjectsRequest,
-      O: GetProjectsResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc drone.v1.DroneOrgService.GetSecureAppSelf
-     */
-    getSecureAppSelf: {
-      name: "GetSecureAppSelf",
-      I: GetSecureAppSelfRequest,
-      O: GetSecureAppSelfResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc drone.v1.DroneOrgService.GetSecureApps
-     */
-    getSecureApps: {
-      name: "GetSecureApps",
-      I: GetSecureAppsRequest,
-      O: GetSecureAppsResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc drone.v1.DroneOrgService.GetSecureAppAccessTokenSecret
-     */
-    getSecureAppAccessTokenSecret: {
-      name: "GetSecureAppAccessTokenSecret",
-      I: GetSecureAppAccessTokenSecretRequest,
-      O: GetSecureAppAccessTokenSecretResponse,
-      kind: MethodKind.Unary,
-    },
   }
 } as const;
 
 /**
- * @generated from service drone.v1.DroneUserService
+ * @generated from service drone.v1.DroneIAMUserService
  */
-export const DroneUserService = {
-  typeName: "drone.v1.DroneUserService",
+export const DroneIAMUserService = {
+  typeName: "drone.v1.DroneIAMUserService",
   methods: {
     /**
-     * @generated from rpc drone.v1.DroneUserService.GetSelf
+     * @generated from rpc drone.v1.DroneIAMUserService.GetSelf
      */
     getSelf: {
       name: "GetSelf",
@@ -152,22 +133,22 @@ export const DroneUserService = {
 } as const;
 
 /**
- * @generated from service drone.v1.DroneMemberService
+ * @generated from service drone.v1.DroneIAMOrganizationMemberService
  */
-export const DroneMemberService = {
-  typeName: "drone.v1.DroneMemberService",
+export const DroneIAMOrganizationMemberService = {
+  typeName: "drone.v1.DroneIAMOrganizationMemberService",
   methods: {
     /**
-     * @generated from rpc drone.v1.DroneMemberService.GetMembers
+     * @generated from rpc drone.v1.DroneIAMOrganizationMemberService.ListMembers
      */
-    getMembers: {
-      name: "GetMembers",
-      I: GetMembersRequest,
-      O: GetMembersResponse,
+    listMembers: {
+      name: "ListMembers",
+      I: ListMembersRequest,
+      O: ListMembersResponse,
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneMemberService.InviteMember
+     * @generated from rpc drone.v1.DroneIAMOrganizationMemberService.InviteMember
      */
     inviteMember: {
       name: "InviteMember",
@@ -176,7 +157,7 @@ export const DroneMemberService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneMemberService.RemoveMember
+     * @generated from rpc drone.v1.DroneIAMOrganizationMemberService.RemoveMember
      */
     removeMember: {
       name: "RemoveMember",
@@ -185,7 +166,7 @@ export const DroneMemberService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneMemberService.RespondToInvitation
+     * @generated from rpc drone.v1.DroneIAMOrganizationMemberService.RespondToInvitation
      */
     respondToInvitation: {
       name: "RespondToInvitation",
@@ -193,44 +174,8 @@ export const DroneMemberService = {
       O: RespondToInvitationResponse,
       kind: MethodKind.Unary,
     },
-  }
-} as const;
-
-/**
- * @generated from service drone.v1.DroneRBACService
- */
-export const DroneRBACService = {
-  typeName: "drone.v1.DroneRBACService",
-  methods: {
     /**
-     * @generated from rpc drone.v1.DroneRBACService.CreateRole
-     */
-    createRole: {
-      name: "CreateRole",
-      I: CreateRoleRequest,
-      O: CreateRoleResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc drone.v1.DroneRBACService.GetRoles
-     */
-    getRoles: {
-      name: "GetRoles",
-      I: GetRolesRequest,
-      O: GetRolesResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc drone.v1.DroneRBACService.DeleteRole
-     */
-    deleteRole: {
-      name: "DeleteRole",
-      I: DeleteRoleRequest,
-      O: DeleteRoleResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc drone.v1.DroneRBACService.AssignRoleToMember
+     * @generated from rpc drone.v1.DroneIAMOrganizationMemberService.AssignRoleToMember
      */
     assignRoleToMember: {
       name: "AssignRoleToMember",
@@ -239,7 +184,7 @@ export const DroneRBACService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneRBACService.UnassignRoleFromMember
+     * @generated from rpc drone.v1.DroneIAMOrganizationMemberService.UnassignRoleFromMember
      */
     unassignRoleFromMember: {
       name: "UnassignRoleFromMember",
@@ -247,35 +192,53 @@ export const DroneRBACService = {
       O: UnassignRoleFromMemberResponse,
       kind: MethodKind.Unary,
     },
+  }
+} as const;
+
+/**
+ * @generated from service drone.v1.DroneIAMRoleService
+ */
+export const DroneIAMRoleService = {
+  typeName: "drone.v1.DroneIAMRoleService",
+  methods: {
     /**
-     * @generated from rpc drone.v1.DroneRBACService.AssignRoleToSecureApp
+     * @generated from rpc drone.v1.DroneIAMRoleService.CreateRole
      */
-    assignRoleToSecureApp: {
-      name: "AssignRoleToSecureApp",
-      I: AssignRoleToSecureAppRequest,
-      O: AssignRoleToSecureAppResponse,
+    createRole: {
+      name: "CreateRole",
+      I: CreateRoleRequest,
+      O: CreateRoleResponse,
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneRBACService.UnassignRoleFromSecureApp
+     * @generated from rpc drone.v1.DroneIAMRoleService.ListRoles
      */
-    unassignRoleFromSecureApp: {
-      name: "UnassignRoleFromSecureApp",
-      I: UnassignRoleFromSecureAppRequest,
-      O: UnassignRoleFromSecureAppResponse,
+    listRoles: {
+      name: "ListRoles",
+      I: ListRolesRequest,
+      O: ListRolesResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc drone.v1.DroneIAMRoleService.DeleteRole
+     */
+    deleteRole: {
+      name: "DeleteRole",
+      I: DeleteRoleRequest,
+      O: DeleteRoleResponse,
       kind: MethodKind.Unary,
     },
   }
 } as const;
 
 /**
- * @generated from service drone.v1.DroneAppService
+ * @generated from service drone.v1.DroneIAMPlatformAppService
  */
-export const DroneAppService = {
-  typeName: "drone.v1.DroneAppService",
+export const DroneIAMPlatformAppService = {
+  typeName: "drone.v1.DroneIAMPlatformAppService",
   methods: {
     /**
-     * @generated from rpc drone.v1.DroneAppService.CreatePlatformApp
+     * @generated from rpc drone.v1.DroneIAMPlatformAppService.CreatePlatformApp
      */
     createPlatformApp: {
       name: "CreatePlatformApp",
@@ -284,7 +247,7 @@ export const DroneAppService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneAppService.RenamePlatformApp
+     * @generated from rpc drone.v1.DroneIAMPlatformAppService.RenamePlatformApp
      */
     renamePlatformApp: {
       name: "RenamePlatformApp",
@@ -293,7 +256,7 @@ export const DroneAppService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneAppService.DeletePlatformApp
+     * @generated from rpc drone.v1.DroneIAMPlatformAppService.DeletePlatformApp
      */
     deletePlatformApp: {
       name: "DeletePlatformApp",
@@ -302,7 +265,34 @@ export const DroneAppService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneAppService.CreateSecureApp
+     * @generated from rpc drone.v1.DroneIAMPlatformAppService.ListPlatformApps
+     */
+    listPlatformApps: {
+      name: "ListPlatformApps",
+      I: ListPlatformAppsRequest,
+      O: ListPlatformAppsResponse,
+      kind: MethodKind.Unary,
+    },
+  }
+} as const;
+
+/**
+ * @generated from service drone.v1.DroneIAMSecureAppService
+ */
+export const DroneIAMSecureAppService = {
+  typeName: "drone.v1.DroneIAMSecureAppService",
+  methods: {
+    /**
+     * @generated from rpc drone.v1.DroneIAMSecureAppService.GetSecureAppSelf
+     */
+    getSecureAppSelf: {
+      name: "GetSecureAppSelf",
+      I: GetSecureAppSelfRequest,
+      O: GetSecureAppSelfResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc drone.v1.DroneIAMSecureAppService.CreateSecureApp
      */
     createSecureApp: {
       name: "CreateSecureApp",
@@ -311,7 +301,7 @@ export const DroneAppService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneAppService.RenameSecureApp
+     * @generated from rpc drone.v1.DroneIAMSecureAppService.RenameSecureApp
      */
     renameSecureApp: {
       name: "RenameSecureApp",
@@ -320,7 +310,7 @@ export const DroneAppService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneAppService.DeleteSecureApp
+     * @generated from rpc drone.v1.DroneIAMSecureAppService.DeleteSecureApp
      */
     deleteSecureApp: {
       name: "DeleteSecureApp",
@@ -329,16 +319,34 @@ export const DroneAppService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneAppService.GetApps
+     * @generated from rpc drone.v1.DroneIAMSecureAppService.ListSecureApps
      */
-    getApps: {
-      name: "GetApps",
-      I: GetAppsRequest,
-      O: GetAppsResponse,
+    listSecureApps: {
+      name: "ListSecureApps",
+      I: ListSecureAppsRequest,
+      O: ListSecureAppsResponse,
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneAppService.CreateSecureAppAccessToken
+     * @generated from rpc drone.v1.DroneIAMSecureAppService.AssignRoleToSecureApp
+     */
+    assignRoleToSecureApp: {
+      name: "AssignRoleToSecureApp",
+      I: AssignRoleToSecureAppRequest,
+      O: AssignRoleToSecureAppResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc drone.v1.DroneIAMSecureAppService.UnassignRoleFromSecureApp
+     */
+    unassignRoleFromSecureApp: {
+      name: "UnassignRoleFromSecureApp",
+      I: UnassignRoleFromSecureAppRequest,
+      O: UnassignRoleFromSecureAppResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc drone.v1.DroneIAMSecureAppService.CreateSecureAppAccessToken
      */
     createSecureAppAccessToken: {
       name: "CreateSecureAppAccessToken",
@@ -347,7 +355,7 @@ export const DroneAppService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc drone.v1.DroneAppService.DeleteSecureAppAccessToken
+     * @generated from rpc drone.v1.DroneIAMSecureAppService.DeleteSecureAppAccessToken
      */
     deleteSecureAppAccessToken: {
       name: "DeleteSecureAppAccessToken",

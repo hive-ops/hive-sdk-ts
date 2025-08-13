@@ -42,8 +42,6 @@
     "ts-node": "^10.9.1"
   },
   "workspaces": [
-    "packages/core",
-    "packages/node",
-    "packages/cli"
+    "packages/core"
   ]
 }

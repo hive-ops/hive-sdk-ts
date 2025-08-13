@@ -3,9 +3,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MethodOptions, proto3 } from "@bufbuild/protobuf";
-import { AllocationQuota, RateQuota, TenantAuthIDType } from "./enums_pb";
-import { HivePermission } from "./models_pb";
+import { MethodOptions, proto3, ServiceOptions } from "@bufbuild/protobuf";
+import { AllocationQuota, HRILevel, RateQuota, Resource, TenantAuthIDType, Verb } from "./enums_pb.js";
+import { HivePermission } from "./models_pb.js";
 
 /**
  * @generated from extension: repeated hive.v1.TenantAuthIDType accepted_tenant_auth_id_types = 2000000;
@@ -41,5 +41,45 @@ export const allocation_quotas = proto3.makeExtension<MethodOptions, AllocationQ
   "hive.v1.allocation_quotas", 
   MethodOptions, 
   () => ({ no: 2000003, kind: "enum", T: proto3.getEnumType(AllocationQuota), repeated: true }),
+);
+
+/**
+ * Every RPC must have a HiveResourceIdentifier level defined.
+ *
+ * @generated from extension: hive.v1.HRILevel hri_level = 2000004;
+ */
+export const hri_level = proto3.makeExtension<MethodOptions, HRILevel>(
+  "hive.v1.hri_level", 
+  MethodOptions, 
+  () => ({ no: 2000004, kind: "enum", T: proto3.getEnumType(HRILevel) }),
+);
+
+/**
+ * @generated from extension: repeated hive.v1.Verb permission_verbs = 2000005;
+ */
+export const permission_verbs = proto3.makeExtension<MethodOptions, Verb[]>(
+  "hive.v1.permission_verbs", 
+  MethodOptions, 
+  () => ({ no: 2000005, kind: "enum", T: proto3.getEnumType(Verb), repeated: true }),
+);
+
+/**
+ * @generated from extension: repeated hive.v1.TenantAuthIDType service_accepted_tenant_auth_id_types = 3000000;
+ */
+export const service_accepted_tenant_auth_id_types = proto3.makeExtension<ServiceOptions, TenantAuthIDType[]>(
+  "hive.v1.service_accepted_tenant_auth_id_types", 
+  ServiceOptions, 
+  () => ({ no: 3000000, kind: "enum", T: proto3.getEnumType(TenantAuthIDType), repeated: true }),
+);
+
+/**
+ * The resource this RPC operates on.
+ *
+ * @generated from extension: hive.v1.Resource rpc_resource = 3000001;
+ */
+export const rpc_resource = proto3.makeExtension<ServiceOptions, Resource>(
+  "hive.v1.rpc_resource", 
+  ServiceOptions, 
+  () => ({ no: 3000001, kind: "enum", T: proto3.getEnumType(Resource) }),
 );
 

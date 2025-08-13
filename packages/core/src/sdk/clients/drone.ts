@@ -1,6 +1,7 @@
 import { createClient } from "@connectrpc/connect";
 import { App, DroneAppService, DroneMemberService, DroneOrgService, DroneRBACService, DroneUserService } from "../../gen";
 import { getTokenInterceptor } from "./interceptor";
+import { ClientOptions } from "./types";
 import { createTransport } from "./utils";
 
 export const createDroneClient = () => {

@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { App, BasePort, CountryCode, Environment, ErrorCode, Resource, Verb } from "./enums_pb";
+import { App, BasePort, CountryCode, Environment, ErrorCode, Resource, Verb } from "./enums_pb.js";
 
 /**
  * @generated from message hive.v1.Error
@@ -406,6 +406,124 @@ export class Country extends Message<Country> {
 
   static equals(a: Country | PlainMessage<Country> | undefined, b: Country | PlainMessage<Country> | undefined): boolean {
     return proto3.util.equals(Country, a, b);
+  }
+}
+
+/**
+ * hrn:<resource_group>:<resource_type>:<organization_name>:<project_name>:<resource_name>
+ *
+ * @generated from message hive.v1.HiveResourceName
+ */
+export class HiveResourceName extends Message<HiveResourceName> {
+  /**
+   * e.g. iam.global.user, etc.
+   *
+   * @generated from field: hive.v1.Resource resource = 1;
+   */
+  resource = Resource.UNSPECIFIED;
+
+  /**
+   * @generated from field: string organization_name = 2;
+   */
+  organizationName = "";
+
+  /**
+   * @generated from field: string project_name = 3;
+   */
+  projectName = "";
+
+  /**
+   * @generated from field: string resource_name = 4;
+   */
+  resourceName = "";
+
+  constructor(data?: PartialMessage<HiveResourceName>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "hive.v1.HiveResourceName";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "resource", kind: "enum", T: proto3.getEnumType(Resource) },
+    { no: 2, name: "organization_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "resource_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HiveResourceName {
+    return new HiveResourceName().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): HiveResourceName {
+    return new HiveResourceName().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): HiveResourceName {
+    return new HiveResourceName().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: HiveResourceName | PlainMessage<HiveResourceName> | undefined, b: HiveResourceName | PlainMessage<HiveResourceName> | undefined): boolean {
+    return proto3.util.equals(HiveResourceName, a, b);
+  }
+}
+
+/**
+ * hri:<resource_group>:<resource_type>:<organization_uuid>:<project_uuid>:<resource_uuid>
+ *
+ * @generated from message hive.v1.HiveResourceIdentifier
+ */
+export class HiveResourceIdentifier extends Message<HiveResourceIdentifier> {
+  /**
+   * e.g. iam.global.user, etc.
+   *
+   * @generated from field: hive.v1.Resource resource = 1;
+   */
+  resource = Resource.UNSPECIFIED;
+
+  /**
+   * @generated from field: string organization_uuid = 2;
+   */
+  organizationUuid = "";
+
+  /**
+   * @generated from field: string project_uuid = 3;
+   */
+  projectUuid = "";
+
+  /**
+   * @generated from field: string resource_uuid = 4;
+   */
+  resourceUuid = "";
+
+  constructor(data?: PartialMessage<HiveResourceIdentifier>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "hive.v1.HiveResourceIdentifier";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "resource", kind: "enum", T: proto3.getEnumType(Resource) },
+    { no: 2, name: "organization_uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "project_uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "resource_uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HiveResourceIdentifier {
+    return new HiveResourceIdentifier().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): HiveResourceIdentifier {
+    return new HiveResourceIdentifier().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): HiveResourceIdentifier {
+    return new HiveResourceIdentifier().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: HiveResourceIdentifier | PlainMessage<HiveResourceIdentifier> | undefined, b: HiveResourceIdentifier | PlainMessage<HiveResourceIdentifier> | undefined): boolean {
+    return proto3.util.equals(HiveResourceIdentifier, a, b);
   }
 }
 

@@ -2,7 +2,7 @@ import { createClient } from "@connectrpc/connect";
 import { App, FQDN, VespaService } from "../../gen";
 import { buildURL, getDomain, getEnv, makeSingletonFactory } from "../utilities/utils";
 import { getClientOptions } from "./globals";
-import { getInterceptors } from "./token-manager";
+import { getTokenInterceptor } from "./interceptor";
 
 export const createSingletonVespaClient = makeSingletonFactory(({ hubId, nodeName }: { hubId: string; nodeName: string }) => {
   const { clientType, createTransportFn } = getClientOptions();
@@ -17,7 +17,7 @@ export const createSingletonVespaClient = makeSingletonFactory(({ hubId, nodeNam
 
   const transport = createTransportFn({
     url: buildURL(fqdn, clientType),
-    interceptors: getInterceptors(),
+    interceptors: [getTokenInterceptor()],
   });
 
   return {

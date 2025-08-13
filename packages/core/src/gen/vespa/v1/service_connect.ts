@@ -3,17 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CountRecordsRequest, CountRecordsResponse, DeleteRecordsRequest, DeleteRecordsResponse, ExistsRequest, ExistsResponse, GetRecordRequest, GetRecordResponse, GetRecordsRequest, GetRecordsResponse, InsertRecordRequest, InsertRecordResponse, InsertRecordsRequest, InsertRecordsResponse, UpdateRecordsRequest, UpdateRecordsResponse } from "./requests_and_responses_pb";
+import { CountRecordsRequest, CountRecordsResponse, DeleteRecordsRequest, DeleteRecordsResponse, GetRecordRequest, GetRecordResponse, GetRecordsRequest, GetRecordsResponse, InsertRecordRequest, InsertRecordResponse, InsertRecordsRequest, InsertRecordsResponse, RecordExistsRequest, RecordExistsResponse, UpdateRecordsRequest, UpdateRecordsResponse } from "./requests_and_responses_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
- * @generated from service vespa.v1.VespaService
+ * @generated from service vespa.v1.VespaDatabaseService
  */
-export const VespaService = {
-  typeName: "vespa.v1.VespaService",
+export const VespaDatabaseService = {
+  typeName: "vespa.v1.VespaDatabaseService",
   methods: {
     /**
-     * @generated from rpc vespa.v1.VespaService.InsertRecord
+     * @generated from rpc vespa.v1.VespaDatabaseService.InsertRecord
      */
     insertRecord: {
       name: "InsertRecord",
@@ -22,7 +22,7 @@ export const VespaService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc vespa.v1.VespaService.InsertRecords
+     * @generated from rpc vespa.v1.VespaDatabaseService.InsertRecords
      */
     insertRecords: {
       name: "InsertRecords",
@@ -31,7 +31,7 @@ export const VespaService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc vespa.v1.VespaService.GetRecord
+     * @generated from rpc vespa.v1.VespaDatabaseService.GetRecord
      */
     getRecord: {
       name: "GetRecord",
@@ -40,7 +40,7 @@ export const VespaService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc vespa.v1.VespaService.GetRecords
+     * @generated from rpc vespa.v1.VespaDatabaseService.GetRecords
      */
     getRecords: {
       name: "GetRecords",
@@ -49,7 +49,7 @@ export const VespaService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc vespa.v1.VespaService.CountRecords
+     * @generated from rpc vespa.v1.VespaDatabaseService.CountRecords
      */
     countRecords: {
       name: "CountRecords",
@@ -58,16 +58,16 @@ export const VespaService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc vespa.v1.VespaService.Exists
+     * @generated from rpc vespa.v1.VespaDatabaseService.RecordExists
      */
-    exists: {
-      name: "Exists",
-      I: ExistsRequest,
-      O: ExistsResponse,
+    recordExists: {
+      name: "RecordExists",
+      I: RecordExistsRequest,
+      O: RecordExistsResponse,
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc vespa.v1.VespaService.UpdateRecords
+     * @generated from rpc vespa.v1.VespaDatabaseService.UpdateRecords
      */
     updateRecords: {
       name: "UpdateRecords",
@@ -76,7 +76,7 @@ export const VespaService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc vespa.v1.VespaService.DeleteRecords
+     * @generated from rpc vespa.v1.VespaDatabaseService.DeleteRecords
      */
     deleteRecords: {
       name: "DeleteRecords",
