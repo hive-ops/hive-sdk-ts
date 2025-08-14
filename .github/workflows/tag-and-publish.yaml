@@ -41,7 +41,7 @@ jobs:
           mapfile -t PATTERNS < <(node -e "(require('./package.json').workspaces||[]).forEach(s=>console.log(s))")
 
           MATRIX="["; SEP=""
-          CHANGED="["; CSEP=""
+          CHANGED="["; CSEP=""; CHANGED_COUNT=0
 
           for pat in "${PATTERNS[@]}"; do
             # Bash will expand any globs here
@@ -61,12 +61,17 @@ jobs:
                 if [ "$commits" != "0" ]; then
                   CHANGED+="$CSEP{\"path\":\"$dir\",\"id\":\"$id\",\"pkg_name\":\"$name\"}"
                   CSEP="," 
+                  CHANGED_COUNT=$((CHANGED_COUNT+1))
                 fi
               fi
             done
           done
           MATRIX+="]"
-          CHANGED+="]"
+          if [ "$CHANGED_COUNT" -eq 0 ]; then
+            CHANGED='[{"path":".","id":"noop","pkg_name":"noop","skip":true}]'
+          else
+            CHANGED+="]"
+          fi
 
           if [ -n "$TAG" ]; then
             ROOT_COMMITS=$(git rev-list "$TAG"..HEAD -- . | wc -l | tr -d ' ')
@@ -147,12 +152,14 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Download artifacts for package
+        if: ${{ matrix.pkg.skip != 'true' }}
         uses: actions/download-artifact@v4
         with:
           name: ${{ matrix.pkg.id }}-artifacts
           path: ./artifacts/${{ matrix.pkg.id }}
 
       - name: Setup Node.js
+        if: ${{ matrix.pkg.skip != 'true' }}
         uses: actions/setup-node@v4
         with:
           node-version: "20"
@@ -166,22 +173,25 @@ jobs:
           git config --local user.name "github-actions"
 
       - name: Apply artifacts to workspace
+        if: ${{ matrix.pkg.skip != 'true' }}
         run: |
           mkdir -p ./${{ matrix.pkg.path }}
           cp -r ./artifacts/${{ matrix.pkg.id }}/* ./${{ matrix.pkg.path }}/
 
-      # - name: Publish package to npm
-      #   working-directory: ${{ matrix.pkg.path }}
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #   run: |
-      #     npm publish --provenance --access public
+      - name: Publish package to npm
+        if: ${{ matrix.pkg.skip != 'true' }}
+        working-directory: ${{ matrix.pkg.path }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm publish --provenance --access public
 
-      # - name: Tag package version and push
-      #   working-directory: ${{ matrix.pkg.path }}
-      #   run: |
-      #     VERSION=$(node -p "require('./package.json').version")
-      #     TAG="${{ matrix.pkg.id }}-v${VERSION}"
-      #     MSG="${{ matrix.pkg.pkg_name }}-v${VERSION}"
-      #     git tag -a "$TAG" -m "$MSG"
-      #     git push origin --tags --no-verify
+      - name: Tag package version and push
+        if: ${{ matrix.pkg.skip != 'true' }}
+        working-directory: ${{ matrix.pkg.path }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          TAG="${{ matrix.pkg.id }}-v${VERSION}"
+          MSG="${{ matrix.pkg.pkg_name }}-v${VERSION}"
+          git tag -a "$TAG" -m "$MSG"
+          git push origin --tags --no-verify
