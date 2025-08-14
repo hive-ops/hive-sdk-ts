@@ -112,47 +112,47 @@ jobs:
             packages/core/package*.json
           retention-days: 1
 
-  build-and-test-cli:
-    name: Build and Test CLI SDK
-    needs: [setup-dependencies, commit-check]
-    runs-on: ubuntu-latest
-    if: needs.commit-check.outputs.cli_commits != '0'
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+  # build-and-test-cli:
+  #   name: Build and Test CLI SDK
+  #   needs: [setup-dependencies, commit-check]
+  #   runs-on: ubuntu-latest
+  #   if: needs.commit-check.outputs.cli_commits != '0'
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          registry-url: "https://registry.npmjs.org"
+  #     - name: Setup Node
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: "20"
+  #         registry-url: "https://registry.npmjs.org"
 
-      - name: Restore cached node modules
-        uses: actions/cache@v4
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+  #     - name: Restore cached node modules
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: |
+  #           **/node_modules
+  #         key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
 
-      - name: Install npm dependencies
-        run: npm ci
+  #     - name: Install npm dependencies
+  #       run: npm ci
 
-      - name: Build all packages
-        run: npx lerna run build
+  #     - name: Build all packages
+  #       run: npx lerna run build
 
-      - name: Bump version and build CLI SDK
-        run: |
-          cd packages/cli
-          npm run build
+  #     - name: Bump version and build CLI SDK
+  #       run: |
+  #         cd packages/cli
+  #         npm run build
 
-      - name: Upload CLI artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: cli-artifacts
-          path: |
-            packages/cli/lib
-            packages/cli/package*.json
-          retention-days: 1
+  #     - name: Upload CLI artifacts
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: cli-artifacts
+  #         path: |
+  #           packages/cli/lib
+  #           packages/cli/package*.json
+  #         retention-days: 1
 
   build-and-test-node:
     name: Build and Test Node SDK
@@ -195,16 +195,15 @@ jobs:
             packages/node/lib
             packages/node/package*.json
           retention-days: 1
-         
+
   publish-and-tag:
     name: Publish and Tag
-    needs: [setup-dependencies, commit-check, build-and-test-core, build-and-test-cli, build-and-test-node]
+    needs: [setup-dependencies, commit-check, build-and-test-core, build-and-test-node]
     runs-on: ubuntu-latest
     if: |
       always() && 
       (needs.commit-check.result == 'success' && needs.setup-dependencies.result == 'success' && needs.commit-check.outputs.root_commits != '0') &&
       (needs.build-and-test-core.result == 'success' || needs.build-and-test-core.result == 'skipped') &&
-      (needs.build-and-test-cli.result == 'success' || needs.build-and-test-cli.result == 'skipped') &&
       (needs.build-and-test-node.result == 'success' || needs.build-and-test-node.result == 'skipped')
     steps:
       - name: Checkout repo
@@ -243,17 +242,17 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Apply changes to CLI and publish
-        if: needs.commit-check.outputs.cli_commits != '0'
-        run: |
-          mkdir -p ./packages/cli
-          cp -r ./artifacts/cli-artifacts/* ./packages/cli
-          cp -r ./artifacts/cli-artifacts/package*.json ./packages/cli/
-          cd packages/cli
-          npm publish --provenance --access public
-          git tag -a cli-v$(node -p "require('./package.json').version") -m "@hiveops/cli-v$(node -p "require('./package.json').version")"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Apply changes to CLI and publish
+      #   if: needs.commit-check.outputs.cli_commits != '0'
+      #   run: |
+      #     mkdir -p ./packages/cli
+      #     cp -r ./artifacts/cli-artifacts/* ./packages/cli
+      #     cp -r ./artifacts/cli-artifacts/package*.json ./packages/cli/
+      #     cd packages/cli
+      #     npm publish --provenance --access public
+      #     git tag -a cli-v$(node -p "require('./package.json').version") -m "@hiveops/cli-v$(node -p "require('./package.json').version")"
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Apply changes to Node and publish
         if: needs.commit-check.outputs.node_commits != '0'
@@ -267,83 +266,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # - name: "Get new repo version"
-      #   run: |
-      #     npm version patch --no-git-tag-version
-      #     echo NEW_VERSION=$(node -p "require('./package.json').version") >> "$GITHUB_ENV"
-
       - name: "Bump Repo Tag"
         run: |
           git push origin --tags --no-verify
-        # git commit -am "[patch version] Version bump to v${{ env.NEW_VERSION }}"
-        # git tag -a v${{ env.NEW_VERSION }} -m "Version v${{ env.NEW_VERSION }}"
-        # git push origin v${{ env.NEW_VERSION }} --no-verify
-        # git push --no-verify
-      
-      # - name: Bump version and build Node SDK
-      #   if: needs.commit-check.outputs.node_commits != '0'
-      #   run: |
-      #     cd packages/node
-      #     npm version patch --no-git-tag-version
-      #     npm run build
-      #     echo NODE_CURRENT_VERSION=$(node -p "require('./package.json').version") >> "$GITHUB_ENV"
-
-      # - name: Bump version and build CLI
-      #   if: needs.commit-check.outputs.cli_commits != '0'
-      #   run: |
-      #     cd packages/cli
-      #     npm version patch --no-git-tag-version
-      #     npm run build
-      #     echo CLI_CURRENT_VERSION=$(node -p "require('./package.json').version") >> "$GITHUB_ENV"
-
-      # - name: "Configure Git"
-      #   run: |
-      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      #     git config --local user.name "github-actions"
-
-      # - name: Publish Core SDK
-      #   if: needs.commit-check.outputs.core_commits != '0'
-      #   run: |
-      #     cd packages/core
-      #     npm publish --provenance --access public
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # - name: Publish Node SDK
-      #   if: needs.commit-check.outputs.node_commits != '0'
-      #   run: |
-      #     cd packages/node
-      #     npm publish --provenance --access public
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # - name: Publish CLI
-      #   if: needs.commit-check.outputs.node_commits != '0'
-      #   run: |
-      #     cd packages/cli
-      #     npm publish --provenance --access public
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # - name: "Commit Repo Changes"
-      #   if: |
-      #     needs.commit-check.outputs.core_commits != '0' || needs.commit-check.outputs.node_commits != '0' || needs.commit-check.outputs.cli_commits != '0'
-      #   run: |
-      #     git commit -am "chore: release main" --no-verify
-
-      # - name: "Tag Repo - Core"
-      #   if: needs.commit-check.outputs.core_commits != '0'
-      #   run: |
-      #     git tag -a core-v${{ env.CORE_CURRENT_VERSION }} -m "Version core-v${{ env.CORE_CURRENT_VERSION }}"
-      #     git push origin core-v${{ env.CORE_CURRENT_VERSION }} --no-verify
-
-      # - name: "Tag Repo - Node"
-      #   if: needs.commit-check.outputs.node_commits != '0'
-      #   run: |
-      #     git tag -a node-v${{ env.NODE_CURRENT_VERSION }} -m "Version core-v${{ env.NODE_CURRENT_VERSION }}"
-      #     git push origin node-v${{ env.NODE_CURRENT_VERSION }} --no-verify
-
-      # - name: "Push Repo"
-      #   if: needs.commit-check.outputs.root_commits != '0'
-      #   run: |
-      #     git push --no-verify
