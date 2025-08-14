@@ -5,8 +5,8 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { HiveResourceIdentifier, ResponseMetadata } from "../../hive/v1/models_pb.js";
-import { Record, WhereCondition } from "./models_pb.js";
+import { HiveResourceIdentifier, ResponseMetadata } from "../../hive/v1/models_pb";
+import { Record, WhereCondition } from "./models_pb";
 
 /**
  * @generated from message vespa.v1.DeleteRecordsRequest

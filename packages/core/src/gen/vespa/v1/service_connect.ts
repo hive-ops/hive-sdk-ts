@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CountRecordsRequest, CountRecordsResponse, DeleteRecordsRequest, DeleteRecordsResponse, GetRecordRequest, GetRecordResponse, GetRecordsRequest, GetRecordsResponse, InsertRecordRequest, InsertRecordResponse, InsertRecordsRequest, InsertRecordsResponse, RecordExistsRequest, RecordExistsResponse, UpdateRecordsRequest, UpdateRecordsResponse } from "./requests_and_responses_pb.js";
+import { CountRecordsRequest, CountRecordsResponse, DeleteRecordsRequest, DeleteRecordsResponse, GetRecordRequest, GetRecordResponse, GetRecordsRequest, GetRecordsResponse, InsertRecordRequest, InsertRecordResponse, InsertRecordsRequest, InsertRecordsResponse, RecordExistsRequest, RecordExistsResponse, UpdateRecordsRequest, UpdateRecordsResponse } from "./requests_and_responses_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**

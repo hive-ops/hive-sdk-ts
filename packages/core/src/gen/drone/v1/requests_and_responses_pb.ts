@@ -5,8 +5,8 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { HivePermission, HiveResourceIdentifier, Pagination, PaginationRequest, ResponseMetadata } from "../../hive/v1/models_pb.js";
-import { InvitationRoleBinding, MemberInvitation, Organization, OrganizationMember, PlatformApp, Project, Role, SecureApp, SecureAppAccessToken, Self } from "./models_pb.js";
+import { HivePermission, HiveResourceIdentifier, Pagination, PaginationRequest, ResponseMetadata } from "../../hive/v1/models_pb";
+import { InvitationRoleBinding, MemberInvitation, Organization, OrganizationMember, PlatformApp, Project, Role, SecureApp, SecureAppAccessToken, Self } from "./models_pb";
 
 /**
  * @generated from message drone.v1.GetCustomTokenWithClaimsRequest

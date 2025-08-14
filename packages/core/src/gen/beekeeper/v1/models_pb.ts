@@ -5,10 +5,10 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { HiveResourceIdentifier } from "../../hive/v1/models_pb.js";
-import { DatabaseSchema, VespaNode } from "../../vespa/v1/models_pb.js";
-import { VespaDatabaseStackStatus, VespaDatabaseStatusAtOrchestrator } from "./enums_pb.js";
-import { VespaDatabaseStatusAtNode } from "../../vespa/v1/enums_pb.js";
+import { HiveResourceIdentifier } from "../../hive/v1/models_pb";
+import { DatabaseSchema, VespaNode } from "../../vespa/v1/models_pb";
+import { VespaDatabaseStackStatus, VespaDatabaseStatusAtOrchestrator } from "./enums_pb";
+import { VespaDatabaseStatusAtNode } from "../../vespa/v1/enums_pb";
 
 /**
  * @generated from message beekeeper.v1.VespaDatabaseStack

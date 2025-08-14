@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { App, BasePort, CountryCode, Environment, ErrorCode, Resource, Verb } from "./enums_pb.js";
+import { App, BasePort, CountryCode, Environment, ErrorCode, Resource, Verb } from "./enums_pb";
 
 /**
  * @generated from message hive.v1.Error

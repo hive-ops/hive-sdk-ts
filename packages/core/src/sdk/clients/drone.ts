@@ -1,17 +1,26 @@
 import { createClient } from "@connectrpc/connect";
-import { App, DroneAppService, DroneMemberService, DroneOrgService, DroneRBACService, DroneUserService } from "../../gen";
+import {
+  App,
+  DroneIAMOrganizationMemberService,
+  DroneIAMOrganizationService,
+  DroneIAMPlatformAppService,
+  DroneIAMProjectService,
+  DroneIAMRoleService,
+  DroneIAMSecureAppService,
+  DroneIAMUserService,
+} from "../../gen";
 import { getTokenInterceptor } from "./interceptor";
-import { ClientOptions } from "./types";
 import { createTransport } from "./utils";
 
 export const createDroneClient = () => {
   const transport = createTransport(App.DRONE, [getTokenInterceptor()]);
   return {
-    ...createClient(DroneAppService, transport),
-    ...createClient(DroneMemberService, transport),
-    ...createClient(DroneRBACService, transport),
-    ...createClient(DroneUserService, transport),
-    ...createClient(DroneOrgService, transport),
-    ...createClient(DroneMemberService, transport),
+    ...createClient(DroneIAMOrganizationService, transport),
+    ...createClient(DroneIAMProjectService, transport),
+    ...createClient(DroneIAMUserService, transport),
+    ...createClient(DroneIAMOrganizationMemberService, transport),
+    ...createClient(DroneIAMRoleService, transport),
+    ...createClient(DroneIAMPlatformAppService, transport),
+    ...createClient(DroneIAMSecureAppService, transport),
   };
 };

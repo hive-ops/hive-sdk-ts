@@ -5,10 +5,10 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { Country, File, HiveResourceIdentifier, ResponseMetadata } from "../../hive/v1/models_pb.js";
-import { VespaDatabase, VespaDatabaseStack } from "./models_pb.js";
-import { CountryCode, ProgrammingLanguage } from "../../hive/v1/enums_pb.js";
-import { DatabaseSchema, Migration } from "../../vespa/v1/models_pb.js";
+import { Country, File, HiveResourceIdentifier, ResponseMetadata } from "../../hive/v1/models_pb";
+import { VespaDatabase, VespaDatabaseStack } from "./models_pb";
+import { CountryCode, ProgrammingLanguage } from "../../hive/v1/enums_pb";
+import { DatabaseSchema, Migration } from "../../vespa/v1/models_pb";
 
 /**
  * @generated from message beekeeper.v1.GetSupportedCountriesRequest

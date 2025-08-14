@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import { getFirebaseTokenWithClaimsViaEmailPassword } from "../firebase";
-import { createTokenManager, tokenManager } from "./token-manager";
+import { createTokenManager, tokenManager } from "./@hiveops/core";
 
 dotenv.config({ path: ".env.dev" });
 

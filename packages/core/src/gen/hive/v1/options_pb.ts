@@ -4,8 +4,8 @@
 // @ts-nocheck
 
 import { MethodOptions, proto3, ServiceOptions } from "@bufbuild/protobuf";
-import { AllocationQuota, HRILevel, RateQuota, Resource, TenantAuthIDType, Verb } from "./enums_pb.js";
-import { HivePermission } from "./models_pb.js";
+import { AllocationQuota, HRILevel, RateQuota, Resource, TenantAuthIDType, Verb } from "./enums_pb";
+import { HivePermission } from "./models_pb";
 
 /**
  * @generated from extension: repeated hive.v1.TenantAuthIDType accepted_tenant_auth_id_types = 2000000;

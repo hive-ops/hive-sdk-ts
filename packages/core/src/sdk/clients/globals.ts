@@ -1,7 +1,4 @@
-import { VespaDatabaseStack } from "../../gen";
-import { ClientOptions } from "../clients";
-import { getEnvString } from "../utilities";
-
+import { ClientOptions } from "./types";
 
 let clientOptions: ClientOptions | undefined = undefined;
 export const setClientOptions = (options: ClientOptions) => {

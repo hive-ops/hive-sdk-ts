@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { ColumnType, ComparisonOperator } from "./enums_pb.js";
+import { ColumnType, ComparisonOperator } from "./enums_pb";
 
 /**
  * @generated from message vespa.v1.ObjectRenameOptions
