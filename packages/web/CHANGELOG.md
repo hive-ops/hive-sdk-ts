@@ -1,5 +1,11 @@
 # @hiveops/web
 
+## 1.2.1
+
+### Patch Changes
+
+- Add export for initialize function in node and web packages
+
 ## 1.2.0
 
 ### Minor Changes

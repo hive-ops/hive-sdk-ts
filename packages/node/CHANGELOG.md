@@ -1,5 +1,11 @@
 # @hiveops/node
 
+## 1.8.1
+
+### Patch Changes
+
+- Add export for initialize function in node and web packages
+
 ## 1.8.0
 
 ### Minor Changes
