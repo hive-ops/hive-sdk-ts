@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { App, Environment, FQDN } from "../../gen";
 import { APP_BASE_PORT_MAP, APP_MAP, CLIENT_TYPE_FRAMEWORK_MAP, ENVIRONMENT_MAP } from "./constants";
 import { ClientType, Protocol } from "./types";
@@ -99,8 +100,8 @@ export const getDomain = (): string => {
 export const isDevEnv = (environment: Environment): boolean => environment === Environment.DEV;
 export const isProdEnv = (environment: Environment): boolean => environment === Environment.PROD;
 
-export const getProtocol = (clientType: ClientType, environment: Environment): Protocol => {
-  return isDevEnv(environment) && clientType === "web" ? "http" : "https";
+export const getProtocol = (environment: Environment): Protocol => {
+  return isDevEnv(environment) ? "http" : "https";
 };
 
 export const buildURL = (fqdn: FQDN, clientType: ClientType): string => {
@@ -108,7 +109,7 @@ export const buildURL = (fqdn: FQDN, clientType: ClientType): string => {
   const port = APP_BASE_PORT_MAP[getEnumKey(App, fqdn.app)];
 
   // TCP Protocol
-  const protocol = getProtocol(clientType, fqdn.environment);
+  const protocol = getProtocol(fqdn.environment);
 
   if (isDevEnv(fqdn.environment)) {
     return `${protocol}://localhost:${port}`;
@@ -123,40 +124,12 @@ export const buildURL = (fqdn: FQDN, clientType: ClientType): string => {
   // App
   const appName = APP_MAP[getEnumKey(App, fqdn.app)];
 
-  const domainElements: string[] = [];
-
-  const useGlobalDomain = fqdn.app !== App.VESPA;
-
-  // Node Name
-  if (!useGlobalDomain) {
-    const nodeName = throwIfNullish(fqdn.nodeName, `Node name is required for ${appName} app`);
-    domainElements.push(nodeName);
-  }
-
   // Framework
   const frameworkText = CLIENT_TYPE_FRAMEWORK_MAP[clientType];
-  domainElements.push(frameworkText);
 
-  // App Name
-  domainElements.push(appName);
+  const domainElements: string[] = [fqdn.nodeName, frameworkText, appName, environment, fqdn.hubId, fqdn.domain];
 
-  // Hub ID
-  if (!useGlobalDomain) {
-    const hubId = throwIfNullish(fqdn.hubId, `Hub ID is required for ${appName} app`);
-    domainElements.push(hubId);
-  }
-
-  // Domain
-  const domain = throwIfNullish(fqdn.domain, `Domain is required for ${appName} app`);
-  domainElements.push(domain);
-
-  // const subdomainElements: (string | undefined)[] = [useGlobalDomain ? fqdn.nodeName : undefined, frameworkText, appName, useGlobalDomain ? fqdn.hubId : undefined];
-
-  // const subdomain = _.compact(subdomainElements).join(".");
-
-  // domainElements.push(..._.compact([subdomain, fqdn.domain]));
-
-  return `${protocol}://${domainElements.join(".")}`;
+  return `${protocol}://${_.compact(domainElements).join(".")}`;
 };
 
 // export const isNodeClient = (framework: Framework): boolean => framework === Framework.GRPC;

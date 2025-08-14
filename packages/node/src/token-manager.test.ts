@@ -2,7 +2,7 @@ import { getFirebaseTokenWithClaimsViaEmailPassword, tokenManager } from "@hiveo
 import dotenv from "dotenv";
 import { initializeClient } from "./initialize";
 
-dotenv.config({ path: ".env.dev" });
+dotenv.config({ path: ".env.staging" });
 
 describe("TokenManager", () => {
   const firebaseAPIKey: string = process.env.FIREBASE_API_KEY || "";
