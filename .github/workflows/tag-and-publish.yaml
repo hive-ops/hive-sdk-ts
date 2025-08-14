@@ -90,13 +90,10 @@ jobs:
           echo "Has root changes: $HAS_ROOT_CHANGES"
 
   build:
-    name: Build packages
+    name: Build all packages
     needs: [determine-packages]
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        pkg: ${{ fromJSON(needs.determine-packages.outputs.workspaces) }}
+    if: needs.determine-packages.outputs.has_root_changes == 'true'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -119,20 +116,16 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Build all packages (ensure cross-package deps are compiled)
+      - name: Build all packages
         run: npx lerna run build
 
-      - name: Build current package explicitly
-        working-directory: ${{ matrix.pkg.path }}
-        run: npm run build
-
-      - name: Upload package artifacts
+      - name: Upload all package artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.pkg.id }}-artifacts
+          name: all-packages-artifacts
           path: |
-            ${{ matrix.pkg.path }}/lib
-            ${{ matrix.pkg.path }}/package*.json
+            packages/*/lib
+            packages/*/package*.json
           retention-days: 1
 
   publish-and-tag:
@@ -155,8 +148,8 @@ jobs:
         if: ${{ matrix.pkg.skip != 'true' }}
         uses: actions/download-artifact@v4
         with:
-          name: ${{ matrix.pkg.id }}-artifacts
-          path: ./artifacts/${{ matrix.pkg.id }}
+          name: all-packages-artifacts
+          path: ./artifacts
 
       - name: Setup Node.js
         if: ${{ matrix.pkg.skip != 'true' }}
@@ -176,7 +169,8 @@ jobs:
         if: ${{ matrix.pkg.skip != 'true' }}
         run: |
           mkdir -p ./${{ matrix.pkg.path }}
-          cp -r ./artifacts/${{ matrix.pkg.id }}/* ./${{ matrix.pkg.path }}/
+          cp -r ./artifacts/${{ matrix.pkg.path }}/lib ./${{ matrix.pkg.path }}/
+          cp ./artifacts/${{ matrix.pkg.path }}/package*.json ./${{ matrix.pkg.path }}/
 
       - name: Publish package to npm
         if: ${{ matrix.pkg.skip != 'true' }}
