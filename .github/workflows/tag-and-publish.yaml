@@ -10,41 +10,87 @@ permissions:
   id-token: write
 
 jobs:
-  commit-check:
-    name: Get commit counts
+  determine-packages:
+    name: Determine workspaces and changes
     runs-on: ubuntu-latest
     outputs:
-      root_commits: ${{ steps.commit-count.outputs.root }}
-      core_commits: ${{ steps.commit-count.outputs.core }}
-      node_commits: ${{ steps.commit-count.outputs.node }}
-      cli_commits: ${{ steps.commit-count.outputs.cli }}
+      workspaces: ${{ steps.set-matrix.outputs.workspaces }}
+      changed_workspaces: ${{ steps.set-matrix.outputs.changed_workspaces }}
+      has_root_changes: ${{ steps.set-matrix.outputs.has_root_changes }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # fetch all tags
+          fetch-depth: 0
 
-      - name: Get latest repo tag
-        id: get-tag
+      - name: Compute workspace matrix and change set
+        id: set-matrix
+        shell: bash
         run: |
-          echo "tag=$(git describe --tags --abbrev=0 || echo '')" >> $GITHUB_OUTPUT
+          set -euo pipefail
 
-      - name: Get commit counts
-        id: commit-count
-        run: |
-          TAG=${{ steps.get-tag.outputs.tag }}
-          if [ -z "$TAG" ]; then TAG=""; fi
-          echo "tag=$TAG"
-          echo "root=$(git rev-list $TAG..HEAD -- . | wc -l)" >> $GITHUB_OUTPUT
-          echo "core=$(git rev-list $TAG..HEAD -- packages/core | wc -l)" >> $GITHUB_OUTPUT
-          echo "node=$(git rev-list $TAG..HEAD -- packages/node | wc -l)" >> $GITHUB_OUTPUT
-          echo "cli=$(git rev-list $TAG..HEAD -- packages/cli | wc -l)" >> $GITHUB_OUTPUT
+          TAG=$(git describe --tags --abbrev=0 || echo "")
+          echo "Latest tag: $TAG"
 
-  setup-dependencies:
-    name: Bump and Build TS SDKs
-    needs: [commit-check]
+          # Read workspaces from root package.json (string array)
+          WORKSPACES_JSON=$(node -e "console.log(JSON.stringify(require('./package.json').workspaces || []))")
+          echo "workspaces from package.json: $WORKSPACES_JSON"
+
+          # Expand patterns into real package directories that contain a package.json
+          mapfile -t PATTERNS < <(node -e "(require('./package.json').workspaces||[]).forEach(s=>console.log(s))")
+
+          MATRIX="["; SEP=""
+          CHANGED="["; CSEP=""
+
+          for pat in "${PATTERNS[@]}"; do
+            # Bash will expand any globs here
+            for dir in $pat; do
+              if [ -f "$dir/package.json" ]; then
+                name=$(node -p "require('./${dir}/package.json').name")
+                id=$(basename "$dir")
+                if [ -n "$TAG" ]; then
+                  commits=$(git rev-list "$TAG"..HEAD -- "$dir" | wc -l | tr -d ' ')
+                else
+                  commits=$(git rev-list HEAD -- "$dir" | wc -l | tr -d ' ')
+                fi
+
+                MATRIX+="$SEP{\"path\":\"$dir\",\"id\":\"$id\",\"pkg_name\":\"$name\"}"
+                SEP="," 
+
+                if [ "$commits" != "0" ]; then
+                  CHANGED+="$CSEP{\"path\":\"$dir\",\"id\":\"$id\",\"pkg_name\":\"$name\"}"
+                  CSEP="," 
+                fi
+              fi
+            done
+          done
+          MATRIX+="]"
+          CHANGED+="]"
+
+          if [ -n "$TAG" ]; then
+            ROOT_COMMITS=$(git rev-list "$TAG"..HEAD -- . | wc -l | tr -d ' ')
+          else
+            ROOT_COMMITS=$(git rev-list HEAD -- . | wc -l | tr -d ' ')
+          fi
+          HAS_ROOT_CHANGES=false
+          if [ "$ROOT_COMMITS" != "0" ]; then HAS_ROOT_CHANGES=true; fi
+
+          echo "workspaces=$MATRIX" >> "$GITHUB_OUTPUT"
+          echo "changed_workspaces=$CHANGED" >> "$GITHUB_OUTPUT"
+          echo "has_root_changes=$HAS_ROOT_CHANGES" >> "$GITHUB_OUTPUT"
+
+          echo "Workspace matrix: $MATRIX"
+          echo "Changed workspace matrix: $CHANGED"
+          echo "Has root changes: $HAS_ROOT_CHANGES"
+
+  build:
+    name: Build packages
+    needs: [determine-packages]
     runs-on: ubuntu-latest
-    if: needs.commit-check.outputs.root_commits != '0'
+    strategy:
+      fail-fast: false
+      matrix:
+        pkg: ${{ fromJSON(needs.determine-packages.outputs.workspaces) }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -67,144 +113,31 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Build all packages
+      - name: Build all packages (ensure cross-package deps are compiled)
         run: npx lerna run build
 
-  build-and-test-core:
-    name: Build and Test Core SDK
-    needs: [setup-dependencies, commit-check]
-    runs-on: ubuntu-latest
-    if: needs.commit-check.outputs.core_commits != '0'
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - name: Build current package explicitly
+        working-directory: ${{ matrix.pkg.path }}
+        run: npm run build
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          registry-url: "https://registry.npmjs.org"
-
-      - name: Restore cached node modules
-        uses: actions/cache@v4
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Install npm dependencies
-        run: npm ci
-
-      - name: Build all packages
-        run: npx lerna run build
-
-      - name: Bump version and build Core SDK
-        run: |
-          cd packages/core
-          npm run build
-
-      - name: Upload Core artifacts
+      - name: Upload package artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: core-artifacts
+          name: ${{ matrix.pkg.id }}-artifacts
           path: |
-            packages/core/lib
-            packages/core/package*.json
-          retention-days: 1
-
-  # build-and-test-cli:
-  #   name: Build and Test CLI SDK
-  #   needs: [setup-dependencies, commit-check]
-  #   runs-on: ubuntu-latest
-  #   if: needs.commit-check.outputs.cli_commits != '0'
-  #   steps:
-  #     - name: Checkout repo
-  #       uses: actions/checkout@v4
-
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: "20"
-  #         registry-url: "https://registry.npmjs.org"
-
-  #     - name: Restore cached node modules
-  #       uses: actions/cache@v4
-  #       with:
-  #         path: |
-  #           **/node_modules
-  #         key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
-
-  #     - name: Install npm dependencies
-  #       run: npm ci
-
-  #     - name: Build all packages
-  #       run: npx lerna run build
-
-  #     - name: Bump version and build CLI SDK
-  #       run: |
-  #         cd packages/cli
-  #         npm run build
-
-  #     - name: Upload CLI artifacts
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: cli-artifacts
-  #         path: |
-  #           packages/cli/lib
-  #           packages/cli/package*.json
-  #         retention-days: 1
-
-  build-and-test-node:
-    name: Build and Test Node SDK
-    needs: [setup-dependencies, commit-check]
-    runs-on: ubuntu-latest
-    if: needs.commit-check.outputs.node_commits != '0'
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          registry-url: "https://registry.npmjs.org"
-
-      - name: Restore cached node modules
-        uses: actions/cache@v4
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Install npm dependencies
-        run: npm ci
-
-      - name: Build all packages
-        run: npx lerna run build
-
-      - name: Bump version and build Node SDK
-        run: |
-          cd packages/node
-          npm run build
-
-      - name: Upload Node artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: node-artifacts
-          path: |
-            packages/node/lib
-            packages/node/package*.json
+            ${{ matrix.pkg.path }}/lib
+            ${{ matrix.pkg.path }}/package*.json
           retention-days: 1
 
   publish-and-tag:
-    name: Publish and Tag
-    needs: [setup-dependencies, commit-check, build-and-test-core, build-and-test-node]
+    name: Publish and Tag changed packages
+    needs: [determine-packages, build]
     runs-on: ubuntu-latest
-    if: |
-      always() && 
-      (needs.commit-check.result == 'success' && needs.setup-dependencies.result == 'success' && needs.commit-check.outputs.root_commits != '0') &&
-      (needs.build-and-test-core.result == 'success' || needs.build-and-test-core.result == 'skipped') &&
-      (needs.build-and-test-node.result == 'success' || needs.build-and-test-node.result == 'skipped')
+    if: needs.determine-packages.outputs.has_root_changes == 'true' && needs.build.result == 'success'
+    strategy:
+      fail-fast: false
+      matrix:
+        pkg: ${{ fromJSON(needs.determine-packages.outputs.changed_workspaces) }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -212,10 +145,11 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.ACCESS_TOKEN }}
 
-      - name: Download all artifacts
+      - name: Download artifacts for package
         uses: actions/download-artifact@v4
         with:
-          path: ./artifacts
+          name: ${{ matrix.pkg.id }}-artifacts
+          path: ./artifacts/${{ matrix.pkg.id }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -225,47 +159,28 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: "Configure Git"
+      - name: Configure Git
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions"
 
-      - name: Apply changes to Core and publish
-        if: needs.commit-check.outputs.core_commits != '0'
+      - name: Apply artifacts to workspace
         run: |
-          mkdir -p ./packages/core
-          cp -r ./artifacts/core-artifacts/* ./packages/core
-          cp -r ./artifacts/core-artifacts/package*.json ./packages/core/
-          cd packages/core
-          npm publish --provenance --access public
-          git tag -a core-v$(node -p "require('./package.json').version") -m "@hiveops/core-v$(node -p "require('./package.json').version")"
+          mkdir -p ./${{ matrix.pkg.path }}
+          cp -r ./artifacts/${{ matrix.pkg.id }}/* ./${{ matrix.pkg.path }}/
+
+      - name: Publish package to npm
+        working-directory: ${{ matrix.pkg.path }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # - name: Apply changes to CLI and publish
-      #   if: needs.commit-check.outputs.cli_commits != '0'
-      #   run: |
-      #     mkdir -p ./packages/cli
-      #     cp -r ./artifacts/cli-artifacts/* ./packages/cli
-      #     cp -r ./artifacts/cli-artifacts/package*.json ./packages/cli/
-      #     cd packages/cli
-      #     npm publish --provenance --access public
-      #     git tag -a cli-v$(node -p "require('./package.json').version") -m "@hiveops/cli-v$(node -p "require('./package.json').version")"
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Apply changes to Node and publish
-        if: needs.commit-check.outputs.node_commits != '0'
         run: |
-          mkdir -p ./packages/node
-          cp -r ./artifacts/node-artifacts/* ./packages/node
-          cp -r ./artifacts/node-artifacts/package*.json ./packages/node/
-          cd packages/node
           npm publish --provenance --access public
-          git tag -a node-v$(node -p "require('./package.json').version") -m "@hiveops/node-v$(node -p "require('./package.json').version")"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: "Bump Repo Tag"
+      - name: Tag package version and push
+        working-directory: ${{ matrix.pkg.path }}
         run: |
+          VERSION=$(node -p "require('./package.json').version")
+          TAG="${{ matrix.pkg.id }}-v${VERSION}"
+          MSG="${{ matrix.pkg.pkg_name }}-v${VERSION}"
+          git tag -a "$TAG" -m "$MSG"
           git push origin --tags --no-verify
