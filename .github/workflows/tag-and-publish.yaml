@@ -186,13 +186,13 @@ jobs:
           fi
 
           # Publish to npm
-          # npm publish --provenance --access public
+          npm publish --provenance --access public
 
-      # - name: Create and push tag
-      #   working-directory: ${{ matrix.package.path }}
-      #   run: |
-      #     PKG_NAME_SHORT=$(echo "${{ matrix.package.name }}" | sed 's/@hiveops\///')
-      #     TAG="${PKG_NAME_SHORT}-v${{ matrix.package.version }}"
+      - name: Create and push tag
+        working-directory: ${{ matrix.package.path }}
+        run: |
+          PKG_NAME_SHORT=$(echo "${{ matrix.package.name }}" | sed 's/@hiveops\///')
+          TAG="${PKG_NAME_SHORT}-v${{ matrix.package.version }}"
 
-      #     git tag -a "$TAG" -m "Release ${{ matrix.package.name }}@${{ matrix.package.version }}"
-      #     git push origin "$TAG"
+          git tag -a "$TAG" -m "Release ${{ matrix.package.name }}@${{ matrix.package.version }}"
+          git push origin "$TAG"
