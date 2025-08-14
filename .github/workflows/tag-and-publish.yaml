@@ -140,6 +140,18 @@ jobs:
           name: build-artifacts
           path: .
 
+      - name: Debug artifacts structure
+        run: |
+          echo "=== Artifacts structure ==="
+          find . -name "lib" -type d 2>/dev/null || echo "No lib directories found"
+          echo "=== All files ==="
+          find . -name "*.js" -o -name "*.d.ts" | head -20
+          echo "=== Package directory contents ==="
+          ls -la ${{ matrix.package.path }}/ || echo "Package directory not found"
+          echo "=== Current directory ==="
+          pwd
+          ls -la
+
       - name: Configure Git
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
