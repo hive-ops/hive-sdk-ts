@@ -1,5 +1,11 @@
 # @hiveops/node
 
+## 1.8.0
+
+### Minor Changes
+
+- Refactor exports and deprecate vespaInit utility
+
 ## 1.7.1
 
 ### Patch Changes
