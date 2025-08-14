@@ -192,14 +192,15 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          npm publish --provenance --access public
+          ls -la
+          # npm publish --provenance --access public
 
-      - name: Tag package version and push
-        if: ${{ matrix.pkg.skip != 'true' }}
-        working-directory: ${{ matrix.pkg.path }}
-        run: |
-          VERSION=$(node -p "require('./package.json').version")
-          TAG="${{ matrix.pkg.id }}-v${VERSION}"
-          MSG="${{ matrix.pkg.pkg_name }}-v${VERSION}"
-          git tag -a "$TAG" -m "$MSG"
-          git push origin --tags --no-verify
+      # - name: Tag package version and push
+      #   if: ${{ matrix.pkg.skip != 'true' }}
+      #   working-directory: ${{ matrix.pkg.path }}
+      #   run: |
+      #     VERSION=$(node -p "require('./package.json').version")
+      #     TAG="${{ matrix.pkg.id }}-v${VERSION}"
+      #     MSG="${{ matrix.pkg.pkg_name }}-v${VERSION}"
+      #     git tag -a "$TAG" -m "$MSG"
+      #     git push origin --tags --no-verify
