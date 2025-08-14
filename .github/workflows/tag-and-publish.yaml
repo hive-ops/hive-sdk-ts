@@ -1,206 +1,168 @@
-name: Tag and Publish workflow
+name: Build and Publish Packages
 
 on:
   push:
     branches:
       - main
-      - web
 
 permissions:
   contents: write
   id-token: write
 
 jobs:
-  determine-packages:
-    name: Determine workspaces and changes
+  detect-changes:
+    name: Detect changed packages
     runs-on: ubuntu-latest
     outputs:
-      workspaces: ${{ steps.set-matrix.outputs.workspaces }}
-      changed_workspaces: ${{ steps.set-matrix.outputs.changed_workspaces }}
-      has_root_changes: ${{ steps.set-matrix.outputs.has_root_changes }}
+      changed-packages: ${{ steps.changes.outputs.changed-packages }}
+      has-changes: ${{ steps.changes.outputs.has-changes }}
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Compute workspace matrix and change set
-        id: set-matrix
-        shell: bash
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Detect changed packages
+        id: changes
         run: |
-          set -euo pipefail
+          # Get the latest tag
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          echo "Latest tag: $LATEST_TAG"
 
-          TAG=$(git describe --tags --abbrev=0 || echo "")
-          echo "Latest tag: $TAG"
+          # Read workspaces from package.json
+          WORKSPACES=$(node -p "JSON.stringify(require('./package.json').workspaces || [])")
+          echo "Workspaces: $WORKSPACES"
 
-          # Read workspaces from root package.json (string array)
-          WORKSPACES_JSON=$(node -e "console.log(JSON.stringify(require('./package.json').workspaces || []))")
-          echo "workspaces from package.json: $WORKSPACES_JSON"
+          CHANGED_PACKAGES="[]"
+          HAS_CHANGES="false"
 
-          # Expand patterns into real package directories that contain a package.json
-          mapfile -t PATTERNS < <(node -e "(require('./package.json').workspaces||[]).forEach(s=>console.log(s))")
-
-          MATRIX="["; SEP=""
-          CHANGED="["; CSEP=""; CHANGED_COUNT=0
-
-          for pat in "${PATTERNS[@]}"; do
-            # Bash will expand any globs here
-            for dir in $pat; do
-              if [ -f "$dir/package.json" ]; then
-                name=$(node -p "require('./${dir}/package.json').name")
-                id=$(basename "$dir")
-                if [ -n "$TAG" ]; then
-                  commits=$(git rev-list "$TAG"..HEAD -- "$dir" | wc -l | tr -d ' ')
+          # Check each workspace for changes
+          for workspace in $(echo $WORKSPACES | jq -r '.[]'); do
+            # Expand glob patterns
+            for pkg_dir in $workspace; do
+              if [ -f "$pkg_dir/package.json" ]; then
+                PKG_NAME=$(node -p "require('./$pkg_dir/package.json').name")
+                PKG_VERSION=$(node -p "require('./$pkg_dir/package.json').version")
+                
+                # Check if package has changes since last tag
+                if [ -n "$LATEST_TAG" ]; then
+                  CHANGES=$(git diff --name-only $LATEST_TAG..HEAD -- $pkg_dir/ | wc -l)
                 else
-                  commits=$(git rev-list HEAD -- "$dir" | wc -l | tr -d ' ')
+                  CHANGES=1  # If no tags, consider everything changed
                 fi
-
-                MATRIX+="$SEP{\"path\":\"$dir\",\"id\":\"$id\",\"pkg_name\":\"$name\"}"
-                SEP="," 
-
-                if [ "$commits" != "0" ]; then
-                  CHANGED+="$CSEP{\"path\":\"$dir\",\"id\":\"$id\",\"pkg_name\":\"$name\"}"
-                  CSEP="," 
-                  CHANGED_COUNT=$((CHANGED_COUNT+1))
+                
+                if [ "$CHANGES" -gt 0 ]; then
+                  echo "Package $PKG_NAME has changes"
+                  
+                  # Check if this version was already published
+                  PUBLISHED_VERSION=$(npm view $PKG_NAME version 2>/dev/null || echo "0.0.0")
+                  
+                  if [ "$PKG_VERSION" != "$PUBLISHED_VERSION" ]; then
+                    echo "Version changed: $PUBLISHED_VERSION -> $PKG_VERSION"
+                    CHANGED_PACKAGES=$(echo $CHANGED_PACKAGES | jq --arg name "$PKG_NAME" --arg path "$pkg_dir" --arg version "$PKG_VERSION" '. + [{name: $name, path: $path, version: $version}]')
+                    HAS_CHANGES="true"
+                  else
+                    echo "Version $PKG_VERSION already published, skipping"
+                  fi
                 fi
               fi
             done
           done
-          MATRIX+="]"
-          if [ "$CHANGED_COUNT" -eq 0 ]; then
-            CHANGED='[{"path":".","id":"noop","pkg_name":"noop","skip":true}]'
-          else
-            CHANGED+="]"
-          fi
 
-          if [ -n "$TAG" ]; then
-            ROOT_COMMITS=$(git rev-list "$TAG"..HEAD -- . | wc -l | tr -d ' ')
-          else
-            ROOT_COMMITS=$(git rev-list HEAD -- . | wc -l | tr -d ' ')
-          fi
-          HAS_ROOT_CHANGES=false
-          if [ "$ROOT_COMMITS" != "0" ]; then HAS_ROOT_CHANGES=true; fi
-
-          echo "workspaces=$MATRIX" >> "$GITHUB_OUTPUT"
-          echo "changed_workspaces=$CHANGED" >> "$GITHUB_OUTPUT"
-          echo "has_root_changes=$HAS_ROOT_CHANGES" >> "$GITHUB_OUTPUT"
-
-          echo "Workspace matrix: $MATRIX"
-          echo "Changed workspace matrix: $CHANGED"
-          echo "Has root changes: $HAS_ROOT_CHANGES"
+          echo "changed-packages=$CHANGED_PACKAGES" >> $GITHUB_OUTPUT
+          echo "has-changes=$HAS_CHANGES" >> $GITHUB_OUTPUT
+          echo "Changed packages: $CHANGED_PACKAGES"
 
   build:
-    name: Build all packages
-    needs: [determine-packages]
+    name: Build packages
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has-changes == 'true'
     runs-on: ubuntu-latest
-    if: needs.determine-packages.outputs.has_root_changes == 'true'
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          registry-url: "https://registry.npmjs.org"
           cache: "npm"
-          cache-dependency-path: "**/package-lock.json"
 
-      - name: Cache node modules
-        uses: actions/cache@v4
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Install npm dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: Build all packages
-        run: npx lerna run build
+      - name: Build packages (respects dependency order)
+        run: npx lerna run build --stream
 
-      - name: Upload all package artifacts
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: all-packages-artifacts
+          name: build-artifacts
           path: |
-            packages/*/lib
-            packages/*/package*.json
+            packages/*/lib/**
+            packages/*/package.json
           retention-days: 1
 
-  publish-and-tag:
-    name: Publish and Tag changed packages
-    needs: [determine-packages, build]
+  publish:
+    name: Publish changed packages
+    needs: [detect-changes, build]
+    if: needs.detect-changes.outputs.has-changes == 'true'
     runs-on: ubuntu-latest
-    if: needs.determine-packages.outputs.has_root_changes == 'true' && needs.build.result == 'success'
     strategy:
-      fail-fast: false
+      fail-fast: true # Stop all if one fails
       matrix:
-        pkg: ${{ fromJSON(needs.determine-packages.outputs.changed_workspaces) }}
+        package: ${{ fromJSON(needs.detect-changes.outputs.changed-packages) }}
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.ACCESS_TOKEN }}
 
-      - name: Download artifacts for package
-        if: ${{ matrix.pkg.skip != 'true' }}
-        uses: actions/download-artifact@v4
-        with:
-          name: all-packages-artifacts
-          path: ./artifacts
-
       - name: Setup Node.js
-        if: ${{ matrix.pkg.skip != 'true' }}
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           registry-url: "https://registry.npmjs.org"
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: .
 
       - name: Configure Git
         run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
 
-      - name: Apply artifacts to workspace
-        if: ${{ matrix.pkg.skip != 'true' }}
-        run: |
-          echo "Debug: Listing artifacts directory structure"
-          find ./artifacts -type f -name "*.js" -o -name "*.d.ts" -o -name "package*.json" | head -20
-
-          mkdir -p ./${{ matrix.pkg.path }}
-
-          # Copy the entire package directory from artifacts
-          if [ -d "./artifacts/${{ matrix.pkg.path }}" ]; then
-            echo "Copying from ./artifacts/${{ matrix.pkg.path }} to ./${{ matrix.pkg.path }}"
-            cp -r ./artifacts/${{ matrix.pkg.path }}/* ./${{ matrix.pkg.path }}/
-          else
-            echo "Warning: ./artifacts/${{ matrix.pkg.path }} does not exist"
-            echo "Available directories in artifacts:"
-            ls -la ./artifacts/
-          fi
-
-          echo "Debug: Contents of target package directory after copy:"
-          find ./${{ matrix.pkg.path }} -type f | head -10
-
-      - name: Publish package to npm
-        if: ${{ matrix.pkg.skip != 'true' }}
-        working-directory: ${{ matrix.pkg.path }}
+      - name: Publish package
+        working-directory: ${{ matrix.package.path }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          ls -la
-          # npm publish --provenance --access public
+          echo "Publishing ${{ matrix.package.name }}@${{ matrix.package.version }}"
 
-      # - name: Tag package version and push
-      #   if: ${{ matrix.pkg.skip != 'true' }}
-      #   working-directory: ${{ matrix.pkg.path }}
-      #   run: |
-      #     VERSION=$(node -p "require('./package.json').version")
-      #     TAG="${{ matrix.pkg.id }}-v${VERSION}"
-      #     MSG="${{ matrix.pkg.pkg_name }}-v${VERSION}"
-      #     git tag -a "$TAG" -m "$MSG"
-      #     git push origin --tags --no-verify
+          # Verify lib directory exists
+          if [ ! -d "lib" ]; then
+            echo "Error: lib directory not found for ${{ matrix.package.name }}"
+            exit 1
+          fi
+
+          # Publish to npm
+          npm publish --provenance --access public
+
+      - name: Create and push tag
+        working-directory: ${{ matrix.package.path }}
+        run: |
+          PKG_NAME_SHORT=$(echo "${{ matrix.package.name }}" | sed 's/@hiveops\///')
+          TAG="${PKG_NAME_SHORT}-v${{ matrix.package.version }}"
+
+          git tag -a "$TAG" -m "Release ${{ matrix.package.name }}@${{ matrix.package.version }}"
+          git push origin "$TAG"
