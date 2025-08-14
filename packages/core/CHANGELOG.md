@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.9.2
+
+### Patch Changes
+
+- Improve performance of data processing module
+
 ## 1.9.1
 
 ### Patch Changes

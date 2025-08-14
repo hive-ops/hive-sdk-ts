@@ -1,5 +1,13 @@
 # @hiveops/node
 
+## 1.7.1
+
+### Patch Changes
+
+- Improve performance of data processing module
+- Updated dependencies
+  - @hiveops/core@1.9.2
+
 ## 1.7.0
 
 ### Minor Changes
