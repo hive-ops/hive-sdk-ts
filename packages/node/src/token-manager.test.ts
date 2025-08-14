@@ -1,6 +1,6 @@
+import { getFirebaseTokenWithClaimsViaEmailPassword, tokenManager } from "@hiveops/core";
 import dotenv from "dotenv";
-import { getFirebaseTokenWithClaimsViaEmailPassword } from "../firebase";
-import { createTokenManager, tokenManager } from "./@hiveops/core";
+import { initializeClient } from "./initialize";
 
 dotenv.config({ path: ".env.dev" });
 
@@ -9,7 +9,7 @@ describe("TokenManager", () => {
   const email: string = process.env.USER_EMAIL || "";
   const password: string = process.env.USER_PASSWORD || "";
 
-  createTokenManager(() => getFirebaseTokenWithClaimsViaEmailPassword(firebaseAPIKey, email, password));
+  initializeClient(() => getFirebaseTokenWithClaimsViaEmailPassword(firebaseAPIKey, email, password));
 
   it("should get firebase token claims", async () => {
     const token = await tokenManager.getFirebaseTokenWithClaims();

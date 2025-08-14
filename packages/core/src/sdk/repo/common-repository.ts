@@ -2,7 +2,7 @@ import { ColumnType, DatabaseSchema, VespaDatabase, VespaDatabaseStack } from ".
 import { BeekeeperClient, createBeekeeperClient, createSingletonVespaClient, VespaClient } from "../clients";
 import { VESPA_COLUMN_SUFFIXES } from "../utilities";
 import { convertFindOptionsToWhereConditions, FindManyOptions, FindOneOptions, getLimit, getOffset } from "./find-options";
-import { databaseStack, getStackHRN, setDatabaseStack } from "./globals";
+import { databaseStack, getStackHRI, getStackHRN, setDatabaseStack } from "./globals";
 import { marshalRecord, unmarshalRecord } from "./marshalling";
 import { ColumnTypeMap, Metadata } from "./types";
 
@@ -17,7 +17,7 @@ export abstract class BaseRepository<S, T extends Metadata & S> {
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
     const response = await vespaClient.getRecords({
-      databaseHrn: database.hrn,
+      hri: database.hri,
       tableName: this.tableName,
       whereConditions: convertFindOptionsToWhereConditions(opts),
       offset: getOffset(opts.Offset),
@@ -52,7 +52,7 @@ export abstract class BaseRepository<S, T extends Metadata & S> {
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
     const res = await vespaClient.insertRecords({
-      databaseHrn: database.hrn,
+      hri: database.hri,
       tableName: this.tableName,
       records,
     });
@@ -66,7 +66,7 @@ export abstract class BaseRepository<S, T extends Metadata & S> {
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
     const res = await vespaClient.insertRecord({
-      databaseHrn: database.hrn,
+      hri: database.hri,
       tableName: this.tableName,
       record: recordData,
     });
@@ -83,7 +83,7 @@ export abstract class BaseRepository<S, T extends Metadata & S> {
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
     await vespaClient.deleteRecords({
-      databaseHrn: database.hrn,
+      hri: database.hri,
       tableName: this.tableName,
       whereConditions: convertFindOptionsToWhereConditions(opts),
     });
@@ -93,7 +93,7 @@ export abstract class BaseRepository<S, T extends Metadata & S> {
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
     const response = await vespaClient.countRecords({
-      databaseHrn: database.hrn,
+      hri: database.hri,
       tableName: this.tableName,
       whereConditions: convertFindOptionsToWhereConditions(opts),
     });
@@ -103,8 +103,8 @@ export abstract class BaseRepository<S, T extends Metadata & S> {
   public async exists(opts: FindManyOptions<T>): Promise<boolean> {
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
-    const response = await vespaClient.exists({
-      databaseHrn: database.hrn,
+    const response = await vespaClient.recordExists({
+      hri: database.hri,
       tableName: this.tableName,
       whereConditions: convertFindOptionsToWhereConditions(opts),
     });
@@ -118,7 +118,7 @@ export abstract class BaseRepository<S, T extends Metadata & S> {
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
     const _response = await vespaClient.updateRecords({
-      databaseHrn: database.hrn,
+      hri: database.hri,
       tableName: this.tableName,
       whereConditions: convertFindOptionsToWhereConditions(opts),
       record,
@@ -142,7 +142,7 @@ export abstract class BaseRepository<S, T extends Metadata & S> {
   async getVespaDatabaseStack(): Promise<VespaDatabaseStack> {
     if (!databaseStack) {
       const res = await this.getBeekeeperClient().getVespaDatabaseStack({
-        hrn: getStackHRN(),
+        hri: getStackHRI(),
       });
       setDatabaseStack(res.stack!);
     }
