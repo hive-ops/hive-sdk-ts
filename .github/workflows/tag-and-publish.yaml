@@ -168,13 +168,23 @@ jobs:
       - name: Apply artifacts to workspace
         if: ${{ matrix.pkg.skip != 'true' }}
         run: |
+          echo "Debug: Listing artifacts directory structure"
+          find ./artifacts -type f -name "*.js" -o -name "*.d.ts" -o -name "package*.json" | head -20
+
           mkdir -p ./${{ matrix.pkg.path }}
-          if [ -d "./artifacts/${{ matrix.pkg.path }}/lib" ]; then
-            cp -r ./artifacts/${{ matrix.pkg.path }}/lib ./${{ matrix.pkg.path }}/
+
+          # Copy the entire package directory from artifacts
+          if [ -d "./artifacts/${{ matrix.pkg.path }}" ]; then
+            echo "Copying from ./artifacts/${{ matrix.pkg.path }} to ./${{ matrix.pkg.path }}"
+            cp -r ./artifacts/${{ matrix.pkg.path }}/* ./${{ matrix.pkg.path }}/
+          else
+            echo "Warning: ./artifacts/${{ matrix.pkg.path }} does not exist"
+            echo "Available directories in artifacts:"
+            ls -la ./artifacts/
           fi
-          if ls ./artifacts/${{ matrix.pkg.path }}/package*.json 1> /dev/null 2>&1; then
-            cp ./artifacts/${{ matrix.pkg.path }}/package*.json ./${{ matrix.pkg.path }}/
-          fi
+
+          echo "Debug: Contents of target package directory after copy:"
+          find ./${{ matrix.pkg.path }} -type f | head -10
 
       - name: Publish package to npm
         if: ${{ matrix.pkg.skip != 'true' }}
