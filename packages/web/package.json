@@ -1,0 +1,65 @@
+{
+  "name": "@hiveops/web",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "dev": "nodemon src/main.ts",
+    "clean": "rm -rf lib/",
+    "build": "npm run clean && tsc",
+    "fix": "eslint --fix -c .eslintrc.js 'src/**/*' && prettier 'src/**/*.ts' --write",
+    "check": "eslint -c .eslintrc.js 'src/**/*' && prettier 'src/**/*.ts'  --list-different",
+    "test": "jest uspec --maxWorkers=2 --passWithNoTests --detectOpenHandles --forceExit --coverage",
+    "update": "ncu @hiveops/core -u",
+    "synthesize": "ts-node src/synthetics.ts"
+  },
+  "keywords": [],
+  "author": "HiveOps",
+  "license": "Apache-2.0",
+  "files": [
+    "lib/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hive-ops/hive-sdk-ts.git",
+    "directory": "packages/node"
+  },
+  "jest": {
+    "automock": false,
+    "transform": {
+      ".(ts)": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "testRegex": "(\\.(ispec|uspec))\\.(ts)$",
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "setupFiles": [
+      "<rootDir>/src/tests/testEnv.js"
+    ]
+  },
+  "dependencies": {
+    "@connectrpc/connect-web": "^1.6.1",
+    "@hiveops/core": "^1.9.2"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^9.7.0",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "^5.48.2",
+    "eslint": "^8",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsdoc": "^39.6.7",
+    "eslint-plugin-neverthrow": "^1.1.4",
+    "eslint-plugin-typescript": "^0.14.0",
+    "prettier": "^2.8.3",
+    "ts-node": "^10.9.2"
+  }
+}
