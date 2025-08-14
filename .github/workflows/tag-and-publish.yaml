@@ -152,6 +152,21 @@ jobs:
           pwd
           ls -la
 
+      - name: Copy lib directory to package
+        run: |
+          # Extract package name from path (e.g., packages/web -> web)
+          PKG_DIR=$(basename ${{ matrix.package.path }})
+          echo "Copying lib from ./$PKG_DIR/lib to ${{ matrix.package.path }}/lib"
+
+          if [ -d "./$PKG_DIR/lib" ]; then
+            cp -r "./$PKG_DIR/lib" "${{ matrix.package.path }}/"
+            echo "Successfully copied lib directory"
+            ls -la ${{ matrix.package.path }}/lib/
+          else
+            echo "Error: ./$PKG_DIR/lib not found"
+            exit 1
+          fi
+
       - name: Configure Git
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
