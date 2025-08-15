@@ -1,4 +1,5 @@
-import { ColumnType, FieldValue, Record } from "../../gen";
+import { create } from "@bufbuild/protobuf";
+import { ColumnType, FieldValue, FieldValueSchema, Record, RecordSchema } from "../../gen";
 import { ColumnTypeMap, Metadata, ValueType } from "./types";
 import { fromString, toString } from "./value-converter";
 
@@ -6,13 +7,13 @@ export const marshalRecord = <S, T extends Metadata & S>(obj: S, columnTypeMap: 
   const record: { [key: string]: FieldValue } = {};
   for (const columnName of Object.keys(obj as object)) {
     const valStr = toString(obj[columnName as keyof S], columnTypeMap[columnName as keyof T]);
-    record[columnName] = new FieldValue({
+    record[columnName] = create(FieldValueSchema, {
       value: valStr || "",
       isNil: valStr === undefined,
     });
   }
 
-  return new Record({
+  return create(RecordSchema, {
     record: record,
   });
 };

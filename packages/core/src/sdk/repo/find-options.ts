@@ -1,5 +1,6 @@
-import { ColumnType, ComparisonOperator, WhereCondition as PbWhereCondition, WhereValue } from "../../gen";
+import { ColumnType, ComparisonOperator, WhereCondition as PbWhereCondition, WhereConditionSchema, WhereValueSchema } from "../../gen";
 import { boundedInt } from "../utilities/utils";
+import { create } from "@bufbuild/protobuf";
 
 type Key<T> = keyof T;
 
@@ -43,10 +44,10 @@ export const getLimit = (limit: number = 10, max: number = 10): number => bounde
 
 const marshalWhereCondition = <T>(operator: ComparisonOperator, conditionMap: WhereCondition<T>): PbWhereCondition[] =>
   Object.entries(conditionMap).map(([key, value]) => {
-    return new PbWhereCondition({
+    return create(WhereConditionSchema, {
       key,
       operator,
-      value: new WhereValue({
+      value: create(WhereValueSchema, {
         type: ColumnType.TEXT,
         isArray: false,
         isNull: false,
@@ -55,12 +56,12 @@ const marshalWhereCondition = <T>(operator: ComparisonOperator, conditionMap: Wh
     });
   });
 
-const marsahalWhereInCondition = <T>(operator: ComparisonOperator.IN | ComparisonOperator.NOT_IN, keyMap: { [key in Key<T>]?: any[] }): PbWhereCondition[] =>
+const marshalWhereInCondition = <T>(operator: ComparisonOperator.IN | ComparisonOperator.NOT_IN, keyMap: { [key in Key<T>]?: any[] }): PbWhereCondition[] =>
   Object.entries(keyMap).map(([key, values]) => {
-    return new PbWhereCondition({
+    return create(WhereConditionSchema, {
       key,
       operator,
-      value: new WhereValue({
+      value: create(WhereValueSchema, {
         type: ColumnType.TEXT,
         isArray: true,
         isNull: false,
@@ -105,11 +106,11 @@ export const convertFindOptionsToWhereConditions = <T>(opts: FindOneOptions<T>):
   }
 
   if (opts.In) {
-    whereConditions.push(...marsahalWhereInCondition(ComparisonOperator.IN, opts.In));
+    whereConditions.push(...marshalWhereInCondition(ComparisonOperator.IN, opts.In));
   }
 
   if (opts.NotIn) {
-    whereConditions.push(...marsahalWhereInCondition(ComparisonOperator.NOT_IN, opts.NotIn));
+    whereConditions.push(...marshalWhereInCondition(ComparisonOperator.NOT_IN, opts.NotIn));
   }
 
   return whereConditions;

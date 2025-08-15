@@ -47,7 +47,7 @@
     ]
   },
   "dependencies": {
-    "@connectrpc/connect-web": "^1.6.1",
+    "@connectrpc/connect-web": "^2.0.4",
     "@hiveops/core": "^1.9.2"
   },
   "devDependencies": {
