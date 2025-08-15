@@ -1,6 +1,6 @@
 {
   "name": "@hiveops/core",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
@@ -55,13 +55,14 @@
     ]
   },
   "dependencies": {
-    "@bufbuild/protobuf": "^1.10.0",
-    "@connectrpc/connect": "^1.6.1",
+    "@bufbuild/protobuf": "^2.6.3",
+    "@connectrpc/connect": "^2.0.4",
     "@faker-js/faker": "^9.9.0",
     "@grpc/grpc-js": "^1.12.2",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "@bufbuild/buf": "^1.56.0",
     "@types/jest": "^29.5.14",
     "@types/lodash": "^4.17.16",
     "@types/node": "^22.10.0",

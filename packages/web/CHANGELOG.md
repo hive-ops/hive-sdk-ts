@@ -1,5 +1,16 @@
 # @hiveops/web
 
+## 1.3.0
+
+### Minor Changes
+
+- Upgrade Connect and Buf dependencies, align client options
+
+### Patch Changes
+
+- Updated dependencies
+  - @hiveops/core@1.11.0
+
 ## 1.2.1
 
 ### Patch Changes

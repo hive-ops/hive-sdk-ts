@@ -1,6 +1,6 @@
 {
   "name": "@hiveops/node",
-  "version": "1.8.1",
+  "version": "1.9.0",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
@@ -47,8 +47,8 @@
     ]
   },
   "dependencies": {
-    "@connectrpc/connect-node": "^1.6.1",
-    "@hiveops/core": "^1.9.2"
+    "@connectrpc/connect-node": "^2.0.4",
+    "@hiveops/core": "^1.11.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.7.0",
