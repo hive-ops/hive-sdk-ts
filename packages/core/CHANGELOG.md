@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.10.0
+
+### Minor Changes
+
+- Add get-by-name methods for organizations and projects
+
 ## 1.9.2
 
 ### Patch Changes

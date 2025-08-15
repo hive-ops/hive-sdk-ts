@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AssignRoleToMemberRequest, AssignRoleToMemberResponse, AssignRoleToSecureAppRequest, AssignRoleToSecureAppResponse, CreateOrganizationRequest, CreateOrganizationResponse, CreatePlatformAppRequest, CreatePlatformAppResponse, CreateProjectRequest, CreateProjectResponse, CreateRoleRequest, CreateRoleResponse, CreateSecureAppAccessTokenRequest, CreateSecureAppAccessTokenResponse, CreateSecureAppRequest, CreateSecureAppResponse, DeleteOrganizationRequest, DeleteOrganizationResponse, DeletePlatformAppRequest, DeletePlatformAppResponse, DeleteProjectRequest, DeleteProjectResponse, DeleteRoleRequest, DeleteRoleResponse, DeleteSecureAppAccessTokenRequest, DeleteSecureAppAccessTokenResponse, DeleteSecureAppRequest, DeleteSecureAppResponse, GetCustomTokenWithClaimsRequest, GetCustomTokenWithClaimsResponse, GetSecureAppSelfRequest, GetSecureAppSelfResponse, GetSelfRequest, GetSelfResponse, InviteMemberRequest, InviteMemberResponse, ListMembersRequest, ListMembersResponse, ListOrganizationsRequest, ListOrganizationsResponse, ListPlatformAppsRequest, ListPlatformAppsResponse, ListProjectsRequest, ListProjectsResponse, ListRolesRequest, ListRolesResponse, ListSecureAppsRequest, ListSecureAppsResponse, RemoveMemberRequest, RemoveMemberResponse, RenameOrganizationRequest, RenameOrganizationResponse, RenamePlatformAppRequest, RenamePlatformAppResponse, RenameProjectRequest, RenameProjectResponse, RenameSecureAppRequest, RenameSecureAppResponse, RespondToInvitationRequest, RespondToInvitationResponse, UnassignRoleFromMemberRequest, UnassignRoleFromMemberResponse, UnassignRoleFromSecureAppRequest, UnassignRoleFromSecureAppResponse } from "./requests_and_responses_pb";
+import { AssignRoleToMemberRequest, AssignRoleToMemberResponse, AssignRoleToSecureAppRequest, AssignRoleToSecureAppResponse, CreateOrganizationRequest, CreateOrganizationResponse, CreatePlatformAppRequest, CreatePlatformAppResponse, CreateProjectRequest, CreateProjectResponse, CreateRoleRequest, CreateRoleResponse, CreateSecureAppAccessTokenRequest, CreateSecureAppAccessTokenResponse, CreateSecureAppRequest, CreateSecureAppResponse, DeleteOrganizationRequest, DeleteOrganizationResponse, DeletePlatformAppRequest, DeletePlatformAppResponse, DeleteProjectRequest, DeleteProjectResponse, DeleteRoleRequest, DeleteRoleResponse, DeleteSecureAppAccessTokenRequest, DeleteSecureAppAccessTokenResponse, DeleteSecureAppRequest, DeleteSecureAppResponse, GetCustomTokenWithClaimsRequest, GetCustomTokenWithClaimsResponse, GetOrganizationByNameRequest, GetOrganizationByNameResponse, GetProjectByNameRequest, GetProjectByNameResponse, GetSecureAppSelfRequest, GetSecureAppSelfResponse, GetSelfRequest, GetSelfResponse, InviteMemberRequest, InviteMemberResponse, ListMembersRequest, ListMembersResponse, ListOrganizationsRequest, ListOrganizationsResponse, ListPlatformAppsRequest, ListPlatformAppsResponse, ListProjectsRequest, ListProjectsResponse, ListRolesRequest, ListRolesResponse, ListSecureAppsRequest, ListSecureAppsResponse, RemoveMemberRequest, RemoveMemberResponse, RenameOrganizationRequest, RenameOrganizationResponse, RenamePlatformAppRequest, RenamePlatformAppResponse, RenameProjectRequest, RenameProjectResponse, RenameSecureAppRequest, RenameSecureAppResponse, RespondToInvitationRequest, RespondToInvitationResponse, UnassignRoleFromMemberRequest, UnassignRoleFromMemberResponse, UnassignRoleFromSecureAppRequest, UnassignRoleFromSecureAppResponse } from "./requests_and_responses_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -66,6 +66,15 @@ export const DroneIAMOrganizationService = {
       O: DeleteOrganizationResponse,
       kind: MethodKind.Unary,
     },
+    /**
+     * @generated from rpc drone.v1.DroneIAMOrganizationService.GetOrganizationByName
+     */
+    getOrganizationByName: {
+      name: "GetOrganizationByName",
+      I: GetOrganizationByNameRequest,
+      O: GetOrganizationByNameResponse,
+      kind: MethodKind.Unary,
+    },
   }
 } as const;
 
@@ -109,6 +118,15 @@ export const DroneIAMProjectService = {
       name: "DeleteProject",
       I: DeleteProjectRequest,
       O: DeleteProjectResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc drone.v1.DroneIAMProjectService.GetProjectByName
+     */
+    getProjectByName: {
+      name: "GetProjectByName",
+      I: GetProjectByNameRequest,
+      O: GetProjectByNameResponse,
       kind: MethodKind.Unary,
     },
   }

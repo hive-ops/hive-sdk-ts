@@ -1,5 +1,5 @@
 import { Interceptor } from "@connectrpc/connect";
-import { App, FQDN } from "../../gen";
+import { App, FQDN, HiveResourceIdentifier, HiveResourceName } from "../../gen";
 import { buildURL, getDomain, getEnv } from "../utilities";
 import { getClientOptions } from "./globals";
 

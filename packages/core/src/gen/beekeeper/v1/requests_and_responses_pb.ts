@@ -89,6 +89,13 @@ export class ListVespaDatabaseStacksRequest extends Message<ListVespaDatabaseSta
    */
   hri?: HiveResourceIdentifier;
 
+  /**
+   * If true, the response will include the HRN of each Vespa database stack
+   *
+   * @generated from field: bool include_hrn = 2;
+   */
+  includeHrn = false;
+
   constructor(data?: PartialMessage<ListVespaDatabaseStacksRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -98,6 +105,7 @@ export class ListVespaDatabaseStacksRequest extends Message<ListVespaDatabaseSta
   static readonly typeName = "beekeeper.v1.ListVespaDatabaseStacksRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "hri", kind: "message", T: HiveResourceIdentifier },
+    { no: 2, name: "include_hrn", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListVespaDatabaseStacksRequest {
@@ -170,17 +178,17 @@ export class CreateVespaDatabaseStackRequest extends Message<CreateVespaDatabase
   hri?: HiveResourceIdentifier;
 
   /**
-   * @generated from field: string stack_name = 3;
+   * @generated from field: string stack_name = 2;
    */
   stackName = "";
 
   /**
-   * @generated from field: hive.v1.CountryCode country_code = 4;
+   * @generated from field: hive.v1.CountryCode country_code = 3;
    */
   countryCode = CountryCode.UNSPECIFIED;
 
   /**
-   * @generated from field: uint32 replication_factor = 5;
+   * @generated from field: uint32 replication_factor = 4;
    */
   replicationFactor = 0;
 
@@ -193,9 +201,9 @@ export class CreateVespaDatabaseStackRequest extends Message<CreateVespaDatabase
   static readonly typeName = "beekeeper.v1.CreateVespaDatabaseStackRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "hri", kind: "message", T: HiveResourceIdentifier },
-    { no: 3, name: "stack_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "country_code", kind: "enum", T: proto3.getEnumType(CountryCode) },
-    { no: 5, name: "replication_factor", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "stack_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "country_code", kind: "enum", T: proto3.getEnumType(CountryCode) },
+    { no: 4, name: "replication_factor", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateVespaDatabaseStackRequest {

@@ -565,6 +565,86 @@ export class DeleteOrganizationResponse extends Message<DeleteOrganizationRespon
 }
 
 /**
+ * @generated from message drone.v1.GetOrganizationByNameRequest
+ */
+export class GetOrganizationByNameRequest extends Message<GetOrganizationByNameRequest> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  constructor(data?: PartialMessage<GetOrganizationByNameRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.GetOrganizationByNameRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetOrganizationByNameRequest {
+    return new GetOrganizationByNameRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetOrganizationByNameRequest {
+    return new GetOrganizationByNameRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetOrganizationByNameRequest {
+    return new GetOrganizationByNameRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetOrganizationByNameRequest | PlainMessage<GetOrganizationByNameRequest> | undefined, b: GetOrganizationByNameRequest | PlainMessage<GetOrganizationByNameRequest> | undefined): boolean {
+    return proto3.util.equals(GetOrganizationByNameRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message drone.v1.GetOrganizationByNameResponse
+ */
+export class GetOrganizationByNameResponse extends Message<GetOrganizationByNameResponse> {
+  /**
+   * @generated from field: hive.v1.ResponseMetadata metadata = 1;
+   */
+  metadata?: ResponseMetadata;
+
+  /**
+   * @generated from field: drone.v1.Organization organization = 2;
+   */
+  organization?: Organization;
+
+  constructor(data?: PartialMessage<GetOrganizationByNameResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.GetOrganizationByNameResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "metadata", kind: "message", T: ResponseMetadata },
+    { no: 2, name: "organization", kind: "message", T: Organization },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetOrganizationByNameResponse {
+    return new GetOrganizationByNameResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetOrganizationByNameResponse {
+    return new GetOrganizationByNameResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetOrganizationByNameResponse {
+    return new GetOrganizationByNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetOrganizationByNameResponse | PlainMessage<GetOrganizationByNameResponse> | undefined, b: GetOrganizationByNameResponse | PlainMessage<GetOrganizationByNameResponse> | undefined): boolean {
+    return proto3.util.equals(GetOrganizationByNameResponse, a, b);
+  }
+}
+
+/**
  * @generated from message drone.v1.ListPlatformAppsRequest
  */
 export class ListPlatformAppsRequest extends Message<ListPlatformAppsRequest> {
@@ -1845,6 +1925,96 @@ export class DeleteProjectResponse extends Message<DeleteProjectResponse> {
 
   static equals(a: DeleteProjectResponse | PlainMessage<DeleteProjectResponse> | undefined, b: DeleteProjectResponse | PlainMessage<DeleteProjectResponse> | undefined): boolean {
     return proto3.util.equals(DeleteProjectResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message drone.v1.GetProjectByNameRequest
+ */
+export class GetProjectByNameRequest extends Message<GetProjectByNameRequest> {
+  /**
+   * The HRI of the organization to get the project from
+   *
+   * @generated from field: hive.v1.HiveResourceIdentifier hri = 1;
+   */
+  hri?: HiveResourceIdentifier;
+
+  /**
+   * The name of the project to get
+   *
+   * @generated from field: string name = 2;
+   */
+  name = "";
+
+  constructor(data?: PartialMessage<GetProjectByNameRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.GetProjectByNameRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "hri", kind: "message", T: HiveResourceIdentifier },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetProjectByNameRequest {
+    return new GetProjectByNameRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetProjectByNameRequest {
+    return new GetProjectByNameRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetProjectByNameRequest {
+    return new GetProjectByNameRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetProjectByNameRequest | PlainMessage<GetProjectByNameRequest> | undefined, b: GetProjectByNameRequest | PlainMessage<GetProjectByNameRequest> | undefined): boolean {
+    return proto3.util.equals(GetProjectByNameRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message drone.v1.GetProjectByNameResponse
+ */
+export class GetProjectByNameResponse extends Message<GetProjectByNameResponse> {
+  /**
+   * @generated from field: hive.v1.ResponseMetadata metadata = 1;
+   */
+  metadata?: ResponseMetadata;
+
+  /**
+   * @generated from field: drone.v1.Project project = 2;
+   */
+  project?: Project;
+
+  constructor(data?: PartialMessage<GetProjectByNameResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "drone.v1.GetProjectByNameResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "metadata", kind: "message", T: ResponseMetadata },
+    { no: 2, name: "project", kind: "message", T: Project },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetProjectByNameResponse {
+    return new GetProjectByNameResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetProjectByNameResponse {
+    return new GetProjectByNameResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetProjectByNameResponse {
+    return new GetProjectByNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetProjectByNameResponse | PlainMessage<GetProjectByNameResponse> | undefined, b: GetProjectByNameResponse | PlainMessage<GetProjectByNameResponse> | undefined): boolean {
+    return proto3.util.equals(GetProjectByNameResponse, a, b);
   }
 }
 
