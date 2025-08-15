@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ApplyVespaStackMigrationFromTargetSchemaRequest, ApplyVespaStackMigrationFromTargetSchemaResponse, ApplyVespaStackMigrationRequest, ApplyVespaStackMigrationResponse, CreateVespaDatabaseStackRequest, CreateVespaDatabaseStackResponse, DeleteVespaDatabaseStackRequest, DeleteVespaDatabaseStackResponse, GenerateCodeRequest, GenerateCodeResponse, GetSupportedCountriesRequest, GetSupportedCountriesResponse, GetVespaDatabaseRequest, GetVespaDatabaseResponse, GetVespaDatabaseStackRequest, GetVespaDatabaseStackResponse, ListVespaDatabaseStacksRequest, ListVespaDatabaseStacksResponse, PlanVespaStackMigrationFromTargetSchemaRequest, PlanVespaStackMigrationFromTargetSchemaResponse, PlanVespaStackMigrationRequest, PlanVespaStackMigrationResponse, RenameVespaDatabaseStackRequest, RenameVespaDatabaseStackResponse } from "./requests_and_responses_pb";
+import { ApplyVespaStackMigrationFromTargetSchemaRequest, ApplyVespaStackMigrationFromTargetSchemaResponse, ApplyVespaStackMigrationRequest, ApplyVespaStackMigrationResponse, CreateVespaDatabaseStackRequest, CreateVespaDatabaseStackResponse, DeleteVespaDatabaseStackRequest, DeleteVespaDatabaseStackResponse, GenerateCodeRequest, GenerateCodeResponse, GetSupportedCountriesRequest, GetSupportedCountriesResponse, GetVespaDatabaseRequest, GetVespaDatabaseResponse, GetVespaDatabaseStackByNameRequest, GetVespaDatabaseStackByNameResponse, GetVespaDatabaseStackRequest, GetVespaDatabaseStackResponse, ListVespaDatabaseStacksRequest, ListVespaDatabaseStacksResponse, PlanVespaStackMigrationFromTargetSchemaRequest, PlanVespaStackMigrationFromTargetSchemaResponse, PlanVespaStackMigrationRequest, PlanVespaStackMigrationResponse, RenameVespaDatabaseStackRequest, RenameVespaDatabaseStackResponse } from "./requests_and_responses_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -55,6 +55,15 @@ export const BeekeeperVespaDatabaseStackService = {
       name: "GetVespaDatabaseStack",
       I: GetVespaDatabaseStackRequest,
       O: GetVespaDatabaseStackResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc beekeeper.v1.BeekeeperVespaDatabaseStackService.GetVespaDatabaseStackByName
+     */
+    getVespaDatabaseStackByName: {
+      name: "GetVespaDatabaseStackByName",
+      I: GetVespaDatabaseStackByNameRequest,
+      O: GetVespaDatabaseStackByNameResponse,
       kind: MethodKind.Unary,
     },
     /**

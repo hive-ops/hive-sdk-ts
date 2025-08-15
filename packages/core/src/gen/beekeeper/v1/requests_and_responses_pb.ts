@@ -973,6 +973,94 @@ export class GetVespaDatabaseStackResponse extends Message<GetVespaDatabaseStack
 }
 
 /**
+ * @generated from message beekeeper.v1.GetVespaDatabaseStackByNameRequest
+ */
+export class GetVespaDatabaseStackByNameRequest extends Message<GetVespaDatabaseStackByNameRequest> {
+  /**
+   * The HRI of the project
+   *
+   * @generated from field: hive.v1.HiveResourceIdentifier hri = 1;
+   */
+  hri?: HiveResourceIdentifier;
+
+  /**
+   * @generated from field: string stack_name = 2;
+   */
+  stackName = "";
+
+  constructor(data?: PartialMessage<GetVespaDatabaseStackByNameRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "beekeeper.v1.GetVespaDatabaseStackByNameRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "hri", kind: "message", T: HiveResourceIdentifier },
+    { no: 2, name: "stack_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetVespaDatabaseStackByNameRequest {
+    return new GetVespaDatabaseStackByNameRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetVespaDatabaseStackByNameRequest {
+    return new GetVespaDatabaseStackByNameRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetVespaDatabaseStackByNameRequest {
+    return new GetVespaDatabaseStackByNameRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetVespaDatabaseStackByNameRequest | PlainMessage<GetVespaDatabaseStackByNameRequest> | undefined, b: GetVespaDatabaseStackByNameRequest | PlainMessage<GetVespaDatabaseStackByNameRequest> | undefined): boolean {
+    return proto3.util.equals(GetVespaDatabaseStackByNameRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message beekeeper.v1.GetVespaDatabaseStackByNameResponse
+ */
+export class GetVespaDatabaseStackByNameResponse extends Message<GetVespaDatabaseStackByNameResponse> {
+  /**
+   * @generated from field: hive.v1.ResponseMetadata metadata = 1;
+   */
+  metadata?: ResponseMetadata;
+
+  /**
+   * @generated from field: beekeeper.v1.VespaDatabaseStack stack = 2;
+   */
+  stack?: VespaDatabaseStack;
+
+  constructor(data?: PartialMessage<GetVespaDatabaseStackByNameResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "beekeeper.v1.GetVespaDatabaseStackByNameResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "metadata", kind: "message", T: ResponseMetadata },
+    { no: 2, name: "stack", kind: "message", T: VespaDatabaseStack },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetVespaDatabaseStackByNameResponse {
+    return new GetVespaDatabaseStackByNameResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetVespaDatabaseStackByNameResponse {
+    return new GetVespaDatabaseStackByNameResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetVespaDatabaseStackByNameResponse {
+    return new GetVespaDatabaseStackByNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetVespaDatabaseStackByNameResponse | PlainMessage<GetVespaDatabaseStackByNameResponse> | undefined, b: GetVespaDatabaseStackByNameResponse | PlainMessage<GetVespaDatabaseStackByNameResponse> | undefined): boolean {
+    return proto3.util.equals(GetVespaDatabaseStackByNameResponse, a, b);
+  }
+}
+
+/**
  * @generated from message beekeeper.v1.GetVespaDatabaseRequest
  */
 export class GetVespaDatabaseRequest extends Message<GetVespaDatabaseRequest> {
