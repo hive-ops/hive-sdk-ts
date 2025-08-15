@@ -1,5 +1,16 @@
 # @hiveops/node
 
+## 1.9.0
+
+### Minor Changes
+
+- Upgrade Connect and Buf dependencies, align client options
+
+### Patch Changes
+
+- Updated dependencies
+  - @hiveops/core@1.11.0
+
 ## 1.8.1
 
 ### Patch Changes

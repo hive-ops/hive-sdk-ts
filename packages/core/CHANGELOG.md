@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.11.0
+
+### Minor Changes
+
+- Upgrade Connect and Buf dependencies, align client options
+
 ## 1.10.0
 
 ### Minor Changes

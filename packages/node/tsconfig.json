@@ -27,5 +27,5 @@
     "baseUrl": "."
   },
   "include": ["src", "src/**/*.json"],
-  "exclude": ["node_modules", "**/src/**/*.uspec.ts", "**/src/**/*.ispec.ts", "coverage", "reports","**/gen/**/*"],
+  "exclude": ["node_modules", "**/src/**/*.uspec.ts", "**/src/**/*.ispec.ts", "coverage", "reports", "**/gen/**/*"],
 }
