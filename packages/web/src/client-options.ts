@@ -7,8 +7,5 @@ export const clientOptions: core.ClientOptions = {
     createGrpcWebTransport({
       baseUrl: url,
       interceptors,
-      nodeOptions: {
-        rejectUnauthorized: true,
-      },
     }),
 };
