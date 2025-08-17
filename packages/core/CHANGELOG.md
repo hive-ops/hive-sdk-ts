@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.12.2
+
+### Patch Changes
+
+- fix: Update Country type fields for clarity and consistency in models_pb.ts
+
 ## 1.12.1
 
 ### Patch Changes
