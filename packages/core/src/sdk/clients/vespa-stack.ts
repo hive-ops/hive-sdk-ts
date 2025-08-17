@@ -1,4 +1,4 @@
-import { HiveResourceIdentifier, HiveResourceName, Organization, VespaDatabaseStack } from "../../gen";
+import { Organization, VespaDatabaseStack } from "../../gen";
 import { createBeekeeperClient } from "./beekeeper";
 import { createDroneClient } from "./drone";
 
@@ -23,16 +23,17 @@ export const getProjectByName = async (organization: Organization, projectName: 
   return projectRes.project;
 };
 
-export const getVespaDatabaseStackByHRN = async (hrn: HiveResourceName): Promise<VespaDatabaseStack> => {
-  const organization = await getOrganizationByName(hrn.organizationName);
-  const project = await getProjectByName(organization, hrn.projectName);
-  
+export const getVespaDatabaseStackByHRNString = async (hrnStr: string): Promise<VespaDatabaseStack> => {
+  const { organizationName, projectName, resourceName } = parseHRNString(hrnStr, "vespa", "stack");
+  const organization = await getOrganizationByName(organizationName);
+  const project = await getProjectByName(organization, projectName);
+
   const vespaStackRes = await createBeekeeperClient().getVespaDatabaseStackByName({
     hri: project.hri,
-    stackName: hrn.resourceName,
+    stackName: resourceName,
   });
   if (!vespaStackRes.stack) {
-    throw new Error(`Vespa database stack with HRN ${hrn} not found`);
+    throw new Error(`Vespa database stack with HRN ${hrnStr} not found`);
   }
   return vespaStackRes.stack;
 };

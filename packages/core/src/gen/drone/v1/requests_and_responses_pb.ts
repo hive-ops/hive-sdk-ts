@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file drone/v1/requests_and_responses.proto.
  */
 export const file_drone_v1_requests_and_responses: GenFile = /*@__PURE__*/
-  fileDesc("CiVkcm9uZS92MS9yZXF1ZXN0c19hbmRfcmVzcG9uc2VzLnByb3RvEghkcm9uZS52MSIhCh9HZXRDdXN0b21Ub2tlbldpdGhDbGFpbXNSZXF1ZXN0Il4KIEdldEN1c3RvbVRva2VuV2l0aENsYWltc1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEg0KBXRva2VuGAIgASgJIl0KGUNyZWF0ZU9yZ2FuaXphdGlvblJlcXVlc3QSKwoEbmFtZRgBIAEoCUIdukgachgQAxgZMhJeW2Etel1bYS16MC05LV9dKiQSEwoLZGVzY3JpcHRpb24YAiABKAkidwoaQ3JlYXRlT3JnYW5pemF0aW9uUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESLAoMb3JnYW5pemF0aW9uGAIgASgLMhYuZHJvbmUudjEuT3JnYW5pemF0aW9uIkoKGExpc3RPcmdhbml6YXRpb25zUmVxdWVzdBIuCgpwYWdpbmF0aW9uGAEgASgLMhouaGl2ZS52MS5QYWdpbmF0aW9uUmVxdWVzdCKgAQoZTGlzdE9yZ2FuaXphdGlvbnNSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRInCgpwYWdpbmF0aW9uGAIgASgLMhMuaGl2ZS52MS5QYWdpbmF0aW9uEi0KDW9yZ2FuaXphdGlvbnMYAyADKAsyFi5kcm9uZS52MS5Pcmdhbml6YXRpb24iGQoXR2V0U2VjdXJlQXBwU2VsZlJlcXVlc3QiaQoYR2V0U2VjdXJlQXBwU2VsZlJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiAKA2FwcBgCIAEoCzITLmRyb25lLnYxLlNlY3VyZUFwcCIQCg5HZXRTZWxmUmVxdWVzdCJcCg9HZXRTZWxmUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESHAoEc2VsZhgCIAEoCzIOLmRyb25lLnYxLlNlbGYiegoZUmVuYW1lT3JnYW5pemF0aW9uUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISLwoIbmV3X25hbWUYAiABKAlCHbpIGnIYEAMYGTISXlthLXpdW2EtejAtOS1fXSokIncKGlJlbmFtZU9yZ2FuaXphdGlvblJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiwKDG9yZ2FuaXphdGlvbhgCIAEoCzIWLmRyb25lLnYxLk9yZ2FuaXphdGlvbiJJChlEZWxldGVPcmdhbml6YXRpb25SZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllciJJChpEZWxldGVPcmdhbml6YXRpb25SZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YSIsChxHZXRPcmdhbml6YXRpb25CeU5hbWVSZXF1ZXN0EgwKBG5hbWUYASABKAkiegodR2V0T3JnYW5pemF0aW9uQnlOYW1lUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESLAoMb3JnYW5pemF0aW9uGAIgASgLMhYuZHJvbmUudjEuT3JnYW5pemF0aW9uIkcKF0xpc3RQbGF0Zm9ybUFwcHNSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllciI/ChhMaXN0UGxhdGZvcm1BcHBzUmVzcG9uc2USIwoEYXBwcxgBIAMoCzIVLmRyb25lLnYxLlBsYXRmb3JtQXBwInIKEkxpc3RNZW1iZXJzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISLgoKcGFnaW5hdGlvbhgCIAEoCzIaLmhpdmUudjEuUGFnaW5hdGlvblJlcXVlc3Qi5gEKE0xpc3RNZW1iZXJzUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESJwoKcGFnaW5hdGlvbhgCIAEoCzITLmhpdmUudjEuUGFnaW5hdGlvbhIZChFvcmdhbml6YXRpb25fbmFtZRgDIAEoCRItCgdtZW1iZXJzGAQgAygLMhwuZHJvbmUudjEuT3JnYW5pemF0aW9uTWVtYmVyEi8KC2ludml0YXRpb25zGAUgAygLMhouZHJvbmUudjEuTWVtYmVySW52aXRhdGlvbiKSAQoTSW52aXRlTWVtYmVyUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISFQoNaW52aXRlZV9lbWFpbBgCIAEoCRI2Cg1yb2xlX2JpbmRpbmdzGAMgAygLMh8uZHJvbmUudjEuSW52aXRhdGlvblJvbGVCaW5kaW5nInMKFEludml0ZU1lbWJlclJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEi4KCmludml0YXRpb24YAiABKAsyGi5kcm9uZS52MS5NZW1iZXJJbnZpdGF0aW9uIlYKGENyZWF0ZVBsYXRmb3JtQXBwUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISDAoEbmFtZRgCIAEoCSJsChlDcmVhdGVQbGF0Zm9ybUFwcFJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiIKA2FwcBgCIAEoCzIVLmRyb25lLnYxLlBsYXRmb3JtQXBwIlQKFkNyZWF0ZVNlY3VyZUFwcFJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEgwKBG5hbWUYAiABKAkiaAoXQ3JlYXRlU2VjdXJlQXBwUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESIAoDYXBwGAIgASgLMhMuZHJvbmUudjEuU2VjdXJlQXBwIpIBChFDcmVhdGVSb2xlUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISDAoEbmFtZRgCIAEoCRITCgtkZXNjcmlwdGlvbhgDIAEoCRIsCgtwZXJtaXNzaW9ucxgEIAMoCzIXLmhpdmUudjEuSGl2ZVBlcm1pc3Npb24iXwoSQ3JlYXRlUm9sZVJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEhwKBHJvbGUYAiABKAsyDi5kcm9uZS52MS5Sb2xlIkAKEExpc3RSb2xlc1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyIl8KEUxpc3RSb2xlc1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEh0KBXJvbGVzGAIgAygLMg4uZHJvbmUudjEuUm9sZSKGAQoUQ3JlYXRlUHJvamVjdFJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEisKBG5hbWUYAiABKAlCHbpIGnIYEAMYGTISXlthLXpdW2EtejAtOS1fXSokEhMKC2Rlc2NyaXB0aW9uGAMgASgJImgKFUNyZWF0ZVByb2plY3RSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIiCgdwcm9qZWN0GAIgASgLMhEuZHJvbmUudjEuUHJvamVjdCJFChVMaXN0U2VjdXJlQXBwc1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyIkIKFkxpc3RTZWN1cmVBcHBzUmVzcG9uc2USKAoLc2VjdXJlX2FwcHMYASADKAsyEy5kcm9uZS52MS5TZWN1cmVBcHAicwoTTGlzdFByb2plY3RzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISLgoKcGFnaW5hdGlvbhgCIAEoCzIaLmhpdmUudjEuUGFnaW5hdGlvblJlcXVlc3QikQEKFExpc3RQcm9qZWN0c1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEicKCnBhZ2luYXRpb24YAiABKAsyEy5oaXZlLnYxLlBhZ2luYXRpb24SIwoIcHJvamVjdHMYAyADKAsyES5kcm9uZS52MS5Qcm9qZWN0IkMKE1JlbW92ZU1lbWJlclJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyIkMKFFJlbW92ZU1lbWJlclJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhIloKGlJlc3BvbmRUb0ludml0YXRpb25SZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIOCgZhY2NlcHQYAiABKAgiSgobUmVzcG9uZFRvSW52aXRhdGlvblJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhIlQKJEdldFNlY3VyZUFwcEFjY2Vzc1Rva2VuU2VjcmV0UmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXIicQolR2V0U2VjdXJlQXBwQWNjZXNzVG9rZW5TZWNyZXRSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIbChNhY2Nlc3NfdG9rZW5fc2VjcmV0GAIgASgJInUKFFJlbmFtZVByb2plY3RSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIvCghuZXdfbmFtZRgCIAEoCUIdukgachgQAxgZMhJeW2Etel1bYS16MC05LV9dKiQiaAoVUmVuYW1lUHJvamVjdFJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiIKB3Byb2plY3QYAiABKAsyES5kcm9uZS52MS5Qcm9qZWN0IkQKFERlbGV0ZVByb2plY3RSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllciJEChVEZWxldGVQcm9qZWN0UmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGEiVQoXR2V0UHJvamVjdEJ5TmFtZVJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEgwKBG5hbWUYAiABKAkiawoYR2V0UHJvamVjdEJ5TmFtZVJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiIKB3Byb2plY3QYAiABKAsyES5kcm9uZS52MS5Qcm9qZWN0IloKGFJlbmFtZVBsYXRmb3JtQXBwUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISEAoIbmV3X25hbWUYAiABKAkibAoZUmVuYW1lUGxhdGZvcm1BcHBSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIiCgNhcHAYAiABKAsyFS5kcm9uZS52MS5QbGF0Zm9ybUFwcCJIChhEZWxldGVQbGF0Zm9ybUFwcFJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyIkgKGURlbGV0ZVBsYXRmb3JtQXBwUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGEiQQoRRGVsZXRlUm9sZVJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyIkEKEkRlbGV0ZVJvbGVSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YSJzChlBc3NpZ25Sb2xlVG9NZW1iZXJSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIRCglyb2xlX3V1aWQYAyABKAkSFQoNcHJvamVjdF91dWlkcxgEIAMoCSJ3ChpBc3NpZ25Sb2xlVG9NZW1iZXJSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIsCgZtZW1iZXIYAiABKAsyHC5kcm9uZS52MS5Pcmdhbml6YXRpb25NZW1iZXIiYAodVW5hc3NpZ25Sb2xlRnJvbU1lbWJlclJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhEKCXJvbGVfdXVpZBgCIAEoCSJ7Ch5VbmFzc2lnblJvbGVGcm9tTWVtYmVyUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESLAoGbWVtYmVyGAIgASgLMhwuZHJvbmUudjEuT3JnYW5pemF0aW9uTWVtYmVyInYKHEFzc2lnblJvbGVUb1NlY3VyZUFwcFJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhEKCXJvbGVfdXVpZBgCIAEoCRIVCg1wcm9qZWN0X3V1aWRzGAMgAygJInUKHUFzc2lnblJvbGVUb1NlY3VyZUFwcFJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEicKCnNlY3VyZV9hcHAYAiABKAsyEy5kcm9uZS52MS5TZWN1cmVBcHAiYwogVW5hc3NpZ25Sb2xlRnJvbVNlY3VyZUFwcFJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhEKCXJvbGVfdXVpZBgCIAEoCSJ5CiFVbmFzc2lnblJvbGVGcm9tU2VjdXJlQXBwUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESJwoKc2VjdXJlX2FwcBgCIAEoCzITLmRyb25lLnYxLlNlY3VyZUFwcCJYChZSZW5hbWVTZWN1cmVBcHBSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIQCghuZXdfbmFtZRgCIAEoCSJoChdSZW5hbWVTZWN1cmVBcHBSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIgCgNhcHAYAiABKAsyEy5kcm9uZS52MS5TZWN1cmVBcHAiRgoWRGVsZXRlU2VjdXJlQXBwUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXIiRgoXRGVsZXRlU2VjdXJlQXBwUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGEiXwohQ3JlYXRlU2VjdXJlQXBwQWNjZXNzVG9rZW5SZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIMCgRuYW1lGAIgASgJIqQBCiJDcmVhdGVTZWN1cmVBcHBBY2Nlc3NUb2tlblJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEhsKE2FjY2Vzc190b2tlbl9zZWNyZXQYAiABKAkSNAoMYWNjZXNzX3Rva2VuGAMgASgLMh4uZHJvbmUudjEuU2VjdXJlQXBwQWNjZXNzVG9rZW4iUQohRGVsZXRlU2VjdXJlQXBwQWNjZXNzVG9rZW5SZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllciJRCiJEZWxldGVTZWN1cmVBcHBBY2Nlc3NUb2tlblJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhQqUBCgxjb20uZHJvbmUudjFCGVJlcXVlc3RzQW5kUmVzcG9uc2VzUHJvdG9QAVo5Z2l0aHViLmNvbS9oaXZlLW9wcy9oaXZlLXNkay1nby9wa2dzL2dlbi9kcm9uZS92MTtkcm9uZXYxogIDRFhYqgIIRHJvbmUuVjHKAghEcm9uZVxWMeICFERyb25lXFYxXEdQQk1ldGFkYXRh6gIJRHJvbmU6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_drone_v1_models, file_hive_v1_models]);
+  fileDesc("CiVkcm9uZS92MS9yZXF1ZXN0c19hbmRfcmVzcG9uc2VzLnByb3RvEghkcm9uZS52MSIhCh9HZXRDdXN0b21Ub2tlbldpdGhDbGFpbXNSZXF1ZXN0Il4KIEdldEN1c3RvbVRva2VuV2l0aENsYWltc1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEg0KBXRva2VuGAIgASgJIl0KGUNyZWF0ZU9yZ2FuaXphdGlvblJlcXVlc3QSKwoEbmFtZRgBIAEoCUIdukgachgQAxgZMhJeW2Etel1bYS16MC05LV9dKiQSEwoLZGVzY3JpcHRpb24YAiABKAkidwoaQ3JlYXRlT3JnYW5pemF0aW9uUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESLAoMb3JnYW5pemF0aW9uGAIgASgLMhYuZHJvbmUudjEuT3JnYW5pemF0aW9uIkoKGExpc3RPcmdhbml6YXRpb25zUmVxdWVzdBIuCgpwYWdpbmF0aW9uGAEgASgLMhouaGl2ZS52MS5QYWdpbmF0aW9uUmVxdWVzdCKgAQoZTGlzdE9yZ2FuaXphdGlvbnNSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRInCgpwYWdpbmF0aW9uGAIgASgLMhMuaGl2ZS52MS5QYWdpbmF0aW9uEi0KDW9yZ2FuaXphdGlvbnMYAyADKAsyFi5kcm9uZS52MS5Pcmdhbml6YXRpb24iGQoXR2V0U2VjdXJlQXBwU2VsZlJlcXVlc3QiaQoYR2V0U2VjdXJlQXBwU2VsZlJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiAKA2FwcBgCIAEoCzITLmRyb25lLnYxLlNlY3VyZUFwcCIQCg5HZXRTZWxmUmVxdWVzdCJcCg9HZXRTZWxmUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESHAoEc2VsZhgCIAEoCzIOLmRyb25lLnYxLlNlbGYiegoZUmVuYW1lT3JnYW5pemF0aW9uUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISLwoIbmV3X25hbWUYAiABKAlCHbpIGnIYEAMYGTISXlthLXpdW2EtejAtOS1fXSokIncKGlJlbmFtZU9yZ2FuaXphdGlvblJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiwKDG9yZ2FuaXphdGlvbhgCIAEoCzIWLmRyb25lLnYxLk9yZ2FuaXphdGlvbiJJChlEZWxldGVPcmdhbml6YXRpb25SZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllciJJChpEZWxldGVPcmdhbml6YXRpb25SZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YSIsChxHZXRPcmdhbml6YXRpb25CeU5hbWVSZXF1ZXN0EgwKBG5hbWUYASABKAkiegodR2V0T3JnYW5pemF0aW9uQnlOYW1lUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESLAoMb3JnYW5pemF0aW9uGAIgASgLMhYuZHJvbmUudjEuT3JnYW5pemF0aW9uIkcKF0xpc3RQbGF0Zm9ybUFwcHNSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllciI/ChhMaXN0UGxhdGZvcm1BcHBzUmVzcG9uc2USIwoEYXBwcxgBIAMoCzIVLmRyb25lLnYxLlBsYXRmb3JtQXBwInIKEkxpc3RNZW1iZXJzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISLgoKcGFnaW5hdGlvbhgCIAEoCzIaLmhpdmUudjEuUGFnaW5hdGlvblJlcXVlc3QimgEKE0xpc3RNZW1iZXJzUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESJwoKcGFnaW5hdGlvbhgCIAEoCzITLmhpdmUudjEuUGFnaW5hdGlvbhItCgdtZW1iZXJzGAMgAygLMhwuZHJvbmUudjEuT3JnYW5pemF0aW9uTWVtYmVyIpIBChNJbnZpdGVNZW1iZXJSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIVCg1pbnZpdGVlX2VtYWlsGAIgASgJEjYKDXJvbGVfYmluZGluZ3MYAyADKAsyHy5kcm9uZS52MS5JbnZpdGF0aW9uUm9sZUJpbmRpbmcicwoUSW52aXRlTWVtYmVyUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESLgoKaW52aXRhdGlvbhgCIAEoCzIaLmRyb25lLnYxLk1lbWJlckludml0YXRpb24igwEKI0xpc3RQZW5kaW5nTWVtYmVySW52aXRhdGlvbnNSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIuCgpwYWdpbmF0aW9uGAIgASgLMhouaGl2ZS52MS5QYWdpbmF0aW9uUmVxdWVzdCKtAQokTGlzdFBlbmRpbmdNZW1iZXJJbnZpdGF0aW9uc1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEicKCnBhZ2luYXRpb24YAiABKAsyEy5oaXZlLnYxLlBhZ2luYXRpb24SLwoLaW52aXRhdGlvbnMYBCADKAsyGi5kcm9uZS52MS5NZW1iZXJJbnZpdGF0aW9uIlYKGENyZWF0ZVBsYXRmb3JtQXBwUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISDAoEbmFtZRgCIAEoCSJsChlDcmVhdGVQbGF0Zm9ybUFwcFJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiIKA2FwcBgCIAEoCzIVLmRyb25lLnYxLlBsYXRmb3JtQXBwIlQKFkNyZWF0ZVNlY3VyZUFwcFJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEgwKBG5hbWUYAiABKAkiaAoXQ3JlYXRlU2VjdXJlQXBwUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESIAoDYXBwGAIgASgLMhMuZHJvbmUudjEuU2VjdXJlQXBwIpIBChFDcmVhdGVSb2xlUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISDAoEbmFtZRgCIAEoCRITCgtkZXNjcmlwdGlvbhgDIAEoCRIsCgtwZXJtaXNzaW9ucxgEIAMoCzIXLmhpdmUudjEuSGl2ZVBlcm1pc3Npb24iXwoSQ3JlYXRlUm9sZVJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEhwKBHJvbGUYAiABKAsyDi5kcm9uZS52MS5Sb2xlIkAKEExpc3RSb2xlc1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyIl8KEUxpc3RSb2xlc1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEh0KBXJvbGVzGAIgAygLMg4uZHJvbmUudjEuUm9sZSKGAQoUQ3JlYXRlUHJvamVjdFJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEisKBG5hbWUYAiABKAlCHbpIGnIYEAMYGTISXlthLXpdW2EtejAtOS1fXSokEhMKC2Rlc2NyaXB0aW9uGAMgASgJImgKFUNyZWF0ZVByb2plY3RSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIiCgdwcm9qZWN0GAIgASgLMhEuZHJvbmUudjEuUHJvamVjdCJFChVMaXN0U2VjdXJlQXBwc1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyIkIKFkxpc3RTZWN1cmVBcHBzUmVzcG9uc2USKAoLc2VjdXJlX2FwcHMYASADKAsyEy5kcm9uZS52MS5TZWN1cmVBcHAicwoTTGlzdFByb2plY3RzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISLgoKcGFnaW5hdGlvbhgCIAEoCzIaLmhpdmUudjEuUGFnaW5hdGlvblJlcXVlc3QikQEKFExpc3RQcm9qZWN0c1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEicKCnBhZ2luYXRpb24YAiABKAsyEy5oaXZlLnYxLlBhZ2luYXRpb24SIwoIcHJvamVjdHMYAyADKAsyES5kcm9uZS52MS5Qcm9qZWN0IkMKE1JlbW92ZU1lbWJlclJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyIkMKFFJlbW92ZU1lbWJlclJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhIloKGlJlc3BvbmRUb0ludml0YXRpb25SZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIOCgZhY2NlcHQYAiABKAgiSgobUmVzcG9uZFRvSW52aXRhdGlvblJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhIlQKJEdldFNlY3VyZUFwcEFjY2Vzc1Rva2VuU2VjcmV0UmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXIicQolR2V0U2VjdXJlQXBwQWNjZXNzVG9rZW5TZWNyZXRSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIbChNhY2Nlc3NfdG9rZW5fc2VjcmV0GAIgASgJInUKFFJlbmFtZVByb2plY3RSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIvCghuZXdfbmFtZRgCIAEoCUIdukgachgQAxgZMhJeW2Etel1bYS16MC05LV9dKiQiaAoVUmVuYW1lUHJvamVjdFJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiIKB3Byb2plY3QYAiABKAsyES5kcm9uZS52MS5Qcm9qZWN0IkQKFERlbGV0ZVByb2plY3RSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllciJEChVEZWxldGVQcm9qZWN0UmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGEiVQoXR2V0UHJvamVjdEJ5TmFtZVJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEgwKBG5hbWUYAiABKAkiawoYR2V0UHJvamVjdEJ5TmFtZVJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiIKB3Byb2plY3QYAiABKAsyES5kcm9uZS52MS5Qcm9qZWN0IloKGFJlbmFtZVBsYXRmb3JtQXBwUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISEAoIbmV3X25hbWUYAiABKAkibAoZUmVuYW1lUGxhdGZvcm1BcHBSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIiCgNhcHAYAiABKAsyFS5kcm9uZS52MS5QbGF0Zm9ybUFwcCJIChhEZWxldGVQbGF0Zm9ybUFwcFJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyIkgKGURlbGV0ZVBsYXRmb3JtQXBwUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGEiQQoRRGVsZXRlUm9sZVJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyIkEKEkRlbGV0ZVJvbGVSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YSJzChlBc3NpZ25Sb2xlVG9NZW1iZXJSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIRCglyb2xlX3V1aWQYAyABKAkSFQoNcHJvamVjdF91dWlkcxgEIAMoCSJ3ChpBc3NpZ25Sb2xlVG9NZW1iZXJSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIsCgZtZW1iZXIYAiABKAsyHC5kcm9uZS52MS5Pcmdhbml6YXRpb25NZW1iZXIiYAodVW5hc3NpZ25Sb2xlRnJvbU1lbWJlclJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhEKCXJvbGVfdXVpZBgCIAEoCSJ7Ch5VbmFzc2lnblJvbGVGcm9tTWVtYmVyUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESLAoGbWVtYmVyGAIgASgLMhwuZHJvbmUudjEuT3JnYW5pemF0aW9uTWVtYmVyInYKHEFzc2lnblJvbGVUb1NlY3VyZUFwcFJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhEKCXJvbGVfdXVpZBgCIAEoCRIVCg1wcm9qZWN0X3V1aWRzGAMgAygJInUKHUFzc2lnblJvbGVUb1NlY3VyZUFwcFJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEicKCnNlY3VyZV9hcHAYAiABKAsyEy5kcm9uZS52MS5TZWN1cmVBcHAiYwogVW5hc3NpZ25Sb2xlRnJvbVNlY3VyZUFwcFJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhEKCXJvbGVfdXVpZBgCIAEoCSJ5CiFVbmFzc2lnblJvbGVGcm9tU2VjdXJlQXBwUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESJwoKc2VjdXJlX2FwcBgCIAEoCzITLmRyb25lLnYxLlNlY3VyZUFwcCJYChZSZW5hbWVTZWN1cmVBcHBSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIQCghuZXdfbmFtZRgCIAEoCSJoChdSZW5hbWVTZWN1cmVBcHBSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIgCgNhcHAYAiABKAsyEy5kcm9uZS52MS5TZWN1cmVBcHAiRgoWRGVsZXRlU2VjdXJlQXBwUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXIiRgoXRGVsZXRlU2VjdXJlQXBwUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGEiXwohQ3JlYXRlU2VjdXJlQXBwQWNjZXNzVG9rZW5SZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIMCgRuYW1lGAIgASgJIqQBCiJDcmVhdGVTZWN1cmVBcHBBY2Nlc3NUb2tlblJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEhsKE2FjY2Vzc190b2tlbl9zZWNyZXQYAiABKAkSNAoMYWNjZXNzX3Rva2VuGAMgASgLMh4uZHJvbmUudjEuU2VjdXJlQXBwQWNjZXNzVG9rZW4iUQohRGVsZXRlU2VjdXJlQXBwQWNjZXNzVG9rZW5SZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllciJRCiJEZWxldGVTZWN1cmVBcHBBY2Nlc3NUb2tlblJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhQqUBCgxjb20uZHJvbmUudjFCGVJlcXVlc3RzQW5kUmVzcG9uc2VzUHJvdG9QAVo5Z2l0aHViLmNvbS9oaXZlLW9wcy9oaXZlLXNkay1nby9wa2dzL2dlbi9kcm9uZS92MTtkcm9uZXYxogIDRFhYqgIIRHJvbmUuVjHKAghEcm9uZVxWMeICFERyb25lXFYxXEdQQk1ldGFkYXRh6gIJRHJvbmU6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_drone_v1_models, file_hive_v1_models]);
 
 /**
  * @generated from message drone.v1.GetCustomTokenWithClaimsRequest
@@ -404,19 +404,9 @@ export type ListMembersResponse = Message<"drone.v1.ListMembersResponse"> & {
   pagination?: Pagination;
 
   /**
-   * @generated from field: string organization_name = 3;
-   */
-  organizationName: string;
-
-  /**
-   * @generated from field: repeated drone.v1.OrganizationMember members = 4;
+   * @generated from field: repeated drone.v1.OrganizationMember members = 3;
    */
   members: OrganizationMember[];
-
-  /**
-   * @generated from field: repeated drone.v1.MemberInvitation invitations = 5;
-   */
-  invitations: MemberInvitation[];
 };
 
 /**
@@ -478,6 +468,57 @@ export const InviteMemberResponseSchema: GenMessage<InviteMemberResponse> = /*@_
   messageDesc(file_drone_v1_requests_and_responses, 21);
 
 /**
+ * @generated from message drone.v1.ListPendingMemberInvitationsRequest
+ */
+export type ListPendingMemberInvitationsRequest = Message<"drone.v1.ListPendingMemberInvitationsRequest"> & {
+  /**
+   * The HRN of the organization to list members for
+   *
+   * @generated from field: hive.v1.HiveResourceIdentifier hri = 1;
+   */
+  hri?: HiveResourceIdentifier;
+
+  /**
+   * @generated from field: hive.v1.PaginationRequest pagination = 2;
+   */
+  pagination?: PaginationRequest;
+};
+
+/**
+ * Describes the message drone.v1.ListPendingMemberInvitationsRequest.
+ * Use `create(ListPendingMemberInvitationsRequestSchema)` to create a new message.
+ */
+export const ListPendingMemberInvitationsRequestSchema: GenMessage<ListPendingMemberInvitationsRequest> = /*@__PURE__*/
+  messageDesc(file_drone_v1_requests_and_responses, 22);
+
+/**
+ * @generated from message drone.v1.ListPendingMemberInvitationsResponse
+ */
+export type ListPendingMemberInvitationsResponse = Message<"drone.v1.ListPendingMemberInvitationsResponse"> & {
+  /**
+   * @generated from field: hive.v1.ResponseMetadata metadata = 1;
+   */
+  metadata?: ResponseMetadata;
+
+  /**
+   * @generated from field: hive.v1.Pagination pagination = 2;
+   */
+  pagination?: Pagination;
+
+  /**
+   * @generated from field: repeated drone.v1.MemberInvitation invitations = 4;
+   */
+  invitations: MemberInvitation[];
+};
+
+/**
+ * Describes the message drone.v1.ListPendingMemberInvitationsResponse.
+ * Use `create(ListPendingMemberInvitationsResponseSchema)` to create a new message.
+ */
+export const ListPendingMemberInvitationsResponseSchema: GenMessage<ListPendingMemberInvitationsResponse> = /*@__PURE__*/
+  messageDesc(file_drone_v1_requests_and_responses, 23);
+
+/**
  * @generated from message drone.v1.CreatePlatformAppRequest
  */
 export type CreatePlatformAppRequest = Message<"drone.v1.CreatePlatformAppRequest"> & {
@@ -497,7 +538,7 @@ export type CreatePlatformAppRequest = Message<"drone.v1.CreatePlatformAppReques
  * Use `create(CreatePlatformAppRequestSchema)` to create a new message.
  */
 export const CreatePlatformAppRequestSchema: GenMessage<CreatePlatformAppRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 22);
+  messageDesc(file_drone_v1_requests_and_responses, 24);
 
 /**
  * @generated from message drone.v1.CreatePlatformAppResponse
@@ -519,7 +560,7 @@ export type CreatePlatformAppResponse = Message<"drone.v1.CreatePlatformAppRespo
  * Use `create(CreatePlatformAppResponseSchema)` to create a new message.
  */
 export const CreatePlatformAppResponseSchema: GenMessage<CreatePlatformAppResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 23);
+  messageDesc(file_drone_v1_requests_and_responses, 25);
 
 /**
  * @generated from message drone.v1.CreateSecureAppRequest
@@ -541,7 +582,7 @@ export type CreateSecureAppRequest = Message<"drone.v1.CreateSecureAppRequest"> 
  * Use `create(CreateSecureAppRequestSchema)` to create a new message.
  */
 export const CreateSecureAppRequestSchema: GenMessage<CreateSecureAppRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 24);
+  messageDesc(file_drone_v1_requests_and_responses, 26);
 
 /**
  * @generated from message drone.v1.CreateSecureAppResponse
@@ -563,7 +604,7 @@ export type CreateSecureAppResponse = Message<"drone.v1.CreateSecureAppResponse"
  * Use `create(CreateSecureAppResponseSchema)` to create a new message.
  */
 export const CreateSecureAppResponseSchema: GenMessage<CreateSecureAppResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 25);
+  messageDesc(file_drone_v1_requests_and_responses, 27);
 
 /**
  * @generated from message drone.v1.CreateRoleRequest
@@ -595,7 +636,7 @@ export type CreateRoleRequest = Message<"drone.v1.CreateRoleRequest"> & {
  * Use `create(CreateRoleRequestSchema)` to create a new message.
  */
 export const CreateRoleRequestSchema: GenMessage<CreateRoleRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 26);
+  messageDesc(file_drone_v1_requests_and_responses, 28);
 
 /**
  * @generated from message drone.v1.CreateRoleResponse
@@ -617,7 +658,7 @@ export type CreateRoleResponse = Message<"drone.v1.CreateRoleResponse"> & {
  * Use `create(CreateRoleResponseSchema)` to create a new message.
  */
 export const CreateRoleResponseSchema: GenMessage<CreateRoleResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 27);
+  messageDesc(file_drone_v1_requests_and_responses, 29);
 
 /**
  * @generated from message drone.v1.ListRolesRequest
@@ -636,7 +677,7 @@ export type ListRolesRequest = Message<"drone.v1.ListRolesRequest"> & {
  * Use `create(ListRolesRequestSchema)` to create a new message.
  */
 export const ListRolesRequestSchema: GenMessage<ListRolesRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 28);
+  messageDesc(file_drone_v1_requests_and_responses, 30);
 
 /**
  * @generated from message drone.v1.ListRolesResponse
@@ -658,7 +699,7 @@ export type ListRolesResponse = Message<"drone.v1.ListRolesResponse"> & {
  * Use `create(ListRolesResponseSchema)` to create a new message.
  */
 export const ListRolesResponseSchema: GenMessage<ListRolesResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 29);
+  messageDesc(file_drone_v1_requests_and_responses, 31);
 
 /**
  * @generated from message drone.v1.CreateProjectRequest
@@ -685,7 +726,7 @@ export type CreateProjectRequest = Message<"drone.v1.CreateProjectRequest"> & {
  * Use `create(CreateProjectRequestSchema)` to create a new message.
  */
 export const CreateProjectRequestSchema: GenMessage<CreateProjectRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 30);
+  messageDesc(file_drone_v1_requests_and_responses, 32);
 
 /**
  * @generated from message drone.v1.CreateProjectResponse
@@ -707,7 +748,7 @@ export type CreateProjectResponse = Message<"drone.v1.CreateProjectResponse"> & 
  * Use `create(CreateProjectResponseSchema)` to create a new message.
  */
 export const CreateProjectResponseSchema: GenMessage<CreateProjectResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 31);
+  messageDesc(file_drone_v1_requests_and_responses, 33);
 
 /**
  * @generated from message drone.v1.ListSecureAppsRequest
@@ -726,7 +767,7 @@ export type ListSecureAppsRequest = Message<"drone.v1.ListSecureAppsRequest"> & 
  * Use `create(ListSecureAppsRequestSchema)` to create a new message.
  */
 export const ListSecureAppsRequestSchema: GenMessage<ListSecureAppsRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 32);
+  messageDesc(file_drone_v1_requests_and_responses, 34);
 
 /**
  * @generated from message drone.v1.ListSecureAppsResponse
@@ -743,7 +784,7 @@ export type ListSecureAppsResponse = Message<"drone.v1.ListSecureAppsResponse"> 
  * Use `create(ListSecureAppsResponseSchema)` to create a new message.
  */
 export const ListSecureAppsResponseSchema: GenMessage<ListSecureAppsResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 33);
+  messageDesc(file_drone_v1_requests_and_responses, 35);
 
 /**
  * @generated from message drone.v1.ListProjectsRequest
@@ -767,7 +808,7 @@ export type ListProjectsRequest = Message<"drone.v1.ListProjectsRequest"> & {
  * Use `create(ListProjectsRequestSchema)` to create a new message.
  */
 export const ListProjectsRequestSchema: GenMessage<ListProjectsRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 34);
+  messageDesc(file_drone_v1_requests_and_responses, 36);
 
 /**
  * @generated from message drone.v1.ListProjectsResponse
@@ -794,7 +835,7 @@ export type ListProjectsResponse = Message<"drone.v1.ListProjectsResponse"> & {
  * Use `create(ListProjectsResponseSchema)` to create a new message.
  */
 export const ListProjectsResponseSchema: GenMessage<ListProjectsResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 35);
+  messageDesc(file_drone_v1_requests_and_responses, 37);
 
 /**
  * @generated from message drone.v1.RemoveMemberRequest
@@ -811,7 +852,7 @@ export type RemoveMemberRequest = Message<"drone.v1.RemoveMemberRequest"> & {
  * Use `create(RemoveMemberRequestSchema)` to create a new message.
  */
 export const RemoveMemberRequestSchema: GenMessage<RemoveMemberRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 36);
+  messageDesc(file_drone_v1_requests_and_responses, 38);
 
 /**
  * @generated from message drone.v1.RemoveMemberResponse
@@ -828,7 +869,7 @@ export type RemoveMemberResponse = Message<"drone.v1.RemoveMemberResponse"> & {
  * Use `create(RemoveMemberResponseSchema)` to create a new message.
  */
 export const RemoveMemberResponseSchema: GenMessage<RemoveMemberResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 37);
+  messageDesc(file_drone_v1_requests_and_responses, 39);
 
 /**
  * @generated from message drone.v1.RespondToInvitationRequest
@@ -850,7 +891,7 @@ export type RespondToInvitationRequest = Message<"drone.v1.RespondToInvitationRe
  * Use `create(RespondToInvitationRequestSchema)` to create a new message.
  */
 export const RespondToInvitationRequestSchema: GenMessage<RespondToInvitationRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 38);
+  messageDesc(file_drone_v1_requests_and_responses, 40);
 
 /**
  * @generated from message drone.v1.RespondToInvitationResponse
@@ -867,7 +908,7 @@ export type RespondToInvitationResponse = Message<"drone.v1.RespondToInvitationR
  * Use `create(RespondToInvitationResponseSchema)` to create a new message.
  */
 export const RespondToInvitationResponseSchema: GenMessage<RespondToInvitationResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 39);
+  messageDesc(file_drone_v1_requests_and_responses, 41);
 
 /**
  * @generated from message drone.v1.GetSecureAppAccessTokenSecretRequest
@@ -884,7 +925,7 @@ export type GetSecureAppAccessTokenSecretRequest = Message<"drone.v1.GetSecureAp
  * Use `create(GetSecureAppAccessTokenSecretRequestSchema)` to create a new message.
  */
 export const GetSecureAppAccessTokenSecretRequestSchema: GenMessage<GetSecureAppAccessTokenSecretRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 40);
+  messageDesc(file_drone_v1_requests_and_responses, 42);
 
 /**
  * @generated from message drone.v1.GetSecureAppAccessTokenSecretResponse
@@ -906,7 +947,7 @@ export type GetSecureAppAccessTokenSecretResponse = Message<"drone.v1.GetSecureA
  * Use `create(GetSecureAppAccessTokenSecretResponseSchema)` to create a new message.
  */
 export const GetSecureAppAccessTokenSecretResponseSchema: GenMessage<GetSecureAppAccessTokenSecretResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 41);
+  messageDesc(file_drone_v1_requests_and_responses, 43);
 
 /**
  * @generated from message drone.v1.RenameProjectRequest
@@ -928,7 +969,7 @@ export type RenameProjectRequest = Message<"drone.v1.RenameProjectRequest"> & {
  * Use `create(RenameProjectRequestSchema)` to create a new message.
  */
 export const RenameProjectRequestSchema: GenMessage<RenameProjectRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 42);
+  messageDesc(file_drone_v1_requests_and_responses, 44);
 
 /**
  * @generated from message drone.v1.RenameProjectResponse
@@ -950,7 +991,7 @@ export type RenameProjectResponse = Message<"drone.v1.RenameProjectResponse"> & 
  * Use `create(RenameProjectResponseSchema)` to create a new message.
  */
 export const RenameProjectResponseSchema: GenMessage<RenameProjectResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 43);
+  messageDesc(file_drone_v1_requests_and_responses, 45);
 
 /**
  * @generated from message drone.v1.DeleteProjectRequest
@@ -967,7 +1008,7 @@ export type DeleteProjectRequest = Message<"drone.v1.DeleteProjectRequest"> & {
  * Use `create(DeleteProjectRequestSchema)` to create a new message.
  */
 export const DeleteProjectRequestSchema: GenMessage<DeleteProjectRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 44);
+  messageDesc(file_drone_v1_requests_and_responses, 46);
 
 /**
  * @generated from message drone.v1.DeleteProjectResponse
@@ -984,7 +1025,7 @@ export type DeleteProjectResponse = Message<"drone.v1.DeleteProjectResponse"> & 
  * Use `create(DeleteProjectResponseSchema)` to create a new message.
  */
 export const DeleteProjectResponseSchema: GenMessage<DeleteProjectResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 45);
+  messageDesc(file_drone_v1_requests_and_responses, 47);
 
 /**
  * @generated from message drone.v1.GetProjectByNameRequest
@@ -1010,7 +1051,7 @@ export type GetProjectByNameRequest = Message<"drone.v1.GetProjectByNameRequest"
  * Use `create(GetProjectByNameRequestSchema)` to create a new message.
  */
 export const GetProjectByNameRequestSchema: GenMessage<GetProjectByNameRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 46);
+  messageDesc(file_drone_v1_requests_and_responses, 48);
 
 /**
  * @generated from message drone.v1.GetProjectByNameResponse
@@ -1032,7 +1073,7 @@ export type GetProjectByNameResponse = Message<"drone.v1.GetProjectByNameRespons
  * Use `create(GetProjectByNameResponseSchema)` to create a new message.
  */
 export const GetProjectByNameResponseSchema: GenMessage<GetProjectByNameResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 47);
+  messageDesc(file_drone_v1_requests_and_responses, 49);
 
 /**
  * @generated from message drone.v1.RenamePlatformAppRequest
@@ -1054,7 +1095,7 @@ export type RenamePlatformAppRequest = Message<"drone.v1.RenamePlatformAppReques
  * Use `create(RenamePlatformAppRequestSchema)` to create a new message.
  */
 export const RenamePlatformAppRequestSchema: GenMessage<RenamePlatformAppRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 48);
+  messageDesc(file_drone_v1_requests_and_responses, 50);
 
 /**
  * @generated from message drone.v1.RenamePlatformAppResponse
@@ -1076,7 +1117,7 @@ export type RenamePlatformAppResponse = Message<"drone.v1.RenamePlatformAppRespo
  * Use `create(RenamePlatformAppResponseSchema)` to create a new message.
  */
 export const RenamePlatformAppResponseSchema: GenMessage<RenamePlatformAppResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 49);
+  messageDesc(file_drone_v1_requests_and_responses, 51);
 
 /**
  * @generated from message drone.v1.DeletePlatformAppRequest
@@ -1093,7 +1134,7 @@ export type DeletePlatformAppRequest = Message<"drone.v1.DeletePlatformAppReques
  * Use `create(DeletePlatformAppRequestSchema)` to create a new message.
  */
 export const DeletePlatformAppRequestSchema: GenMessage<DeletePlatformAppRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 50);
+  messageDesc(file_drone_v1_requests_and_responses, 52);
 
 /**
  * @generated from message drone.v1.DeletePlatformAppResponse
@@ -1110,7 +1151,7 @@ export type DeletePlatformAppResponse = Message<"drone.v1.DeletePlatformAppRespo
  * Use `create(DeletePlatformAppResponseSchema)` to create a new message.
  */
 export const DeletePlatformAppResponseSchema: GenMessage<DeletePlatformAppResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 51);
+  messageDesc(file_drone_v1_requests_and_responses, 53);
 
 /**
  * @generated from message drone.v1.DeleteRoleRequest
@@ -1127,7 +1168,7 @@ export type DeleteRoleRequest = Message<"drone.v1.DeleteRoleRequest"> & {
  * Use `create(DeleteRoleRequestSchema)` to create a new message.
  */
 export const DeleteRoleRequestSchema: GenMessage<DeleteRoleRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 52);
+  messageDesc(file_drone_v1_requests_and_responses, 54);
 
 /**
  * @generated from message drone.v1.DeleteRoleResponse
@@ -1144,7 +1185,7 @@ export type DeleteRoleResponse = Message<"drone.v1.DeleteRoleResponse"> & {
  * Use `create(DeleteRoleResponseSchema)` to create a new message.
  */
 export const DeleteRoleResponseSchema: GenMessage<DeleteRoleResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 53);
+  messageDesc(file_drone_v1_requests_and_responses, 55);
 
 /**
  * @generated from message drone.v1.AssignRoleToMemberRequest
@@ -1173,7 +1214,7 @@ export type AssignRoleToMemberRequest = Message<"drone.v1.AssignRoleToMemberRequ
  * Use `create(AssignRoleToMemberRequestSchema)` to create a new message.
  */
 export const AssignRoleToMemberRequestSchema: GenMessage<AssignRoleToMemberRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 54);
+  messageDesc(file_drone_v1_requests_and_responses, 56);
 
 /**
  * @generated from message drone.v1.AssignRoleToMemberResponse
@@ -1195,7 +1236,7 @@ export type AssignRoleToMemberResponse = Message<"drone.v1.AssignRoleToMemberRes
  * Use `create(AssignRoleToMemberResponseSchema)` to create a new message.
  */
 export const AssignRoleToMemberResponseSchema: GenMessage<AssignRoleToMemberResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 55);
+  messageDesc(file_drone_v1_requests_and_responses, 57);
 
 /**
  * @generated from message drone.v1.UnassignRoleFromMemberRequest
@@ -1217,7 +1258,7 @@ export type UnassignRoleFromMemberRequest = Message<"drone.v1.UnassignRoleFromMe
  * Use `create(UnassignRoleFromMemberRequestSchema)` to create a new message.
  */
 export const UnassignRoleFromMemberRequestSchema: GenMessage<UnassignRoleFromMemberRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 56);
+  messageDesc(file_drone_v1_requests_and_responses, 58);
 
 /**
  * @generated from message drone.v1.UnassignRoleFromMemberResponse
@@ -1239,7 +1280,7 @@ export type UnassignRoleFromMemberResponse = Message<"drone.v1.UnassignRoleFromM
  * Use `create(UnassignRoleFromMemberResponseSchema)` to create a new message.
  */
 export const UnassignRoleFromMemberResponseSchema: GenMessage<UnassignRoleFromMemberResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 57);
+  messageDesc(file_drone_v1_requests_and_responses, 59);
 
 /**
  * @generated from message drone.v1.AssignRoleToSecureAppRequest
@@ -1268,7 +1309,7 @@ export type AssignRoleToSecureAppRequest = Message<"drone.v1.AssignRoleToSecureA
  * Use `create(AssignRoleToSecureAppRequestSchema)` to create a new message.
  */
 export const AssignRoleToSecureAppRequestSchema: GenMessage<AssignRoleToSecureAppRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 58);
+  messageDesc(file_drone_v1_requests_and_responses, 60);
 
 /**
  * @generated from message drone.v1.AssignRoleToSecureAppResponse
@@ -1290,7 +1331,7 @@ export type AssignRoleToSecureAppResponse = Message<"drone.v1.AssignRoleToSecure
  * Use `create(AssignRoleToSecureAppResponseSchema)` to create a new message.
  */
 export const AssignRoleToSecureAppResponseSchema: GenMessage<AssignRoleToSecureAppResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 59);
+  messageDesc(file_drone_v1_requests_and_responses, 61);
 
 /**
  * @generated from message drone.v1.UnassignRoleFromSecureAppRequest
@@ -1314,7 +1355,7 @@ export type UnassignRoleFromSecureAppRequest = Message<"drone.v1.UnassignRoleFro
  * Use `create(UnassignRoleFromSecureAppRequestSchema)` to create a new message.
  */
 export const UnassignRoleFromSecureAppRequestSchema: GenMessage<UnassignRoleFromSecureAppRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 60);
+  messageDesc(file_drone_v1_requests_and_responses, 62);
 
 /**
  * @generated from message drone.v1.UnassignRoleFromSecureAppResponse
@@ -1336,7 +1377,7 @@ export type UnassignRoleFromSecureAppResponse = Message<"drone.v1.UnassignRoleFr
  * Use `create(UnassignRoleFromSecureAppResponseSchema)` to create a new message.
  */
 export const UnassignRoleFromSecureAppResponseSchema: GenMessage<UnassignRoleFromSecureAppResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 61);
+  messageDesc(file_drone_v1_requests_and_responses, 63);
 
 /**
  * @generated from message drone.v1.RenameSecureAppRequest
@@ -1358,7 +1399,7 @@ export type RenameSecureAppRequest = Message<"drone.v1.RenameSecureAppRequest"> 
  * Use `create(RenameSecureAppRequestSchema)` to create a new message.
  */
 export const RenameSecureAppRequestSchema: GenMessage<RenameSecureAppRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 62);
+  messageDesc(file_drone_v1_requests_and_responses, 64);
 
 /**
  * @generated from message drone.v1.RenameSecureAppResponse
@@ -1380,7 +1421,7 @@ export type RenameSecureAppResponse = Message<"drone.v1.RenameSecureAppResponse"
  * Use `create(RenameSecureAppResponseSchema)` to create a new message.
  */
 export const RenameSecureAppResponseSchema: GenMessage<RenameSecureAppResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 63);
+  messageDesc(file_drone_v1_requests_and_responses, 65);
 
 /**
  * @generated from message drone.v1.DeleteSecureAppRequest
@@ -1397,7 +1438,7 @@ export type DeleteSecureAppRequest = Message<"drone.v1.DeleteSecureAppRequest"> 
  * Use `create(DeleteSecureAppRequestSchema)` to create a new message.
  */
 export const DeleteSecureAppRequestSchema: GenMessage<DeleteSecureAppRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 64);
+  messageDesc(file_drone_v1_requests_and_responses, 66);
 
 /**
  * @generated from message drone.v1.DeleteSecureAppResponse
@@ -1414,7 +1455,7 @@ export type DeleteSecureAppResponse = Message<"drone.v1.DeleteSecureAppResponse"
  * Use `create(DeleteSecureAppResponseSchema)` to create a new message.
  */
 export const DeleteSecureAppResponseSchema: GenMessage<DeleteSecureAppResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 65);
+  messageDesc(file_drone_v1_requests_and_responses, 67);
 
 /**
  * @generated from message drone.v1.CreateSecureAppAccessTokenRequest
@@ -1436,7 +1477,7 @@ export type CreateSecureAppAccessTokenRequest = Message<"drone.v1.CreateSecureAp
  * Use `create(CreateSecureAppAccessTokenRequestSchema)` to create a new message.
  */
 export const CreateSecureAppAccessTokenRequestSchema: GenMessage<CreateSecureAppAccessTokenRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 66);
+  messageDesc(file_drone_v1_requests_and_responses, 68);
 
 /**
  * @generated from message drone.v1.CreateSecureAppAccessTokenResponse
@@ -1463,7 +1504,7 @@ export type CreateSecureAppAccessTokenResponse = Message<"drone.v1.CreateSecureA
  * Use `create(CreateSecureAppAccessTokenResponseSchema)` to create a new message.
  */
 export const CreateSecureAppAccessTokenResponseSchema: GenMessage<CreateSecureAppAccessTokenResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 67);
+  messageDesc(file_drone_v1_requests_and_responses, 69);
 
 /**
  * @generated from message drone.v1.DeleteSecureAppAccessTokenRequest
@@ -1480,7 +1521,7 @@ export type DeleteSecureAppAccessTokenRequest = Message<"drone.v1.DeleteSecureAp
  * Use `create(DeleteSecureAppAccessTokenRequestSchema)` to create a new message.
  */
 export const DeleteSecureAppAccessTokenRequestSchema: GenMessage<DeleteSecureAppAccessTokenRequest> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 68);
+  messageDesc(file_drone_v1_requests_and_responses, 70);
 
 /**
  * @generated from message drone.v1.DeleteSecureAppAccessTokenResponse
@@ -1497,5 +1538,5 @@ export type DeleteSecureAppAccessTokenResponse = Message<"drone.v1.DeleteSecureA
  * Use `create(DeleteSecureAppAccessTokenResponseSchema)` to create a new message.
  */
 export const DeleteSecureAppAccessTokenResponseSchema: GenMessage<DeleteSecureAppAccessTokenResponse> = /*@__PURE__*/
-  messageDesc(file_drone_v1_requests_and_responses, 69);
+  messageDesc(file_drone_v1_requests_and_responses, 71);
 

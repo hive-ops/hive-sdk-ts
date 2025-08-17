@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.12.0
+
+### Minor Changes
+
+- feat: Add ListPendingMemberInvitations RPC to DroneIAMOrganizationMemberService
+
 ## 1.11.0
 
 ### Minor Changes
