@@ -66,12 +66,16 @@ export const signInWithCustomToken = async ({ firebaseApiKey, customToken }: { f
   });
 };
 
-export const getFirebaseTokenWithClaimsViaEmailPassword = async (firebaseApiKey: string, email: string, password: string): Promise<FirebaseToken> => {
-  const tokenWithoutClaims = await signInWithEmailPassword({ firebaseApiKey, email, password });
-
-  const droneTokenClient = createDroneTokenClient(tokenWithoutClaims.idToken);
+export const getFirebaseTokenWithClaimsViaFirebaseTokenWithoutClaims = async (firebaseApiKey: string, firebaseToken: FirebaseToken): Promise<FirebaseToken> => {
+  const droneTokenClient = createDroneTokenClient(firebaseToken.idToken);
 
   const customTokenWithClaimsRes = await droneTokenClient.getCustomTokenWithClaims({});
 
   return signInWithCustomToken({ firebaseApiKey, customToken: customTokenWithClaimsRes.token });
+};
+
+export const getFirebaseTokenWithClaimsViaEmailPassword = async (firebaseApiKey: string, email: string, password: string): Promise<FirebaseToken> => {
+  const tokenWithoutClaims = await signInWithEmailPassword({ firebaseApiKey, email, password });
+
+  return getFirebaseTokenWithClaimsViaFirebaseTokenWithoutClaims(firebaseApiKey, tokenWithoutClaims);
 };

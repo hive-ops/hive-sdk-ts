@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.12.1
+
+### Patch Changes
+
+- feat: Refactor Firebase token retrieval functions for improved clarity and structure
+
 ## 1.12.0
 
 ### Minor Changes
