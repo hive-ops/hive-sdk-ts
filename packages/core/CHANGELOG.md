@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.13.1
+
+### Patch Changes
+
+- Refactor Beekeeper service integration
+
 ## 1.13.0
 
 ### Minor Changes

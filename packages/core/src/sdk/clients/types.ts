@@ -1,7 +1,6 @@
 import { Client, Interceptor, Transport } from "@connectrpc/connect";
 import {
   BeekeeperCountryService,
-  BeekeeperService,
   BeekeeperVespaDatabaseStackService,
   DroneIAMOrganizationMemberService,
   DroneIAMOrganizationService,
@@ -32,6 +31,6 @@ export type DroneClient = Client<typeof DroneIAMOrganizationService> &
   Client<typeof DroneIAMPlatformAppService> &
   Client<typeof DroneIAMSecureAppService>;
 
-export type BeekeeperClient = Client<typeof BeekeeperService> & Client<typeof BeekeeperCountryService> & Client<typeof BeekeeperVespaDatabaseStackService>;
+export type BeekeeperClient = Client<typeof BeekeeperCountryService> & Client<typeof BeekeeperVespaDatabaseStackService>;
 
 export type VespaClient = Client<typeof VespaDatabaseService>;
