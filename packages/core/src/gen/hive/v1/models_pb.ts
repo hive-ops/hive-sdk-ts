@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file hive/v1/models.proto.
  */
 export const file_hive_v1_models: GenFile = /*@__PURE__*/
-  fileDesc("ChRoaXZlL3YxL21vZGVscy5wcm90bxIHaGl2ZS52MSI6CgVFcnJvchIgCgRjb2RlGAEgASgOMhIuaGl2ZS52MS5FcnJvckNvZGUSDwoHbWVzc2FnZRgCIAEoCSI6ChFQYWdpbmF0aW9uUmVxdWVzdBISCgpwYWdlX2luZGV4GAEgASgFEhEKCXBhZ2Vfc2l6ZRgCIAEoBSJfCgpQYWdpbmF0aW9uEhQKDGN1cnJlbnRfcGFnZRgBIAEoBRITCgt0b3RhbF9wYWdlcxgCIAEoBRIRCglwYWdlX3NpemUYAyABKAUSEwoLdG90YWxfaXRlbXMYBCABKAUiRgoQUmVzcG9uc2VNZXRhZGF0YRISCgpzdWNjZXNzZnVsGAEgASgIEh4KBmVycm9ycxgCIAMoCzIOLmhpdmUudjEuRXJyb3IiYwoERmlsZRIfChdkaXJlY3RvcnlfcGF0aF9lbGVtZW50cxgBIAMoCRIRCglmaWxlX25hbWUYAiABKAkSDwoHY29udGVudBgDIAEoCRIWCg5oZWFkZXJfY29tbWVudBgEIAEoCSJTCg5IaXZlUGVybWlzc2lvbhIjCghyZXNvdXJjZRgBIAEoDjIRLmhpdmUudjEuUmVzb3VyY2USHAoFdmVyYnMYAiADKA4yDS5oaXZlLnYxLlZlcmIipQEKBEZRRE4SDgoGZG9tYWluGAEgASgJEg4KBmh1Yl9pZBgCIAEoCRIpCgtlbnZpcm9ubWVudBgDIAEoDjIULmhpdmUudjEuRW52aXJvbm1lbnQSGQoDYXBwGAQgASgOMgwuaGl2ZS52MS5BcHASJAoJYmFzZV9wb3J0GAUgASgOMhEuaGl2ZS52MS5CYXNlUG9ydBIRCglub2RlX25hbWUYBiABKAkibwoHQ291bnRyeRIiCgRjb2RlGAEgASgOMhQuaGl2ZS52MS5Db3VudHJ5Q29kZRIUCgxjb2RlX2FscGhhXzMYAiABKAkSEwoLY29tbW9uX25hbWUYAyABKAkSFQoNb2ZmaWNpYWxfbmFtZRgEIAEoCSJ/ChBIaXZlUmVzb3VyY2VOYW1lEiMKCHJlc291cmNlGAEgASgOMhEuaGl2ZS52MS5SZXNvdXJjZRIZChFvcmdhbml6YXRpb25fbmFtZRgCIAEoCRIUCgxwcm9qZWN0X25hbWUYAyABKAkSFQoNcmVzb3VyY2VfbmFtZRgEIAEoCSKFAQoWSGl2ZVJlc291cmNlSWRlbnRpZmllchIjCghyZXNvdXJjZRgBIAEoDjIRLmhpdmUudjEuUmVzb3VyY2USGQoRb3JnYW5pemF0aW9uX3V1aWQYAiABKAkSFAoMcHJvamVjdF91dWlkGAMgASgJEhUKDXJlc291cmNlX3V1aWQYBCABKAlCkAEKC2NvbS5oaXZlLnYxQgtNb2RlbHNQcm90b1ABWjdnaXRodWIuY29tL2hpdmUtb3BzL2hpdmUtc2RrLWdvL3BrZ3MvZ2VuL2hpdmUvdjE7aGl2ZXYxogIDSFhYqgIHSGl2ZS5WMcoCB0hpdmVcVjHiAhNIaXZlXFYxXEdQQk1ldGFkYXRh6gIISGl2ZTo6VjFiBnByb3RvMw", [file_hive_v1_enums]);
+  fileDesc("ChRoaXZlL3YxL21vZGVscy5wcm90bxIHaGl2ZS52MSI6CgVFcnJvchIgCgRjb2RlGAEgASgOMhIuaGl2ZS52MS5FcnJvckNvZGUSDwoHbWVzc2FnZRgCIAEoCSI6ChFQYWdpbmF0aW9uUmVxdWVzdBISCgpwYWdlX2luZGV4GAEgASgFEhEKCXBhZ2Vfc2l6ZRgCIAEoBSJfCgpQYWdpbmF0aW9uEhQKDGN1cnJlbnRfcGFnZRgBIAEoBRITCgt0b3RhbF9wYWdlcxgCIAEoBRIRCglwYWdlX3NpemUYAyABKAUSEwoLdG90YWxfaXRlbXMYBCABKAUiRgoQUmVzcG9uc2VNZXRhZGF0YRISCgpzdWNjZXNzZnVsGAEgASgIEh4KBmVycm9ycxgCIAMoCzIOLmhpdmUudjEuRXJyb3IiYwoERmlsZRIfChdkaXJlY3RvcnlfcGF0aF9lbGVtZW50cxgBIAMoCRIRCglmaWxlX25hbWUYAiABKAkSDwoHY29udGVudBgDIAEoCRIWCg5oZWFkZXJfY29tbWVudBgEIAEoCSJTCg5IaXZlUGVybWlzc2lvbhIjCghyZXNvdXJjZRgBIAEoDjIRLmhpdmUudjEuUmVzb3VyY2USHAoFdmVyYnMYAiADKA4yDS5oaXZlLnYxLlZlcmIipQEKBEZRRE4SDgoGZG9tYWluGAEgASgJEg4KBmh1Yl9pZBgCIAEoCRIpCgtlbnZpcm9ubWVudBgDIAEoDjIULmhpdmUudjEuRW52aXJvbm1lbnQSGQoDYXBwGAQgASgOMgwuaGl2ZS52MS5BcHASJAoJYmFzZV9wb3J0GAUgASgOMhEuaGl2ZS52MS5CYXNlUG9ydBIRCglub2RlX25hbWUYBiABKAkibwoHQ291bnRyeRIiCgRjb2RlGAEgASgOMhQuaGl2ZS52MS5Db3VudHJ5Q29kZRIUCgxjb2RlX2FscGhhXzMYAiABKAkSEwoLY29tbW9uX25hbWUYAyABKAkSFQoNb2ZmaWNpYWxfbmFtZRgEIAEoCSJ/ChBIaXZlUmVzb3VyY2VOYW1lEiMKCHJlc291cmNlGAEgASgOMhEuaGl2ZS52MS5SZXNvdXJjZRIZChFvcmdhbml6YXRpb25fbmFtZRgCIAEoCRIUCgxwcm9qZWN0X25hbWUYAyABKAkSFQoNcmVzb3VyY2VfbmFtZRgEIAEoCSKFAQoWSGl2ZVJlc291cmNlSWRlbnRpZmllchIjCghyZXNvdXJjZRgBIAEoDjIRLmhpdmUudjEuUmVzb3VyY2USGQoRb3JnYW5pemF0aW9uX3V1aWQYAiABKAkSFAoMcHJvamVjdF91dWlkGAMgASgJEhUKDXJlc291cmNlX3V1aWQYBCABKAkiYQoQSGl2ZVJlc291cmNlVHlwZRIjCghyZXNvdXJjZRgBIAEoDjIRLmhpdmUudjEuUmVzb3VyY2USEwoLY29tbW9uX25hbWUYAiABKAkSEwoLcGx1cmFsX25hbWUYAyABKAkiWAoVSGl2ZVJlc291cmNlVHlwZUNvdW50EjAKDXJlc291cmNlX3R5cGUYASABKAsyGS5oaXZlLnYxLkhpdmVSZXNvdXJjZVR5cGUSDQoFY291bnQYAiABKARCkAEKC2NvbS5oaXZlLnYxQgtNb2RlbHNQcm90b1ABWjdnaXRodWIuY29tL2hpdmUtb3BzL2hpdmUtc2RrLWdvL3BrZ3MvZ2VuL2hpdmUvdjE7aGl2ZXYxogIDSFhYqgIHSGl2ZS5WMcoCB0hpdmVcVjHiAhNIaXZlXFYxXEdQQk1ldGFkYXRh6gIISGl2ZTo6VjFiBnByb3RvMw", [file_hive_v1_enums]);
 
 /**
  * @generated from message hive.v1.Error
@@ -315,4 +315,59 @@ export type HiveResourceIdentifier = Message<"hive.v1.HiveResourceIdentifier"> &
  */
 export const HiveResourceIdentifierSchema: GenMessage<HiveResourceIdentifier> = /*@__PURE__*/
   messageDesc(file_hive_v1_models, 9);
+
+/**
+ * @generated from message hive.v1.HiveResourceType
+ */
+export type HiveResourceType = Message<"hive.v1.HiveResourceType"> & {
+  /**
+   * e.g. iam.global.user, etc.
+   *
+   * @generated from field: hive.v1.Resource resource = 1;
+   */
+  resource: Resource;
+
+  /**
+   * e.g. User
+   *
+   * @generated from field: string common_name = 2;
+   */
+  commonName: string;
+
+  /**
+   * e.g. Users
+   *
+   * @generated from field: string plural_name = 3;
+   */
+  pluralName: string;
+};
+
+/**
+ * Describes the message hive.v1.HiveResourceType.
+ * Use `create(HiveResourceTypeSchema)` to create a new message.
+ */
+export const HiveResourceTypeSchema: GenMessage<HiveResourceType> = /*@__PURE__*/
+  messageDesc(file_hive_v1_models, 10);
+
+/**
+ * @generated from message hive.v1.HiveResourceTypeCount
+ */
+export type HiveResourceTypeCount = Message<"hive.v1.HiveResourceTypeCount"> & {
+  /**
+   * @generated from field: hive.v1.HiveResourceType resource_type = 1;
+   */
+  resourceType?: HiveResourceType;
+
+  /**
+   * @generated from field: uint64 count = 2;
+   */
+  count: bigint;
+};
+
+/**
+ * Describes the message hive.v1.HiveResourceTypeCount.
+ * Use `create(HiveResourceTypeCountSchema)` to create a new message.
+ */
+export const HiveResourceTypeCountSchema: GenMessage<HiveResourceTypeCount> = /*@__PURE__*/
+  messageDesc(file_hive_v1_models, 11);
 

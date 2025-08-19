@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.13.0
+
+### Minor Changes
+
+- Defined schemas for HiveResourceType and HiveResourceTypeCount for better resource management.
+
 ## 1.12.2
 
 ### Patch Changes

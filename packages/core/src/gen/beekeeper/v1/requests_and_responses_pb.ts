@@ -9,7 +9,7 @@ import { file_beekeeper_v1_models } from "./models_pb";
 import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
 import type { CountryCode, ProgrammingLanguage } from "../../hive/v1/enums_pb";
 import { file_hive_v1_enums } from "../../hive/v1/enums_pb";
-import type { Country, File, HiveResourceIdentifier, ResponseMetadata } from "../../hive/v1/models_pb";
+import type { Country, File, HiveResourceIdentifier, HiveResourceTypeCount, ResponseMetadata } from "../../hive/v1/models_pb";
 import { file_hive_v1_models } from "../../hive/v1/models_pb";
 import type { DatabaseSchema, Migration } from "../../vespa/v1/models_pb";
 import { file_vespa_v1_models } from "../../vespa/v1/models_pb";
@@ -19,7 +19,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file beekeeper/v1/requests_and_responses.proto.
  */
 export const file_beekeeper_v1_requests_and_responses: GenFile = /*@__PURE__*/
-  fileDesc("CiliZWVrZWVwZXIvdjEvcmVxdWVzdHNfYW5kX3Jlc3BvbnNlcy5wcm90bxIMYmVla2VlcGVyLnYxIh4KHEdldFN1cHBvcnRlZENvdW50cmllc1JlcXVlc3QiRAodR2V0U3VwcG9ydGVkQ291bnRyaWVzUmVzcG9uc2USIwoJY291bnRyaWVzGAEgAygLMhAuaGl2ZS52MS5Db3VudHJ5ImMKHkxpc3RWZXNwYURhdGFiYXNlU3RhY2tzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISEwoLaW5jbHVkZV9ocm4YAiABKAgigAEKH0xpc3RWZXNwYURhdGFiYXNlU3RhY2tzUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESMAoGc3RhY2tzGAIgAygLMiAuYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VTdGFjayLfAQofQ3JlYXRlVmVzcGFEYXRhYmFzZVN0YWNrUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISMQoKc3RhY2tfbmFtZRgCIAEoCUIdukgachgQAxgZMhJeW2Etel1bYS16MC05LV9dKiQSNAoMY291bnRyeV9jb2RlGAMgASgOMhQuaGl2ZS52MS5Db3VudHJ5Q29kZUIIukgFggECEAESJQoScmVwbGljYXRpb25fZmFjdG9yGAQgASgNQgm6SAYqBBACIAAigAEKIENyZWF0ZVZlc3BhRGF0YWJhc2VTdGFja1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEi8KBXN0YWNrGAIgASgLMiAuYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VTdGFjayK1AQoTR2VuZXJhdGVDb2RlUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISLgoIbGFuZ3VhZ2UYAiABKA4yHC5oaXZlLnYxLlByb2dyYW1taW5nTGFuZ3VhZ2USGwoTb3V0cHV0X2Rpcl9lbGVtZW50cxgDIAMoCRIjCgxzY2hlbWFfZmlsZXMYBCADKAsyDS5oaXZlLnYxLkZpbGUilgEKFEdlbmVyYXRlQ29kZVJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEi4KCGxhbmd1YWdlGAIgASgOMhwuaGl2ZS52MS5Qcm9ncmFtbWluZ0xhbmd1YWdlEiEKCmNvZGVfZmlsZXMYAyADKAsyDS5oaXZlLnYxLkZpbGUihgEKH1JlbmFtZVZlc3BhRGF0YWJhc2VTdGFja1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEjUKDm5ld19zdGFja19uYW1lGAIgASgJQh26SBpyGBADGBkyEl5bYS16XVthLXowLTktX10qJCKAAQogUmVuYW1lVmVzcGFEYXRhYmFzZVN0YWNrUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESLwoFc3RhY2sYAiABKAsyIC5iZWVrZWVwZXIudjEuVmVzcGFEYXRhYmFzZVN0YWNrIk8KH0RlbGV0ZVZlc3BhRGF0YWJhc2VTdGFja1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyIoEBCiBEZWxldGVWZXNwYURhdGFiYXNlU3RhY2tSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIwCgZzdGFja3MYAiADKAsyIC5iZWVrZWVwZXIudjEuVmVzcGFEYXRhYmFzZVN0YWNrInEKH0FwcGx5VmVzcGFTdGFja01pZ3JhdGlvblJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEiAKCWhzbF9maWxlcxgCIAMoCzINLmhpdmUudjEuRmlsZSKoAQogQXBwbHlWZXNwYVN0YWNrTWlncmF0aW9uUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESJgoJbWlncmF0aW9uGAIgASgLMhMudmVzcGEudjEuTWlncmF0aW9uEi8KBXN0YWNrGAMgASgLMiAuYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VTdGFjayJwCh5QbGFuVmVzcGFTdGFja01pZ3JhdGlvblJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEiAKCWhzbF9maWxlcxgCIAMoCzINLmhpdmUudjEuRmlsZSJ2Ch9QbGFuVmVzcGFTdGFja01pZ3JhdGlvblJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiYKCW1pZ3JhdGlvbhgCIAEoCzITLnZlc3BhLnYxLk1pZ3JhdGlvbiKIAQouUGxhblZlc3BhU3RhY2tNaWdyYXRpb25Gcm9tVGFyZ2V0U2NoZW1hUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISKAoGc2NoZW1hGAIgASgLMhgudmVzcGEudjEuRGF0YWJhc2VTY2hlbWEihgEKL1BsYW5WZXNwYVN0YWNrTWlncmF0aW9uRnJvbVRhcmdldFNjaGVtYVJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiYKCW1pZ3JhdGlvbhgCIAEoCzITLnZlc3BhLnYxLk1pZ3JhdGlvbiKJAQovQXBwbHlWZXNwYVN0YWNrTWlncmF0aW9uRnJvbVRhcmdldFNjaGVtYVJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEigKBnNjaGVtYRgCIAEoCzIYLnZlc3BhLnYxLkRhdGFiYXNlU2NoZW1hIrgBCjBBcHBseVZlc3BhU3RhY2tNaWdyYXRpb25Gcm9tVGFyZ2V0U2NoZW1hUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESJgoJbWlncmF0aW9uGAIgASgLMhMudmVzcGEudjEuTWlncmF0aW9uEi8KBXN0YWNrGAMgASgLMiAuYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VTdGFjayJMChxHZXRWZXNwYURhdGFiYXNlU3RhY2tSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllciJ9Ch1HZXRWZXNwYURhdGFiYXNlU3RhY2tSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIvCgVzdGFjaxgCIAEoCzIgLmJlZWtlZXBlci52MS5WZXNwYURhdGFiYXNlU3RhY2siZgoiR2V0VmVzcGFEYXRhYmFzZVN0YWNrQnlOYW1lUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISEgoKc3RhY2tfbmFtZRgCIAEoCSKDAQojR2V0VmVzcGFEYXRhYmFzZVN0YWNrQnlOYW1lUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESLwoFc3RhY2sYAiABKAsyIC5iZWVrZWVwZXIudjEuVmVzcGFEYXRhYmFzZVN0YWNrIkcKF0dldFZlc3BhRGF0YWJhc2VSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllciJ2ChhHZXRWZXNwYURhdGFiYXNlUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESLQoIZGF0YWJhc2UYAiABKAsyGy5iZWVrZWVwZXIudjEuVmVzcGFEYXRhYmFzZULBAQoQY29tLmJlZWtlZXBlci52MUIZUmVxdWVzdHNBbmRSZXNwb25zZXNQcm90b1ABWkFnaXRodWIuY29tL2hpdmUtb3BzL2hpdmUtc2RrLWdvL3BrZ3MvZ2VuL2JlZWtlZXBlci92MTtiZWVrZWVwZXJ2MaICA0JYWKoCDEJlZWtlZXBlci5WMcoCDEJlZWtlZXBlclxWMeICGEJlZWtlZXBlclxWMVxHUEJNZXRhZGF0YeoCDUJlZWtlZXBlcjo6VjFiBnByb3RvMw", [file_beekeeper_v1_models, file_buf_validate_validate, file_hive_v1_enums, file_hive_v1_models, file_vespa_v1_models]);
+  fileDesc("CiliZWVrZWVwZXIvdjEvcmVxdWVzdHNfYW5kX3Jlc3BvbnNlcy5wcm90bxIMYmVla2VlcGVyLnYxIh4KHEdldFN1cHBvcnRlZENvdW50cmllc1JlcXVlc3QiRAodR2V0U3VwcG9ydGVkQ291bnRyaWVzUmVzcG9uc2USIwoJY291bnRyaWVzGAEgAygLMhAuaGl2ZS52MS5Db3VudHJ5IkkKGUdldFJlc291cmNlU3VtbWFyeVJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyIocBChpHZXRSZXNvdXJjZVN1bW1hcnlSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRI8ChRyZXNvdXJjZV90eXBlX2NvdW50cxgCIAMoCzIeLmhpdmUudjEuSGl2ZVJlc291cmNlVHlwZUNvdW50ImMKHkxpc3RWZXNwYURhdGFiYXNlU3RhY2tzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISEwoLaW5jbHVkZV9ocm4YAiABKAgigAEKH0xpc3RWZXNwYURhdGFiYXNlU3RhY2tzUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESMAoGc3RhY2tzGAIgAygLMiAuYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VTdGFjayLfAQofQ3JlYXRlVmVzcGFEYXRhYmFzZVN0YWNrUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISMQoKc3RhY2tfbmFtZRgCIAEoCUIdukgachgQAxgZMhJeW2Etel1bYS16MC05LV9dKiQSNAoMY291bnRyeV9jb2RlGAMgASgOMhQuaGl2ZS52MS5Db3VudHJ5Q29kZUIIukgFggECEAESJQoScmVwbGljYXRpb25fZmFjdG9yGAQgASgNQgm6SAYqBBACIAAigAEKIENyZWF0ZVZlc3BhRGF0YWJhc2VTdGFja1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEi8KBXN0YWNrGAIgASgLMiAuYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VTdGFjayK1AQoTR2VuZXJhdGVDb2RlUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISLgoIbGFuZ3VhZ2UYAiABKA4yHC5oaXZlLnYxLlByb2dyYW1taW5nTGFuZ3VhZ2USGwoTb3V0cHV0X2Rpcl9lbGVtZW50cxgDIAMoCRIjCgxzY2hlbWFfZmlsZXMYBCADKAsyDS5oaXZlLnYxLkZpbGUilgEKFEdlbmVyYXRlQ29kZVJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEi4KCGxhbmd1YWdlGAIgASgOMhwuaGl2ZS52MS5Qcm9ncmFtbWluZ0xhbmd1YWdlEiEKCmNvZGVfZmlsZXMYAyADKAsyDS5oaXZlLnYxLkZpbGUihgEKH1JlbmFtZVZlc3BhRGF0YWJhc2VTdGFja1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEjUKDm5ld19zdGFja19uYW1lGAIgASgJQh26SBpyGBADGBkyEl5bYS16XVthLXowLTktX10qJCKAAQogUmVuYW1lVmVzcGFEYXRhYmFzZVN0YWNrUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESLwoFc3RhY2sYAiABKAsyIC5iZWVrZWVwZXIudjEuVmVzcGFEYXRhYmFzZVN0YWNrIk8KH0RlbGV0ZVZlc3BhRGF0YWJhc2VTdGFja1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyIoEBCiBEZWxldGVWZXNwYURhdGFiYXNlU3RhY2tSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIwCgZzdGFja3MYAiADKAsyIC5iZWVrZWVwZXIudjEuVmVzcGFEYXRhYmFzZVN0YWNrInEKH0FwcGx5VmVzcGFTdGFja01pZ3JhdGlvblJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEiAKCWhzbF9maWxlcxgCIAMoCzINLmhpdmUudjEuRmlsZSKoAQogQXBwbHlWZXNwYVN0YWNrTWlncmF0aW9uUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESJgoJbWlncmF0aW9uGAIgASgLMhMudmVzcGEudjEuTWlncmF0aW9uEi8KBXN0YWNrGAMgASgLMiAuYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VTdGFjayJwCh5QbGFuVmVzcGFTdGFja01pZ3JhdGlvblJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEiAKCWhzbF9maWxlcxgCIAMoCzINLmhpdmUudjEuRmlsZSJ2Ch9QbGFuVmVzcGFTdGFja01pZ3JhdGlvblJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiYKCW1pZ3JhdGlvbhgCIAEoCzITLnZlc3BhLnYxLk1pZ3JhdGlvbiKIAQouUGxhblZlc3BhU3RhY2tNaWdyYXRpb25Gcm9tVGFyZ2V0U2NoZW1hUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISKAoGc2NoZW1hGAIgASgLMhgudmVzcGEudjEuRGF0YWJhc2VTY2hlbWEihgEKL1BsYW5WZXNwYVN0YWNrTWlncmF0aW9uRnJvbVRhcmdldFNjaGVtYVJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiYKCW1pZ3JhdGlvbhgCIAEoCzITLnZlc3BhLnYxLk1pZ3JhdGlvbiKJAQovQXBwbHlWZXNwYVN0YWNrTWlncmF0aW9uRnJvbVRhcmdldFNjaGVtYVJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEigKBnNjaGVtYRgCIAEoCzIYLnZlc3BhLnYxLkRhdGFiYXNlU2NoZW1hIrgBCjBBcHBseVZlc3BhU3RhY2tNaWdyYXRpb25Gcm9tVGFyZ2V0U2NoZW1hUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESJgoJbWlncmF0aW9uGAIgASgLMhMudmVzcGEudjEuTWlncmF0aW9uEi8KBXN0YWNrGAMgASgLMiAuYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VTdGFjayJMChxHZXRWZXNwYURhdGFiYXNlU3RhY2tSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllciJ9Ch1HZXRWZXNwYURhdGFiYXNlU3RhY2tSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIvCgVzdGFjaxgCIAEoCzIgLmJlZWtlZXBlci52MS5WZXNwYURhdGFiYXNlU3RhY2siZgoiR2V0VmVzcGFEYXRhYmFzZVN0YWNrQnlOYW1lUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISEgoKc3RhY2tfbmFtZRgCIAEoCSKDAQojR2V0VmVzcGFEYXRhYmFzZVN0YWNrQnlOYW1lUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESLwoFc3RhY2sYAiABKAsyIC5iZWVrZWVwZXIudjEuVmVzcGFEYXRhYmFzZVN0YWNrIkcKF0dldFZlc3BhRGF0YWJhc2VSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllciJ2ChhHZXRWZXNwYURhdGFiYXNlUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESLQoIZGF0YWJhc2UYAiABKAsyGy5iZWVrZWVwZXIudjEuVmVzcGFEYXRhYmFzZULBAQoQY29tLmJlZWtlZXBlci52MUIZUmVxdWVzdHNBbmRSZXNwb25zZXNQcm90b1ABWkFnaXRodWIuY29tL2hpdmUtb3BzL2hpdmUtc2RrLWdvL3BrZ3MvZ2VuL2JlZWtlZXBlci92MTtiZWVrZWVwZXJ2MaICA0JYWKoCDEJlZWtlZXBlci5WMcoCDEJlZWtlZXBlclxWMeICGEJlZWtlZXBlclxWMVxHUEJNZXRhZGF0YeoCDUJlZWtlZXBlcjo6VjFiBnByb3RvMw", [file_beekeeper_v1_models, file_buf_validate_validate, file_hive_v1_enums, file_hive_v1_models, file_vespa_v1_models]);
 
 /**
  * @generated from message beekeeper.v1.GetSupportedCountriesRequest
@@ -52,6 +52,47 @@ export const GetSupportedCountriesResponseSchema: GenMessage<GetSupportedCountri
   messageDesc(file_beekeeper_v1_requests_and_responses, 1);
 
 /**
+ * @generated from message beekeeper.v1.GetResourceSummaryRequest
+ */
+export type GetResourceSummaryRequest = Message<"beekeeper.v1.GetResourceSummaryRequest"> & {
+  /**
+   * The HRI of the project to get the resource summary for
+   *
+   * @generated from field: hive.v1.HiveResourceIdentifier hri = 1;
+   */
+  hri?: HiveResourceIdentifier;
+};
+
+/**
+ * Describes the message beekeeper.v1.GetResourceSummaryRequest.
+ * Use `create(GetResourceSummaryRequestSchema)` to create a new message.
+ */
+export const GetResourceSummaryRequestSchema: GenMessage<GetResourceSummaryRequest> = /*@__PURE__*/
+  messageDesc(file_beekeeper_v1_requests_and_responses, 2);
+
+/**
+ * @generated from message beekeeper.v1.GetResourceSummaryResponse
+ */
+export type GetResourceSummaryResponse = Message<"beekeeper.v1.GetResourceSummaryResponse"> & {
+  /**
+   * @generated from field: hive.v1.ResponseMetadata metadata = 1;
+   */
+  metadata?: ResponseMetadata;
+
+  /**
+   * @generated from field: repeated hive.v1.HiveResourceTypeCount resource_type_counts = 2;
+   */
+  resourceTypeCounts: HiveResourceTypeCount[];
+};
+
+/**
+ * Describes the message beekeeper.v1.GetResourceSummaryResponse.
+ * Use `create(GetResourceSummaryResponseSchema)` to create a new message.
+ */
+export const GetResourceSummaryResponseSchema: GenMessage<GetResourceSummaryResponse> = /*@__PURE__*/
+  messageDesc(file_beekeeper_v1_requests_and_responses, 3);
+
+/**
  * @generated from message beekeeper.v1.ListVespaDatabaseStacksRequest
  */
 export type ListVespaDatabaseStacksRequest = Message<"beekeeper.v1.ListVespaDatabaseStacksRequest"> & {
@@ -75,7 +116,7 @@ export type ListVespaDatabaseStacksRequest = Message<"beekeeper.v1.ListVespaData
  * Use `create(ListVespaDatabaseStacksRequestSchema)` to create a new message.
  */
 export const ListVespaDatabaseStacksRequestSchema: GenMessage<ListVespaDatabaseStacksRequest> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 2);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 4);
 
 /**
  * @generated from message beekeeper.v1.ListVespaDatabaseStacksResponse
@@ -97,7 +138,7 @@ export type ListVespaDatabaseStacksResponse = Message<"beekeeper.v1.ListVespaDat
  * Use `create(ListVespaDatabaseStacksResponseSchema)` to create a new message.
  */
 export const ListVespaDatabaseStacksResponseSchema: GenMessage<ListVespaDatabaseStacksResponse> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 3);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 5);
 
 /**
  * @generated from message beekeeper.v1.CreateVespaDatabaseStackRequest
@@ -129,7 +170,7 @@ export type CreateVespaDatabaseStackRequest = Message<"beekeeper.v1.CreateVespaD
  * Use `create(CreateVespaDatabaseStackRequestSchema)` to create a new message.
  */
 export const CreateVespaDatabaseStackRequestSchema: GenMessage<CreateVespaDatabaseStackRequest> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 4);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 6);
 
 /**
  * @generated from message beekeeper.v1.CreateVespaDatabaseStackResponse
@@ -151,7 +192,7 @@ export type CreateVespaDatabaseStackResponse = Message<"beekeeper.v1.CreateVespa
  * Use `create(CreateVespaDatabaseStackResponseSchema)` to create a new message.
  */
 export const CreateVespaDatabaseStackResponseSchema: GenMessage<CreateVespaDatabaseStackResponse> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 5);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 7);
 
 /**
  * @generated from message beekeeper.v1.GenerateCodeRequest
@@ -183,7 +224,7 @@ export type GenerateCodeRequest = Message<"beekeeper.v1.GenerateCodeRequest"> & 
  * Use `create(GenerateCodeRequestSchema)` to create a new message.
  */
 export const GenerateCodeRequestSchema: GenMessage<GenerateCodeRequest> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 6);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 8);
 
 /**
  * @generated from message beekeeper.v1.GenerateCodeResponse
@@ -210,7 +251,7 @@ export type GenerateCodeResponse = Message<"beekeeper.v1.GenerateCodeResponse"> 
  * Use `create(GenerateCodeResponseSchema)` to create a new message.
  */
 export const GenerateCodeResponseSchema: GenMessage<GenerateCodeResponse> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 7);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 9);
 
 /**
  * @generated from message beekeeper.v1.RenameVespaDatabaseStackRequest
@@ -232,7 +273,7 @@ export type RenameVespaDatabaseStackRequest = Message<"beekeeper.v1.RenameVespaD
  * Use `create(RenameVespaDatabaseStackRequestSchema)` to create a new message.
  */
 export const RenameVespaDatabaseStackRequestSchema: GenMessage<RenameVespaDatabaseStackRequest> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 8);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 10);
 
 /**
  * @generated from message beekeeper.v1.RenameVespaDatabaseStackResponse
@@ -254,7 +295,7 @@ export type RenameVespaDatabaseStackResponse = Message<"beekeeper.v1.RenameVespa
  * Use `create(RenameVespaDatabaseStackResponseSchema)` to create a new message.
  */
 export const RenameVespaDatabaseStackResponseSchema: GenMessage<RenameVespaDatabaseStackResponse> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 9);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 11);
 
 /**
  * @generated from message beekeeper.v1.DeleteVespaDatabaseStackRequest
@@ -271,7 +312,7 @@ export type DeleteVespaDatabaseStackRequest = Message<"beekeeper.v1.DeleteVespaD
  * Use `create(DeleteVespaDatabaseStackRequestSchema)` to create a new message.
  */
 export const DeleteVespaDatabaseStackRequestSchema: GenMessage<DeleteVespaDatabaseStackRequest> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 10);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 12);
 
 /**
  * @generated from message beekeeper.v1.DeleteVespaDatabaseStackResponse
@@ -293,7 +334,7 @@ export type DeleteVespaDatabaseStackResponse = Message<"beekeeper.v1.DeleteVespa
  * Use `create(DeleteVespaDatabaseStackResponseSchema)` to create a new message.
  */
 export const DeleteVespaDatabaseStackResponseSchema: GenMessage<DeleteVespaDatabaseStackResponse> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 11);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 13);
 
 /**
  * @generated from message beekeeper.v1.ApplyVespaStackMigrationRequest
@@ -315,7 +356,7 @@ export type ApplyVespaStackMigrationRequest = Message<"beekeeper.v1.ApplyVespaSt
  * Use `create(ApplyVespaStackMigrationRequestSchema)` to create a new message.
  */
 export const ApplyVespaStackMigrationRequestSchema: GenMessage<ApplyVespaStackMigrationRequest> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 12);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 14);
 
 /**
  * @generated from message beekeeper.v1.ApplyVespaStackMigrationResponse
@@ -342,7 +383,7 @@ export type ApplyVespaStackMigrationResponse = Message<"beekeeper.v1.ApplyVespaS
  * Use `create(ApplyVespaStackMigrationResponseSchema)` to create a new message.
  */
 export const ApplyVespaStackMigrationResponseSchema: GenMessage<ApplyVespaStackMigrationResponse> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 13);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 15);
 
 /**
  * @generated from message beekeeper.v1.PlanVespaStackMigrationRequest
@@ -364,7 +405,7 @@ export type PlanVespaStackMigrationRequest = Message<"beekeeper.v1.PlanVespaStac
  * Use `create(PlanVespaStackMigrationRequestSchema)` to create a new message.
  */
 export const PlanVespaStackMigrationRequestSchema: GenMessage<PlanVespaStackMigrationRequest> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 14);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 16);
 
 /**
  * @generated from message beekeeper.v1.PlanVespaStackMigrationResponse
@@ -386,7 +427,7 @@ export type PlanVespaStackMigrationResponse = Message<"beekeeper.v1.PlanVespaSta
  * Use `create(PlanVespaStackMigrationResponseSchema)` to create a new message.
  */
 export const PlanVespaStackMigrationResponseSchema: GenMessage<PlanVespaStackMigrationResponse> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 15);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 17);
 
 /**
  * @generated from message beekeeper.v1.PlanVespaStackMigrationFromTargetSchemaRequest
@@ -408,7 +449,7 @@ export type PlanVespaStackMigrationFromTargetSchemaRequest = Message<"beekeeper.
  * Use `create(PlanVespaStackMigrationFromTargetSchemaRequestSchema)` to create a new message.
  */
 export const PlanVespaStackMigrationFromTargetSchemaRequestSchema: GenMessage<PlanVespaStackMigrationFromTargetSchemaRequest> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 16);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 18);
 
 /**
  * @generated from message beekeeper.v1.PlanVespaStackMigrationFromTargetSchemaResponse
@@ -430,7 +471,7 @@ export type PlanVespaStackMigrationFromTargetSchemaResponse = Message<"beekeeper
  * Use `create(PlanVespaStackMigrationFromTargetSchemaResponseSchema)` to create a new message.
  */
 export const PlanVespaStackMigrationFromTargetSchemaResponseSchema: GenMessage<PlanVespaStackMigrationFromTargetSchemaResponse> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 17);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 19);
 
 /**
  * @generated from message beekeeper.v1.ApplyVespaStackMigrationFromTargetSchemaRequest
@@ -452,7 +493,7 @@ export type ApplyVespaStackMigrationFromTargetSchemaRequest = Message<"beekeeper
  * Use `create(ApplyVespaStackMigrationFromTargetSchemaRequestSchema)` to create a new message.
  */
 export const ApplyVespaStackMigrationFromTargetSchemaRequestSchema: GenMessage<ApplyVespaStackMigrationFromTargetSchemaRequest> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 18);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 20);
 
 /**
  * @generated from message beekeeper.v1.ApplyVespaStackMigrationFromTargetSchemaResponse
@@ -479,7 +520,7 @@ export type ApplyVespaStackMigrationFromTargetSchemaResponse = Message<"beekeepe
  * Use `create(ApplyVespaStackMigrationFromTargetSchemaResponseSchema)` to create a new message.
  */
 export const ApplyVespaStackMigrationFromTargetSchemaResponseSchema: GenMessage<ApplyVespaStackMigrationFromTargetSchemaResponse> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 19);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 21);
 
 /**
  * @generated from message beekeeper.v1.GetVespaDatabaseStackRequest
@@ -496,7 +537,7 @@ export type GetVespaDatabaseStackRequest = Message<"beekeeper.v1.GetVespaDatabas
  * Use `create(GetVespaDatabaseStackRequestSchema)` to create a new message.
  */
 export const GetVespaDatabaseStackRequestSchema: GenMessage<GetVespaDatabaseStackRequest> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 20);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 22);
 
 /**
  * @generated from message beekeeper.v1.GetVespaDatabaseStackResponse
@@ -518,7 +559,7 @@ export type GetVespaDatabaseStackResponse = Message<"beekeeper.v1.GetVespaDataba
  * Use `create(GetVespaDatabaseStackResponseSchema)` to create a new message.
  */
 export const GetVespaDatabaseStackResponseSchema: GenMessage<GetVespaDatabaseStackResponse> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 21);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 23);
 
 /**
  * @generated from message beekeeper.v1.GetVespaDatabaseStackByNameRequest
@@ -542,7 +583,7 @@ export type GetVespaDatabaseStackByNameRequest = Message<"beekeeper.v1.GetVespaD
  * Use `create(GetVespaDatabaseStackByNameRequestSchema)` to create a new message.
  */
 export const GetVespaDatabaseStackByNameRequestSchema: GenMessage<GetVespaDatabaseStackByNameRequest> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 22);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 24);
 
 /**
  * @generated from message beekeeper.v1.GetVespaDatabaseStackByNameResponse
@@ -564,7 +605,7 @@ export type GetVespaDatabaseStackByNameResponse = Message<"beekeeper.v1.GetVespa
  * Use `create(GetVespaDatabaseStackByNameResponseSchema)` to create a new message.
  */
 export const GetVespaDatabaseStackByNameResponseSchema: GenMessage<GetVespaDatabaseStackByNameResponse> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 23);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 25);
 
 /**
  * @generated from message beekeeper.v1.GetVespaDatabaseRequest
@@ -581,7 +622,7 @@ export type GetVespaDatabaseRequest = Message<"beekeeper.v1.GetVespaDatabaseRequ
  * Use `create(GetVespaDatabaseRequestSchema)` to create a new message.
  */
 export const GetVespaDatabaseRequestSchema: GenMessage<GetVespaDatabaseRequest> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 24);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 26);
 
 /**
  * @generated from message beekeeper.v1.GetVespaDatabaseResponse
@@ -603,5 +644,5 @@ export type GetVespaDatabaseResponse = Message<"beekeeper.v1.GetVespaDatabaseRes
  * Use `create(GetVespaDatabaseResponseSchema)` to create a new message.
  */
 export const GetVespaDatabaseResponseSchema: GenMessage<GetVespaDatabaseResponse> = /*@__PURE__*/
-  messageDesc(file_beekeeper_v1_requests_and_responses, 25);
+  messageDesc(file_beekeeper_v1_requests_and_responses, 27);
 
