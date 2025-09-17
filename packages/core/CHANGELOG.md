@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.14.0
+
+### Minor Changes
+
+- Update Vespa Protobuf Definitions and Dependencies
+
 ## 1.13.1
 
 ### Patch Changes
