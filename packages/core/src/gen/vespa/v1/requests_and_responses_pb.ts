@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file vespa/v1/requests_and_responses.proto.
  */
 export const file_vespa_v1_requests_and_responses: GenFile = /*@__PURE__*/
-  fileDesc("CiV2ZXNwYS92MS9yZXF1ZXN0c19hbmRfcmVzcG9uc2VzLnByb3RvEgh2ZXNwYS52MSKMAQoURGVsZXRlUmVjb3Jkc1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhIKCnRhYmxlX25hbWUYAiABKAkSMgoQd2hlcmVfY29uZGl0aW9ucxgDIAMoCzIYLnZlc3BhLnYxLldoZXJlQ29uZGl0aW9uIkQKFURlbGV0ZVJlY29yZHNSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YSKYAQoQR2V0UmVjb3JkUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISEgoKdGFibGVfbmFtZRgCIAEoCRIyChB3aGVyZV9jb25kaXRpb25zGAMgAygLMhgudmVzcGEudjEuV2hlcmVDb25kaXRpb24SDgoGb2Zmc2V0GAQgASgFInEKEUdldFJlY29yZFJlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiAKBnJlY29yZBgCIAEoCzIQLnZlc3BhLnYxLlJlY29yZBINCgVmb3VuZBgDIAEoCCKoAQoRR2V0UmVjb3Jkc1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhIKCnRhYmxlX25hbWUYAiABKAkSMgoQd2hlcmVfY29uZGl0aW9ucxgDIAMoCzIYLnZlc3BhLnYxLldoZXJlQ29uZGl0aW9uEg4KBm9mZnNldBgEIAEoBRINCgVsaW1pdBgFIAEoBSJkChJHZXRSZWNvcmRzUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESIQoHcmVjb3JkcxgCIAMoCzIQLnZlc3BhLnYxLlJlY29yZCKLAQoTQ291bnRSZWNvcmRzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISEgoKdGFibGVfbmFtZRgCIAEoCRIyChB3aGVyZV9jb25kaXRpb25zGAMgAygLMhgudmVzcGEudjEuV2hlcmVDb25kaXRpb24iUgoUQ291bnRSZWNvcmRzUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESDQoFY291bnQYAiABKAQiiwEKE1JlY29yZEV4aXN0c1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhIKCnRhYmxlX25hbWUYAiABKAkSMgoQd2hlcmVfY29uZGl0aW9ucxgDIAMoCzIYLnZlc3BhLnYxLldoZXJlQ29uZGl0aW9uIlMKFFJlY29yZEV4aXN0c1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEg4KBmV4aXN0cxgCIAEoCCJ5ChNJbnNlcnRSZWNvcmRSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchISCgp0YWJsZV9uYW1lGAIgASgJEiAKBnJlY29yZBgDIAEoCzIQLnZlc3BhLnYxLlJlY29yZCJlChRJbnNlcnRSZWNvcmRSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIgCgZyZWNvcmQYAiABKAsyEC52ZXNwYS52MS5SZWNvcmQiewoUSW5zZXJ0UmVjb3Jkc1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhIKCnRhYmxlX25hbWUYAiABKAkSIQoHcmVjb3JkcxgDIAMoCzIQLnZlc3BhLnYxLlJlY29yZCJaChVJbnNlcnRSZWNvcmRzUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESFAoMaW5zZXJ0ZWRfaWRzGAIgAygJIq4BChRVcGRhdGVSZWNvcmRzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISEgoKdGFibGVfbmFtZRgCIAEoCRIgCgZyZWNvcmQYAyABKAsyEC52ZXNwYS52MS5SZWNvcmQSMgoQd2hlcmVfY29uZGl0aW9ucxgEIAMoCzIYLnZlc3BhLnYxLldoZXJlQ29uZGl0aW9uIkQKFVVwZGF0ZVJlY29yZHNSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YUKlAQoMY29tLnZlc3BhLnYxQhlSZXF1ZXN0c0FuZFJlc3BvbnNlc1Byb3RvUAFaOWdpdGh1Yi5jb20vaGl2ZS1vcHMvaGl2ZS1zZGstZ28vcGtncy9nZW4vdmVzcGEvdjE7dmVzcGF2MaICA1ZYWKoCCFZlc3BhLlYxygIIVmVzcGFcVjHiAhRWZXNwYVxWMVxHUEJNZXRhZGF0YeoCCVZlc3BhOjpWMWIGcHJvdG8z", [file_hive_v1_models, file_vespa_v1_models]);
+  fileDesc("CiV2ZXNwYS92MS9yZXF1ZXN0c19hbmRfcmVzcG9uc2VzLnByb3RvEgh2ZXNwYS52MSKmAQoURGVsZXRlUmVjb3Jkc1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhgKEHNjaGVtYV9sb2dfaW5kZXgYAiABKAQSEgoKdGFibGVfbmFtZRgDIAEoCRIyChB3aGVyZV9jb25kaXRpb25zGAQgAygLMhgudmVzcGEudjEuV2hlcmVDb25kaXRpb24iRAoVRGVsZXRlUmVjb3Jkc1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhIrIBChBHZXRSZWNvcmRSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIYChBzY2hlbWFfbG9nX2luZGV4GAIgASgEEhIKCnRhYmxlX25hbWUYAyABKAkSMgoQd2hlcmVfY29uZGl0aW9ucxgEIAMoCzIYLnZlc3BhLnYxLldoZXJlQ29uZGl0aW9uEg4KBm9mZnNldBgFIAEoBSJxChFHZXRSZWNvcmRSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIgCgZyZWNvcmQYAiABKAsyEC52ZXNwYS52MS5SZWNvcmQSDQoFZm91bmQYAyABKAgiwgEKEUdldFJlY29yZHNSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIYChBzY2hlbWFfbG9nX2luZGV4GAIgASgEEhIKCnRhYmxlX25hbWUYAyABKAkSMgoQd2hlcmVfY29uZGl0aW9ucxgEIAMoCzIYLnZlc3BhLnYxLldoZXJlQ29uZGl0aW9uEg4KBm9mZnNldBgFIAEoBRINCgVsaW1pdBgGIAEoBSJkChJHZXRSZWNvcmRzUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESIQoHcmVjb3JkcxgCIAMoCzIQLnZlc3BhLnYxLlJlY29yZCKlAQoTQ291bnRSZWNvcmRzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISGAoQc2NoZW1hX2xvZ19pbmRleBgCIAEoBBISCgp0YWJsZV9uYW1lGAMgASgJEjIKEHdoZXJlX2NvbmRpdGlvbnMYBCADKAsyGC52ZXNwYS52MS5XaGVyZUNvbmRpdGlvbiJSChRDb3VudFJlY29yZHNSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRINCgVjb3VudBgCIAEoBCKlAQoTUmVjb3JkRXhpc3RzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISGAoQc2NoZW1hX2xvZ19pbmRleBgCIAEoBBISCgp0YWJsZV9uYW1lGAMgASgJEjIKEHdoZXJlX2NvbmRpdGlvbnMYBCADKAsyGC52ZXNwYS52MS5XaGVyZUNvbmRpdGlvbiJTChRSZWNvcmRFeGlzdHNSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIOCgZleGlzdHMYAiABKAgikwEKE0luc2VydFJlY29yZFJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhgKEHNjaGVtYV9sb2dfaW5kZXgYAiABKAQSEgoKdGFibGVfbmFtZRgDIAEoCRIgCgZyZWNvcmQYBCABKAsyEC52ZXNwYS52MS5SZWNvcmQiZQoUSW5zZXJ0UmVjb3JkUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESIAoGcmVjb3JkGAIgASgLMhAudmVzcGEudjEuUmVjb3JkIpUBChRJbnNlcnRSZWNvcmRzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISGAoQc2NoZW1hX2xvZ19pbmRleBgCIAEoBBISCgp0YWJsZV9uYW1lGAMgASgJEiEKB3JlY29yZHMYBCADKAsyEC52ZXNwYS52MS5SZWNvcmQiWgoVSW5zZXJ0UmVjb3Jkc1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEhQKDGluc2VydGVkX2lkcxgCIAMoCSLIAQoUVXBkYXRlUmVjb3Jkc1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhgKEHNjaGVtYV9sb2dfaW5kZXgYAiABKAQSEgoKdGFibGVfbmFtZRgDIAEoCRIgCgZyZWNvcmQYBCABKAsyEC52ZXNwYS52MS5SZWNvcmQSMgoQd2hlcmVfY29uZGl0aW9ucxgFIAMoCzIYLnZlc3BhLnYxLldoZXJlQ29uZGl0aW9uIkQKFVVwZGF0ZVJlY29yZHNSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YUKlAQoMY29tLnZlc3BhLnYxQhlSZXF1ZXN0c0FuZFJlc3BvbnNlc1Byb3RvUAFaOWdpdGh1Yi5jb20vaGl2ZS1vcHMvaGl2ZS1zZGstZ28vcGtncy9nZW4vdmVzcGEvdjE7dmVzcGF2MaICA1ZYWKoCCFZlc3BhLlYxygIIVmVzcGFcVjHiAhRWZXNwYVxWMVxHUEJNZXRhZGF0YeoCCVZlc3BhOjpWMWIGcHJvdG8z", [file_hive_v1_models, file_vespa_v1_models]);
 
 /**
  * @generated from message vespa.v1.DeleteRecordsRequest
@@ -26,12 +26,17 @@ export type DeleteRecordsRequest = Message<"vespa.v1.DeleteRecordsRequest"> & {
   hri?: HiveResourceIdentifier;
 
   /**
-   * @generated from field: string table_name = 2;
+   * @generated from field: uint64 schema_log_index = 2;
+   */
+  schemaLogIndex: bigint;
+
+  /**
+   * @generated from field: string table_name = 3;
    */
   tableName: string;
 
   /**
-   * @generated from field: repeated vespa.v1.WhereCondition where_conditions = 3;
+   * @generated from field: repeated vespa.v1.WhereCondition where_conditions = 4;
    */
   whereConditions: WhereCondition[];
 };
@@ -70,17 +75,22 @@ export type GetRecordRequest = Message<"vespa.v1.GetRecordRequest"> & {
   hri?: HiveResourceIdentifier;
 
   /**
-   * @generated from field: string table_name = 2;
+   * @generated from field: uint64 schema_log_index = 2;
+   */
+  schemaLogIndex: bigint;
+
+  /**
+   * @generated from field: string table_name = 3;
    */
   tableName: string;
 
   /**
-   * @generated from field: repeated vespa.v1.WhereCondition where_conditions = 3;
+   * @generated from field: repeated vespa.v1.WhereCondition where_conditions = 4;
    */
   whereConditions: WhereCondition[];
 
   /**
-   * @generated from field: int32 offset = 4;
+   * @generated from field: int32 offset = 5;
    */
   offset: number;
 };
@@ -129,22 +139,27 @@ export type GetRecordsRequest = Message<"vespa.v1.GetRecordsRequest"> & {
   hri?: HiveResourceIdentifier;
 
   /**
-   * @generated from field: string table_name = 2;
+   * @generated from field: uint64 schema_log_index = 2;
+   */
+  schemaLogIndex: bigint;
+
+  /**
+   * @generated from field: string table_name = 3;
    */
   tableName: string;
 
   /**
-   * @generated from field: repeated vespa.v1.WhereCondition where_conditions = 3;
+   * @generated from field: repeated vespa.v1.WhereCondition where_conditions = 4;
    */
   whereConditions: WhereCondition[];
 
   /**
-   * @generated from field: int32 offset = 4;
+   * @generated from field: int32 offset = 5;
    */
   offset: number;
 
   /**
-   * @generated from field: int32 limit = 5;
+   * @generated from field: int32 limit = 6;
    */
   limit: number;
 };
@@ -188,12 +203,17 @@ export type CountRecordsRequest = Message<"vespa.v1.CountRecordsRequest"> & {
   hri?: HiveResourceIdentifier;
 
   /**
-   * @generated from field: string table_name = 2;
+   * @generated from field: uint64 schema_log_index = 2;
+   */
+  schemaLogIndex: bigint;
+
+  /**
+   * @generated from field: string table_name = 3;
    */
   tableName: string;
 
   /**
-   * @generated from field: repeated vespa.v1.WhereCondition where_conditions = 3;
+   * @generated from field: repeated vespa.v1.WhereCondition where_conditions = 4;
    */
   whereConditions: WhereCondition[];
 };
@@ -237,12 +257,17 @@ export type RecordExistsRequest = Message<"vespa.v1.RecordExistsRequest"> & {
   hri?: HiveResourceIdentifier;
 
   /**
-   * @generated from field: string table_name = 2;
+   * @generated from field: uint64 schema_log_index = 2;
+   */
+  schemaLogIndex: bigint;
+
+  /**
+   * @generated from field: string table_name = 3;
    */
   tableName: string;
 
   /**
-   * @generated from field: repeated vespa.v1.WhereCondition where_conditions = 3;
+   * @generated from field: repeated vespa.v1.WhereCondition where_conditions = 4;
    */
   whereConditions: WhereCondition[];
 };
@@ -286,12 +311,17 @@ export type InsertRecordRequest = Message<"vespa.v1.InsertRecordRequest"> & {
   hri?: HiveResourceIdentifier;
 
   /**
-   * @generated from field: string table_name = 2;
+   * @generated from field: uint64 schema_log_index = 2;
+   */
+  schemaLogIndex: bigint;
+
+  /**
+   * @generated from field: string table_name = 3;
    */
   tableName: string;
 
   /**
-   * @generated from field: vespa.v1.Record record = 3;
+   * @generated from field: vespa.v1.Record record = 4;
    */
   record?: Record;
 };
@@ -335,12 +365,17 @@ export type InsertRecordsRequest = Message<"vespa.v1.InsertRecordsRequest"> & {
   hri?: HiveResourceIdentifier;
 
   /**
-   * @generated from field: string table_name = 2;
+   * @generated from field: uint64 schema_log_index = 2;
+   */
+  schemaLogIndex: bigint;
+
+  /**
+   * @generated from field: string table_name = 3;
    */
   tableName: string;
 
   /**
-   * @generated from field: repeated vespa.v1.Record records = 3;
+   * @generated from field: repeated vespa.v1.Record records = 4;
    */
   records: Record[];
 };
@@ -384,17 +419,22 @@ export type UpdateRecordsRequest = Message<"vespa.v1.UpdateRecordsRequest"> & {
   hri?: HiveResourceIdentifier;
 
   /**
-   * @generated from field: string table_name = 2;
+   * @generated from field: uint64 schema_log_index = 2;
+   */
+  schemaLogIndex: bigint;
+
+  /**
+   * @generated from field: string table_name = 3;
    */
   tableName: string;
 
   /**
-   * @generated from field: vespa.v1.Record record = 3;
+   * @generated from field: vespa.v1.Record record = 4;
    */
   record?: Record;
 
   /**
-   * @generated from field: repeated vespa.v1.WhereCondition where_conditions = 4;
+   * @generated from field: repeated vespa.v1.WhereCondition where_conditions = 5;
    */
   whereConditions: WhereCondition[];
 };

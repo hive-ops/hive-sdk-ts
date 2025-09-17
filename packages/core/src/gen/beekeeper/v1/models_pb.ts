@@ -4,7 +4,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
-import type { VespaDatabaseStackStatus, VespaDatabaseStatusAtOrchestrator } from "./enums_pb";
+import type { VespaDatabaseRole, VespaDatabaseStackStatus, VespaDatabaseStatusAtOrchestrator } from "./enums_pb";
 import { file_beekeeper_v1_enums } from "./enums_pb";
 import type { HiveResourceIdentifier } from "../../hive/v1/models_pb";
 import { file_hive_v1_models } from "../../hive/v1/models_pb";
@@ -18,7 +18,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file beekeeper/v1/models.proto.
  */
 export const file_beekeeper_v1_models: GenFile = /*@__PURE__*/
-  fileDesc("ChliZWVrZWVwZXIvdjEvbW9kZWxzLnByb3RvEgxiZWVrZWVwZXIudjEi6QIKElZlc3BhRGF0YWJhc2VTdGFjaxIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISGQoRb3JnYW5pemF0aW9uX3V1aWQYAiABKAkSFAoMcHJvamVjdF91dWlkGAMgASgJEgwKBHV1aWQYBCABKAkSDAoEbmFtZRgFIAEoCRIaChJyZXBsaWNhdGlvbl9mYWN0b3IYBiABKA0SKAoGc2NoZW1hGAcgASgLMhgudmVzcGEudjEuRGF0YWJhc2VTY2hlbWESNgoGc3RhdHVzGAggASgOMiYuYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VTdGFja1N0YXR1cxITCgtzdGF0dXNfdGV4dBgJIAEoCRIuCglkYXRhYmFzZXMYCiADKAsyGy5iZWVrZWVwZXIudjEuVmVzcGFEYXRhYmFzZRIVCg1jb3VudHJ5X2NvZGVzGAsgAygJIuUDCg1WZXNwYURhdGFiYXNlEiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIZChFvcmdhbml6YXRpb25fdXVpZBgCIAEoCRIUCgxwcm9qZWN0X3V1aWQYAyABKAkSEgoKc3RhY2tfdXVpZBgEIAEoCRIMCgR1dWlkGAUgASgJEgwKBG5hbWUYBiABKAkSIQoEbm9kZRgHIAEoCzITLnZlc3BhLnYxLlZlc3BhTm9kZRJPChZzdGF0dXNfYXRfb3JjaGVzdHJhdG9yGAggASgOMi8uYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VTdGF0dXNBdE9yY2hlc3RyYXRvchIjChtzdGF0dXNfYXRfb3JjaGVzdHJhdG9yX3RleHQYCSABKAkSOwoOc3RhdHVzX2F0X25vZGUYCiABKA4yIy52ZXNwYS52MS5WZXNwYURhdGFiYXNlU3RhdHVzQXROb2RlEhsKE3N0YXR1c19hdF9ub2RlX3RleHQYCyABKAkSGAoQc2NoZW1hX2xvZ19pbmRleBgMIAEoBBIaChJwcmltYXJ5X3BhcnRpdGlvbnMYDSADKAkSHAoUc2Vjb25kYXJ5X3BhcnRpdGlvbnMYDiADKAlCswEKEGNvbS5iZWVrZWVwZXIudjFCC01vZGVsc1Byb3RvUAFaQWdpdGh1Yi5jb20vaGl2ZS1vcHMvaGl2ZS1zZGstZ28vcGtncy9nZW4vYmVla2VlcGVyL3YxO2JlZWtlZXBlcnYxogIDQlhYqgIMQmVla2VlcGVyLlYxygIMQmVla2VlcGVyXFYx4gIYQmVla2VlcGVyXFYxXEdQQk1ldGFkYXRh6gINQmVla2VlcGVyOjpWMWIGcHJvdG8z", [file_beekeeper_v1_enums, file_hive_v1_models, file_vespa_v1_enums, file_vespa_v1_models]);
+  fileDesc("ChliZWVrZWVwZXIvdjEvbW9kZWxzLnByb3RvEgxiZWVrZWVwZXIudjEi6QIKElZlc3BhRGF0YWJhc2VTdGFjaxIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISGQoRb3JnYW5pemF0aW9uX3V1aWQYAiABKAkSFAoMcHJvamVjdF91dWlkGAMgASgJEgwKBHV1aWQYBCABKAkSDAoEbmFtZRgFIAEoCRIaChJyZXBsaWNhdGlvbl9mYWN0b3IYBiABKA0SKAoGc2NoZW1hGAcgASgLMhgudmVzcGEudjEuRGF0YWJhc2VTY2hlbWESNgoGc3RhdHVzGAggASgOMiYuYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VTdGFja1N0YXR1cxITCgtzdGF0dXNfdGV4dBgJIAEoCRIuCglkYXRhYmFzZXMYCiADKAsyGy5iZWVrZWVwZXIudjEuVmVzcGFEYXRhYmFzZRIVCg1jb3VudHJ5X2NvZGVzGAsgAygJIpcECg1WZXNwYURhdGFiYXNlEiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIZChFvcmdhbml6YXRpb25fdXVpZBgCIAEoCRIUCgxwcm9qZWN0X3V1aWQYAyABKAkSEgoKc3RhY2tfdXVpZBgEIAEoCRIMCgR1dWlkGAUgASgJEgwKBG5hbWUYBiABKAkSIQoEbm9kZRgHIAEoCzITLnZlc3BhLnYxLlZlc3BhTm9kZRItCgRyb2xlGAggASgOMh8uYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VSb2xlEhEKCXBhcnRpdGlvbhgJIAEoCRJPChZzdGF0dXNfYXRfb3JjaGVzdHJhdG9yGAogASgOMi8uYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VTdGF0dXNBdE9yY2hlc3RyYXRvchIjChtzdGF0dXNfYXRfb3JjaGVzdHJhdG9yX3RleHQYCyABKAkSOwoOc3RhdHVzX2F0X25vZGUYDCABKA4yIy52ZXNwYS52MS5WZXNwYURhdGFiYXNlU3RhdHVzQXROb2RlEhsKE3N0YXR1c19hdF9ub2RlX3RleHQYDSABKAkSGAoQc2NoZW1hX2xvZ19pbmRleBgOIAEoBBIoCgZzY2hlbWEYDyABKAsyGC52ZXNwYS52MS5EYXRhYmFzZVNjaGVtYUKzAQoQY29tLmJlZWtlZXBlci52MUILTW9kZWxzUHJvdG9QAVpBZ2l0aHViLmNvbS9oaXZlLW9wcy9oaXZlLXNkay1nby9wa2dzL2dlbi9iZWVrZWVwZXIvdjE7YmVla2VlcGVydjGiAgNCWFiqAgxCZWVrZWVwZXIuVjHKAgxCZWVrZWVwZXJcVjHiAhhCZWVrZWVwZXJcVjFcR1BCTWV0YWRhdGHqAg1CZWVrZWVwZXI6OlYxYgZwcm90bzM", [file_beekeeper_v1_enums, file_hive_v1_models, file_vespa_v1_enums, file_vespa_v1_models]);
 
 /**
  * @generated from message beekeeper.v1.VespaDatabaseStack
@@ -127,41 +127,44 @@ export type VespaDatabase = Message<"beekeeper.v1.VespaDatabase"> & {
   node?: VespaNode;
 
   /**
-   * @generated from field: beekeeper.v1.VespaDatabaseStatusAtOrchestrator status_at_orchestrator = 8;
+   * @generated from field: beekeeper.v1.VespaDatabaseRole role = 8;
+   */
+  role: VespaDatabaseRole;
+
+  /**
+   * @generated from field: string partition = 9;
+   */
+  partition: string;
+
+  /**
+   * @generated from field: beekeeper.v1.VespaDatabaseStatusAtOrchestrator status_at_orchestrator = 10;
    */
   statusAtOrchestrator: VespaDatabaseStatusAtOrchestrator;
 
   /**
-   * @generated from field: string status_at_orchestrator_text = 9;
+   * @generated from field: string status_at_orchestrator_text = 11;
    */
   statusAtOrchestratorText: string;
 
   /**
-   * @generated from field: vespa.v1.VespaDatabaseStatusAtNode status_at_node = 10;
+   * @generated from field: vespa.v1.VespaDatabaseStatusAtNode status_at_node = 12;
    */
   statusAtNode: VespaDatabaseStatusAtNode;
 
   /**
-   * @generated from field: string status_at_node_text = 11;
+   * @generated from field: string status_at_node_text = 13;
    */
   statusAtNodeText: string;
 
   /**
-   * Each change to the database schema will increment this index
-   *
-   * @generated from field: uint64 schema_log_index = 12;
+   * @generated from field: uint64 schema_log_index = 14;
    */
   schemaLogIndex: bigint;
 
   /**
-   * @generated from field: repeated string primary_partitions = 13;
+   * @generated from field: vespa.v1.DatabaseSchema schema = 15;
    */
-  primaryPartitions: string[];
-
-  /**
-   * @generated from field: repeated string secondary_partitions = 14;
-   */
-  secondaryPartitions: string[];
+  schema?: DatabaseSchema;
 };
 
 /**
