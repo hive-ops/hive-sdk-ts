@@ -9,8 +9,7 @@ import {
   DroneIAMSecureAppService,
   DroneIAMUserService,
 } from "../../gen";
-import { getTokenInterceptor } from "./interceptor";
-import { createTransport } from "./utils";
+import { createTransport, getTokenInterceptor } from "./utils";
 
 export const createDroneClient = () => {
   const transport = createTransport(App.DRONE, [getTokenInterceptor()]);

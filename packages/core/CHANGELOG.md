@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.15.0
+
+### Minor Changes
+
+- refactor: move getTokenInterceptor to utils and update imports in clients
+
 ## 1.14.0
 
 ### Minor Changes

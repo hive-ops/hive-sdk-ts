@@ -3,6 +3,7 @@ import { Interceptor } from "@connectrpc/connect";
 import { App, BasePort, FQDN, FQDNSchema } from "../../gen";
 import { buildURL, getDomain, getEnv } from "../utilities";
 import { getClientOptions } from "./globals";
+import { tokenManager } from "./token-manager";
 
 export const createTransport = (app: App, interceptors: Interceptor[]) => {
   const { createTransportFn, clientType } = getClientOptions();
@@ -23,4 +24,10 @@ export const createTransport = (app: App, interceptors: Interceptor[]) => {
     ),
     interceptors,
   });
+};
+
+export const getTokenInterceptor = (): Interceptor => (next) => async (req) => {
+  const token = await tokenManager.getFirebaseTokenWithClaims();
+  req.header.set("Authorization", `Bearer ${token}`);
+  return next(req);
 };
