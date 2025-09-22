@@ -1,5 +1,16 @@
 # @hiveops/web
 
+## 1.5.0
+
+### Minor Changes
+
+- feat: implement initializeClient function and update client initialization in tests
+
+### Patch Changes
+
+- Updated dependencies
+  - @hiveops/core@1.16.0
+
 ## 1.4.0
 
 ### Minor Changes

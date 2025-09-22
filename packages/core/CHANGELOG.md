@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.16.0
+
+### Minor Changes
+
+- feat: implement initializeClient function and update client initialization in tests
+
 ## 1.15.0
 
 ### Minor Changes
