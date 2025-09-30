@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.16.1
+
+### Patch Changes
+
+- feat: update models_pb.ts to modify field names and remove deprecated properties in IndexMetadata and RenameColumn types
+
 ## 1.16.0
 
 ### Minor Changes
