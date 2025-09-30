@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.17.1
+
+### Patch Changes
+
+- feat: update models_pb.ts to rename field ref to columnNames and adjust unique field type
+
 ## 1.17.0
 
 ### Minor Changes
