@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.17.0
+
+### Minor Changes
+
+- feat: Ensured consistency in response structures across APIs by integrating hive.v1.ResponseMetadata.
+
 ## 1.16.1
 
 ### Patch Changes
