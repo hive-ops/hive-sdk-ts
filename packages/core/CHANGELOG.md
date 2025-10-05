@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.17.2
+
+### Patch Changes
+
+- chore: update @hiveops/core and related dependencies
+
 ## 1.17.1
 
 ### Patch Changes
