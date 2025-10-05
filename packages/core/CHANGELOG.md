@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.17.4
+
+### Patch Changes
+
+- feat: update models_pb.ts to rename schema field to schemaLogIndex and adjust field indices for consistency
+
 ## 1.17.3
 
 ### Patch Changes

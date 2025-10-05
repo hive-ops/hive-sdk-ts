@@ -18,7 +18,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file beekeeper/v1/models.proto.
  */
 export const file_beekeeper_v1_models: GenFile = /*@__PURE__*/
-  fileDesc("ChliZWVrZWVwZXIvdjEvbW9kZWxzLnByb3RvEgxiZWVrZWVwZXIudjEi6QIKElZlc3BhRGF0YWJhc2VTdGFjaxIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISGQoRb3JnYW5pemF0aW9uX3V1aWQYAiABKAkSFAoMcHJvamVjdF91dWlkGAMgASgJEgwKBHV1aWQYBCABKAkSDAoEbmFtZRgFIAEoCRIaChJyZXBsaWNhdGlvbl9mYWN0b3IYBiABKA0SKAoGc2NoZW1hGAcgASgLMhgudmVzcGEudjEuRGF0YWJhc2VTY2hlbWESNgoGc3RhdHVzGAggASgOMiYuYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VTdGFja1N0YXR1cxITCgtzdGF0dXNfdGV4dBgJIAEoCRIuCglkYXRhYmFzZXMYCiADKAsyGy5iZWVrZWVwZXIudjEuVmVzcGFEYXRhYmFzZRIVCg1jb3VudHJ5X2NvZGVzGAsgAygJIpcECg1WZXNwYURhdGFiYXNlEiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIZChFvcmdhbml6YXRpb25fdXVpZBgCIAEoCRIUCgxwcm9qZWN0X3V1aWQYAyABKAkSEgoKc3RhY2tfdXVpZBgEIAEoCRIMCgR1dWlkGAUgASgJEgwKBG5hbWUYBiABKAkSIQoEbm9kZRgHIAEoCzITLnZlc3BhLnYxLlZlc3BhTm9kZRItCgRyb2xlGAggASgOMh8uYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VSb2xlEhEKCXBhcnRpdGlvbhgJIAEoCRJPChZzdGF0dXNfYXRfb3JjaGVzdHJhdG9yGAogASgOMi8uYmVla2VlcGVyLnYxLlZlc3BhRGF0YWJhc2VTdGF0dXNBdE9yY2hlc3RyYXRvchIjChtzdGF0dXNfYXRfb3JjaGVzdHJhdG9yX3RleHQYCyABKAkSOwoOc3RhdHVzX2F0X25vZGUYDCABKA4yIy52ZXNwYS52MS5WZXNwYURhdGFiYXNlU3RhdHVzQXROb2RlEhsKE3N0YXR1c19hdF9ub2RlX3RleHQYDSABKAkSGAoQc2NoZW1hX2xvZ19pbmRleBgOIAEoBBIoCgZzY2hlbWEYDyABKAsyGC52ZXNwYS52MS5EYXRhYmFzZVNjaGVtYUKzAQoQY29tLmJlZWtlZXBlci52MUILTW9kZWxzUHJvdG9QAVpBZ2l0aHViLmNvbS9oaXZlLW9wcy9oaXZlLXNkay1nby9wa2dzL2dlbi9iZWVrZWVwZXIvdjE7YmVla2VlcGVydjGiAgNCWFiqAgxCZWVrZWVwZXIuVjHKAgxCZWVrZWVwZXJcVjHiAhhCZWVrZWVwZXJcVjFcR1BCTWV0YWRhdGHqAg1CZWVrZWVwZXI6OlYxYgZwcm90bzM", [file_beekeeper_v1_enums, file_hive_v1_models, file_vespa_v1_enums, file_vespa_v1_models]);
+  fileDesc("ChliZWVrZWVwZXIvdjEvbW9kZWxzLnByb3RvEgxiZWVrZWVwZXIudjEigwMKElZlc3BhRGF0YWJhc2VTdGFjaxIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISGQoRb3JnYW5pemF0aW9uX3V1aWQYAiABKAkSFAoMcHJvamVjdF91dWlkGAMgASgJEgwKBHV1aWQYBCABKAkSDAoEbmFtZRgFIAEoCRIaChJyZXBsaWNhdGlvbl9mYWN0b3IYBiABKA0SGAoQc2NoZW1hX2xvZ19pbmRleBgHIAEoBBIoCgZzY2hlbWEYCCABKAsyGC52ZXNwYS52MS5EYXRhYmFzZVNjaGVtYRI2CgZzdGF0dXMYCSABKA4yJi5iZWVrZWVwZXIudjEuVmVzcGFEYXRhYmFzZVN0YWNrU3RhdHVzEhMKC3N0YXR1c190ZXh0GAogASgJEi4KCWRhdGFiYXNlcxgLIAMoCzIbLmJlZWtlZXBlci52MS5WZXNwYURhdGFiYXNlEhUKDWNvdW50cnlfY29kZXMYDCADKAkilwQKDVZlc3BhRGF0YWJhc2USLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhkKEW9yZ2FuaXphdGlvbl91dWlkGAIgASgJEhQKDHByb2plY3RfdXVpZBgDIAEoCRISCgpzdGFja191dWlkGAQgASgJEgwKBHV1aWQYBSABKAkSDAoEbmFtZRgGIAEoCRIhCgRub2RlGAcgASgLMhMudmVzcGEudjEuVmVzcGFOb2RlEi0KBHJvbGUYCCABKA4yHy5iZWVrZWVwZXIudjEuVmVzcGFEYXRhYmFzZVJvbGUSEQoJcGFydGl0aW9uGAkgASgJEk8KFnN0YXR1c19hdF9vcmNoZXN0cmF0b3IYCiABKA4yLy5iZWVrZWVwZXIudjEuVmVzcGFEYXRhYmFzZVN0YXR1c0F0T3JjaGVzdHJhdG9yEiMKG3N0YXR1c19hdF9vcmNoZXN0cmF0b3JfdGV4dBgLIAEoCRI7Cg5zdGF0dXNfYXRfbm9kZRgMIAEoDjIjLnZlc3BhLnYxLlZlc3BhRGF0YWJhc2VTdGF0dXNBdE5vZGUSGwoTc3RhdHVzX2F0X25vZGVfdGV4dBgNIAEoCRIYChBzY2hlbWFfbG9nX2luZGV4GA4gASgEEigKBnNjaGVtYRgPIAEoCzIYLnZlc3BhLnYxLkRhdGFiYXNlU2NoZW1hQrMBChBjb20uYmVla2VlcGVyLnYxQgtNb2RlbHNQcm90b1ABWkFnaXRodWIuY29tL2hpdmUtb3BzL2hpdmUtc2RrLWdvL3BrZ3MvZ2VuL2JlZWtlZXBlci92MTtiZWVrZWVwZXJ2MaICA0JYWKoCDEJlZWtlZXBlci5WMcoCDEJlZWtlZXBlclxWMeICGEJlZWtlZXBlclxWMVxHUEJNZXRhZGF0YeoCDUJlZWtlZXBlcjo6VjFiBnByb3RvMw", [file_beekeeper_v1_enums, file_hive_v1_models, file_vespa_v1_enums, file_vespa_v1_models]);
 
 /**
  * @generated from message beekeeper.v1.VespaDatabaseStack
@@ -55,27 +55,32 @@ export type VespaDatabaseStack = Message<"beekeeper.v1.VespaDatabaseStack"> & {
   replicationFactor: number;
 
   /**
-   * @generated from field: vespa.v1.DatabaseSchema schema = 7;
+   * @generated from field: uint64 schema_log_index = 7;
+   */
+  schemaLogIndex: bigint;
+
+  /**
+   * @generated from field: vespa.v1.DatabaseSchema schema = 8;
    */
   schema?: DatabaseSchema;
 
   /**
-   * @generated from field: beekeeper.v1.VespaDatabaseStackStatus status = 8;
+   * @generated from field: beekeeper.v1.VespaDatabaseStackStatus status = 9;
    */
   status: VespaDatabaseStackStatus;
 
   /**
-   * @generated from field: string status_text = 9;
+   * @generated from field: string status_text = 10;
    */
   statusText: string;
 
   /**
-   * @generated from field: repeated beekeeper.v1.VespaDatabase databases = 10;
+   * @generated from field: repeated beekeeper.v1.VespaDatabase databases = 11;
    */
   databases: VespaDatabase[];
 
   /**
-   * @generated from field: repeated string country_codes = 11;
+   * @generated from field: repeated string country_codes = 12;
    */
   countryCodes: string[];
 };
