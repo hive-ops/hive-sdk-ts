@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.17.3
+
+### Patch Changes
+
+- feat: update requests_and_responses_pb.ts to change schema field to currentSchemaLogIndex and adjust types for migration requests
+
 ## 1.17.2
 
 ### Patch Changes
