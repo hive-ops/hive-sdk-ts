@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.17.5
+
+### Patch Changes
+
+- feat: update package-lock.json and package.json to upgrade @hiveops/core to version 1.17.4
+
 ## 1.17.4
 
 ### Patch Changes
