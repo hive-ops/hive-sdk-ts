@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.17.6
+
+### Patch Changes
+
+- feat: update buildURL function to use basePort for localhost in development environment and enhance test cases for fqdn creation
+
 ## 1.17.5
 
 ### Patch Changes

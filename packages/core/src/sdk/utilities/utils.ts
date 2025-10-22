@@ -106,13 +106,13 @@ export const getProtocol = (environment: Environment): Protocol => {
 
 export const buildURL = (fqdn: FQDN, clientType: ClientType): string => {
   // Port
-  const port = APP_BASE_PORT_MAP[getEnumKey(App, fqdn.app)];
+  const basePort = APP_BASE_PORT_MAP[getEnumKey(App, fqdn.app)];
 
   // TCP Protocol
   const protocol = getProtocol(fqdn.environment);
 
   if (isDevEnv(fqdn.environment)) {
-    return `${protocol}://localhost:${port}`;
+    return `${protocol}://localhost:${basePort + 1}`;
   }
 
   // Environment

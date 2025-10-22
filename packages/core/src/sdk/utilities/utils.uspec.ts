@@ -1,6 +1,7 @@
-import { App, FQDN } from "../../gen";
 import { ClientType } from "./types";
 import * as utils from "./utils";
+import { create } from "@bufbuild/protobuf";
+import { App, BasePort, FQDN, FQDNSchema, Environment } from "../../gen";
 
 describe("utils", () => {
   describe("boundedInt", () => {
@@ -73,7 +74,7 @@ describe("utils", () => {
       expected: string;
     }[] = [
       {
-        fqdn: new FQDN({
+        fqdn: create(FQDNSchema, {
           app: App.DRONE,
           domain: "example.com",
         }),
@@ -81,7 +82,7 @@ describe("utils", () => {
         expected: "https://grpc.drone.example.com",
       },
       {
-        fqdn: new FQDN({
+        fqdn: create(FQDNSchema, {
           app: App.BEEKEEPER,
           domain: "example.com",
         }),
@@ -89,7 +90,7 @@ describe("utils", () => {
         expected: "https://grpc-web.beekeeper.example.com",
       },
       {
-        fqdn: new FQDN({
+        fqdn: create(FQDNSchema, {
           app: App.VESPA,
           nodeName: "node1",
           hubId: "hub42",
@@ -97,6 +98,17 @@ describe("utils", () => {
         }),
         clientType: "web",
         expected: "https://node1.grpc-web.vespa.hub42.example.com",
+      },
+      {
+        fqdn: create(FQDNSchema, {
+          app: App.DRONE,
+          nodeName: "node1",
+          hubId: "hub42",
+          domain: "example.com",
+          environment: Environment.DEV,
+        }),
+        clientType: "web",
+        expected: "http://localhost:8001",
       },
     ];
 
