@@ -1,5 +1,13 @@
 # @hiveops/node
 
+## 1.11.1
+
+### Patch Changes
+
+- refactor: remove localhost URL handling from buildURL function and update related tests
+- Updated dependencies
+  - @hiveops/core@1.17.7
+
 ## 1.11.0
 
 ### Minor Changes

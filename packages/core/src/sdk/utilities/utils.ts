@@ -101,19 +101,18 @@ export const isDevEnv = (environment: Environment): boolean => environment === E
 export const isProdEnv = (environment: Environment): boolean => environment === Environment.PROD;
 
 export const getProtocol = (environment: Environment): Protocol => {
-  return isDevEnv(environment) ? "http" : "https";
+  return isDevEnv(environment) ? "https" : "https";
 };
 
 export const buildURL = (fqdn: FQDN, clientType: ClientType): string => {
-  // Port
-  const basePort = APP_BASE_PORT_MAP[getEnumKey(App, fqdn.app)];
-
   // TCP Protocol
   const protocol = getProtocol(fqdn.environment);
 
-  if (isDevEnv(fqdn.environment)) {
-    return `${protocol}://localhost:${basePort + 1}`;
-  }
+  // // Port
+  // const basePort = APP_BASE_PORT_MAP[getEnumKey(App, fqdn.app)];
+  // if (isDevEnv(fqdn.environment)) {
+  //   return `${protocol}://localhost:${basePort + 1}`;
+  // }
 
   // Environment
   let environment = "";
