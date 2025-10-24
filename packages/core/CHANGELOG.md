@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.17.8
+
+### Patch Changes
+
+- fix: update getProtocol and buildURL functions to correctly handle HTTP and port assignment for development environment
+
 ## 1.17.7
 
 ### Patch Changes

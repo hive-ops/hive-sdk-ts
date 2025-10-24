@@ -101,18 +101,15 @@ export const isDevEnv = (environment: Environment): boolean => environment === E
 export const isProdEnv = (environment: Environment): boolean => environment === Environment.PROD;
 
 export const getProtocol = (environment: Environment): Protocol => {
-  return isDevEnv(environment) ? "https" : "https";
+  return isDevEnv(environment) ? "http" : "https";
 };
 
 export const buildURL = (fqdn: FQDN, clientType: ClientType): string => {
   // TCP Protocol
   const protocol = getProtocol(fqdn.environment);
 
-  // // Port
-  // const basePort = APP_BASE_PORT_MAP[getEnumKey(App, fqdn.app)];
-  // if (isDevEnv(fqdn.environment)) {
-  //   return `${protocol}://localhost:${basePort + 1}`;
-  // }
+  // Port
+  const basePort = APP_BASE_PORT_MAP[getEnumKey(App, fqdn.app)];
 
   // Environment
   let environment = "";
@@ -128,7 +125,9 @@ export const buildURL = (fqdn: FQDN, clientType: ClientType): string => {
 
   const domainElements: string[] = [fqdn.nodeName, frameworkText, appName, environment, fqdn.hubId, fqdn.domain];
 
-  return `${protocol}://${_.compact(domainElements).join(".")}`;
+  const url =  `${protocol}://${_.compact(domainElements).join(".")}`;
+
+  return isDevEnv(fqdn.environment) ? `${url}:${basePort}` : url;
 };
 
 // export const isNodeClient = (framework: Framework): boolean => framework === Framework.GRPC;
