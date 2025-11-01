@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file vespa/v1/requests_and_responses.proto.
  */
 export const file_vespa_v1_requests_and_responses: GenFile = /*@__PURE__*/
-  fileDesc("CiV2ZXNwYS92MS9yZXF1ZXN0c19hbmRfcmVzcG9uc2VzLnByb3RvEgh2ZXNwYS52MSKmAQoURGVsZXRlUmVjb3Jkc1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhgKEHNjaGVtYV9sb2dfaW5kZXgYAiABKAQSEgoKdGFibGVfbmFtZRgDIAEoCRIyChB3aGVyZV9jb25kaXRpb25zGAQgAygLMhgudmVzcGEudjEuV2hlcmVDb25kaXRpb24iRAoVRGVsZXRlUmVjb3Jkc1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhIrIBChBHZXRSZWNvcmRSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIYChBzY2hlbWFfbG9nX2luZGV4GAIgASgEEhIKCnRhYmxlX25hbWUYAyABKAkSMgoQd2hlcmVfY29uZGl0aW9ucxgEIAMoCzIYLnZlc3BhLnYxLldoZXJlQ29uZGl0aW9uEg4KBm9mZnNldBgFIAEoBSJxChFHZXRSZWNvcmRSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIgCgZyZWNvcmQYAiABKAsyEC52ZXNwYS52MS5SZWNvcmQSDQoFZm91bmQYAyABKAgiwgEKEUdldFJlY29yZHNSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIYChBzY2hlbWFfbG9nX2luZGV4GAIgASgEEhIKCnRhYmxlX25hbWUYAyABKAkSMgoQd2hlcmVfY29uZGl0aW9ucxgEIAMoCzIYLnZlc3BhLnYxLldoZXJlQ29uZGl0aW9uEg4KBm9mZnNldBgFIAEoBRINCgVsaW1pdBgGIAEoBSJkChJHZXRSZWNvcmRzUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESIQoHcmVjb3JkcxgCIAMoCzIQLnZlc3BhLnYxLlJlY29yZCKlAQoTQ291bnRSZWNvcmRzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISGAoQc2NoZW1hX2xvZ19pbmRleBgCIAEoBBISCgp0YWJsZV9uYW1lGAMgASgJEjIKEHdoZXJlX2NvbmRpdGlvbnMYBCADKAsyGC52ZXNwYS52MS5XaGVyZUNvbmRpdGlvbiJSChRDb3VudFJlY29yZHNSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRINCgVjb3VudBgCIAEoBCKlAQoTUmVjb3JkRXhpc3RzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISGAoQc2NoZW1hX2xvZ19pbmRleBgCIAEoBBISCgp0YWJsZV9uYW1lGAMgASgJEjIKEHdoZXJlX2NvbmRpdGlvbnMYBCADKAsyGC52ZXNwYS52MS5XaGVyZUNvbmRpdGlvbiJTChRSZWNvcmRFeGlzdHNSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YRIOCgZleGlzdHMYAiABKAgikwEKE0luc2VydFJlY29yZFJlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhgKEHNjaGVtYV9sb2dfaW5kZXgYAiABKAQSEgoKdGFibGVfbmFtZRgDIAEoCRIgCgZyZWNvcmQYBCABKAsyEC52ZXNwYS52MS5SZWNvcmQiZQoUSW5zZXJ0UmVjb3JkUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESIAoGcmVjb3JkGAIgASgLMhAudmVzcGEudjEuUmVjb3JkIpUBChRJbnNlcnRSZWNvcmRzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISGAoQc2NoZW1hX2xvZ19pbmRleBgCIAEoBBISCgp0YWJsZV9uYW1lGAMgASgJEiEKB3JlY29yZHMYBCADKAsyEC52ZXNwYS52MS5SZWNvcmQiWgoVSW5zZXJ0UmVjb3Jkc1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEhQKDGluc2VydGVkX2lkcxgCIAMoCSLIAQoUVXBkYXRlUmVjb3Jkc1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhgKEHNjaGVtYV9sb2dfaW5kZXgYAiABKAQSEgoKdGFibGVfbmFtZRgDIAEoCRIgCgZyZWNvcmQYBCABKAsyEC52ZXNwYS52MS5SZWNvcmQSMgoQd2hlcmVfY29uZGl0aW9ucxgFIAMoCzIYLnZlc3BhLnYxLldoZXJlQ29uZGl0aW9uIkQKFVVwZGF0ZVJlY29yZHNSZXNwb25zZRIrCghtZXRhZGF0YRgBIAEoCzIZLmhpdmUudjEuUmVzcG9uc2VNZXRhZGF0YUKlAQoMY29tLnZlc3BhLnYxQhlSZXF1ZXN0c0FuZFJlc3BvbnNlc1Byb3RvUAFaOWdpdGh1Yi5jb20vaGl2ZS1vcHMvaGl2ZS1zZGstZ28vcGtncy9nZW4vdmVzcGEvdjE7dmVzcGF2MaICA1ZYWKoCCFZlc3BhLlYxygIIVmVzcGFcVjHiAhRWZXNwYVxWMVxHUEJNZXRhZGF0YeoCCVZlc3BhOjpWMWIGcHJvdG8z", [file_hive_v1_models, file_vespa_v1_models]);
+  fileDesc("CiV2ZXNwYS92MS9yZXF1ZXN0c19hbmRfcmVzcG9uc2VzLnByb3RvEgh2ZXNwYS52MSKmAQoURGVsZXRlUmVjb3Jkc1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhgKEHNjaGVtYV9sb2dfaW5kZXgYAiABKAQSEgoKdGFibGVfbmFtZRgDIAEoCRIyChB3aGVyZV9jb25kaXRpb25zGAQgAygLMhgudmVzcGEudjEuV2hlcmVDb25kaXRpb24iRAoVRGVsZXRlUmVjb3Jkc1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhIsIBChFHZXRSZWNvcmRzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISGAoQc2NoZW1hX2xvZ19pbmRleBgCIAEoBBISCgp0YWJsZV9uYW1lGAMgASgJEjIKEHdoZXJlX2NvbmRpdGlvbnMYBCADKAsyGC52ZXNwYS52MS5XaGVyZUNvbmRpdGlvbhIOCgZvZmZzZXQYBSABKAUSDQoFbGltaXQYBiABKAUiZAoSR2V0UmVjb3Jkc1Jlc3BvbnNlEisKCG1ldGFkYXRhGAEgASgLMhkuaGl2ZS52MS5SZXNwb25zZU1ldGFkYXRhEiEKB3JlY29yZHMYAiADKAsyEC52ZXNwYS52MS5SZWNvcmQipQEKE0NvdW50UmVjb3Jkc1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhgKEHNjaGVtYV9sb2dfaW5kZXgYAiABKAQSEgoKdGFibGVfbmFtZRgDIAEoCRIyChB3aGVyZV9jb25kaXRpb25zGAQgAygLMhgudmVzcGEudjEuV2hlcmVDb25kaXRpb24iUgoUQ291bnRSZWNvcmRzUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESDQoFY291bnQYAiABKAQipQEKE1JlY29yZEV4aXN0c1JlcXVlc3QSLAoDaHJpGAEgASgLMh8uaGl2ZS52MS5IaXZlUmVzb3VyY2VJZGVudGlmaWVyEhgKEHNjaGVtYV9sb2dfaW5kZXgYAiABKAQSEgoKdGFibGVfbmFtZRgDIAEoCRIyChB3aGVyZV9jb25kaXRpb25zGAQgAygLMhgudmVzcGEudjEuV2hlcmVDb25kaXRpb24iUwoUUmVjb3JkRXhpc3RzUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESDgoGZXhpc3RzGAIgASgIIq4BChRJbnNlcnRSZWNvcmRzUmVxdWVzdBIsCgNocmkYASABKAsyHy5oaXZlLnYxLkhpdmVSZXNvdXJjZUlkZW50aWZpZXISGAoQc2NoZW1hX2xvZ19pbmRleBgCIAEoBBISCgp0YWJsZV9uYW1lGAMgASgJEiEKB3JlY29yZHMYBCADKAsyEC52ZXNwYS52MS5SZWNvcmQSFwoPcmV0dXJuX2luc2VydGVkGAUgASgIIoYBChVJbnNlcnRSZWNvcmRzUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGESFAoMaW5zZXJ0ZWRfaWRzGAIgAygJEioKEGluc2VydGVkX3JlY29yZHMYAyADKAsyEC52ZXNwYS52MS5SZWNvcmQiyAEKFFVwZGF0ZVJlY29yZHNSZXF1ZXN0EiwKA2hyaRgBIAEoCzIfLmhpdmUudjEuSGl2ZVJlc291cmNlSWRlbnRpZmllchIYChBzY2hlbWFfbG9nX2luZGV4GAIgASgEEhIKCnRhYmxlX25hbWUYAyABKAkSIAoGcmVjb3JkGAQgASgLMhAudmVzcGEudjEuUmVjb3JkEjIKEHdoZXJlX2NvbmRpdGlvbnMYBSADKAsyGC52ZXNwYS52MS5XaGVyZUNvbmRpdGlvbiJEChVVcGRhdGVSZWNvcmRzUmVzcG9uc2USKwoIbWV0YWRhdGEYASABKAsyGS5oaXZlLnYxLlJlc3BvbnNlTWV0YWRhdGFCpQEKDGNvbS52ZXNwYS52MUIZUmVxdWVzdHNBbmRSZXNwb25zZXNQcm90b1ABWjlnaXRodWIuY29tL2hpdmUtb3BzL2hpdmUtc2RrLWdvL3BrZ3MvZ2VuL3Zlc3BhL3YxO3Zlc3BhdjGiAgNWWFiqAghWZXNwYS5WMcoCCFZlc3BhXFYx4gIUVmVzcGFcVjFcR1BCTWV0YWRhdGHqAglWZXNwYTo6VjFiBnByb3RvMw", [file_hive_v1_models, file_vespa_v1_models]);
 
 /**
  * @generated from message vespa.v1.DeleteRecordsRequest
@@ -66,70 +66,6 @@ export const DeleteRecordsResponseSchema: GenMessage<DeleteRecordsResponse> = /*
   messageDesc(file_vespa_v1_requests_and_responses, 1);
 
 /**
- * @generated from message vespa.v1.GetRecordRequest
- */
-export type GetRecordRequest = Message<"vespa.v1.GetRecordRequest"> & {
-  /**
-   * @generated from field: hive.v1.HiveResourceIdentifier hri = 1;
-   */
-  hri?: HiveResourceIdentifier;
-
-  /**
-   * @generated from field: uint64 schema_log_index = 2;
-   */
-  schemaLogIndex: bigint;
-
-  /**
-   * @generated from field: string table_name = 3;
-   */
-  tableName: string;
-
-  /**
-   * @generated from field: repeated vespa.v1.WhereCondition where_conditions = 4;
-   */
-  whereConditions: WhereCondition[];
-
-  /**
-   * @generated from field: int32 offset = 5;
-   */
-  offset: number;
-};
-
-/**
- * Describes the message vespa.v1.GetRecordRequest.
- * Use `create(GetRecordRequestSchema)` to create a new message.
- */
-export const GetRecordRequestSchema: GenMessage<GetRecordRequest> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_requests_and_responses, 2);
-
-/**
- * @generated from message vespa.v1.GetRecordResponse
- */
-export type GetRecordResponse = Message<"vespa.v1.GetRecordResponse"> & {
-  /**
-   * @generated from field: hive.v1.ResponseMetadata metadata = 1;
-   */
-  metadata?: ResponseMetadata;
-
-  /**
-   * @generated from field: vespa.v1.Record record = 2;
-   */
-  record?: Record;
-
-  /**
-   * @generated from field: bool found = 3;
-   */
-  found: boolean;
-};
-
-/**
- * Describes the message vespa.v1.GetRecordResponse.
- * Use `create(GetRecordResponseSchema)` to create a new message.
- */
-export const GetRecordResponseSchema: GenMessage<GetRecordResponse> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_requests_and_responses, 3);
-
-/**
  * @generated from message vespa.v1.GetRecordsRequest
  */
 export type GetRecordsRequest = Message<"vespa.v1.GetRecordsRequest"> & {
@@ -169,7 +105,7 @@ export type GetRecordsRequest = Message<"vespa.v1.GetRecordsRequest"> & {
  * Use `create(GetRecordsRequestSchema)` to create a new message.
  */
 export const GetRecordsRequestSchema: GenMessage<GetRecordsRequest> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_requests_and_responses, 4);
+  messageDesc(file_vespa_v1_requests_and_responses, 2);
 
 /**
  * @generated from message vespa.v1.GetRecordsResponse
@@ -191,7 +127,7 @@ export type GetRecordsResponse = Message<"vespa.v1.GetRecordsResponse"> & {
  * Use `create(GetRecordsResponseSchema)` to create a new message.
  */
 export const GetRecordsResponseSchema: GenMessage<GetRecordsResponse> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_requests_and_responses, 5);
+  messageDesc(file_vespa_v1_requests_and_responses, 3);
 
 /**
  * @generated from message vespa.v1.CountRecordsRequest
@@ -223,7 +159,7 @@ export type CountRecordsRequest = Message<"vespa.v1.CountRecordsRequest"> & {
  * Use `create(CountRecordsRequestSchema)` to create a new message.
  */
 export const CountRecordsRequestSchema: GenMessage<CountRecordsRequest> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_requests_and_responses, 6);
+  messageDesc(file_vespa_v1_requests_and_responses, 4);
 
 /**
  * @generated from message vespa.v1.CountRecordsResponse
@@ -245,7 +181,7 @@ export type CountRecordsResponse = Message<"vespa.v1.CountRecordsResponse"> & {
  * Use `create(CountRecordsResponseSchema)` to create a new message.
  */
 export const CountRecordsResponseSchema: GenMessage<CountRecordsResponse> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_requests_and_responses, 7);
+  messageDesc(file_vespa_v1_requests_and_responses, 5);
 
 /**
  * @generated from message vespa.v1.RecordExistsRequest
@@ -277,7 +213,7 @@ export type RecordExistsRequest = Message<"vespa.v1.RecordExistsRequest"> & {
  * Use `create(RecordExistsRequestSchema)` to create a new message.
  */
 export const RecordExistsRequestSchema: GenMessage<RecordExistsRequest> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_requests_and_responses, 8);
+  messageDesc(file_vespa_v1_requests_and_responses, 6);
 
 /**
  * @generated from message vespa.v1.RecordExistsResponse
@@ -299,61 +235,7 @@ export type RecordExistsResponse = Message<"vespa.v1.RecordExistsResponse"> & {
  * Use `create(RecordExistsResponseSchema)` to create a new message.
  */
 export const RecordExistsResponseSchema: GenMessage<RecordExistsResponse> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_requests_and_responses, 9);
-
-/**
- * @generated from message vespa.v1.InsertRecordRequest
- */
-export type InsertRecordRequest = Message<"vespa.v1.InsertRecordRequest"> & {
-  /**
-   * @generated from field: hive.v1.HiveResourceIdentifier hri = 1;
-   */
-  hri?: HiveResourceIdentifier;
-
-  /**
-   * @generated from field: uint64 schema_log_index = 2;
-   */
-  schemaLogIndex: bigint;
-
-  /**
-   * @generated from field: string table_name = 3;
-   */
-  tableName: string;
-
-  /**
-   * @generated from field: vespa.v1.Record record = 4;
-   */
-  record?: Record;
-};
-
-/**
- * Describes the message vespa.v1.InsertRecordRequest.
- * Use `create(InsertRecordRequestSchema)` to create a new message.
- */
-export const InsertRecordRequestSchema: GenMessage<InsertRecordRequest> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_requests_and_responses, 10);
-
-/**
- * @generated from message vespa.v1.InsertRecordResponse
- */
-export type InsertRecordResponse = Message<"vespa.v1.InsertRecordResponse"> & {
-  /**
-   * @generated from field: hive.v1.ResponseMetadata metadata = 1;
-   */
-  metadata?: ResponseMetadata;
-
-  /**
-   * @generated from field: vespa.v1.Record record = 2;
-   */
-  record?: Record;
-};
-
-/**
- * Describes the message vespa.v1.InsertRecordResponse.
- * Use `create(InsertRecordResponseSchema)` to create a new message.
- */
-export const InsertRecordResponseSchema: GenMessage<InsertRecordResponse> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_requests_and_responses, 11);
+  messageDesc(file_vespa_v1_requests_and_responses, 7);
 
 /**
  * @generated from message vespa.v1.InsertRecordsRequest
@@ -378,6 +260,13 @@ export type InsertRecordsRequest = Message<"vespa.v1.InsertRecordsRequest"> & {
    * @generated from field: repeated vespa.v1.Record records = 4;
    */
   records: Record[];
+
+  /**
+   * Optional: whether to return the inserted records. Default is false (will only return their IDs).
+   *
+   * @generated from field: bool return_inserted = 5;
+   */
+  returnInserted: boolean;
 };
 
 /**
@@ -385,7 +274,7 @@ export type InsertRecordsRequest = Message<"vespa.v1.InsertRecordsRequest"> & {
  * Use `create(InsertRecordsRequestSchema)` to create a new message.
  */
 export const InsertRecordsRequestSchema: GenMessage<InsertRecordsRequest> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_requests_and_responses, 12);
+  messageDesc(file_vespa_v1_requests_and_responses, 8);
 
 /**
  * @generated from message vespa.v1.InsertRecordsResponse
@@ -400,6 +289,11 @@ export type InsertRecordsResponse = Message<"vespa.v1.InsertRecordsResponse"> & 
    * @generated from field: repeated string inserted_ids = 2;
    */
   insertedIds: string[];
+
+  /**
+   * @generated from field: repeated vespa.v1.Record inserted_records = 3;
+   */
+  insertedRecords: Record[];
 };
 
 /**
@@ -407,7 +301,7 @@ export type InsertRecordsResponse = Message<"vespa.v1.InsertRecordsResponse"> & 
  * Use `create(InsertRecordsResponseSchema)` to create a new message.
  */
 export const InsertRecordsResponseSchema: GenMessage<InsertRecordsResponse> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_requests_and_responses, 13);
+  messageDesc(file_vespa_v1_requests_and_responses, 9);
 
 /**
  * @generated from message vespa.v1.UpdateRecordsRequest
@@ -444,7 +338,7 @@ export type UpdateRecordsRequest = Message<"vespa.v1.UpdateRecordsRequest"> & {
  * Use `create(UpdateRecordsRequestSchema)` to create a new message.
  */
 export const UpdateRecordsRequestSchema: GenMessage<UpdateRecordsRequest> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_requests_and_responses, 14);
+  messageDesc(file_vespa_v1_requests_and_responses, 10);
 
 /**
  * @generated from message vespa.v1.UpdateRecordsResponse
@@ -461,5 +355,5 @@ export type UpdateRecordsResponse = Message<"vespa.v1.UpdateRecordsResponse"> & 
  * Use `create(UpdateRecordsResponseSchema)` to create a new message.
  */
 export const UpdateRecordsResponseSchema: GenMessage<UpdateRecordsResponse> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_requests_and_responses, 15);
+  messageDesc(file_vespa_v1_requests_and_responses, 11);
 
