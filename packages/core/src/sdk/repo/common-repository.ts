@@ -65,17 +65,18 @@ export abstract class BaseRepository<S, T extends Metadata & S> {
 
     const database = await this.getVespaDatabase();
     const vespaClient = await this.getVespaClient(database);
-    const res = await vespaClient.insertRecord({
+    const res = await vespaClient.insertRecords({
       hri: database.hri,
       tableName: this.tableName,
-      record: recordData,
+      records: [recordData],
+      returnInserted: true,
     });
 
-    const record = res.record;
-    if (!record) {
-      throw new Error("error inserting record");
+    if (res.insertedRecords.length === 0) {
+      throw new Error("Failed to insert record");
     }
-
+    const record = res.insertedRecords[0];
+    
     return unmarshalRecord(record, columnTypeMap);
   }
 
