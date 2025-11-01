@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.18.0
+
+### Minor Changes
+
+- feat: Refactor Vespa requests and responses
+
 ## 1.17.8
 
 ### Patch Changes
