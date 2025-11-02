@@ -38,11 +38,11 @@ export class TokenManager {
       }
     }
 
-    if (!this.tokenWithClaims) {
-      throw new Error("Failed to retrieve Firebase token with claims: token is null after all attempts");
+    if (!this.tokenWithoutClaims) {
+      throw new Error("Failed to retrieve Firebase token without claims: token is null after all attempts");
     }
 
-    return this.tokenWithClaims.idToken;
+    return this.tokenWithoutClaims.idToken;
   }
 }
 

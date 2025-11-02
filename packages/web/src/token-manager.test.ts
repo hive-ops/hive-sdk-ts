@@ -1,4 +1,4 @@
-import { getFirebaseTokenWithClaimsViaEmailPassword, tokenManager } from "@hiveops/core";
+import { getFirebaseTokenWithClaimsViaEmailPassword, getFirebaseTokenWithoutClaimsViaEmailPassword, tokenManager } from "@hiveops/core";
 import dotenv from "dotenv";
 import { initializeWebClient } from "./initialize";
 
@@ -11,7 +11,7 @@ describe("TokenManager", () => {
 
   initializeWebClient({
     getTokenWithClaimsFunc: () => getFirebaseTokenWithClaimsViaEmailPassword(firebaseAPIKey, email, password),
-    getTokenWithoutClaimsFunc: () => getFirebaseTokenWithClaimsViaEmailPassword(firebaseAPIKey, email, password),
+    getTokenWithoutClaimsFunc: () => getFirebaseTokenWithoutClaimsViaEmailPassword(firebaseAPIKey, email, password),
   });
 
   it("should get firebase token claims", async () => {

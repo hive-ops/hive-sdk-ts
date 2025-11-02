@@ -79,3 +79,7 @@ export const getFirebaseTokenWithClaimsViaEmailPassword = async (firebaseApiKey:
 
   return getFirebaseTokenWithClaimsViaFirebaseTokenWithoutClaims(firebaseApiKey, tokenWithoutClaims);
 };
+
+export const getFirebaseTokenWithoutClaimsViaEmailPassword = async (firebaseApiKey: string, email: string, password: string): Promise<FirebaseToken> => {
+  return await signInWithEmailPassword({ firebaseApiKey, email, password });
+};
