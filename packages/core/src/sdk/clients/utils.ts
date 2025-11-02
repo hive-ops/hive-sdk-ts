@@ -26,6 +26,12 @@ export const createTransport = (app: App, interceptors: Interceptor[]) => {
   });
 };
 
+export const getTokenWithoutClaimsInterceptor = (): Interceptor => (next) => async (req) => {
+  const token = await tokenManager.getFirebaseTokenWithoutClaims();
+  req.header.set("Authorization", `Bearer ${token}`);
+  return next(req);
+};
+
 export const getTokenInterceptor = (): Interceptor => (next) => async (req) => {
   const token = await tokenManager.getFirebaseTokenWithClaims();
   req.header.set("Authorization", `Bearer ${token}`);

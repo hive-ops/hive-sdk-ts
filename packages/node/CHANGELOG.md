@@ -1,5 +1,16 @@
 # @hiveops/node
 
+## 1.12.0
+
+### Minor Changes
+
+- feat: implement support for token management with and without claims in clients and update related initialization methods
+
+### Patch Changes
+
+- Updated dependencies
+  - @hiveops/core@1.19.0
+
 ## 1.11.1
 
 ### Patch Changes

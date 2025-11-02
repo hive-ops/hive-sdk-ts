@@ -1,9 +1,11 @@
-import { FirebaseToken } from "../firebase";
 import { setClientOptions } from "./globals";
 import { createTokenManager } from "./token-manager";
-import { ClientOptions } from "./types";
+import { ClientOptions, GetFirebaseTokenFunc } from "./types";
 
-export const initializeClient = (clientOptions: ClientOptions, getTokenFunc: () => Promise<FirebaseToken>) => {
+export const initializeClient = (
+  clientOptions: ClientOptions,
+  { getTokenWithClaimsFunc, getTokenWithoutClaimsFunc }: { getTokenWithClaimsFunc: GetFirebaseTokenFunc; getTokenWithoutClaimsFunc: GetFirebaseTokenFunc },
+) => {
   setClientOptions(clientOptions);
-  createTokenManager(getTokenFunc, true);
+  createTokenManager({ getTokenWithClaimsFunc, getTokenWithoutClaimsFunc, forceNew: true });
 };

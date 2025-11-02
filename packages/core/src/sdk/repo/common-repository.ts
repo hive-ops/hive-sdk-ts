@@ -2,7 +2,7 @@ import { ColumnType, DatabaseSchema, VespaDatabase, VespaDatabaseStack } from ".
 import { BeekeeperClient, createBeekeeperClient, createSingletonVespaClient, VespaClient } from "../clients";
 import { VESPA_COLUMN_SUFFIXES } from "../utilities";
 import { convertFindOptionsToWhereConditions, FindManyOptions, FindOneOptions, getLimit, getOffset } from "./find-options";
-import { databaseStack, getStackHRI, getStackHRN, setDatabaseStack } from "./globals";
+import { databaseStack, getStackHRI, setDatabaseStack } from "./globals";
 import { marshalRecord, unmarshalRecord } from "./marshalling";
 import { ColumnTypeMap, Metadata } from "./types";
 
@@ -76,7 +76,7 @@ export abstract class BaseRepository<S, T extends Metadata & S> {
       throw new Error("Failed to insert record");
     }
     const record = res.insertedRecords[0];
-    
+
     return unmarshalRecord(record, columnTypeMap);
   }
 

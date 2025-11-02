@@ -9,7 +9,10 @@ describe("TokenManager", () => {
   const email: string = process.env.USER_EMAIL || "";
   const password: string = process.env.USER_PASSWORD || "";
 
-  initializeWebClient(() => getFirebaseTokenWithClaimsViaEmailPassword(firebaseAPIKey, email, password));
+  initializeWebClient({
+    getTokenWithClaimsFunc: () => getFirebaseTokenWithClaimsViaEmailPassword(firebaseAPIKey, email, password),
+    getTokenWithoutClaimsFunc: () => getFirebaseTokenWithClaimsViaEmailPassword(firebaseAPIKey, email, password),
+  });
 
   it("should get firebase token claims", async () => {
     const token = await tokenManager.getFirebaseTokenWithClaims();

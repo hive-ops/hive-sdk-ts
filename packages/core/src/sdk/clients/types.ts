@@ -13,6 +13,7 @@ import {
   VespaDatabaseService,
 } from "../../gen";
 import { ClientType } from "../utilities";
+import { FirebaseToken } from "../firebase";
 
 export type CreateTransportFn = (opts: { url: string; interceptors: Interceptor[] }) => Transport;
 
@@ -34,3 +35,5 @@ export type DroneClient = Client<typeof DroneIAMOrganizationService> &
 export type BeekeeperClient = Client<typeof BeekeeperCountryService> & Client<typeof BeekeeperVespaDatabaseStackService>;
 
 export type VespaClient = Client<typeof VespaDatabaseService>;
+
+export type GetFirebaseTokenFunc = () => Promise<FirebaseToken>;
