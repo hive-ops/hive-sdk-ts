@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.19.1
+
+### Patch Changes
+
+- feat: add support for retrieving Firebase tokens without claims and update related tests
+
 ## 1.19.0
 
 ### Minor Changes

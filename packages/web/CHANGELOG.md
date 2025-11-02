@@ -1,5 +1,13 @@
 # @hiveops/web
 
+## 1.6.1
+
+### Patch Changes
+
+- feat: add support for retrieving Firebase tokens without claims and update related tests
+- Updated dependencies
+  - @hiveops/core@1.19.1
+
 ## 1.6.0
 
 ### Minor Changes
