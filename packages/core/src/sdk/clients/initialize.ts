@@ -4,8 +4,8 @@ import { ClientOptions, GetFirebaseTokenFunc } from "./types";
 
 export const initializeClient = (
   clientOptions: ClientOptions,
-  { getTokenWithClaimsFunc, getTokenWithoutClaimsFunc }: { getTokenWithClaimsFunc: GetFirebaseTokenFunc; getTokenWithoutClaimsFunc: GetFirebaseTokenFunc },
+  getTokenWithoutClaimsFunc: GetFirebaseTokenFunc
 ) => {
   setClientOptions(clientOptions);
-  createTokenManager({ getTokenWithClaimsFunc, getTokenWithoutClaimsFunc, forceNew: true });
+  createTokenManager(getTokenWithoutClaimsFunc, true);
 };

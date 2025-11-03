@@ -1,4 +1,3 @@
-import { createDroneTokenClient } from "../clients";
 
 const TOKEN_REFRESH_THRESHOLD = 5 * 60 * 1000; // 5 minutes in milliseconds
 const HTTP_TIMEOUT = 10000; // 10 seconds
@@ -64,20 +63,6 @@ export const signInWithCustomToken = async ({ firebaseApiKey, customToken }: { f
     token: customToken,
     returnSecureToken: true,
   });
-};
-
-export const getFirebaseTokenWithClaimsViaFirebaseTokenWithoutClaims = async (firebaseApiKey: string, firebaseToken: FirebaseToken): Promise<FirebaseToken> => {
-  const droneTokenClient = createDroneTokenClient(firebaseToken.idToken);
-
-  const customTokenWithClaimsRes = await droneTokenClient.getCustomTokenWithClaims({});
-
-  return signInWithCustomToken({ firebaseApiKey, customToken: customTokenWithClaimsRes.token });
-};
-
-export const getFirebaseTokenWithClaimsViaEmailPassword = async (firebaseApiKey: string, email: string, password: string): Promise<FirebaseToken> => {
-  const tokenWithoutClaims = await signInWithEmailPassword({ firebaseApiKey, email, password });
-
-  return getFirebaseTokenWithClaimsViaFirebaseTokenWithoutClaims(firebaseApiKey, tokenWithoutClaims);
 };
 
 export const getFirebaseTokenWithoutClaimsViaEmailPassword = async (firebaseApiKey: string, email: string, password: string): Promise<FirebaseToken> => {
