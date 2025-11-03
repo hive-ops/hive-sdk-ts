@@ -22,8 +22,6 @@ export type ClientOptions = {
   createTransportFn: CreateTransportFn;
 };
 
-export type DroneTokenClient = Client<typeof DroneTokenService>;
-
 export type DroneClient = Client<typeof DroneIAMOrganizationService> &
   Client<typeof DroneIAMProjectService> &
   Client<typeof DroneIAMUserService> &

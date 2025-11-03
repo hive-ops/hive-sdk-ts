@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.20.1
+
+### Patch Changes
+
+- refactor: remove DroneTokenClient type definition from client options
+
 ## 1.20.0
 
 ### Minor Changes
