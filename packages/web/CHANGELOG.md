@@ -1,5 +1,16 @@
 # @hiveops/web
 
+## 1.7.0
+
+### Minor Changes
+
+- refactor: simplify token management by removing claims support
+
+### Patch Changes
+
+- Updated dependencies
+  - @hiveops/core@1.20.0
+
 ## 1.6.1
 
 ### Patch Changes

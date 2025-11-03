@@ -1,5 +1,16 @@
 # @hiveops/node
 
+## 1.13.0
+
+### Minor Changes
+
+- refactor: simplify token management by removing claims support
+
+### Patch Changes
+
+- Updated dependencies
+  - @hiveops/core@1.20.0
+
 ## 1.12.1
 
 ### Patch Changes

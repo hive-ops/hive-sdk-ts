@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.20.0
+
+### Minor Changes
+
+- refactor: simplify token management by removing claims support
+
 ## 1.19.1
 
 ### Patch Changes
