@@ -1,5 +1,13 @@
 # @hiveops/web
 
+## 1.7.1
+
+### Patch Changes
+
+- feat: add IndexSortingOrder enum and IndexedColumn message to models
+- Updated dependencies
+  - @hiveops/core@1.20.2
+
 ## 1.7.0
 
 ### Minor Changes

@@ -5,7 +5,7 @@
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
-import type { ColumnType, ComparisonOperator } from "./enums_pb";
+import type { ColumnType, ComparisonOperator, IndexSortingOrder } from "./enums_pb";
 import { file_vespa_v1_enums } from "./enums_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file vespa/v1/models.proto.
  */
 export const file_vespa_v1_models: GenFile = /*@__PURE__*/
-  fileDesc("ChV2ZXNwYS92MS9tb2RlbHMucHJvdG8SCHZlc3BhLnYxIncKE09iamVjdFJlbmFtZU9wdGlvbnMSMAoEZnJvbRgBIAEoCUIiukgfch0QARgZMhdeW2EtekEtWl1bYS16QS1aMC05X10qJBIuCgJ0bxgCIAEoCUIiukgfch0QARgZMhdeW2EtekEtWl1bYS16QS1aMC05X10qJCIrCgpWZXNwYUVycm9yEgwKBGNvZGUYASABKAkSDwoHbWVzc2FnZRgCIAEoCSK+AQoOQ29sdW1uTWV0YWRhdGESKQoDcmVmGAEgASgJQhy6SBlyFxABGBkyEV5bYS16QS1aMC05Xy46XSokEjAKBG5hbWUYAiABKAlCIrpIH3IdEAEYGTIXXlthLXpBLVpdW2EtekEtWjAtOV9dKiQSLAoEdHlwZRgDIAEoDjIULnZlc3BhLnYxLkNvbHVtblR5cGVCCLpIBYIBAhABEhAKCG51bGxhYmxlGAQgASgIEg8KB2RlZmF1bHQYCCABKAkiQwoNSW5kZXhNZXRhZGF0YRIiCgxjb2x1bW5fbmFtZXMYASADKAlCDLpICZIBBggBEAoYARIOCgZ1bmlxdWUYAiABKAgi+AIKDVRhYmxlTWV0YWRhdGESJwoDcmVmGAEgASgJQhq6SBdyFRABGBkyD15bYS16QS1aMC05X10qJBIwCgRuYW1lGAIgASgJQiK6SB9yHRABGBkyF15bYS16QS1aXVthLXpBLVowLTlfXSokEjUKB2NvbHVtbnMYAyADKAsyGC52ZXNwYS52MS5Db2x1bW5NZXRhZGF0YUIKukgHkgEECAAQZBI0CgdpbmRleGVzGAQgAygLMhcudmVzcGEudjEuSW5kZXhNZXRhZGF0YUIKukgHkgEECAAQChJPCg9jb2x1bW5zX2J5X25hbWUYBSADKAsyKi52ZXNwYS52MS5UYWJsZU1ldGFkYXRhLkNvbHVtbnNCeU5hbWVFbnRyeUIKukgHmgEECAAQZBpOChJDb2x1bW5zQnlOYW1lRW50cnkSCwoDa2V5GAEgASgJEicKBXZhbHVlGAIgASgLMhgudmVzcGEudjEuQ29sdW1uTWV0YWRhdGE6AjgBIl4KCVZlc3BhTm9kZRIQCgh3b3JrbG9hZBgBIAEoCRILCgNodWIYAiABKAkSDAoEbmFtZRgDIAEoCRIUCgxjb3VudHJ5X2NvZGUYBCABKAkSDgoGaHViX2lkGAUgASgJIuMBCg5EYXRhYmFzZVNjaGVtYRIzCgZ0YWJsZXMYASADKAsyFy52ZXNwYS52MS5UYWJsZU1ldGFkYXRhQgq6SAeSAQQIABBkEk4KDnRhYmxlc19ieV9uYW1lGAIgAygLMioudmVzcGEudjEuRGF0YWJhc2VTY2hlbWEuVGFibGVzQnlOYW1lRW50cnlCCrpIB5oBBAgAEGQaTAoRVGFibGVzQnlOYW1lRW50cnkSCwoDa2V5GAEgASgJEiYKBXZhbHVlGAIgASgLMhcudmVzcGEudjEuVGFibGVNZXRhZGF0YToCOAEiMgoMUmVuYW1lQ29sdW1uEhAKCG9sZF9uYW1lGAIgASgJEhAKCG5ld19uYW1lGAMgASgJIj0KC1JlbmFtZVRhYmxlEi4KB29wdGlvbnMYASABKAsyHS52ZXNwYS52MS5PYmplY3RSZW5hbWVPcHRpb25zIicKClJlZkFuZE5hbWUSCwoDcmVmGAEgASgJEgwKBG5hbWUYAiABKAkijgIKCkFsdGVyVGFibGUSEgoKdGFibGVfbmFtZRgBIAEoCRIwCg5jcmVhdGVfY29sdW1ucxgCIAMoCzIYLnZlc3BhLnYxLkNvbHVtbk1ldGFkYXRhEi4KDnJlbmFtZV9jb2x1bW5zGAMgAygLMhYudmVzcGEudjEuUmVuYW1lQ29sdW1uEioKDGRyb3BfY29sdW1ucxgEIAMoCzIULnZlc3BhLnYxLlJlZkFuZE5hbWUSLwoOY3JlYXRlX2luZGV4ZXMYBSADKAsyFy52ZXNwYS52MS5JbmRleE1ldGFkYXRhEi0KDGRyb3BfaW5kZXhlcxgGIAMoCzIXLnZlc3BhLnYxLkluZGV4TWV0YWRhdGEiwAEKCU1pZ3JhdGlvbhIuCg1jcmVhdGVfdGFibGVzGAEgAygLMhcudmVzcGEudjEuVGFibGVNZXRhZGF0YRIsCg1yZW5hbWVfdGFibGVzGAIgAygLMhUudmVzcGEudjEuUmVuYW1lVGFibGUSKQoLZHJvcF90YWJsZXMYAyADKAsyFC52ZXNwYS52MS5SZWZBbmROYW1lEioKDGFsdGVyX3RhYmxlcxgEIAMoCzIULnZlc3BhLnYxLkFsdGVyVGFibGUiKwoKRmllbGRWYWx1ZRINCgV2YWx1ZRgBIAEoCRIOCgZpc19uaWwYAiABKAgiewoGUmVjb3JkEiwKBnJlY29yZBgBIAMoCzIcLnZlc3BhLnYxLlJlY29yZC5SZWNvcmRFbnRyeRpDCgtSZWNvcmRFbnRyeRILCgNrZXkYASABKAkSIwoFdmFsdWUYAiABKAsyFC52ZXNwYS52MS5GaWVsZFZhbHVlOgI4ASJhCgpXaGVyZVZhbHVlEiIKBHR5cGUYASABKA4yFC52ZXNwYS52MS5Db2x1bW5UeXBlEhAKCGlzX2FycmF5GAIgASgIEg8KB2lzX251bGwYAyABKAgSDAoEZGF0YRgEIAEoCSJyCg5XaGVyZUNvbmRpdGlvbhILCgNrZXkYASABKAkSLgoIb3BlcmF0b3IYAiABKA4yHC52ZXNwYS52MS5Db21wYXJpc29uT3BlcmF0b3ISIwoFdmFsdWUYAyABKAsyFC52ZXNwYS52MS5XaGVyZVZhbHVlQpcBCgxjb20udmVzcGEudjFCC01vZGVsc1Byb3RvUAFaOWdpdGh1Yi5jb20vaGl2ZS1vcHMvaGl2ZS1zZGstZ28vcGtncy9nZW4vdmVzcGEvdjE7dmVzcGF2MaICA1ZYWKoCCFZlc3BhLlYxygIIVmVzcGFcVjHiAhRWZXNwYVxWMVxHUEJNZXRhZGF0YeoCCVZlc3BhOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_vespa_v1_enums]);
+  fileDesc("ChV2ZXNwYS92MS9tb2RlbHMucHJvdG8SCHZlc3BhLnYxIncKE09iamVjdFJlbmFtZU9wdGlvbnMSMAoEZnJvbRgBIAEoCUIiukgfch0QARgZMhdeW2EtekEtWl1bYS16QS1aMC05X10qJBIuCgJ0bxgCIAEoCUIiukgfch0QARgZMhdeW2EtekEtWl1bYS16QS1aMC05X10qJCIrCgpWZXNwYUVycm9yEgwKBGNvZGUYASABKAkSDwoHbWVzc2FnZRgCIAEoCSK+AQoOQ29sdW1uTWV0YWRhdGESKQoDcmVmGAEgASgJQhy6SBlyFxABGBkyEV5bYS16QS1aMC05Xy46XSokEjAKBG5hbWUYAiABKAlCIrpIH3IdEAEYGTIXXlthLXpBLVpdW2EtekEtWjAtOV9dKiQSLAoEdHlwZRgDIAEoDjIULnZlc3BhLnYxLkNvbHVtblR5cGVCCLpIBYIBAhABEhAKCG51bGxhYmxlGAQgASgIEg8KB2RlZmF1bHQYCCABKAkiYgoNSW5kZXhlZENvbHVtbhITCgtjb2x1bW5fbmFtZRgBIAEoCRI8Cg1zb3J0aW5nX29yZGVyGAIgASgOMhsudmVzcGEudjEuSW5kZXhTb3J0aW5nT3JkZXJCCLpIBYIBAhABIlUKDUluZGV4TWV0YWRhdGESNAoHY29sdW1ucxgBIAMoCzIXLnZlc3BhLnYxLkluZGV4ZWRDb2x1bW5CCrpIB5IBBAgBEAoSDgoGdW5pcXVlGAIgASgIIvgCCg1UYWJsZU1ldGFkYXRhEicKA3JlZhgBIAEoCUIaukgXchUQARgZMg9eW2EtekEtWjAtOV9dKiQSMAoEbmFtZRgCIAEoCUIiukgfch0QARgZMhdeW2EtekEtWl1bYS16QS1aMC05X10qJBI1Cgdjb2x1bW5zGAMgAygLMhgudmVzcGEudjEuQ29sdW1uTWV0YWRhdGFCCrpIB5IBBAgAEGQSNAoHaW5kZXhlcxgEIAMoCzIXLnZlc3BhLnYxLkluZGV4TWV0YWRhdGFCCrpIB5IBBAgAEAoSTwoPY29sdW1uc19ieV9uYW1lGAUgAygLMioudmVzcGEudjEuVGFibGVNZXRhZGF0YS5Db2x1bW5zQnlOYW1lRW50cnlCCrpIB5oBBAgAEGQaTgoSQ29sdW1uc0J5TmFtZUVudHJ5EgsKA2tleRgBIAEoCRInCgV2YWx1ZRgCIAEoCzIYLnZlc3BhLnYxLkNvbHVtbk1ldGFkYXRhOgI4ASJeCglWZXNwYU5vZGUSEAoId29ya2xvYWQYASABKAkSCwoDaHViGAIgASgJEgwKBG5hbWUYAyABKAkSFAoMY291bnRyeV9jb2RlGAQgASgJEg4KBmh1Yl9pZBgFIAEoCSLjAQoORGF0YWJhc2VTY2hlbWESMwoGdGFibGVzGAEgAygLMhcudmVzcGEudjEuVGFibGVNZXRhZGF0YUIKukgHkgEECAAQZBJOCg50YWJsZXNfYnlfbmFtZRgCIAMoCzIqLnZlc3BhLnYxLkRhdGFiYXNlU2NoZW1hLlRhYmxlc0J5TmFtZUVudHJ5Qgq6SAeaAQQIABBkGkwKEVRhYmxlc0J5TmFtZUVudHJ5EgsKA2tleRgBIAEoCRImCgV2YWx1ZRgCIAEoCzIXLnZlc3BhLnYxLlRhYmxlTWV0YWRhdGE6AjgBIjIKDFJlbmFtZUNvbHVtbhIQCghvbGRfbmFtZRgCIAEoCRIQCghuZXdfbmFtZRgDIAEoCSI9CgtSZW5hbWVUYWJsZRIuCgdvcHRpb25zGAEgASgLMh0udmVzcGEudjEuT2JqZWN0UmVuYW1lT3B0aW9ucyInCgpSZWZBbmROYW1lEgsKA3JlZhgBIAEoCRIMCgRuYW1lGAIgASgJIo4CCgpBbHRlclRhYmxlEhIKCnRhYmxlX25hbWUYASABKAkSMAoOY3JlYXRlX2NvbHVtbnMYAiADKAsyGC52ZXNwYS52MS5Db2x1bW5NZXRhZGF0YRIuCg5yZW5hbWVfY29sdW1ucxgDIAMoCzIWLnZlc3BhLnYxLlJlbmFtZUNvbHVtbhIqCgxkcm9wX2NvbHVtbnMYBCADKAsyFC52ZXNwYS52MS5SZWZBbmROYW1lEi8KDmNyZWF0ZV9pbmRleGVzGAUgAygLMhcudmVzcGEudjEuSW5kZXhNZXRhZGF0YRItCgxkcm9wX2luZGV4ZXMYBiADKAsyFy52ZXNwYS52MS5JbmRleE1ldGFkYXRhIsABCglNaWdyYXRpb24SLgoNY3JlYXRlX3RhYmxlcxgBIAMoCzIXLnZlc3BhLnYxLlRhYmxlTWV0YWRhdGESLAoNcmVuYW1lX3RhYmxlcxgCIAMoCzIVLnZlc3BhLnYxLlJlbmFtZVRhYmxlEikKC2Ryb3BfdGFibGVzGAMgAygLMhQudmVzcGEudjEuUmVmQW5kTmFtZRIqCgxhbHRlcl90YWJsZXMYBCADKAsyFC52ZXNwYS52MS5BbHRlclRhYmxlIisKCkZpZWxkVmFsdWUSDQoFdmFsdWUYASABKAkSDgoGaXNfbmlsGAIgASgIInsKBlJlY29yZBIsCgZyZWNvcmQYASADKAsyHC52ZXNwYS52MS5SZWNvcmQuUmVjb3JkRW50cnkaQwoLUmVjb3JkRW50cnkSCwoDa2V5GAEgASgJEiMKBXZhbHVlGAIgASgLMhQudmVzcGEudjEuRmllbGRWYWx1ZToCOAEiYQoKV2hlcmVWYWx1ZRIiCgR0eXBlGAEgASgOMhQudmVzcGEudjEuQ29sdW1uVHlwZRIQCghpc19hcnJheRgCIAEoCBIPCgdpc19udWxsGAMgASgIEgwKBGRhdGEYBCABKAkicgoOV2hlcmVDb25kaXRpb24SCwoDa2V5GAEgASgJEi4KCG9wZXJhdG9yGAIgASgOMhwudmVzcGEudjEuQ29tcGFyaXNvbk9wZXJhdG9yEiMKBXZhbHVlGAMgASgLMhQudmVzcGEudjEuV2hlcmVWYWx1ZUKXAQoMY29tLnZlc3BhLnYxQgtNb2RlbHNQcm90b1ABWjlnaXRodWIuY29tL2hpdmUtb3BzL2hpdmUtc2RrLWdvL3BrZ3MvZ2VuL3Zlc3BhL3YxO3Zlc3BhdjGiAgNWWFiqAghWZXNwYS5WMcoCCFZlc3BhXFYx4gIUVmVzcGFcVjFcR1BCTWV0YWRhdGHqAglWZXNwYTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_vespa_v1_enums]);
 
 /**
  * @generated from message vespa.v1.ObjectRenameOptions
@@ -101,13 +101,35 @@ export const ColumnMetadataSchema: GenMessage<ColumnMetadata> = /*@__PURE__*/
   messageDesc(file_vespa_v1_models, 2);
 
 /**
+ * @generated from message vespa.v1.IndexedColumn
+ */
+export type IndexedColumn = Message<"vespa.v1.IndexedColumn"> & {
+  /**
+   * @generated from field: string column_name = 1;
+   */
+  columnName: string;
+
+  /**
+   * @generated from field: vespa.v1.IndexSortingOrder sorting_order = 2;
+   */
+  sortingOrder: IndexSortingOrder;
+};
+
+/**
+ * Describes the message vespa.v1.IndexedColumn.
+ * Use `create(IndexedColumnSchema)` to create a new message.
+ */
+export const IndexedColumnSchema: GenMessage<IndexedColumn> = /*@__PURE__*/
+  messageDesc(file_vespa_v1_models, 3);
+
+/**
  * @generated from message vespa.v1.IndexMetadata
  */
 export type IndexMetadata = Message<"vespa.v1.IndexMetadata"> & {
   /**
-   * @generated from field: repeated string column_names = 1;
+   * @generated from field: repeated vespa.v1.IndexedColumn columns = 1;
    */
-  columnNames: string[];
+  columns: IndexedColumn[];
 
   /**
    * @generated from field: bool unique = 2;
@@ -120,7 +142,7 @@ export type IndexMetadata = Message<"vespa.v1.IndexMetadata"> & {
  * Use `create(IndexMetadataSchema)` to create a new message.
  */
 export const IndexMetadataSchema: GenMessage<IndexMetadata> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_models, 3);
+  messageDesc(file_vespa_v1_models, 4);
 
 /**
  * @generated from message vespa.v1.TableMetadata
@@ -157,7 +179,7 @@ export type TableMetadata = Message<"vespa.v1.TableMetadata"> & {
  * Use `create(TableMetadataSchema)` to create a new message.
  */
 export const TableMetadataSchema: GenMessage<TableMetadata> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_models, 4);
+  messageDesc(file_vespa_v1_models, 5);
 
 /**
  * @generated from message vespa.v1.VespaNode
@@ -194,7 +216,7 @@ export type VespaNode = Message<"vespa.v1.VespaNode"> & {
  * Use `create(VespaNodeSchema)` to create a new message.
  */
 export const VespaNodeSchema: GenMessage<VespaNode> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_models, 5);
+  messageDesc(file_vespa_v1_models, 6);
 
 /**
  * @generated from message vespa.v1.DatabaseSchema
@@ -216,7 +238,7 @@ export type DatabaseSchema = Message<"vespa.v1.DatabaseSchema"> & {
  * Use `create(DatabaseSchemaSchema)` to create a new message.
  */
 export const DatabaseSchemaSchema: GenMessage<DatabaseSchema> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_models, 6);
+  messageDesc(file_vespa_v1_models, 7);
 
 /**
  * @generated from message vespa.v1.RenameColumn
@@ -238,7 +260,7 @@ export type RenameColumn = Message<"vespa.v1.RenameColumn"> & {
  * Use `create(RenameColumnSchema)` to create a new message.
  */
 export const RenameColumnSchema: GenMessage<RenameColumn> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_models, 7);
+  messageDesc(file_vespa_v1_models, 8);
 
 /**
  * @generated from message vespa.v1.RenameTable
@@ -255,7 +277,7 @@ export type RenameTable = Message<"vespa.v1.RenameTable"> & {
  * Use `create(RenameTableSchema)` to create a new message.
  */
 export const RenameTableSchema: GenMessage<RenameTable> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_models, 8);
+  messageDesc(file_vespa_v1_models, 9);
 
 /**
  * @generated from message vespa.v1.RefAndName
@@ -277,7 +299,7 @@ export type RefAndName = Message<"vespa.v1.RefAndName"> & {
  * Use `create(RefAndNameSchema)` to create a new message.
  */
 export const RefAndNameSchema: GenMessage<RefAndName> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_models, 9);
+  messageDesc(file_vespa_v1_models, 10);
 
 /**
  * @generated from message vespa.v1.AlterTable
@@ -319,7 +341,7 @@ export type AlterTable = Message<"vespa.v1.AlterTable"> & {
  * Use `create(AlterTableSchema)` to create a new message.
  */
 export const AlterTableSchema: GenMessage<AlterTable> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_models, 10);
+  messageDesc(file_vespa_v1_models, 11);
 
 /**
  * @generated from message vespa.v1.Migration
@@ -351,7 +373,7 @@ export type Migration = Message<"vespa.v1.Migration"> & {
  * Use `create(MigrationSchema)` to create a new message.
  */
 export const MigrationSchema: GenMessage<Migration> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_models, 11);
+  messageDesc(file_vespa_v1_models, 12);
 
 /**
  * @generated from message vespa.v1.FieldValue
@@ -375,7 +397,7 @@ export type FieldValue = Message<"vespa.v1.FieldValue"> & {
  * Use `create(FieldValueSchema)` to create a new message.
  */
 export const FieldValueSchema: GenMessage<FieldValue> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_models, 12);
+  messageDesc(file_vespa_v1_models, 13);
 
 /**
  * @generated from message vespa.v1.Record
@@ -392,7 +414,7 @@ export type Record = Message<"vespa.v1.Record"> & {
  * Use `create(RecordSchema)` to create a new message.
  */
 export const RecordSchema: GenMessage<Record> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_models, 13);
+  messageDesc(file_vespa_v1_models, 14);
 
 /**
  * @generated from message vespa.v1.WhereValue
@@ -424,7 +446,7 @@ export type WhereValue = Message<"vespa.v1.WhereValue"> & {
  * Use `create(WhereValueSchema)` to create a new message.
  */
 export const WhereValueSchema: GenMessage<WhereValue> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_models, 14);
+  messageDesc(file_vespa_v1_models, 15);
 
 /**
  * @generated from message vespa.v1.WhereCondition
@@ -453,5 +475,5 @@ export type WhereCondition = Message<"vespa.v1.WhereCondition"> & {
  * Use `create(WhereConditionSchema)` to create a new message.
  */
 export const WhereConditionSchema: GenMessage<WhereCondition> = /*@__PURE__*/
-  messageDesc(file_vespa_v1_models, 15);
+  messageDesc(file_vespa_v1_models, 16);
 

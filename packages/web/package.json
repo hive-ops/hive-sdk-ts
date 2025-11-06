@@ -1,6 +1,6 @@
 {
   "name": "@hiveops/web",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@connectrpc/connect-web": "^2.0.4",
-    "@hiveops/core": "^1.20.0"
+    "@hiveops/core": "^1.20.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.7.0",
