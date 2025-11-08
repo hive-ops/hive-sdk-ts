@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.20.3
+
+### Patch Changes
+
+- fix: update default field to be optional in ColumnMetadata type
+
 ## 1.20.2
 
 ### Patch Changes
