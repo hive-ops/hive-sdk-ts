@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.20.4
+
+### Patch Changes
+
+- refactor: update migration schema to include schema log index and adjust field numbers
+
 ## 1.20.3
 
 ### Patch Changes
