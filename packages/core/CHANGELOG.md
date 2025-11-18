@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.20.5
+
+### Patch Changes
+
+- feat: add optional default value and enum values to ColumnMetadata type
+
 ## 1.20.4
 
 ### Patch Changes
