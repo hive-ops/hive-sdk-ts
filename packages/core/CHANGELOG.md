@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.20.8
+
+### Patch Changes
+
+- fix: add missing column type check in convertRecordToRecordRow function
+
 ## 1.20.7
 
 ### Patch Changes

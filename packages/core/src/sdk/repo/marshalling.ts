@@ -47,6 +47,10 @@ export const convertRecordToRecordRow = <T>(record: Record, columnTypeMap: Colum
   for (const [key, fieldValue] of Object.entries(record.record)) {
     const columnType = columnTypeMap[key as keyof T];
 
+    if (!columnType) {
+      throw new Error(`column type for key ${key} not found in columnTypeMap`);
+    }
+
     let tValue: any;
 
     if (columnType === ColumnType.JSON) {
