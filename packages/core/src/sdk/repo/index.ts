@@ -1,6 +1,5 @@
 export { create as createMessage } from "@bufbuild/protobuf";
 export * from "./common-repository";
-export * from "./data-record";
 export * from "./find-options";
 export * from "./globals";
 export * from "./marshalling";

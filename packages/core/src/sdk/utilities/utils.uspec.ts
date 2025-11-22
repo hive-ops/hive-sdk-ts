@@ -57,16 +57,6 @@ describe("utils", () => {
     });
   });
 
-  describe("vespaColumnPrefix, isVespaColumn, getVespaColumnName", () => {
-    it("detects vespa columns", () => {
-      expect(utils.isVespaColumn("_vespa_foo")).toBe(true);
-      expect(utils.isVespaColumn("foo")).toBe(false);
-    });
-    it("removes vespa prefix", () => {
-      expect(utils.getVespaColumnName("_vespa_foo")).toBe("foo");
-    });
-  });
-
   describe("buildURL", () => {
     const testCases: {
       fqdn: FQDN;

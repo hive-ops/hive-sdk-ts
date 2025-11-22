@@ -23,6 +23,10 @@ export const unmarshalRecord = <T>(record: Record, columnTypeMap: ColumnTypeMap<
   for (const [key, fieldValue] of Object.entries(record.record)) {
     const columnType = columnTypeMap[key as keyof T];
 
+    if (!columnType) {
+      throw new Error(`column type for key ${key} not found in columnTypeMap`);
+    }
+
     objMap[key] = fromString(fieldValue.value, columnType);
   }
 

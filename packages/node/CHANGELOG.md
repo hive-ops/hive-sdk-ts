@@ -1,5 +1,13 @@
 # @hiveops/node
 
+## 1.13.2
+
+### Patch Changes
+
+- feat: integrate ColumnMetadata into BaseRepository and add getBaseColumns method
+- Updated dependencies
+  - @hiveops/core@1.20.7
+
 ## 1.13.1
 
 ### Patch Changes

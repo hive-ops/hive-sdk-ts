@@ -1,6 +1,5 @@
-import { ColumnType, DatabaseSchema, VespaDatabase, VespaDatabaseStack } from "../../gen";
+import { ColumnMetadata, ColumnType, DatabaseSchema, VespaDatabase, VespaDatabaseStack } from "../../gen";
 import { BeekeeperClient, createBeekeeperClient, createSingletonVespaClient, VespaClient } from "../clients";
-import { VESPA_COLUMN_SUFFIXES } from "../utilities";
 import { convertFindOptionsToWhereConditions, FindManyOptions, FindOneOptions, getLimit, getOffset } from "./find-options";
 import { databaseStack, getStackHRI, setDatabaseStack } from "./globals";
 import { marshalRecord, unmarshalRecord } from "./marshalling";
@@ -149,6 +148,10 @@ export abstract class BaseRepository<S, T extends Metadata & S> {
     }
     return databaseStack!;
   }
+  async getBaseColumns(): Promise<ColumnMetadata[]> {
+    const stack = await this.getVespaDatabaseStack();
+    return stack.baseColumns;
+  }
   async getVespaDatabase(): Promise<VespaDatabase> {
     const stack = await this.getVespaDatabaseStack();
     return stack.databases[0];
@@ -158,6 +161,7 @@ export abstract class BaseRepository<S, T extends Metadata & S> {
     return stack.schema!;
   }
   async getColumnTypeMap(): Promise<ColumnTypeMap<T>> {
+    const baseColumns = await this.getBaseColumns();
     const schema = await this.getDatabaseSchema();
 
     const table = schema.tables.find((t) => t.name === this.tableName);
@@ -166,12 +170,11 @@ export abstract class BaseRepository<S, T extends Metadata & S> {
     }
 
     const columnTypeMap = {} as ColumnTypeMap<T>;
-    for (const column of table.columns) {
+    for (const column of baseColumns) {
       columnTypeMap[column.name] = column.type;
     }
-
-    for (const suffix of VESPA_COLUMN_SUFFIXES) {
-      columnTypeMap[suffix] = ColumnType.TEXT;
+    for (const column of table.columns) {
+      columnTypeMap[column.name] = column.type;
     }
 
     return columnTypeMap;

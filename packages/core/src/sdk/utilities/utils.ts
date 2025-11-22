@@ -54,13 +54,13 @@ export const getEnumKey = <T extends object>(enumType: T, value: T[keyof T]): ke
   return Object.keys(enumType)[Object.values(enumType).indexOf(value)] as keyof T;
 };
 
-export const vespaColumnPrefix = "_vespa_";
-export const VESPA_COLUMN_SUFFIXES = ["id", "partition"]; // "createdAt", "updatedAt", "deletedAt"];
+// export const vespaColumnPrefix = "_vespa_";
+// export const VESPA_COLUMN_SUFFIXES = ["id", "partition"]; // "createdAt", "updatedAt", "deletedAt"];
 
-export const isVespaColumn = (key: string): boolean => key.startsWith(vespaColumnPrefix);
-export const getVespaColumnName = (key: string): string => {
-  return key.replace(vespaColumnPrefix, "");
-};
+// export const isVespaColumn = (key: string): boolean => key.startsWith(vespaColumnPrefix);
+// export const getVespaColumnName = (key: string): string => {
+//   return key.replace(vespaColumnPrefix, "");
+// };
 
 const DOMAIN = "hiveops.io";
 
@@ -125,7 +125,7 @@ export const buildURL = (fqdn: FQDN, clientType: ClientType): string => {
 
   const domainElements: string[] = [fqdn.nodeName, frameworkText, appName, environment, fqdn.hubId, fqdn.domain];
 
-  const url =  `${protocol}://${_.compact(domainElements).join(".")}`;
+  const url = `${protocol}://${_.compact(domainElements).join(".")}`;
 
   return isDevEnv(fqdn.environment) ? `${url}:${basePort}` : url;
 };
