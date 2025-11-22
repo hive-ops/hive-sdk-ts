@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.20.6
+
+### Patch Changes
+
+- feat: add BEEKEEPER_COUNTRY resource to hive.v1.Resource enum
+
 ## 1.20.5
 
 ### Patch Changes
