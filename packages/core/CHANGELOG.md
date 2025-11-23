@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.20.10
+
+### Patch Changes
+
+- fix: update service descriptor indices in service_pb.ts
+
 ## 1.20.9
 
 ### Patch Changes

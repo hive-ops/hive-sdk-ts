@@ -1,5 +1,13 @@
 # @hiveops/node
 
+## 1.13.3
+
+### Patch Changes
+
+- fix: update service descriptor indices in service_pb.ts
+- Updated dependencies
+  - @hiveops/core@1.20.10
+
 ## 1.13.2
 
 ### Patch Changes
