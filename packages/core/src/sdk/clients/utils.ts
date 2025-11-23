@@ -1,6 +1,6 @@
 import { create } from "@bufbuild/protobuf";
 import { Interceptor } from "@connectrpc/connect";
-import { App, BasePort, FQDN, FQDNSchema } from "../../gen";
+import { App, FQDN, FQDNSchema } from "../../gen";
 import { buildURL, getDomain, getEnv } from "../utilities";
 import { getClientOptions } from "./globals";
 import { tokenManager } from "./token-manager";
@@ -13,7 +13,6 @@ export const createTransport = (app: App, interceptors: Interceptor[]) => {
     environment: getEnv(),
     hubId: "",
     app,
-    basePort: BasePort.UNSPECIFIED,
     nodeName: "",
   });
 

@@ -1,4 +1,4 @@
-import { App, BasePort, Environment } from "../../gen";
+import { App, Environment } from "../../gen";
 import { ClientType, Framework } from "./types";
 
 // export const FRAMEWORK_MAP: { [key in keyof typeof Framework]: string } = {
@@ -25,11 +25,4 @@ export const ENVIRONMENT_MAP: { [key in keyof typeof Environment]: string } = {
   STAGING: "staging",
   QA: "qa",
   DEV: "dev",
-};
-
-export const APP_BASE_PORT_MAP: { [key in keyof typeof App]: BasePort } = {
-  UNSPECIFIED: BasePort.UNSPECIFIED,
-  DRONE: BasePort.DRONE,
-  BEEKEEPER: BasePort.BEEKEEPER,
-  VESPA: BasePort.VESPA,
 };

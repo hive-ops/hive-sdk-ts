@@ -1,7 +1,7 @@
 import { ClientType } from "./types";
 import * as utils from "./utils";
 import { create } from "@bufbuild/protobuf";
-import { App, BasePort, FQDN, FQDNSchema, Environment } from "../../gen";
+import { App, FQDN, FQDNSchema, Environment } from "../../gen";
 
 describe("utils", () => {
   describe("boundedInt", () => {

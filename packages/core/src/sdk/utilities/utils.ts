@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { App, Environment, FQDN } from "../../gen";
-import { APP_BASE_PORT_MAP, APP_MAP, CLIENT_TYPE_FRAMEWORK_MAP, ENVIRONMENT_MAP } from "./constants";
+import { APP_MAP, CLIENT_TYPE_FRAMEWORK_MAP, ENVIRONMENT_MAP } from "./constants";
 import { ClientType, Protocol } from "./types";
 
 export const boundedInt = (value: number, min: number, max: number): number => {
@@ -108,9 +108,6 @@ export const buildURL = (fqdn: FQDN, clientType: ClientType): string => {
   // TCP Protocol
   const protocol = getProtocol(fqdn.environment);
 
-  // Port
-  const basePort = APP_BASE_PORT_MAP[getEnumKey(App, fqdn.app)];
-
   // Environment
   let environment = "";
   if (!([Environment.UNSPECIFIED, Environment.PROD] as Environment[]).includes(fqdn.environment)) {
@@ -127,7 +124,7 @@ export const buildURL = (fqdn: FQDN, clientType: ClientType): string => {
 
   const url = `${protocol}://${_.compact(domainElements).join(".")}`;
 
-  return isDevEnv(fqdn.environment) ? `${url}:${basePort}` : url;
+  return isDevEnv(fqdn.environment) ? `${url}:${fqdn.app}` : url;
 };
 
 // export const isNodeClient = (framework: Framework): boolean => framework === Framework.GRPC;

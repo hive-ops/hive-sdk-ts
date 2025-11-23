@@ -1,5 +1,11 @@
 # @hiveops/core
 
+## 1.20.9
+
+### Patch Changes
+
+- Refactor: Remove BasePort from models and related utilities
+
 ## 1.20.8
 
 ### Patch Changes
